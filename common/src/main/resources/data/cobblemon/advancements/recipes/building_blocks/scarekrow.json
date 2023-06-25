@@ -2,7 +2,7 @@
   "parent": "cobblemon:recipes/root",
   "rewards": {
     "recipes": [
-      "cobblemon:scarecrow"
+      "cobblemon:scarekrow"
     ]
   },
   "criteria": {
@@ -21,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "cobblemon:scarecrow"
+        "recipe": "cobblemon:scarekrow"
       }
     }
   },

@@ -2,7 +2,7 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         " s ",
-        "fhf",
+        "aha",
         " f "
     ],
     "key": {
@@ -14,11 +14,14 @@
         },
         "h": {
             "item": "minecraft:hay_block"
+        },
+        "a": {
+            "item": "minecraft:stick"
         }  
     },
     "result":
     {
-        "item": "cobblemon:scarecrow",
+        "item": "cobblemon:scarekrow",
         "count": 1
     }
 }
