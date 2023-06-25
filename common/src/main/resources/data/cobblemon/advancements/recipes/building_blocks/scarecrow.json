@@ -1,0 +1,34 @@
+{
+  "parent": "cobblemon:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cobblemon:scarecrow"
+    ]
+  },
+  "criteria": {
+    "has_hay": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:hay_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cobblemon:scarecrow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_hay",
+      "has_the_recipe"
+    ]
+  ]
+}

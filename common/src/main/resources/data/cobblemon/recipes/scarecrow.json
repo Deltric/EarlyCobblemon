@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " s ",
+        "fhf",
+        " f "
+    ],
+    "key": {
+        "s": {
+            "item": "minecraft:packed_mud"
+        },
+        "f": {
+            "tag": "minecraft:wooden_fences"
+        },
+        "h": {
+            "item": "minecraft:hay_block"
+        }  
+    },
+    "result":
+    {
+        "item": "cobblemon:scarecrow",
+        "count": 1
+    }
+}
