@@ -362,6 +362,17 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     @JvmField val X_SP_DEF = create("x_sp_def", CobblemonItem(Item.Settings()))
     @JvmField val X_SPEED = create("x_speed", CobblemonItem(Item.Settings()))
 
+    @JvmField val ABILITY_PATCH = create("ability_patch", CobblemonItem(Item.Settings()))
+    @JvmField val BIG_MALASADA = create("big_malasada", CobblemonItem(Item.Settings()))
+    @JvmField val CASTELIACONE = create("casteliacone", CobblemonItem(Item.Settings()))
+    @JvmField val JUBILIFE_MUFFIN = create("jubilife_muffin", CobblemonItem(Item.Settings()))
+    @JvmField val LAVA_COOKIE = create("lava_cookie", CobblemonItem(Item.Settings()))
+    @JvmField val LUMIOSE_GALETTE = create("lumiose_galette", CobblemonItem(Item.Settings()))
+    @JvmField val OLD_GATEAU = create("old_gateau", CobblemonItem(Item.Settings()))
+    @JvmField val PEWTER_CRUNCHIES = create("pewter_crunchies", CobblemonItem(Item.Settings()))
+    @JvmField val RAGE_CANDY_BAR = create("rage_candy_bar", CobblemonItem(Item.Settings()))
+    @JvmField val SHALOUR_SABLE = create("shalour_sable", CobblemonItem(Item.Settings()))
+
     /**
      * Evolution Ores and Stones
      */
@@ -661,6 +672,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
             consumer(group, EXPERIENCE_CANDY_L)
             consumer(group, EXPERIENCE_CANDY_XL)
             consumer(group, RARE_CANDY)
+            consumer(group, ABILITY_PATCH)
 
             consumer(group, LONELY_MINT)
             consumer(group, ADAMANT_MINT)
@@ -683,6 +695,16 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
             consumer(group, JOLLY_MINT)
             consumer(group, NAIVE_MINT)
             consumer(group, SERIOUS_MINT)
+
+            consumer(group, PEWTER_CRUNCHIES)
+            consumer(group, RAGE_CANDY_BAR)
+            consumer(group, LAVA_COOKIE)
+            consumer(group, OLD_GATEAU)
+            consumer(group, CASTELIACONE)
+            consumer(group, LUMIOSE_GALETTE)
+            consumer(group, SHALOUR_SABLE)
+            consumer(group, BIG_MALASADA)
+            consumer(group, JUBILIFE_MUFFIN)
         }
 
         CobblemonItemGroups.EVOLUTION_ITEMS.group().let { group ->

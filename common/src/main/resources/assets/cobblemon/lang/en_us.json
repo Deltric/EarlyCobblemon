@@ -237,6 +237,17 @@
   "item.cobblemon.x_sp_def": "X Special Defense",
   "item.cobblemon.x_sp_atk": "X Special Attack",
 
+  "item.cobblemon.ability_patch": "Ability Patch",
+  "item.cobblemon.big_malasada": "Big Malasada",
+  "item.cobblemon.casteliacone": "Casteliacone",
+  "item.cobblemon.jubilife_muffin": "Jubilife Muffin",
+  "item.cobblemon.lava_cookie": "Lava Cookie",
+  "item.cobblemon.lumiose_galette": "Lumiose Galette",
+  "item.cobblemon.old_gateau": "Old Gateau",
+  "item.cobblemon.pewter_crunchies": "Pewter Crunchies",
+  "item.cobblemon.rage_candy_bar": "Rage Candy Bar",
+  "item.cobblemon.shalour_sable": "Shalour Sable",
+
   "itemGroup.cobblemon.blocks": "Blocks",
   "itemGroup.cobblemon.pokeball": "Poké Balls",
   "itemGroup.cobblemon.agriculture": "Agriculture",
