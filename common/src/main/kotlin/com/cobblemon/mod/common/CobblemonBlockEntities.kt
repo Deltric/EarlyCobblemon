@@ -13,6 +13,8 @@ import com.cobblemon.mod.common.block.entity.PCBlockEntity
 import com.cobblemon.mod.common.block.entity.PokemonPastureBlockEntity
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.block.entity.HangingSignBlockEntity
+import net.minecraft.block.entity.SignBlockEntity
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKey
@@ -29,5 +31,9 @@ object CobblemonBlockEntities : PlatformRegistry<Registry<BlockEntityType<*>>, R
     val PC: BlockEntityType<PCBlockEntity> = this.create("pc", BlockEntityType.Builder.create(::PCBlockEntity, CobblemonBlocks.PC).build(null))
     @JvmField
     val PASTURE: BlockEntityType<PokemonPastureBlockEntity> = this.create("pasture", BlockEntityType.Builder.create(::PokemonPastureBlockEntity, CobblemonBlocks.PASTURE).build(null))
+    @JvmField
+    val APRICORN_SIGN: BlockEntityType<SignBlockEntity> = this.create("apricorn_sign", BlockEntityType.Builder.create(::SignBlockEntity, CobblemonBlocks.APRICORN_SIGN).build(null))
+    @JvmField
+    val APRICORN_HANGING_SIGN: BlockEntityType<HangingSignBlockEntity> = this.create("apricorn_hanging_sign", BlockEntityType.Builder.create(::HangingSignBlockEntity, CobblemonBlocks.APRICORN_HANGING_SIGN).build(null))
 
 }

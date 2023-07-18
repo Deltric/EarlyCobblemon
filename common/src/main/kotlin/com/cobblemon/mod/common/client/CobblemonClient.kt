@@ -8,12 +8,8 @@
 
 package com.cobblemon.mod.common.client
 
-import com.cobblemon.mod.common.Cobblemon
+import com.cobblemon.mod.common.*
 import com.cobblemon.mod.common.Cobblemon.LOGGER
-import com.cobblemon.mod.common.CobblemonBlockEntities
-import com.cobblemon.mod.common.CobblemonBlocks
-import com.cobblemon.mod.common.CobblemonClientImplementation
-import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.scheduling.ScheduledTaskTracker
 import com.cobblemon.mod.common.api.text.gray
 import com.cobblemon.mod.common.client.battle.ClientBattle
@@ -41,11 +37,11 @@ import net.minecraft.client.color.block.BlockColorProvider
 import net.minecraft.client.color.item.ItemColorProvider
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.render.RenderLayer
+import net.minecraft.client.render.block.entity.SignBlockEntityRenderer
 import net.minecraft.client.render.entity.EntityRenderer
 import net.minecraft.client.render.entity.EntityRendererFactory
 import net.minecraft.client.render.entity.LivingEntityRenderer
 import net.minecraft.client.render.entity.model.PlayerEntityModel
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.resource.ResourceManager
@@ -89,6 +85,8 @@ object CobblemonClient {
         PlatformEvents.CLIENT_PLAYER_LOGOUT.subscribe { onLogout() }
 
         this.implementation.registerBlockEntityRenderer(CobblemonBlockEntities.HEALING_MACHINE, ::HealingMachineRenderer)
+        //this.implementation.registerBlockEntityRenderer(CobblemonBlockEntities.APRICORN_HANGING_SIGN, ::HangingSignBlockEntityRenderer)
+        this.implementation.registerBlockEntityRenderer(CobblemonBlockEntities.APRICORN_SIGN, ::SignBlockEntityRenderer)
 
         registerBlockRenderTypes()
         registerColors()

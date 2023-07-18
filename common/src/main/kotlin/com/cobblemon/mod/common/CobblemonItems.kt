@@ -13,13 +13,6 @@ import com.cobblemon.mod.common.api.pokemon.Natures
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.block.MintBlock.MintType
 import com.cobblemon.mod.common.item.*
-import com.cobblemon.mod.common.item.group.CobblemonItemGroups
-import com.cobblemon.mod.common.item.interactive.CandyItem
-import com.cobblemon.mod.common.item.interactive.EnergyRoot
-import com.cobblemon.mod.common.item.interactive.LinkCableItem
-import com.cobblemon.mod.common.item.interactive.MintItem
-import com.cobblemon.mod.common.item.interactive.RemedyItem
-import com.cobblemon.mod.common.item.interactive.VitaminItem
 import com.cobblemon.mod.common.item.interactive.*
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import com.cobblemon.mod.common.pokeball.PokeBall
@@ -171,8 +164,10 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val APRICORN_BUTTON = blockItem("apricorn_button", CobblemonBlocks.APRICORN_BUTTON)
     @JvmField
     val APRICORN_PRESSURE_PLATE = blockItem("apricorn_pressure_plate", CobblemonBlocks.APRICORN_PRESSURE_PLATE)
-    //@JvmField
-//    val APRICORN_SIGN = create("apricorn_sign", SignItem(Item.Properties().stacksTo(16).tab(CreativeModeTab.TAB_DECORATIONS), CobblemonBlocks.APRICORN_SIGN, CobblemonBlocks.APRICORN_WALL_SIGN))
+    @JvmField
+    val APRICORN_SIGN = blockItem("apricorn_sign", CobblemonBlocks.APRICORN_SIGN)
+    @JvmField
+    val APRICORN_HANGING_SIGN = blockItem("apricorn_hanging_sign", CobblemonBlocks.APRICORN_HANGING_SIGN)
     @JvmField
     val APRICORN_SLAB = blockItem("apricorn_slab", CobblemonBlocks.APRICORN_SLAB)
     @JvmField

@@ -11,10 +11,6 @@ package com.cobblemon.mod.common
 import com.cobblemon.mod.common.api.apricorn.Apricorn
 import com.cobblemon.mod.common.block.*
 import com.cobblemon.mod.common.block.MintBlock.MintType
-import com.cobblemon.mod.common.mixin.invoker.DoorBlockInvoker
-import com.cobblemon.mod.common.mixin.invoker.PressurePlateBlockInvoker
-import com.cobblemon.mod.common.mixin.invoker.StairsBlockInvoker
-import com.cobblemon.mod.common.mixin.invoker.TrapdoorBlockInvoker
 import com.cobblemon.mod.common.mixin.invoker.*
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import net.minecraft.block.*
@@ -209,6 +205,11 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, RegistryKey<Registry<
 
     @JvmField
     val VIVICHOKE_SEEDS = this.create("vivichoke_seeds", VivichokeBlock(AbstractBlock.Settings.create().pistonBehavior(PistonBehavior.DESTROY).burnable().mapColor(MapColor.DARK_GREEN).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP)))
+
+    @JvmField
+    val APRICORN_SIGN = this.create("apricorn_sign", ApricornSignBlock(AbstractBlock.Settings.create().pistonBehavior(PistonBehavior.DESTROY).burnable().sounds(BlockSoundGroup.HANGING_SIGN), APRICORN_WOOD_TYPE))
+    @JvmField
+    val APRICORN_HANGING_SIGN = this.create("apricorn_hanging_sign", ApricornHangingSignBlock(AbstractBlock.Settings.create().pistonBehavior(PistonBehavior.DESTROY).burnable().sounds(BlockSoundGroup.HANGING_SIGN), APRICORN_WOOD_TYPE))
 
     /**
      * Returns a map of all the blocks that can be stripped with an axe in the format of input - output.
