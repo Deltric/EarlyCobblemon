@@ -107,6 +107,7 @@ object ShowdownInterpreter {
         updateInstructions["|-sidestart|"] = this::handleSideStartInstructions
         updateInstructions["|-sideend|"] = this::handleSideEndInstructions
         updateInstructions["|-fieldactivate|"] = this::handleFieldActivateInstructions
+        updateInstructions["|replace|"] = this::handleReplaceInstruction
 
         sideUpdateInstructions["|request|"] = this::handleRequestInstruction
         splitUpdateInstructions["|switch|"] = this::handleSwitchInstruction
@@ -1014,6 +1015,82 @@ object ShowdownInterpreter {
             battle.activePokemon.forEach {
                 it.battlePokemon?.contextManager?.addUnique(getContextFromAction(message, BattleContext.Type.VOLATILE, battle))
             }
+        }
+    }
+
+    /**
+     * Format:
+     * |replace|POKEMON|DETAILS|HP STATUS|ILLUSIONED_POKEMON_HEALTH STATUS
+     *
+     * Illusion has ended for the specified Pokémon. Syntax is the same as |switch| above, but remember that everything you thought you knew about the previous Pokémon is now wrong.
+     *
+     * POKEMON will be the NEW Pokémon ID - i.e. it will have the nickname of the Zoroark (or other Illusion user).
+     */
+    private fun handleReplaceInstruction(
+            battle: PokemonBattle,
+            message: BattleMessage,
+            remainingLines: MutableList<String>
+    ) {
+        val (pnx, pokemonID) = message.pnxAndUuid(0) ?: return
+        val rawHpAndStatus = message.argumentAt(2)?.split(" ") ?: return
+        val rawHpRatio = rawHpAndStatus.getOrNull(0) ?: return
+        val newHealth = rawHpRatio.split("/").getOrNull(0)?.toIntOrNull() ?: return
+        val rawStatus = rawHpAndStatus.getOrNull(1)
+        val status = rawStatus?.let { Statuses.getStatus(it) }
+
+        val oldPokemonRawHpAndStatus = message.argumentAt(3)?.split(" ") ?: return
+        val oldPokemonRawHpRatio = oldPokemonRawHpAndStatus.getOrNull(0) ?: return
+        val oldPokemonNewHealth = oldPokemonRawHpRatio.split("/").getOrNull(0)?.toIntOrNull() ?: return
+        val oldPokemonRawStatus = oldPokemonRawHpAndStatus.getOrNull(1)
+        val oldPokemonStatus = oldPokemonRawStatus?.let { Statuses.getStatus(it) }
+
+        battle.dispatchInsert {
+            val (actor, activePokemon) = battle.getActorAndActiveSlotFromPNX(pnx)
+            val pokemon = battle.getBattlePokemon(pnx, pokemonID)
+
+            println("BEFORE ENTITY")
+            val entity = if (actor is EntityBackedBattleActor<*>) actor.entity else null
+            println("AFTER ENTITY")
+
+            if (activePokemon.battlePokemon == pokemon) {
+//                println("RETURN")
+                return@dispatchInsert emptySet() // Already switched in, Showdown does this if the pokemon is going to die before it can switch
+            }
+            println("Replacing")
+
+            activePokemon.battlePokemon?.let { oldPokemon ->
+                println("TEST")
+                println("New Pokemon: " + pokemon.effectedPokemon.getDisplayName() + " HP: " + pokemon.effectedPokemon.currentHealth)
+                println("Old Pokemon: " + oldPokemon.effectedPokemon.getDisplayName() + " HP: " + oldPokemon.effectedPokemon.currentHealth)
+                println(pokemon.maxHealth * (oldPokemon.effectedPokemon.currentHealth / oldPokemon.maxHealth))
+//                pokemon.effectedPokemon.currentHealth = pokemon.maxHealth * (oldPokemon.effectedPokemon.currentHealth / oldPokemon.maxHealth)
+//                pokemon.effectedPokemon.currentHealth = oldPokemon.effectedPokemon.currentHealth
+                pokemon.effectedPokemon.currentHealth = newHealth
+                status?.also { knownStatus ->
+                    if (knownStatus is PersistentStatus) {
+                        pokemon.effectedPokemon.applyStatus(knownStatus)
+                    }
+                }
+
+                oldPokemon.effectedPokemon.currentHealth = oldPokemonNewHealth
+                oldPokemonStatus?.also { knownStatus ->
+                    if (knownStatus is PersistentStatus) {
+                        oldPokemon.effectedPokemon.applyStatus(knownStatus)
+                    }
+                }
+//                oldPokemon.sendUpdate()
+            }
+            pokemon.sendUpdate()
+
+            setOf(
+                    BattleDispatch {
+                        if (entity != null) {
+                            this.createEntitySwitch(battle, actor, entity, pnx, activePokemon, pokemon)
+                        } else {
+                            this.createNonEntitySwitch(battle, actor, pnx, activePokemon, pokemon)
+                        }
+                    }
+            )
         }
     }
 

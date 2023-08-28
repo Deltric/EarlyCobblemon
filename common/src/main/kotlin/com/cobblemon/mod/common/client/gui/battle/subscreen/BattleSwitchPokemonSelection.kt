@@ -103,6 +103,8 @@ class BattleSwitchPokemonSelection(
             .filter { "fnt" !in it.first.condition || it.first.reviving }
 
         showdownPokemonToPokemon.forEachIndexed { index, (showdownPokemon, pokemon) ->
+            println("SD Pokemon: " + showdownPokemon + " " + showdownPokemon.details)
+            println("Pokemon: " + pokemon + " " + pokemon.getDisplayName())
             val row = index / 2
             val column = index % 2
 
