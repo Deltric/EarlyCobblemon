@@ -94,6 +94,7 @@ class BattleSwitchPokemonSelection(
         val switchingInPokemon = pendingActionRequests.mapNotNull { it.response }.filterIsInstance<SwitchActionResponse>().map { it.newPokemonId }
         val showdownPokemonToPokemon = request.side!!.pokemon
             .mapNotNull { showdownPokemon ->
+//                println("Pokemon: " + showdownPokemon + " " + showdownPokemon.uuid)
                 battleGUI.actor!!.pokemon
                     .find { it.uuid == showdownPokemon.uuid }
                     ?.let { showdownPokemon to it }

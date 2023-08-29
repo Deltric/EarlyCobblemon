@@ -1048,23 +1048,18 @@ object ShowdownInterpreter {
             val (actor, activePokemon) = battle.getActorAndActiveSlotFromPNX(pnx)
             val pokemon = battle.getBattlePokemon(pnx, pokemonID)
 
-            println("BEFORE ENTITY")
             val entity = if (actor is EntityBackedBattleActor<*>) actor.entity else null
-            println("AFTER ENTITY")
 
             if (activePokemon.battlePokemon == pokemon) {
-//                println("RETURN")
                 return@dispatchInsert emptySet() // Already switched in, Showdown does this if the pokemon is going to die before it can switch
             }
-            println("Replacing")
 
+            var maybeOldPokemon: BattlePokemon? = null
             activePokemon.battlePokemon?.let { oldPokemon ->
                 println("TEST")
                 println("New Pokemon: " + pokemon.effectedPokemon.getDisplayName() + " HP: " + pokemon.effectedPokemon.currentHealth)
                 println("Old Pokemon: " + oldPokemon.effectedPokemon.getDisplayName() + " HP: " + oldPokemon.effectedPokemon.currentHealth)
                 println(pokemon.maxHealth * (oldPokemon.effectedPokemon.currentHealth / oldPokemon.maxHealth))
-//                pokemon.effectedPokemon.currentHealth = pokemon.maxHealth * (oldPokemon.effectedPokemon.currentHealth / oldPokemon.maxHealth)
-//                pokemon.effectedPokemon.currentHealth = oldPokemon.effectedPokemon.currentHealth
                 pokemon.effectedPokemon.currentHealth = newHealth
                 status?.also { knownStatus ->
                     if (knownStatus is PersistentStatus) {
@@ -1072,13 +1067,18 @@ object ShowdownInterpreter {
                     }
                 }
 
+                maybeOldPokemon = oldPokemon
+            }
+            maybeOldPokemon?.also { oldPokemon ->
                 oldPokemon.effectedPokemon.currentHealth = oldPokemonNewHealth
                 oldPokemonStatus?.also { knownStatus ->
                     if (knownStatus is PersistentStatus) {
                         oldPokemon.effectedPokemon.applyStatus(knownStatus)
                     }
                 }
-//                oldPokemon.sendUpdate()
+                oldPokemon.sendUpdate()
+                println(oldPokemon)
+                println(oldPokemon.effectedPokemon.currentHealth)
             }
             pokemon.sendUpdate()
 
