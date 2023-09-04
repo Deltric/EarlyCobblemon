@@ -122,7 +122,7 @@
     "DRY": 15,
     "BITTER": 10
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:passho_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/passho.png",

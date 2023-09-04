@@ -96,7 +96,7 @@
     "SWEET": 10,
     "SOUR": 10
   },
-  "weight": 1.0,
+  "weight": 0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:qualot_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/qualot.png",

@@ -104,7 +104,7 @@
     "BITTER": 30,
     "SOUR": 10
   },
-  "weight": 1.0,
+  "weight": 0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:petaya_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/petaya.png",

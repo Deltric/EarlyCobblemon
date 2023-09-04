@@ -104,7 +104,7 @@
     "SWEET": 10,
     "BITTER": 30
   },
-  "weight": 1.0,
+  "weight": 0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:ganlon_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/ganlon.png",

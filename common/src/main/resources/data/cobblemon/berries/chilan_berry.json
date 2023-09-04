@@ -120,7 +120,7 @@
     "DRY": 25,
     "SWEET": 10
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:chilan_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/chilan.png",

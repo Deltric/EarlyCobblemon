@@ -89,7 +89,7 @@
     }
   ],
   "flavors": {},
-  "weight": 1.0,
+  "weight": 0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:hopo_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/hopo.png",

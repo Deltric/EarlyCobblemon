@@ -106,7 +106,7 @@
     "BITTER": 10,
     "SOUR": 30
   },
-  "weight": 1.0,
+  "weight": 0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:starf_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/starf.png",

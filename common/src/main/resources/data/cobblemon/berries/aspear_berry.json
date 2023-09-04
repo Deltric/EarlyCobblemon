@@ -160,7 +160,7 @@
   "flavors": {
     "SOUR": 10
   },
-  "weight": 1.0,
+  "weight": 20.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:aspear_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/aspear.png",

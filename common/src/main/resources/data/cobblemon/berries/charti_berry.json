@@ -122,7 +122,7 @@
     "SPICY": 10,
     "DRY": 20
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:charti_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/charti.png",

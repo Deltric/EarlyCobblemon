@@ -7,7 +7,8 @@
     "cobblemon:is_dripstone",
     "cobblemon:is_lush",
     "cobblemon:is_spooky",
-    "cobblemon:is_swamp"
+    "cobblemon:is_swamp",
+    "cobblemon:is_taiga"
   ],
   "growthTime": {
     "min": 50,
@@ -18,7 +19,8 @@
     "max": 26
   },
   "favoriteMulches": [
-    "humid"
+    "humid",
+    "coarse"
   ],
   "growthFactors": [
     {
@@ -121,7 +123,7 @@
     "DRY": 10,
     "SWEET": 20
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:kasib_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/kasib.png",

@@ -122,7 +122,7 @@
     "SPICY": 15,
     "SWEET": 10
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:occa_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/occa.png",

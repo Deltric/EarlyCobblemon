@@ -166,7 +166,7 @@
     "BITTER": 10,
     "SOUR": 10
   },
-  "weight": 1.0,
+  "weight": 20.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:persim_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/persim.png",

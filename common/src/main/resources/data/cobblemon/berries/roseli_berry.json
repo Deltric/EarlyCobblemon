@@ -122,7 +122,7 @@
     "SWEET": 25,
     "BITTER": 10
   },
-  "weight": 1.0,
+  "weight": 0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:roseli_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/roseli.png",

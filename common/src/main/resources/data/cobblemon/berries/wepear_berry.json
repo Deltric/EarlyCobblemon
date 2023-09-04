@@ -160,7 +160,7 @@
     "BITTER": 10,
     "SOUR": 10
   },
-  "weight": 1.0,
+  "weight": 15.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:wepear_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/wepear.png",

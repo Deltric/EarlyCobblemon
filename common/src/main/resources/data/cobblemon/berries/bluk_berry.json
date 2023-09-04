@@ -161,7 +161,7 @@
     "DRY": 10,
     "SWEET": 10
   },
-  "weight": 1.0,
+  "weight": 15.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:bluk_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/bluk.png",

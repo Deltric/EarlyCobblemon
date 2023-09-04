@@ -4,7 +4,8 @@
     "max": 3
   },
   "preferredBiomeTags": [
-    "cobblemon:is_arid"
+    "cobblemon:is_arid",
+    "cobblemon:is_grassland"
   ],
   "growthTime": {
     "min": 50,
@@ -15,7 +16,8 @@
     "max": 26
   },
   "favoriteMulches": [
-    "sandy"
+    "sandy",
+    "loamy"
   ],
   "growthFactors": [
     {
@@ -118,7 +120,7 @@
     "SPICY": 10,
     "SWEET": 15
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:shuca_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/shuca.png",

@@ -103,7 +103,7 @@
     "DRY": 40,
     "SWEET": 10
   },
-  "weight": 1.0,
+  "weight": 0,
   "tintIndexes": [],
   "flowerModel": "cobblemon:micle_flower.geo",
   "flowerTexture": "cobblemon:textures/berries/micle.png",
