@@ -26,7 +26,7 @@ import net.minecraft.world.biome.Biome
  * @since December 2nd, 2022
  */
 class BiomeTemperatureGrowthFactor(
-    val range: NumberRange.FloatRange,
+    val range: NumberRange.DoubleRange,
     val bonusYield: IntRange
 ) : GrowthFactor {
 

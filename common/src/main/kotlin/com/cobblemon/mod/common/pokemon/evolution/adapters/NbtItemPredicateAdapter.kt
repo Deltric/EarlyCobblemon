@@ -10,11 +10,18 @@ package com.cobblemon.mod.common.pokemon.evolution.adapters
 
 import com.cobblemon.mod.common.api.conditional.RegistryLikeCondition
 import com.cobblemon.mod.common.pokemon.evolution.predicate.NbtItemPredicate
-import com.google.gson.*
+import com.google.gson.JsonDeserializationContext
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
+import com.google.gson.JsonSerializationContext
+import com.google.gson.JsonSerializer
 import com.google.gson.reflect.TypeToken
-import net.minecraft.item.Item
-import net.minecraft.predicate.NbtPredicate
+import com.mojang.serialization.JsonOps
 import java.lang.reflect.Type
+import net.minecraft.item.Item
+import net.minecraft.nbt.NbtCompound
+import net.minecraft.predicate.NbtPredicate
 
 object NbtItemPredicateAdapter : JsonDeserializer<NbtItemPredicate>, JsonSerializer<NbtItemPredicate> {
 
@@ -24,22 +31,22 @@ object NbtItemPredicateAdapter : JsonDeserializer<NbtItemPredicate>, JsonSeriali
 
     override fun deserialize(jElement: JsonElement, type: Type, context: JsonDeserializationContext): NbtItemPredicate {
         if (jElement.isJsonPrimitive) {
-            return NbtItemPredicate(context.deserialize(jElement, CONDITION_TYPE), NbtPredicate.ANY)
+            return NbtItemPredicate(context.deserialize(jElement, CONDITION_TYPE), NbtPredicate(NbtCompound()))
         }
         val jObject = jElement.asJsonObject
         val itemCondition = context.deserialize<RegistryLikeCondition<Item>>(jObject.get(ITEM), CONDITION_TYPE)
-        val nbtPredicate = NbtPredicate.fromJson(jObject.get(NBT))
+        val nbtPredicate = NbtPredicate.CODEC.decode(JsonOps.COMPRESSED, jObject.get(NBT)).result().get().first
         return NbtItemPredicate(itemCondition, nbtPredicate)
     }
 
     override fun serialize(predicate: NbtItemPredicate, type: Type, context: JsonSerializationContext): JsonElement {
         val serializedItemCondition = context.serialize(predicate.item, CONDITION_TYPE)
-        if (predicate.nbt == NbtPredicate.ANY) {
+        if (predicate.nbt.nbt.isEmpty) {
             return serializedItemCondition
         }
         return JsonObject().apply {
             add(ITEM, serializedItemCondition)
-            add(NBT, predicate.nbt.toJson())
+            add(NBT, NbtPredicate.CODEC.encodeStart(JsonOps.COMPRESSED, predicate.nbt).result().get())
         }
     }
 

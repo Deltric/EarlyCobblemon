@@ -16,6 +16,7 @@ import net.minecraft.command.argument.EnumArgumentType
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.StringIdentifiable
+import net.minecraft.util.StringIdentifiable.EnumCodec
 
 class PokemonStoreArgumentType : EnumArgumentType<StoreType>(StoreType.CODEC, StoreType::values) {
     companion object {
@@ -33,7 +34,6 @@ enum class StoreType(val storeFetcher: (ServerPlayerEntity) -> Collection<Pokemo
     override fun asString(): String = this.name.lowercase()
 
     companion object {
-        val CODEC: StringIdentifiable.Codec<StoreType> = StringIdentifiable.createCodec(::values)
+        val CODEC: EnumCodec<StoreType> = StringIdentifiable.createCodec(::values)
     }
-
 }

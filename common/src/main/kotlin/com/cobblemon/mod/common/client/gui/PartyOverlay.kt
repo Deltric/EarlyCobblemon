@@ -64,7 +64,7 @@ class PartyOverlay : InGameHud(MinecraftClient.getInstance(), MinecraftClient.ge
         CobblemonItems.POKE_BALL.defaultStack,
         lang("ui.starter.choose_starter_title", SummaryBinding.boundKey().localizedText).red(),
         lang("ui.starter.choose_starter_description", SummaryBinding.boundKey().localizedText).darkGray(),
-        Toast.TEXTURE,
+        CobblemonResources.TOAST,
         -1F,
         0
     )
@@ -86,7 +86,7 @@ class PartyOverlay : InGameHud(MinecraftClient.getInstance(), MinecraftClient.ge
             if (!screenExemptions.contains(minecraft.currentScreen?.javaClass as Class<out Screen>))
                 return
         }
-        if (minecraft.options.debugEnabled) {
+        if (minecraft.options.hudHidden) {
             return
         }
         // Hiding if toggled via Keybind

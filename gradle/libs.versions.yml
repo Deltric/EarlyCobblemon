@@ -12,14 +12,14 @@ versions:
 
   # fabric/remap
   loom: 1.1-SNAPSHOT
-  fabric-loader: 0.14.21
-  fabric-api: 0.86.0+1.20.1
-  fabric-kotlin: 1.9.3+kotlin.1.8.20
+  fabric-loader: 0.14.22
+  fabric-api: 0.89.1+1.20.2
+  fabric-kotlin: 1.10.10+kotlin.1.9.10
   architectury-plugin: 3.4-SNAPSHOT
 
   # forge
-  forge: 1.20.1-47.0.50
-  kotlinForForge: 4.3.0
+  forge: 1.20.2-48.0.0
+  kotlinForForge: 4.4.0
 
   # common
   graal: 22.3.0

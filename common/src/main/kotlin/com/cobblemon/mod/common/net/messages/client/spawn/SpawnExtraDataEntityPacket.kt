@@ -47,7 +47,7 @@ abstract class SpawnExtraDataEntityPacket<T: NetworkPacket<T>, E : Entity>(priva
                 this.applyData(entity as E)
             }
             // Cobblemon end
-            world.addEntity(this.vanillaSpawnPacket.id, entity)
+            world.addEntity(entity)
             (player.networkHandler as ClientPlayNetworkHandlerInvoker).callPlaySpawnSound(entity)
         }
     }

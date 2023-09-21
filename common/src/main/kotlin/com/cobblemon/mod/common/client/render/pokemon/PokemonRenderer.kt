@@ -29,6 +29,9 @@ import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.math.DoubleRange
 import com.cobblemon.mod.common.util.math.geometry.toRadians
 import com.cobblemon.mod.common.util.math.remap
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.tan
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.font.TextRenderer
 import net.minecraft.client.render.LightmapTextureManager
@@ -48,9 +51,6 @@ import net.minecraft.util.math.RotationAxis
 import org.joml.Quaternionf
 import org.joml.Vector3f
 import org.joml.Vector4f
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.tan
 
 class PokemonRenderer(
     context: EntityRendererFactory.Context
@@ -225,8 +225,8 @@ class PokemonRenderer(
 
         val ray1YRot = (totalWorldTicks + DELTA_TICKS) / 16F
 
-        val startY1 = entity.boundingBox.yLength.toFloat() * 0.5F * clientDelegate.entityScaleModifier
-        val startY2 = startY1 + entity.boundingBox.yLength.toFloat() * 0.05F * clientDelegate.entityScaleModifier
+        val startY1 = entity.boundingBox.lengthY.toFloat() * 0.5F * clientDelegate.entityScaleModifier
+        val startY2 = startY1 + entity.boundingBox.lengthY.toFloat() * 0.05F * clientDelegate.entityScaleModifier
 
         val endY1 = startY1 - tan(glowRangeAngle) * glowLength
         val endY2 = startY2 + tan(glowRangeAngle) * glowLength
@@ -298,7 +298,7 @@ class PokemonRenderer(
             val scale = min(1.5, max(0.65, d.remap(DoubleRange(-16.0, 96.0), DoubleRange(0.0, 1.0))))
             val sizeScale = MathHelper.lerp(scale.remap(DoubleRange(0.65, 1.5), DoubleRange(0.0,1.0)), 0.5, 1.0)
             val offsetScale = MathHelper.lerp(scale.remap(DoubleRange(0.65, 1.5), DoubleRange(0.0,1.0)), 0.0,1.0)
-            val entityHeight = entity.boundingBox.yLength + 0.5f
+            val entityHeight = entity.boundingBox.lengthY + 0.5f
             matrices.push()
             matrices.translate(0.0, entityHeight, 0.0)
             matrices.multiply(dispatcher.rotation)

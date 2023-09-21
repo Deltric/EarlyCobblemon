@@ -17,9 +17,7 @@ class PokeNavFillerButton(
     posX: Int, posY: Int,
     pX: Int, pY: Int,
     pWidth: Int, pHeight: Int,
-    pXTexStart: Int, pYTexStart: Int, pYDiffText: Int,
-    pTextureWidth: Int, pTextureHeight: Int
-): PokeNavImageButton(posX, posY, pX, pY, pWidth, pHeight, pXTexStart, pYTexStart, pYDiffText, FILLER, pTextureWidth, pTextureHeight, {}, "".text()) {
+): PokeNavImageButton(posX, posY, pX, pY, pWidth, pHeight, FILLER, {}, "".text()) {
 
     override fun renderButton(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
         this.applyBlitk(context.matrices, pMouseX, pMouseY, pPartialTicks)

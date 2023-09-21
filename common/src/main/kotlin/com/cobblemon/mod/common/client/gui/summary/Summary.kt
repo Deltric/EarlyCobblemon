@@ -406,7 +406,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
     }
 
     override fun render(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
-        renderBackground(context)
+        renderBackground(context, pMouseX, pMouseY, pPartialTicks)
 
         val x = (width - BASE_WIDTH) / 2
         val y = (height - BASE_HEIGHT) / 2
@@ -587,8 +587,8 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
         return false
     }
 
-    override fun mouseScrolled(mouseX: Double, mouseY: Double, amount: Double): Boolean {
-        return children().any { it.mouseScrolled(mouseX, mouseY, amount) }
+    override fun mouseScrolled(mouseX: Double, mouseY: Double, horizontalAmount: Double, verticalAmount: Double): Boolean {
+        return children().any { it.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount) }
     }
 
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {

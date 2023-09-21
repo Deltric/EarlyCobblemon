@@ -23,7 +23,6 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.gui.widget.ButtonWidget
 import net.minecraft.client.util.InputUtil
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
@@ -119,7 +118,7 @@ class PokeNav : Screen(Text.translatable("cobblemon.ui.pokenav.title")) {
      * Rendering the background texture
      */
     override fun render(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
-        renderBackground(context)
+        renderBackground(context, pMouseX, pMouseY, pPartialTicks)
 
         // Rendering UI Background
         blitk(
@@ -299,17 +298,16 @@ class PokeNav : Screen(Text.translatable("cobblemon.ui.pokenav.title")) {
             posX, posY,
             getWidthForPos(posX), getHeightFor(posY),
             buttonWidth, buttonHeight,
-            0, 0, 0,
-            identifier, buttonWidth, buttonHeight,
-            onPress, text, canClick
+            identifier,
+            onPress,
+            text,
+            canClick
         ))
     }
 
     private fun fillerButtonOf(posX: Int, posY: Int) = PokeNavFillerButton(
         posX, posY,
         getWidthForPos(posX), getHeightFor(posY),
-        buttonWidth, buttonHeight,
-        0, 0, 0,
         buttonWidth, buttonHeight
     )
 

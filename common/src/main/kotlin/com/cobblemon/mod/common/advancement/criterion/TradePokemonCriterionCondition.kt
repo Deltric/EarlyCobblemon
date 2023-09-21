@@ -11,11 +11,11 @@ package com.cobblemon.mod.common.advancement.criterion
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
 
-class TradePokemonCriterionCondition(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<TradePokemonContext>(id, entity) {
+class TradePokemonCriterionCondition(entity: Optional<LootContextPredicate>) : SimpleCriterionCondition<TradePokemonContext>(entity) {
     var traded = "any"
     var received = "any"
     var tradedHeldItem = "any"

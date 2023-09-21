@@ -69,11 +69,11 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Settings) : 
 
     override fun createBlockEntity(pos: BlockPos, state: BlockState) = BerryBlockEntity(pos, state, berryIdentifier)
 
-    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState, isClient: Boolean) = !this.isMaxAge(state)
+    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState) = !this.isMaxAge(state)
 
     override fun canGrow(world: World, random: Random, pos: BlockPos, state: BlockState) = !this.isMaxAge(state)
 
-    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = checkType(blockWithEntityType, CobblemonBlockEntities.BERRY, BerryBlockEntity.TICKER)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = validateTicker(blockWithEntityType, CobblemonBlockEntities.BERRY, BerryBlockEntity.TICKER)
 
     init {
         defaultState = this.stateManager.defaultState

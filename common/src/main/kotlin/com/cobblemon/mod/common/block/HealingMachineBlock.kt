@@ -14,8 +14,16 @@ import com.cobblemon.mod.common.api.text.gray
 import com.cobblemon.mod.common.api.text.green
 import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.block.entity.HealingMachineBlockEntity
-import com.cobblemon.mod.common.util.*
-import net.minecraft.block.*
+import com.cobblemon.mod.common.util.asTranslated
+import com.cobblemon.mod.common.util.isInBattle
+import com.cobblemon.mod.common.util.lang
+import com.cobblemon.mod.common.util.party
+import net.minecraft.block.Block
+import net.minecraft.block.BlockRenderType
+import net.minecraft.block.BlockState
+import net.minecraft.block.BlockWithEntity
+import net.minecraft.block.HorizontalFacingBlock
+import net.minecraft.block.ShapeContext
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
@@ -190,7 +198,7 @@ class HealingMachineBlock(properties: Settings) : BlockWithEntity(properties) {
 
     override fun getComparatorOutput(state: BlockState, world: World, pos: BlockPos): Int = (world.getBlockEntity(pos) as? HealingMachineBlockEntity)?.currentSignal ?: 0
 
-    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = checkType(blockWithEntityType, CobblemonBlockEntities.HEALING_MACHINE, HealingMachineBlockEntity.TICKER::tick)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = validateTicker(blockWithEntityType, CobblemonBlockEntities.HEALING_MACHINE, HealingMachineBlockEntity.TICKER::tick)
 
     override fun getRenderType(blockState: BlockState): BlockRenderType {
         return BlockRenderType.MODEL

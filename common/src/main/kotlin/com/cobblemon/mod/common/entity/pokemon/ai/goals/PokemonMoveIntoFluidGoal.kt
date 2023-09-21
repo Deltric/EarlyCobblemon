@@ -97,9 +97,9 @@ class PokemonMoveIntoFluidGoal(private val mob: PokemonEntity) : Goal() {
                     mob.world.isSpaceEmpty(
                         Box.of(
                             Vec3d(pos.x.toDouble(), pos.y - 1.0, pos.z.toDouble()),
-                            box.xLength,
-                            box.yLength,
-                            box.zLength
+                            box.lengthX,
+                            box.lengthY,
+                            box.lengthZ
                         )
                     )
         }

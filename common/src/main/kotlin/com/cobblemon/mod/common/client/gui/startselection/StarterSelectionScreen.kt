@@ -37,7 +37,6 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.sound.PositionedSoundInstance
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.Text
 
 /**
@@ -182,8 +181,7 @@ class StarterSelectionScreen private constructor(): Screen("cobblemon.ui.starter
         addDrawableChild(
             ExitButton(
                 pX = x + 181, pY = y + 2,
-                pWidth = 16, pHeight = 12,
-                pXTexStart = 0, pYTexStart = 0, pYDiffText = 0
+                pWidth = 16, pHeight = 12
             ) {
                 MinecraftClient.getInstance().setScreen(null)
                 MinecraftClient.getInstance().soundManager.play(PositionedSoundInstance.master(CobblemonSounds.GUI_CLICK, 1.0F))

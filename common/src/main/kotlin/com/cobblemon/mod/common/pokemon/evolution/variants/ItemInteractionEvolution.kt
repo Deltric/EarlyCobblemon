@@ -16,6 +16,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.evolution.predicate.NbtItemPredicate
 import com.cobblemon.mod.common.registry.ItemIdentifierCondition
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NbtCompound
 import net.minecraft.predicate.NbtPredicate
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.Identifier
@@ -41,7 +42,7 @@ open class ItemInteractionEvolution(
     constructor(): this(
         id = "id",
         result = PokemonProperties(),
-        requiredContext = NbtItemPredicate(ItemIdentifierCondition(Identifier("minecraft", "fish")), NbtPredicate.ANY),
+        requiredContext = NbtItemPredicate(ItemIdentifierCondition(Identifier("minecraft", "fish")), NbtPredicate(NbtCompound())),
         optional = true,
         consumeHeldItem = true,
         requirements = mutableSetOf(),

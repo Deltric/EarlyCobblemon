@@ -10,11 +10,12 @@ package com.cobblemon.mod.common.advancement.criterion
 
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 
-class EvolvePokemonCriterionCondition(id: Identifier, entity: LootContextPredicate) : CountableCriterionCondition<EvolvePokemonContext>(id, entity) {
+class EvolvePokemonCriterionCondition(entity: Optional<LootContextPredicate>) : CountableCriterionCondition<EvolvePokemonContext>(entity) {
     var species = "any"
     var evolution = "any"
     override fun toJson(json: JsonObject) {

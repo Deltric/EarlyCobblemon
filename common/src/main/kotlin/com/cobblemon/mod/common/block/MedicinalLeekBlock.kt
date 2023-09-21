@@ -10,7 +10,10 @@ package com.cobblemon.mod.common.block
 
 import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
-import net.minecraft.block.*
+import net.minecraft.block.Block
+import net.minecraft.block.BlockState
+import net.minecraft.block.CropBlock
+import net.minecraft.block.ShapeContext
 import net.minecraft.item.ItemConvertible
 import net.minecraft.registry.tag.FluidTags
 import net.minecraft.server.world.ServerWorld
@@ -50,7 +53,7 @@ class MedicinalLeekBlock(settings: Settings) : CropBlock(settings) {
 
     // These 3 are still around for the sake of compatibility, vanilla won't trigger it but some mods might
     // We implement applyGrowth & getGrowthAmount for them
-    override fun isFertilizable(world: WorldView?, pos: BlockPos?, state: BlockState?, isClient: Boolean): Boolean = !this.isMature(state)
+    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState): Boolean = !this.isMature(state)
 
     override fun applyGrowth(world: World, pos: BlockPos, state: BlockState) {
         world.setBlockState(pos, state.with(this.ageProperty, (this.getAge(state) + 1).coerceAtMost(this.maxAge)), NOTIFY_LISTENERS)

@@ -9,9 +9,9 @@
 package com.cobblemon.mod.common.advancement.criterion
 
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
 
 /**
  * A type of advancement criterion condition that requires some number of completions. This can be extended to add
@@ -20,7 +20,7 @@ import net.minecraft.util.Identifier
  * @author Hiroku
  * @since November 4th, 2022
  */
-abstract class CountableCriterionCondition<T : CountableContext>(id: Identifier, predicate: LootContextPredicate) : SimpleCriterionCondition<T>(id, predicate) {
+abstract class CountableCriterionCondition<T : CountableContext>(predicate: Optional<LootContextPredicate>) : SimpleCriterionCondition<T>(predicate) {
     var count = 0
     override fun fromJson(json: JsonObject) {
         count = json.get("count")?.asInt ?: 0
@@ -43,7 +43,7 @@ abstract class CountableCriterionCondition<T : CountableContext>(id: Identifier,
  * @author Hiroku
  * @since November 4th, 2022
  */
-class SimpleCountableCriterionCondition(id: Identifier, predicate: LootContextPredicate) : CountableCriterionCondition<CountableContext>(id, predicate)
+class SimpleCountableCriterionCondition(predicate: Optional<LootContextPredicate>) : CountableCriterionCondition<CountableContext>(predicate)
 fun SimpleCriterionTrigger<CountableContext, SimpleCountableCriterionCondition>.trigger(player: ServerPlayerEntity, times: Int) = trigger(player, CountableContext(times))
 
 /**

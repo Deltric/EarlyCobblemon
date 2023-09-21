@@ -11,6 +11,7 @@ package com.cobblemon.mod.common.advancement.criterion
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
@@ -19,7 +20,9 @@ open class AspectCriterionTrigger(identifier: Identifier, criterionClass: Class<
 
 }
 
-class AspectCriterionCondition(id: Identifier, predicate: LootContextPredicate) : SimpleCriterionCondition<MutableMap<Identifier, MutableSet<String>>>(id, predicate) {
+class AspectCriterionCondition(
+    predicate: Optional<LootContextPredicate>
+) : SimpleCriterionCondition<MutableMap<Identifier, MutableSet<String>>>(predicate) {
     var pokemon = Identifier("cobblemon:pikachu")
     var aspects = mutableListOf<String>()
     override fun toJson(json: JsonObject) {

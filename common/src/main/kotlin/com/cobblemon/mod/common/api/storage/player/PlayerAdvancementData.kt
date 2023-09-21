@@ -85,7 +85,7 @@ class PlayerAdvancementData {
 
     fun updateAspectsCollected(player: ServerPlayerEntity, pokemon: Pokemon) {
         val aspectConditions = player.advancementTracker.progress.keys
-            .flatMap { it.criteria.values }
+            .flatMap { it.value.criteria.values }
             .mapNotNull { it.conditions }
             .filterIsInstance<AspectCriterionCondition>()
 

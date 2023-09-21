@@ -15,7 +15,13 @@ import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
 import com.cobblemon.mod.common.api.tags.CobblemonItemTags
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
-import net.minecraft.block.*
+import net.minecraft.block.Block
+import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
+import net.minecraft.block.EntityShapeContext
+import net.minecraft.block.Fertilizable
+import net.minecraft.block.HorizontalFacingBlock
+import net.minecraft.block.ShapeContext
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.entity.player.PlayerEntity
@@ -111,7 +117,7 @@ class ApricornBlock(settings: Settings, val apricorn: Apricorn) : HorizontalFaci
             else super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
     }
 
-    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState, isClient: Boolean) = state.get(AGE) < MAX_AGE
+    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState) = state.get(AGE) < MAX_AGE
 
     override fun canGrow(world: World, random: Random, pos: BlockPos, state: BlockState) = true
 

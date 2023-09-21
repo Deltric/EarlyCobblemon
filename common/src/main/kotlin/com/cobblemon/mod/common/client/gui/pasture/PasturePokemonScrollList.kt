@@ -58,9 +58,7 @@ class PasturePokemonScrollList(
 
     init {
         correctSize()
-        setRenderHorizontalShadows(false)
         setRenderBackground(false)
-        setRenderSelection(false)
 
         parent.pasturePCGUIConfiguration.pasturedPokemon.subscribeIncludingCurrent {
             val children = children()

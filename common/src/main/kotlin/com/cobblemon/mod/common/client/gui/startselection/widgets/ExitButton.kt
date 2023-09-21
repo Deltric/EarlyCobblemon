@@ -9,17 +9,20 @@
 package com.cobblemon.mod.common.client.gui.startselection.widgets
 
 import com.cobblemon.mod.common.api.gui.blitk
+import com.cobblemon.mod.common.api.text.text
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.client.gui.DrawContext
-import net.minecraft.client.gui.widget.TexturedButtonWidget
+import net.minecraft.client.gui.widget.ButtonWidget
+import net.minecraft.client.gui.widget.ButtonWidget.NarrationSupplier
 import net.minecraft.client.sound.SoundManager
-import net.minecraft.client.util.math.MatrixStack
+import net.minecraft.text.Text
+
 class ExitButton(
     pX: Int, pY: Int,
     pWidth: Int, pHeight: Int,
-    pXTexStart: Int, pYTexStart: Int, pYDiffText: Int,
+    text: Text? = null,
     onPress: PressAction
-): TexturedButtonWidget(pX, pY, pWidth, pHeight, pXTexStart, pYTexStart, pYDiffText, exitButtonResource, onPress) {
+): ButtonWidget(pX, pY, pWidth, pHeight, text ?: "".text(), onPress, NarrationSupplier { "".text() }) {
 
     companion object {
         private const val EXIT_BUTTON_WIDTH = 15.95F

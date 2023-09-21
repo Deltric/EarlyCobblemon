@@ -9,10 +9,10 @@
 package com.cobblemon.mod.common.advancement.criterion
 
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.advancement.criterion.AbstractCriterion
 import net.minecraft.advancement.criterion.AbstractCriterionConditions
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
@@ -30,13 +30,12 @@ open class SimpleCriterionTrigger<T, C : SimpleCriterionCondition<T>>(
     val _id: Identifier,
     val criterionClass: Class<C>
 ) : AbstractCriterion<C>() {
-    override fun getId() = _id
     override fun conditionsFromJson(
         obj: JsonObject,
-        playerPredicate: LootContextPredicate,
+        playerPredicate: Optional<LootContextPredicate>,
         predicateDeserializer: AdvancementEntityPredicateDeserializer
     ): C {
-        val instance = criterionClass.getConstructor(Identifier::class.java, LootContextPredicate::class.java).newInstance(id, playerPredicate)
+        val instance = criterionClass.getConstructor(Optional::class.java).newInstance(playerPredicate)
         instance.fromJson(obj)
         return instance
     }
@@ -52,11 +51,10 @@ open class SimpleCriterionTrigger<T, C : SimpleCriterionCondition<T>>(
  * @since November 4th, 2022
  */
 abstract class SimpleCriterionCondition<T>(
-    id: Identifier,
-    playerPredicate: LootContextPredicate
-): AbstractCriterionConditions(id, playerPredicate) {
-    override fun toJson(predicateSerializer: AdvancementEntityPredicateSerializer): JsonObject {
-        val json = super.toJson(predicateSerializer)
+    playerPredicate: Optional<LootContextPredicate>
+): AbstractCriterionConditions(playerPredicate) {
+    override fun toJson(): JsonObject {
+        val json = super.toJson()
         toJson(json)
         return json
     }

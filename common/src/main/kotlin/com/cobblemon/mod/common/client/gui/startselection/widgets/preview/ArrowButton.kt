@@ -8,25 +8,24 @@
 
 package com.cobblemon.mod.common.client.gui.startselection.widgets.preview
 
-import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.gui.blitk
+import com.cobblemon.mod.common.api.text.text
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
-import net.minecraft.client.gui.widget.TexturedButtonWidget
-import net.minecraft.client.sound.PositionedSoundInstance
+import net.minecraft.client.gui.widget.ButtonWidget
+import net.minecraft.client.gui.widget.ButtonWidget.NarrationSupplier
 import net.minecraft.client.sound.SoundManager
-import net.minecraft.client.util.math.MatrixStack
+import net.minecraft.text.Text
 import net.minecraft.util.Identifier
+
 class ArrowButton(
     pX: Int, pY: Int,
     pWidth: Int, pHeight: Int,
-    pXTexStart: Int = 0, pYTexStart: Int = 0, pYDiffText: Int = 0,
     right: Boolean,
+    text: Text? = null,
     private val texture: Identifier = if (right) RIGHT_ARROW_BUTTON_RESOURCE else LEFT_ARROW_BUTTON_RESOURCE,
     onPress: PressAction
-): TexturedButtonWidget(pX, pY, pWidth, pHeight, pXTexStart, pYTexStart, pYDiffText,
-    texture, onPress) {
+): ButtonWidget(pX, pY, pWidth, pHeight, text ?: "".text(), onPress, NarrationSupplier { "".text() }) {
 
     companion object {
         private val RIGHT_ARROW_BUTTON_RESOURCE = cobblemonResource("textures/gui/starterselection/starterselection_arrow_right.png")

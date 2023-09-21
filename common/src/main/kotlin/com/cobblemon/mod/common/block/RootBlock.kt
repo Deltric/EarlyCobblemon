@@ -70,7 +70,7 @@ abstract class RootBlock(settings: Settings) : Block(settings), Fertilizable, Sh
         return if (direction == Direction.UP && !this.canPlaceAt(state, world, pos)) Blocks.AIR.defaultState else super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
     }
 
-    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState, isClient: Boolean) = this.canSpread(world, pos, state)
+    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
 
     override fun canGrow(world: World, random: Random, pos: BlockPos, state: BlockState) = this.canSpread(world, pos, state)
 

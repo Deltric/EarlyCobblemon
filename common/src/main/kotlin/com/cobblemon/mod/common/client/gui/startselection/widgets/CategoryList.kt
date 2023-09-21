@@ -18,7 +18,6 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget
 import net.minecraft.client.sound.PositionedSoundInstance
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.Text
 
 class CategoryList(
@@ -50,9 +49,7 @@ class CategoryList(
 
     init {
         this.correctSize()
-        this.setRenderHorizontalShadows(false)
         this.setRenderBackground(false)
-        this.setRenderSelection(false)
     }
 
     private var entriesCreated = false

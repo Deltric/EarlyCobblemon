@@ -9,9 +9,9 @@
 package com.cobblemon.mod.common.advancement.criterion
 
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
 
 /**
  * A context that is used when you require a [CountableContext] along with some type string.
@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier
  */
 open class CountablePokemonTypeContext(times: Int, var type: String) : CountableContext(times)
 
-class CaughtPokemonCriterionCondition(id: Identifier, predicate: LootContextPredicate) : CountableCriterionCondition<CountablePokemonTypeContext>(id, predicate) {
+class CaughtPokemonCriterionCondition(predicate: Optional<LootContextPredicate>) : CountableCriterionCondition<CountablePokemonTypeContext>(predicate) {
     var type = "any"
     override fun toJson(json: JsonObject) {
         super.toJson(json)

@@ -25,6 +25,7 @@ import com.cobblemon.mod.forge.event.ForgePlatformEventHandler
 import com.cobblemon.mod.forge.net.CobblemonForgeNetworkManager
 import com.cobblemon.mod.forge.permission.ForgePermissionValidator
 import com.cobblemon.mod.forge.worldgen.CobblemonBiomeModifiers
+import com.google.common.collect.HashBiMap
 import com.mojang.brigadier.arguments.ArgumentType
 import java.util.UUID
 import kotlin.reflect.KClass
@@ -209,6 +210,8 @@ class CobblemonForge : CobblemonImplementation {
                 CobblemonBlocks.register { identifier, block -> helper.register(identifier, block) }
             }
         }
+
+
     }
 
     override fun registerParticles() {
@@ -300,7 +303,10 @@ class CobblemonForge : CobblemonImplementation {
 
     override fun <T : GameRules.Rule<T>> registerGameRule(name: String, category: GameRules.Category, type: GameRules.Type<T>): GameRules.Key<T> = GameRules.register(name, category, type)
 
-    override fun <T : Criterion<*>> registerCriteria(criteria: T): T = Criteria.register(criteria)
+    override fun <T : Criterion<*>> registerCriteria(id: Identifier, criteria: T): T {
+        (Criteria.VALUES as HashBiMap)[id] = criteria
+        return criteria
+    }
 
     override fun registerResourceReloader(identifier: Identifier, reloader: ResourceReloader, type: ResourceType, dependencies: Collection<Identifier>) {
         if (type == ResourceType.SERVER_DATA) {

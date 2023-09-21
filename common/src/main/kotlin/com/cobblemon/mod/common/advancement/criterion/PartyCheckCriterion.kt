@@ -13,11 +13,12 @@ import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.party
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 
-class PartyCheckCriterion(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<PartyCheckContext>(id, entity){
+class PartyCheckCriterion(entity: Optional<LootContextPredicate>) : SimpleCriterionCondition<PartyCheckContext>(entity){
     val party = mutableListOf<Identifier>()
     override fun toJson(json: JsonObject) {
         json.add("party", JsonArray(party.size).also {

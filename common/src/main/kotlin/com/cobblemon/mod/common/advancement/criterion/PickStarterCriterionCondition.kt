@@ -11,9 +11,9 @@ package com.cobblemon.mod.common.advancement.criterion
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
 
 /**
  * A criteria that is triggered when a player picks a starter.
@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier
  * @author Licious, Hiroku
  * @since October 26th, 2022
  */
-class PickStarterCriterionCondition(id: Identifier, predicate: LootContextPredicate) : SimpleCriterionCondition<Pokemon>(id, predicate) {
+class PickStarterCriterionCondition(predicate: Optional<LootContextPredicate>) : SimpleCriterionCondition<Pokemon>(predicate) {
     var properties = PokemonProperties()
     override fun toJson(json: JsonObject) {
         json.addProperty("properties", properties.originalString)

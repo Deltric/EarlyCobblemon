@@ -16,7 +16,6 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.widget.AlwaysSelectedEntryListWidget
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.OrderedText
 
 /**
@@ -45,10 +44,7 @@ class BattleMessagePane(
 
     init {
         correctSize()
-        setRenderHorizontalShadows(false)
         setRenderBackground(false)
-        setRenderSelection(false)
-
         messageQueue.subscribe {
             val fullyScrolledDown = maxScroll - scrollAmount < 10
             addEntry(BattleMessageLine(this, it))

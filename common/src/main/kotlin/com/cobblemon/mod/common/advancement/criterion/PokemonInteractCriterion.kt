@@ -10,12 +10,13 @@ package com.cobblemon.mod.common.advancement.criterion
 
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
 
 open class PokemonInteractContext(var type: Identifier, var item : Identifier)
-class PokemonInteractCriterion(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<PokemonInteractContext>(id, entity) {
+class PokemonInteractCriterion(entity: Optional<LootContextPredicate>) : SimpleCriterionCondition<PokemonInteractContext>(entity) {
     var type = "any"
     var item = "any"
     override fun toJson(json: JsonObject) {

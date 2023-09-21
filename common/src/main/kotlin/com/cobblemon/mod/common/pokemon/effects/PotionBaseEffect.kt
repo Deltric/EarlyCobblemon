@@ -11,12 +11,12 @@ package com.cobblemon.mod.common.pokemon.effects
 import com.cobblemon.mod.common.api.pokemon.effect.ShoulderEffect
 import com.cobblemon.mod.common.mixin.accessor.StatusEffectInstanceAccessor
 import com.cobblemon.mod.common.pokemon.Pokemon
+import java.util.UUID
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffect
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.network.ServerPlayerEntity
-import java.util.*
 
 @Suppress("MemberVisibilityCanBePrivate")
 class PotionBaseEffect(
@@ -114,7 +114,7 @@ class PotionBaseEffect(
 
         override fun update(entity: LivingEntity, overwriteCallback: Runnable): Boolean {
             if (this.effectType.canApplyUpdateEffect(entity.age, this.amplifier)) {
-                this.applyUpdateEffect(entity)
+                this.onApplied(entity)
             }
             this.upgrade?.let {
                 if (--it.duration == 0) {
@@ -125,7 +125,7 @@ class PotionBaseEffect(
             return this.shoulderSources.isNotEmpty()
         }
 
-        override fun applyUpdateEffect(entity: LivingEntity) {
+        override fun onApplied(entity: LivingEntity) {
             this.effectType.applyUpdateEffect(entity, this.upgrade?.amplifier ?: this.amplifier)
         }
 

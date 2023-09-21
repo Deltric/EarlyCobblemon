@@ -23,4 +23,6 @@ object CobblemonResources {
      * Fonts
      */
     val DEFAULT_LARGE = Identifier("uniform")
+
+    val TOAST = Identifier("textures/gui/sprites/toast/tutorial.png")
 }

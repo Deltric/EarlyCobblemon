@@ -19,6 +19,7 @@ tasks {
         archiveClassifier.set("dev-shadow")
         archiveBaseName.set("Cobblemon-${project.name}")
         configurations = listOf(bundle)
+        relocate ("org.graalvm", "com.cobblemon.mod.relocations.org.graalvm")
         mergeServiceFiles()
     }
 

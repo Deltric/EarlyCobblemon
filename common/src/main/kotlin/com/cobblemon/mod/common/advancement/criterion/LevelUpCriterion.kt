@@ -10,11 +10,11 @@ package com.cobblemon.mod.common.advancement.criterion
 
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.google.gson.JsonObject
+import java.util.Optional
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
 
-class LevelUpCriterionCondition(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<LevelUpContext>(id, entity) {
+class LevelUpCriterionCondition(entity: Optional<LootContextPredicate>) : SimpleCriterionCondition<LevelUpContext>(entity) {
     var level = 0
     var evolved = true
     override fun toJson(json: JsonObject) {
