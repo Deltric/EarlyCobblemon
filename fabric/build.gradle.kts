@@ -55,7 +55,8 @@ dependencies {
     modApi(libs.fabricApi)
     modApi(libs.fabricKotlin)
     modApi(libs.fabricPermissionsApi)
-    modRuntimeOnly(libs.jeiFabric)
+    // When it's updated, swap out version number and uncomment.
+    //modRuntimeOnly(libs.jeiFabric)
 
     listOf(
         libs.stdlib,

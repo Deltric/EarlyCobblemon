@@ -31,22 +31,19 @@ import com.cobblemon.mod.common.client.storage.ClientStorageManager
 import com.cobblemon.mod.common.client.trade.ClientTrade
 import com.cobblemon.mod.common.data.CobblemonDataProvider
 import com.cobblemon.mod.common.item.PokeBallItem
-import com.cobblemon.mod.common.block.entity.BerryBlockEntity
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.BerryModelRepository
 import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.util.DataKeys
 import com.cobblemon.mod.common.util.asTranslated
-import java.awt.Color
 import net.minecraft.client.color.block.BlockColorProvider
-import net.minecraft.client.color.block.BlockColors
 import net.minecraft.client.color.item.ItemColorProvider
-import net.minecraft.client.color.world.BiomeColors
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.client.render.entity.EntityRenderer
 import net.minecraft.client.render.entity.EntityRendererFactory
 import net.minecraft.client.render.entity.LivingEntityRenderer
 import net.minecraft.client.render.entity.model.PlayerEntityModel
+import net.minecraft.client.util.SkinTextures
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.resource.ResourceManager
@@ -182,10 +179,10 @@ object CobblemonClient {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun onAddLayer(skinMap: Map<String, EntityRenderer<out PlayerEntity>>?) {
-        var renderer: LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>? = skinMap?.get("default") as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>
+    fun onAddLayer(skinMap: MutableMap<SkinTextures.Model, EntityRenderer<out PlayerEntity>>?) {
+        var renderer: LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>? = skinMap?.get(SkinTextures.Model.WIDE) as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>
         renderer?.addFeature(PokemonOnShoulderRenderer(renderer))
-        renderer = skinMap["slim"] as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>?
+        renderer = skinMap[SkinTextures.Model.SLIM] as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>?
         renderer?.addFeature(PokemonOnShoulderRenderer(renderer))
     }
 

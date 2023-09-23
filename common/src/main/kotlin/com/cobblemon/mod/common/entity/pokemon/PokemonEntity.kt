@@ -412,7 +412,7 @@ class PokemonEntity(
         )
     }
 
-    override fun createSpawnPacket(): Packet<ClientPlayPacketListener> = super.createSpawnPacket()CobblemonNetwork.asVanillaClientBound(SpawnPokemonPacket(this, super.createSpawnPacket() as EntitySpawnS2CPacket))
+    override fun createSpawnPacket(): Packet<ClientPlayPacketListener> = CobblemonNetwork.asVanillaClientBound(SpawnPokemonPacket(this, super.createSpawnPacket() as EntitySpawnS2CPacket))
 
     override fun getPathfindingPenalty(nodeType: PathNodeType): Float {
         return if (nodeType == PathNodeType.OPEN) 2F else super.getPathfindingPenalty(nodeType)

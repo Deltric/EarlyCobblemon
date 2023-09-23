@@ -20,22 +20,21 @@ import net.minecraft.network.PacketByteBuf
 import net.minecraft.network.listener.ClientPlayPacketListener
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
+import net.minecraftforge.network.ChannelBuilder
 import net.minecraftforge.network.NetworkDirection
-import net.minecraftforge.network.NetworkRegistry
 import net.minecraftforge.network.PacketDistributor
+import java.util.function.BiConsumer
 
 
 object CobblemonForgeNetworkManager : NetworkManager {
 
-    private const val PROTOCOL_VERSION = "1"
+    private const val PROTOCOL_VERSION = 1
     private var id = 0
 
-    private val channel = NetworkRegistry.newSimpleChannel(
-        cobblemonResource("main"),
-        { PROTOCOL_VERSION },
-        PROTOCOL_VERSION::equals,
-        PROTOCOL_VERSION::equals
-    )
+    private val channel = ChannelBuilder
+        .named(cobblemonResource("main"))
+        .networkProtocolVersion(PROTOCOL_VERSION)
+        .simpleChannel()
 
     override fun registerClientBound() {
         CobblemonNetwork.registerClientBound()
@@ -53,11 +52,14 @@ object CobblemonForgeNetworkManager : NetworkManager {
         decoder: (PacketByteBuf) -> T,
         handler: ClientNetworkPacketHandler<T>
     ) {
-        this.channel.registerMessage(this.id++, kClass.java, encoder::invoke, decoder::invoke) { msg, ctx ->
-            val context = ctx.get()
-            handler.handleOnNettyThread(msg)
-            context.packetHandled = true
-        }
+        this.channel.messageBuilder(kClass.java, NetworkDirection.PLAY_TO_CLIENT)
+            .encoder(encoder::invoke)
+            .decoder(decoder::invoke)
+            .consumerNetworkThread(BiConsumer { message, context ->
+                handler.handleOnNettyThread(message)
+                context.packetHandled = true
+            })
+            .add()
     }
 
     @Suppress("INACCESSIBLE_TYPE")
@@ -68,22 +70,25 @@ object CobblemonForgeNetworkManager : NetworkManager {
         decoder: (PacketByteBuf) -> T,
         handler: ServerNetworkPacketHandler<T>
     ) {
-        this.channel.registerMessage(this.id++, kClass.java, encoder::invoke, decoder::invoke) { msg, ctx ->
-            val context = ctx.get()
-            handler.handleOnNettyThread(msg, context.sender!!.server, context.sender!!)
-            context.packetHandled = true
-        }
+        this.channel.messageBuilder(kClass.java, NetworkDirection.PLAY_TO_SERVER)
+            .encoder(encoder::invoke)
+            .decoder(decoder::invoke)
+            .consumerNetworkThread(BiConsumer { message, context ->
+                handler.handleOnNettyThread(message, context.sender!!.server, context.sender!!)
+                context.packetHandled = true
+            })
+            .add()
     }
 
     override fun sendPacketToPlayer(player: ServerPlayerEntity, packet: NetworkPacket<*>) {
-        this.channel.send(PacketDistributor.PLAYER.with { player }, packet)
+        this.channel.send(packet, PacketDistributor.PLAYER.with(player))
     }
 
     override fun sendPacketToServer(packet: NetworkPacket<*>) {
-        this.channel.sendToServer(packet)
+        this.channel.send(packet, PacketDistributor.SERVER.noArg())
     }
 
     override fun <T : NetworkPacket<*>> asVanillaClientBound(packet: T): Packet<ClientPlayPacketListener> {
-        return this.channel.toVanillaPacket(packet, NetworkDirection.PLAY_TO_CLIENT) as Packet<ClientPlayPacketListener>
+        return (this.channel as ExtendedChannel).createVanillaPacket(NetworkDirection.PLAY_TO_CLIENT, packet) as Packet<ClientPlayPacketListener>
     }
 }

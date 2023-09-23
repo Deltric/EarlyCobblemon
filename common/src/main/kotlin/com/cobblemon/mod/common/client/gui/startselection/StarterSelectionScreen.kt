@@ -275,6 +275,14 @@ class StarterSelectionScreen private constructor(): Screen("cobblemon.ui.starter
         super.render(context, mouseX, mouseY, delta)
     }
 
+    /**
+     * Temp fix for the background overlaying itself over the menu.
+     * This affects other screens too, likely need to bump z level of elements.
+     */
+    override fun renderBackground(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+        context.fillGradient(0, 0, width, height, -1, -1072689136, -804253680)
+    }
+
     fun changeCategory(category: RenderableStarterCategory) {
         currentCategory = category
         currentSelection = 0

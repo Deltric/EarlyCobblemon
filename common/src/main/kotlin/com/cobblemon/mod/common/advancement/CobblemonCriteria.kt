@@ -11,7 +11,6 @@ package com.cobblemon.mod.common.advancement
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.advancement.criterion.*
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.advancement.criterion.Criterion
 
 /**
  * Contains all the advancement criteria in Cobblemon.
@@ -106,6 +105,6 @@ object CobblemonCriteria {
         )
     )
 
-    private fun <T : Criterion<*>> create(criteria: T): T = Cobblemon.implementation.registerCriteria(criteria)
+    private fun <T : SimpleCriterionTrigger<*, *>> create(criteria: T): T = Cobblemon.implementation.registerCriteria(criteria._id, criteria)
 
 }

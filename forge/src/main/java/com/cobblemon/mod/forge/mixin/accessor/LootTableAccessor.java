@@ -20,10 +20,10 @@ import java.util.List;
 public interface LootTableAccessor {
 
     // We need to specify the obfuscated name regardless of remap for the FIELD_GET to work.
-    @Accessor("f_79109_")
+    @Accessor
     List<LootPool> getPools();
 
     @Accessor
-    LootFunction[] getFunctions();
+    List<LootFunction> getFunctions();
 
 }

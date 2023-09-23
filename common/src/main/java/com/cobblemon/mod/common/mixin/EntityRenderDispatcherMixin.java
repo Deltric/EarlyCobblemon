@@ -11,6 +11,7 @@ package com.cobblemon.mod.common.mixin;
 import com.cobblemon.mod.common.client.CobblemonClient;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.util.SkinTextures;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resource.ResourceManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,7 +25,7 @@ import java.util.Map;
 @Mixin(EntityRenderDispatcher.class)
 public class EntityRenderDispatcherMixin {
 
-    @Shadow private Map<String, EntityRenderer<? extends PlayerEntity>> modelRenderers;
+    @Shadow private Map<SkinTextures.Model, EntityRenderer<? extends PlayerEntity>> modelRenderers;
 
     @Inject(
         method = "reload",
