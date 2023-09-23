@@ -190,34 +190,12 @@ class StarterSelectionScreen private constructor(): Screen("cobblemon.ui.starter
     }
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+        super.render(context, mouseX, mouseY, delta)
+
         val matrices = context.matrices
         val x = (width - BASE_WIDTH) / 2
         val y = (height - BASE_HEIGHT) / 2
-        // Render Underlay
-        blitk(
-            matrixStack = matrices,
-            texture = baseUnderlay,
-            x = x, y = y,
-            width = BASE_WIDTH, height = BASE_HEIGHT
-        )
-        // Render Base
-        blitk(
-            matrixStack = matrices,
-            texture = base,
-            x = x, y = y,
-            width = BASE_WIDTH, height = BASE_HEIGHT
-        )
-        // Render Frame
-        val (r, g, b) = currentPokemon.form.primaryType.hue.toRGB()
-        blitk(
-            matrixStack = matrices,
-            texture = baseFrame,
-            red = r,
-            green = g,
-            blue = b,
-            x = x, y = y,
-            width = BASE_WIDTH, height = BASE_HEIGHT
-        )
+
         // Render Text
         drawScaledText(
             context = context,
@@ -271,16 +249,40 @@ class StarterSelectionScreen private constructor(): Screen("cobblemon.ui.starter
         )
         // Render the type widget
         typeWidget.render(context, mouseX, mouseY, delta)
-        // Render the rest
-        super.render(context, mouseX, mouseY, delta)
     }
 
-    /**
-     * Temp fix for the background overlaying itself over the menu.
-     * This affects other screens too, likely need to bump z level of elements.
-     */
     override fun renderBackground(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
-        context.fillGradient(0, 0, width, height, -1, -1072689136, -804253680)
+        super.renderBackground(context, mouseX, mouseY, delta)
+
+        val matrices = context.matrices
+        val x = (width - BASE_WIDTH) / 2
+        val y = (height - BASE_HEIGHT) / 2
+
+        // Render Underlay
+        blitk(
+            matrixStack = matrices,
+            texture = baseUnderlay,
+            x = x, y = y,
+            width = BASE_WIDTH, height = BASE_HEIGHT
+        )
+        // Render Base
+        blitk(
+            matrixStack = matrices,
+            texture = base,
+            x = x, y = y,
+            width = BASE_WIDTH, height = BASE_HEIGHT
+        )
+        // Render Frame
+        val (r, g, b) = currentPokemon.form.primaryType.hue.toRGB()
+        blitk(
+            matrixStack = matrices,
+            texture = baseFrame,
+            red = r,
+            green = g,
+            blue = b,
+            x = x, y = y,
+            width = BASE_WIDTH, height = BASE_HEIGHT
+        )
     }
 
     fun changeCategory(category: RenderableStarterCategory) {
