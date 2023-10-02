@@ -19,12 +19,20 @@
   "mixins": [
     "ExplosionMixin",
     "FenceBlockMixin",
+    "InfestedBlockMixin",
+    "LargeEntitySpawnHelperMixin",
     "LivingEntityMixin",
-    "MinecraftDedicatedServerMixin",
+    "MinecraftServerMixin",
+    "MobSpawnerLogicMixin",
     "PlayerMixin",
     "PointedDripstoneBlockMixin",
+    "PotionSlotMixin",
     "ServerChunkManagerMixin",
+    "ServerWorldMixin",
     "ShearsDispenserBehaviorMixin",
+    "StructurePoolAccessor",
+    "StructurePoolGeneratorMixin",
+    "StructureProcessorListMixin",
     "accessor.AccessorEntity",
     "accessor.StatusEffectInstanceAccessor",
     "entity.TameableEntityMixin",
@@ -34,11 +42,7 @@
     "invoker.PressurePlateBlockInvoker",
     "invoker.StairsBlockInvoker",
     "invoker.TrapdoorBlockInvoker",
-    "pokeball.ThrownEntityMixin",
-    "StructurePoolGeneratorMixin",
-    "StructurePoolAccessor",
-    "StructureProcessorListMixin",
-    "PotionSlotMixin"
+    "pokeball.ThrownEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

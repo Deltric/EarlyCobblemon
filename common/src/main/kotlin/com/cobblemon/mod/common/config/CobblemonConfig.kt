@@ -193,6 +193,16 @@ class CobblemonConfig {
     @NodeCategory(Category.World)
     var energyRootChance = 0.25
 
+    @NodeCategory(Category.World)
+    var vanillaSpawning = mutableMapOf(
+        "animals" to true,
+        "spawners" to true,
+        "golems" to true, //help
+        "warden" to true, //can be cancelled in same mixin as golems
+        "silverfish" to false,
+        "drowned" to true // to-do, maybe can just return false in DrownedEntity.java canSpawn()?
+    )
+
     @NodeCategory(Category.Pokemon)
     @IntConstraint(min = 0, max = 10)
     var maxDynamaxLevel = 10
