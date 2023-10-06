@@ -218,9 +218,7 @@
   "evolutions": [
     {
       "id": "gastly_haunter",
-      "variant": "level_up",
       "result": "haunter",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "shadowpunch"
       ],
@@ -229,7 +227,10 @@
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.7,

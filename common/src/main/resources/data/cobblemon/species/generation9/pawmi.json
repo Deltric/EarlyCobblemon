@@ -94,9 +94,7 @@
   "evolutions": [
     {
       "id": "pawmi_pawmo",
-      "variant": "level_up",
       "result": "pawmo",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "armthrust"
       ],
@@ -105,7 +103,10 @@
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

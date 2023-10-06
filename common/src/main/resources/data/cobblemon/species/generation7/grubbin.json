@@ -87,9 +87,7 @@
   "evolutions": [
     {
       "id": "grubbin_charjabug",
-      "variant": "level_up",
       "result": "charjabug",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "charge"
       ],
@@ -98,7 +96,10 @@
           "variant": "level",
           "minLevel": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

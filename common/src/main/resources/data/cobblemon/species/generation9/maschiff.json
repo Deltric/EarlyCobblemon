@@ -91,9 +91,7 @@
   "evolutions": [
     {
       "id": "maschiff_mabosstiff",
-      "variant": "level_up",
       "result": "mabosstiff",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "comeuppance"
       ],
@@ -102,7 +100,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

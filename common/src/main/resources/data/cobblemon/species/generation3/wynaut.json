@@ -51,16 +51,17 @@
   "evolutions": [
     {
       "id": "wynaut_wobbuffet",
-      "variant": "level_up",
       "result": "wobbuffet",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 15
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

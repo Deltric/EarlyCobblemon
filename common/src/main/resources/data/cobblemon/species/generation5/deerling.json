@@ -138,9 +138,7 @@
   "evolutions": [
     {
       "id": "deerling_sawsbuck",
-      "variant": "level_up",
       "result": "sawsbuck",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "hornleech"
       ],
@@ -149,7 +147,10 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

@@ -160,16 +160,17 @@
   "evolutions": [
     {
       "id": "wailmer_wailord",
-      "variant": "level_up",
       "result": "wailord",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.8,

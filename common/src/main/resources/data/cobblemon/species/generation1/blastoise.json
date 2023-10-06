@@ -139,7 +139,7 @@
       "light": "0-4"
     },
     "moving": {
-      "moving" : {
+      "moving": {
         "walk": {
           "walkSpeed": 0.3
         }

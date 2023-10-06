@@ -180,9 +180,7 @@
   "evolutions": [
     {
       "id": "koffing_weezing",
-      "variant": "level_up",
       "result": "weezing",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "doublehit"
       ],
@@ -191,13 +189,14 @@
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "koffing_weezing",
-      "variant": "level_up",
       "result": "weezing form=galar",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "doublehit"
       ],
@@ -206,7 +205,10 @@
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "features": [

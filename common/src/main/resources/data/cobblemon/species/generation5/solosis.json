@@ -139,16 +139,17 @@
   "evolutions": [
     {
       "id": "solosis_duosion",
-      "variant": "level_up",
       "result": "duosion",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

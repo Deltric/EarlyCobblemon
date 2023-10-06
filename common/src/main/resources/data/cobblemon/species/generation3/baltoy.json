@@ -164,9 +164,7 @@
   "evolutions": [
     {
       "id": "baltoy_claydol",
-      "variant": "level_up",
       "result": "claydol",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "hyperbeam"
       ],
@@ -175,7 +173,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -178,9 +178,7 @@
   "evolutions": [
     {
       "id": "larvitar_pupitar",
-      "variant": "level_up",
       "result": "pupitar",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "irondefense"
       ],
@@ -189,7 +187,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

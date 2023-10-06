@@ -26,7 +26,7 @@
     "field"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.2
       },
@@ -134,9 +134,7 @@
   "evolutions": [
     {
       "id": "brionne_primarina",
-      "variant": "level_up",
       "result": "primarina",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "sparklingaria"
       ],
@@ -145,7 +143,10 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.75,

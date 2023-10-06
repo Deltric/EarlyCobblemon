@@ -81,9 +81,7 @@
   "evolutions": [
     {
       "id": "skwovet_greedent",
-      "variant": "level_up",
       "result": "greedent",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "covet"
       ],
@@ -92,7 +90,10 @@
           "variant": "level",
           "minLevel": 24
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

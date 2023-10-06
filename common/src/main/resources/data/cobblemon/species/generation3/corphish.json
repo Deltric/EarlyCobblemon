@@ -145,9 +145,7 @@
   "evolutions": [
     {
       "id": "corphish_crawdaunt",
-      "variant": "level_up",
       "result": "crawdaunt",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "swift"
       ],
@@ -156,7 +154,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

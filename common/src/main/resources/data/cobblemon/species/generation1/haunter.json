@@ -206,11 +206,12 @@
   "evolutions": [
     {
       "id": "haunter_gengar",
-      "variant": "trade",
       "result": "gengar",
-      "consumeHeldItem": false,
       "learnableMoves": [],
-      "requirements": []
+      "requirements": [],
+      "trigger": {
+        "variant": "trade"
+      }
     }
   ],
   "baseScale": 1.2,

@@ -131,9 +131,7 @@
   "evolutions": [
     {
       "id": "shroomish_breloom",
-      "variant": "level_up",
       "result": "breloom",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "machpunch"
       ],
@@ -142,7 +140,10 @@
           "variant": "level",
           "minLevel": 23
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

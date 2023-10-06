@@ -121,16 +121,17 @@
   "evolutions": [
     {
       "id": "litwick_lampent",
-      "variant": "level_up",
       "result": "lampent",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 41
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

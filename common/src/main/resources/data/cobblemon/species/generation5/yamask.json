@@ -133,16 +133,17 @@
       "evolutions": [
         {
           "id": "yamask_runerigus",
-          "variant": "level_up",
           "result": "runerigus",
-          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [
             {
               "variant": "damage_taken",
               "amount": 49
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -261,9 +262,7 @@
   "evolutions": [
     {
       "id": "yamask_cofagrigus",
-      "variant": "level_up",
       "result": "cofagrigus",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "shadowclaw"
       ],
@@ -272,7 +271,10 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

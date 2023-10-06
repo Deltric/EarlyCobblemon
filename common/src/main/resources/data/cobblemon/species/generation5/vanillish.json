@@ -99,16 +99,17 @@
   "evolutions": [
     {
       "id": "vanillish_vanilluxe",
-      "variant": "level_up",
       "result": "vanilluxe",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 47
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

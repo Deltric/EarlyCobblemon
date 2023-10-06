@@ -215,22 +215,21 @@
   "evolutions": [
     {
       "id": "cubone_marowak",
-      "variant": "level_up",
       "result": "marowak",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 28
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "cubone_marowak",
-      "variant": "level_up",
       "result": "marowak form=alola",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "shadowbone"
       ],
@@ -243,7 +242,10 @@
           "variant": "time_range",
           "range": "night"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

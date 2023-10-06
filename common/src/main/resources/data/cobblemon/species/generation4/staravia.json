@@ -114,9 +114,7 @@
   "evolutions": [
     {
       "id": "staravia_staraptor",
-      "variant": "level_up",
       "result": "staraptor",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "closecombat"
       ],
@@ -125,7 +123,10 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

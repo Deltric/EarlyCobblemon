@@ -105,16 +105,17 @@
   "evolutions": [
     {
       "id": "bounsweet_steenee",
-      "variant": "level_up",
       "result": "steenee",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

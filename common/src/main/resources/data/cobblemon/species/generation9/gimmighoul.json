@@ -61,11 +61,12 @@
   "evolutions": [
     {
       "id": "gimmighoul_gholdengo",
-      "variant": "level_up",
       "result": "gholdengo",
-      "consumeHeldItem": false,
       "learnableMoves": [],
-      "requirements": []
+      "requirements": [],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,
@@ -112,11 +113,12 @@
       "evolutions": [
         {
           "id": "gimmighoul_gholdengo",
-          "variant": "level_up",
           "result": "gholdengo",
-          "consumeHeldItem": false,
           "learnableMoves": [],
-          "requirements": []
+          "requirements": [],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,

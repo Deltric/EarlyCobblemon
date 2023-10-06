@@ -94,29 +94,31 @@
   "evolutions": [
     {
       "id": "lechonk_oinkologne",
-      "variant": "level_up",
       "result": "oinkologne",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "lechonk_oinkologne",
-      "variant": "level_up",
       "result": "oinkologne form=f",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

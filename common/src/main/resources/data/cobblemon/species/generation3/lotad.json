@@ -156,16 +156,17 @@
   "evolutions": [
     {
       "id": "lotad_lombre",
-      "variant": "level_up",
       "result": "lombre",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 14
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

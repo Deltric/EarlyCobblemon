@@ -98,9 +98,7 @@
   "evolutions": [
     {
       "id": "varoom_revavroom",
-      "variant": "level_up",
       "result": "revavroom",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "shiftgear"
       ],
@@ -109,7 +107,10 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

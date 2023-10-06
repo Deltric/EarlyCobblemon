@@ -112,9 +112,7 @@
   "evolutions": [
     {
       "id": "skiddo_gogoat",
-      "variant": "level_up",
       "result": "gogoat",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "aerialace"
       ],
@@ -123,7 +121,10 @@
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

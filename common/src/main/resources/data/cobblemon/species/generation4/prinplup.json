@@ -147,16 +147,17 @@
   "evolutions": [
     {
       "id": "prinplup_empoleon",
-      "variant": "level_up",
       "result": "empoleon",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.75,

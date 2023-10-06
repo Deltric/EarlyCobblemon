@@ -73,9 +73,7 @@
   "evolutions": [
     {
       "id": "magikarp_gyarados",
-      "variant": "level_up",
       "result": "gyarados",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "bite"
       ],
@@ -84,7 +82,10 @@
           "variant": "level",
           "minLevel": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -191,9 +191,7 @@
   "evolutions": [
     {
       "id": "ursaring_ursaluna",
-      "variant": "item_interact",
       "result": "ursaluna",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -205,7 +203,10 @@
           "range": "night"
         }
       ],
-      "requiredContext": "cobblemon:peat_block"
+      "trigger": {
+        "variant": "item_interact",
+        "requiredContext": "cobblemon:peat_block"
+      }
     }
   ],
   "baseScale": 1.1,

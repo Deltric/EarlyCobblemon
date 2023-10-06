@@ -110,9 +110,7 @@
   "evolutions": [
     {
       "id": "grookey_thwackey",
-      "variant": "level_up",
       "result": "thwackey",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "doublehit"
       ],
@@ -121,7 +119,10 @@
           "variant": "level",
           "minLevel": 16
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

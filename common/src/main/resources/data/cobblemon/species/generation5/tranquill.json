@@ -103,16 +103,17 @@
   "evolutions": [
     {
       "id": "tranquill_unfezant",
-      "variant": "level_up",
       "result": "unfezant",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

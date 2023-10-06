@@ -116,9 +116,7 @@
   "evolutions": [
     {
       "id": "rufflet_braviary",
-      "variant": "level_up",
       "result": "braviary",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "superpower"
       ],
@@ -127,13 +125,14 @@
           "variant": "level",
           "minLevel": 54
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "rufflet_braviary",
-      "variant": "level_up",
       "result": "braviary form=hisui",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "esperwing"
       ],
@@ -142,7 +141,10 @@
           "variant": "level",
           "minLevel": 54
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

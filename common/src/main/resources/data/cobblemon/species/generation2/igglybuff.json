@@ -187,16 +187,17 @@
   "evolutions": [
     {
       "id": "igglybuff_jigglypuff",
-      "variant": "level_up",
       "result": "jigglypuff",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "friendship",
           "amount": 160
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

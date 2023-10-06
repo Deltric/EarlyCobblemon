@@ -171,16 +171,17 @@
   "evolutions": [
     {
       "id": "bonsly_sudowoodo",
-      "variant": "level_up",
       "result": "sudowoodo",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "mimic"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

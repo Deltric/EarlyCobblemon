@@ -105,9 +105,7 @@
   "evolutions": [
     {
       "id": "palpitoad_seismitoad",
-      "variant": "level_up",
       "result": "seismitoad",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "drainpunch"
       ],
@@ -116,7 +114,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

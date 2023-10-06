@@ -88,16 +88,17 @@
   "evolutions": [
     {
       "id": "bramblin_brambleghast",
-      "variant": "level_up",
       "result": "brambleghast",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "blocks_traveled",
           "amount": 1000
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

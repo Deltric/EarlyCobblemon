@@ -215,9 +215,7 @@
       "evolutions": [
         {
           "id": "meowth_persian",
-          "variant": "level_up",
           "result": "persian alolan",
-          "consumeHeldItem": false,
           "learnableMoves": [
             "powergem"
           ],
@@ -226,7 +224,10 @@
               "variant": "friendship",
               "amount": 160
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -266,7 +267,7 @@
         "field"
       ],
       "behaviour": {
-        "moving" : {
+        "moving": {
           "walk": {
             "walkSpeed": 0.2
           }
@@ -369,16 +370,17 @@
       "evolutions": [
         {
           "id": "meowth_perrserker",
-          "variant": "level_up",
           "result": "perrserker",
-          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [
             {
               "variant": "level",
               "minLevel": 28
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -664,9 +666,7 @@
   "evolutions": [
     {
       "id": "meowth_persian",
-      "variant": "level_up",
       "result": "persian",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "powergem"
       ],
@@ -675,7 +675,10 @@
           "variant": "level",
           "minLevel": 28
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "aspects": [],

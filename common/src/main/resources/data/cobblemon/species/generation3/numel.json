@@ -153,9 +153,7 @@
   "evolutions": [
     {
       "id": "numel_camerupt",
-      "variant": "level_up",
       "result": "camerupt",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "rockslide"
       ],
@@ -164,7 +162,10 @@
           "variant": "level",
           "minLevel": 33
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

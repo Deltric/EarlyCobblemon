@@ -134,9 +134,7 @@
   "evolutions": [
     {
       "id": "duosion_reuniclus",
-      "variant": "level_up",
       "result": "reuniclus",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "hammerarm"
       ],
@@ -145,7 +143,10 @@
           "variant": "level",
           "minLevel": 41
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

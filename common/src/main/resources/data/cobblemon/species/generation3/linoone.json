@@ -139,9 +139,7 @@
       "evolutions": [
         {
           "id": "linoone_obstagoon",
-          "variant": "level_up",
           "result": "obstagoon",
-          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [
             {
@@ -152,7 +150,10 @@
               "variant": "time_range",
               "range": "night"
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,

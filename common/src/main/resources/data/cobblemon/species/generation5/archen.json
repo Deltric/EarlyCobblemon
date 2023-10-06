@@ -145,16 +145,17 @@
   "evolutions": [
     {
       "id": "archen_archeops",
-      "variant": "level_up",
       "result": "archeops",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 37
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -172,16 +172,17 @@
   "evolutions": [
     {
       "id": "piloswine_mamoswine",
-      "variant": "level_up",
       "result": "mamoswine",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "ancientpower"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.4,

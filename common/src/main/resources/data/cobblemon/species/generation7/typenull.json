@@ -109,9 +109,7 @@
   "evolutions": [
     {
       "id": "typenull_silvally",
-      "variant": "level_up",
       "result": "silvally",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "multiattack"
       ],
@@ -120,7 +118,10 @@
           "variant": "friendship",
           "amount": 160
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

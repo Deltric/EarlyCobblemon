@@ -76,9 +76,7 @@
   "evolutions": [
     {
       "id": "nymble_lokix",
-      "variant": "level_up",
       "result": "lokix",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "lunge"
       ],
@@ -87,7 +85,10 @@
           "variant": "level",
           "minLevel": 24
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

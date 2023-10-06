@@ -202,9 +202,7 @@
   "evolutions": [
     {
       "id": "omanyte_omastar",
-      "variant": "level_up",
       "result": "omastar",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "crunch"
       ],
@@ -213,7 +211,10 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.1,

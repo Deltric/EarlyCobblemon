@@ -43,29 +43,31 @@
   "evolutions": [
     {
       "id": "wurmple_silcoon",
-      "variant": "level_up",
       "result": "silcoon",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 7
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "wurmple_cascoon",
-      "variant": "level_up",
       "result": "cascoon",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 7
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

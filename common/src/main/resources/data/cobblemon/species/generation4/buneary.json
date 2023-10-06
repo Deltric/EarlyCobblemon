@@ -197,16 +197,17 @@
   "evolutions": [
     {
       "id": "buneary_lopunny",
-      "variant": "level_up",
       "result": "lopunny",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "friendship",
           "amount": 160
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

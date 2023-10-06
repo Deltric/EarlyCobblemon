@@ -96,16 +96,17 @@
   "evolutions": [
     {
       "id": "sobble_drizzile",
-      "variant": "level_up",
       "result": "drizzile",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 16
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

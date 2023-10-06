@@ -102,9 +102,7 @@
   "evolutions": [
     {
       "id": "goomy_sliggoo",
-      "variant": "level_up",
       "result": "sliggoo",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "acidspray"
       ],
@@ -113,13 +111,14 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "goomy_sliggoo",
-      "variant": "level_up",
       "result": "sliggoo form=hisui",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "shelter"
       ],
@@ -128,7 +127,10 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -119,9 +119,7 @@
   "evolutions": [
     {
       "id": "rockruff_lycanroc",
-      "variant": "level_up",
       "result": "lycanroc",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "suckerpunch"
       ],
@@ -134,13 +132,14 @@
           "variant": "time_range",
           "range": "day"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "rockruff_lycanroc",
-      "variant": "level_up",
       "result": "lycanroc form=midnight",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "counter"
       ],
@@ -153,13 +152,14 @@
           "variant": "time_range",
           "range": "night"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "rockruff_lycanroc",
-      "variant": "level_up",
       "result": "lycanroc form=dusk",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "crushclaw"
       ],
@@ -172,7 +172,10 @@
           "variant": "time_range",
           "range": "dusk"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

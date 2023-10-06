@@ -130,16 +130,17 @@
   "evolutions": [
     {
       "id": "electrike_manectric",
-      "variant": "level_up",
       "result": "manectric",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 26
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

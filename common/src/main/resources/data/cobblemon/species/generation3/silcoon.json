@@ -48,16 +48,17 @@
   "evolutions": [
     {
       "id": "silcoon_beautifly",
-      "variant": "level_up",
       "result": "beautifly",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 10
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

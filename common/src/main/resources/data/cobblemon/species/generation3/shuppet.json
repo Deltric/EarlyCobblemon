@@ -161,9 +161,7 @@
   "evolutions": [
     {
       "id": "shuppet_banette",
-      "variant": "level_up",
       "result": "banette",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "knockoff"
       ],
@@ -172,7 +170,10 @@
           "variant": "level",
           "minLevel": 37
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -258,16 +258,17 @@
   "evolutions": [
     {
       "id": "psyduck_golduck",
-      "variant": "level_up",
       "result": "golduck",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 33
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

@@ -32,7 +32,7 @@
       "depth": "normal",
       "light": "0-4"
     },
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.2
       }
@@ -118,9 +118,7 @@
   "evolutions": [
     {
       "id": "nincada_ninjask",
-      "variant": "level_up",
       "result": "ninjask",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "doubleteam",
         "furycutter",

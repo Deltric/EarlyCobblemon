@@ -86,16 +86,17 @@
   "evolutions": [
     {
       "id": "frigibax_arctibax",
-      "variant": "level_up",
       "result": "arctibax",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

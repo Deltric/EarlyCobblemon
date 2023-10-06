@@ -145,16 +145,17 @@
   "evolutions": [
     {
       "id": "golett_golurk",
-      "variant": "level_up",
       "result": "golurk",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 43
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

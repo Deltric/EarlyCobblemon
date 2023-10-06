@@ -32,7 +32,7 @@
       "depth": "normal",
       "light": "0-4"
     },
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.12
       }
@@ -115,11 +115,12 @@
   "evolutions": [
     {
       "id": "boldore_gigalith",
-      "variant": "trade",
       "result": "gigalith",
-      "consumeHeldItem": false,
       "learnableMoves": [],
-      "requirements": []
+      "requirements": [],
+      "trigger": {
+        "variant": "trade"
+      }
     }
   ],
   "baseScale": 1,

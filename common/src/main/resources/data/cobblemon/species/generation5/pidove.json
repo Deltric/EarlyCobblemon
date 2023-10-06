@@ -116,16 +116,17 @@
   "evolutions": [
     {
       "id": "pidove_tranquill",
-      "variant": "level_up",
       "result": "tranquill",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 21
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

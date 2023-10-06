@@ -32,7 +32,7 @@
       "depth": "normal",
       "light": "0-4"
     },
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.25
       }
@@ -180,9 +180,7 @@
   "evolutions": [
     {
       "id": "cacnea_cacturne",
-      "variant": "level_up",
       "result": "cacturne",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "spikyshield"
       ],
@@ -191,7 +189,10 @@
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

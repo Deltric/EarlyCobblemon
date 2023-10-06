@@ -311,29 +311,31 @@
       "evolutions": [
         {
           "id": "basculin_basculegion",
-          "variant": "level_up",
           "result": "basculegion",
-          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [
             {
               "variant": "recoil",
               "amount": 294
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         },
         {
           "id": "basculin_basculegion",
-          "variant": "level_up",
           "result": "basculegion form=f",
-          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [
             {
               "variant": "recoil",
               "amount": 294
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,

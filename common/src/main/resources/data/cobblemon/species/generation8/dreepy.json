@@ -66,9 +66,7 @@
   "evolutions": [
     {
       "id": "dreepy_drakloak",
-      "variant": "level_up",
       "result": "drakloak",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "dragonpulse"
       ],
@@ -77,7 +75,10 @@
           "variant": "level",
           "minLevel": 50
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -106,9 +106,7 @@
   "evolutions": [
     {
       "id": "shroodle_grafaiai",
-      "variant": "level_up",
       "result": "grafaiai",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "doodle"
       ],
@@ -117,7 +115,10 @@
           "variant": "level",
           "minLevel": 28
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

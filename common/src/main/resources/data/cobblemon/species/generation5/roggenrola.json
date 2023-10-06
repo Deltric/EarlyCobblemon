@@ -32,7 +32,7 @@
       "depth": "normal",
       "light": "0-4"
     },
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.15
       }
@@ -116,9 +116,7 @@
   "evolutions": [
     {
       "id": "roggenrola_boldore",
-      "variant": "level_up",
       "result": "boldore",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "powergem"
       ],
@@ -127,7 +125,10 @@
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

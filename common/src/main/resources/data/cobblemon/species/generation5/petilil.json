@@ -114,25 +114,27 @@
   "evolutions": [
     {
       "id": "petilil_lilligant",
-      "variant": "item_interact",
       "result": "lilligant",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "petaldance"
       ],
       "requirements": [],
-      "requiredContext": "cobblemon:sun_stone"
+      "trigger": {
+        "variant": "item_interact",
+        "requiredContext": "cobblemon:sun_stone"
+      }
     },
     {
       "id": "petilil_lilligant",
-      "variant": "item_interact",
       "result": "lilligant form=hisui",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "victorydance"
       ],
       "requirements": [],
-      "requiredContext": "cobblemon:sun_stone"
+      "trigger": {
+        "variant": "item_interact",
+        "requiredContext": "cobblemon:sun_stone"
+      }
     }
   ],
   "baseScale": 1,

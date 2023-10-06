@@ -197,16 +197,17 @@
   "evolutions": [
     {
       "id": "teddiursa_ursaring",
-      "variant": "level_up",
       "result": "ursaring",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.55,

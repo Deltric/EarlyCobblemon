@@ -175,9 +175,7 @@
   "evolutions": [
     {
       "id": "ivysaur_venusaur",
-      "variant": "level_up",
       "result": "venusaur",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "petalblizzard"
       ],
@@ -186,7 +184,10 @@
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

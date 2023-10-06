@@ -76,9 +76,7 @@
   "evolutions": [
     {
       "id": "gossifleur_eldegoss",
-      "variant": "level_up",
       "result": "eldegoss",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "cottonspore"
       ],
@@ -87,7 +85,10 @@
           "variant": "level",
           "minLevel": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

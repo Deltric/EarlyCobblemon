@@ -139,9 +139,7 @@
   "evolutions": [
     {
       "id": "snover_abomasnow",
-      "variant": "level_up",
       "result": "abomasnow",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "icepunch"
       ],
@@ -150,7 +148,10 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

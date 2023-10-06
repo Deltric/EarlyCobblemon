@@ -175,9 +175,7 @@
   "evolutions": [
     {
       "id": "remoraid_octillery",
-      "variant": "level_up",
       "result": "octillery",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "octazooka"
       ],
@@ -186,7 +184,10 @@
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

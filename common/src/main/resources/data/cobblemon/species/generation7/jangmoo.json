@@ -114,16 +114,17 @@
   "evolutions": [
     {
       "id": "jangmoo_hakamoo",
-      "variant": "level_up",
       "result": "hakamoo",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

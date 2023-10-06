@@ -132,9 +132,7 @@
   "evolutions": [
     {
       "id": "noibat_noivern",
-      "variant": "level_up",
       "result": "noivern",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "dragonpulse"
       ],
@@ -143,7 +141,10 @@
           "variant": "level",
           "minLevel": 48
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

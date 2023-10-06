@@ -223,9 +223,7 @@
   "evolutions": [
     {
       "id": "rhyhorn_rhydon",
-      "variant": "level_up",
       "result": "rhydon",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "hammerarm"
       ],
@@ -234,7 +232,10 @@
           "variant": "level",
           "minLevel": 42
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.2,

@@ -206,16 +206,17 @@
   "evolutions": [
     {
       "id": "dratini_dragonair",
-      "variant": "level_up",
       "result": "dragonair",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

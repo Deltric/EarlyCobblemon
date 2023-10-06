@@ -228,11 +228,12 @@
   "evolutions": [
     {
       "id": "kadabra_alakazam",
-      "variant": "trade",
       "result": "alakazam",
-      "consumeHeldItem": false,
       "learnableMoves": [],
-      "requirements": []
+      "requirements": [],
+      "trigger": {
+        "variant": "trade"
+      }
     }
   ],
   "baseScale": 0.85,

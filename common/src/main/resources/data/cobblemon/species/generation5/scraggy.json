@@ -163,16 +163,17 @@
   "evolutions": [
     {
       "id": "scraggy_scrafty",
-      "variant": "level_up",
       "result": "scrafty",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 39
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

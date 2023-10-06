@@ -122,9 +122,7 @@
       "evolutions": [
         {
           "id": "ponyta_rapidash",
-          "variant": "level_up",
           "result": "rapidash form=galar",
-          "consumeHeldItem": false,
           "learnableMoves": [
             "psychocut"
           ],
@@ -133,7 +131,10 @@
               "variant": "level",
               "minLevel": 40
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -147,7 +148,7 @@
     "field"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.3
       }
@@ -300,9 +301,7 @@
   "evolutions": [
     {
       "id": "ponyta_rapidash",
-      "variant": "level_up",
       "result": "rapidash",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "smartstrike"
       ],
@@ -311,7 +310,10 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

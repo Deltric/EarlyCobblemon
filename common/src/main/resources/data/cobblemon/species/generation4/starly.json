@@ -125,16 +125,17 @@
   "evolutions": [
     {
       "id": "starly_staravia",
-      "variant": "level_up",
       "result": "staravia",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 14
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

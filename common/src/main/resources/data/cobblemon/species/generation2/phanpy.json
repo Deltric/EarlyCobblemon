@@ -159,9 +159,7 @@
   "evolutions": [
     {
       "id": "phanpy_donphan",
-      "variant": "level_up",
       "result": "donphan",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "furyattack"
       ],
@@ -170,7 +168,10 @@
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

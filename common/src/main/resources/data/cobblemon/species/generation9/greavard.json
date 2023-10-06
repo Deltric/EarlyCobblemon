@@ -97,9 +97,7 @@
   "evolutions": [
     {
       "id": "greavard_houndstone",
-      "variant": "level_up",
       "result": "houndstone",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "lastrespects"
       ],
@@ -112,7 +110,10 @@
           "variant": "time_range",
           "range": "night"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

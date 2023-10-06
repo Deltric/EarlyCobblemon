@@ -138,9 +138,7 @@
   "evolutions": [
     {
       "id": "whismur_loudred",
-      "variant": "level_up",
       "result": "loudred",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "bite"
       ],
@@ -149,7 +147,10 @@
           "variant": "level",
           "minLevel": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

@@ -111,12 +111,13 @@
   "evolutions": [
     {
       "id": "shelmet_accelgor",
-      "variant": "trade",
       "result": "accelgor",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [],
-      "requiredContext": "karrablast"
+      "trigger": {
+        "variant": "trade",
+        "requiredContext": "karrablast"
+      }
     }
   ],
   "baseScale": 1,

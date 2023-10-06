@@ -27,7 +27,7 @@
     "fairy"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.25
       }

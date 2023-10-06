@@ -71,9 +71,7 @@
   "evolutions": [
     {
       "id": "combee_vespiquen",
-      "variant": "level_up",
       "result": "vespiquen",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "slash"
       ],
@@ -86,7 +84,10 @@
           "variant": "properties",
           "target": "gender=female"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

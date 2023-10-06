@@ -224,9 +224,7 @@
   "evolutions": [
     {
       "id": "abra_kadabra",
-      "variant": "level_up",
       "result": "kadabra",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "confusion"
       ],
@@ -235,7 +233,10 @@
           "variant": "level",
           "minLevel": 16
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.85,

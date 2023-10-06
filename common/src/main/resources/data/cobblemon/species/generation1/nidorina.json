@@ -177,14 +177,15 @@
   "evolutions": [
     {
       "id": "nidorina_nidoqueen",
-      "variant": "item_interact",
       "result": "nidoqueen",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "superpower"
       ],
       "requirements": [],
-      "requiredContext": "cobblemon:moon_stone"
+      "trigger": {
+        "variant": "item_interact",
+        "requiredContext": "cobblemon:moon_stone"
+      }
     }
   ],
   "baseScale": 0.9,

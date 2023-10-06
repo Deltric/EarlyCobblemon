@@ -151,9 +151,7 @@
   "evolutions": [
     {
       "id": "gabite_garchomp",
-      "variant": "level_up",
       "result": "garchomp",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "crunch"
       ],
@@ -162,7 +160,10 @@
           "variant": "level",
           "minLevel": 48
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.2,

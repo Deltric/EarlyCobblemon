@@ -132,9 +132,7 @@
   "evolutions": [
     {
       "id": "cutiefly_ribombee",
-      "variant": "level_up",
       "result": "ribombee",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "pollenpuff"
       ],
@@ -143,7 +141,10 @@
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.3,

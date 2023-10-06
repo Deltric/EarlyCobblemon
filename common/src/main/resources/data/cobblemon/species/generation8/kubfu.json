@@ -94,25 +94,27 @@
   "evolutions": [
     {
       "id": "kubfu_urshifu",
-      "variant": "block_click",
       "result": "urshifu",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "wickedblow"
       ],
       "requirements": [],
-      "block": "cobblemon:scroll_of_darkness"
+      "block": "cobblemon:scroll_of_darkness",
+      "trigger": {
+        "variant": "block_click"
+      }
     },
     {
       "id": "kubfu_urshifu",
-      "variant": "block_click",
       "result": "urshifu form=rapidstrike",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "surgingstrikes"
       ],
       "requirements": [],
-      "block": "cobblemon:scroll_of_waters"
+      "block": "cobblemon:scroll_of_waters",
+      "trigger": {
+        "variant": "block_click"
+      }
     }
   ],
   "baseScale": 1,

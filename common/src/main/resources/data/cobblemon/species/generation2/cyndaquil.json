@@ -31,7 +31,7 @@
       "depth": "normal",
       "light": "0-4"
     },
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.2
       }
@@ -168,16 +168,17 @@
   "evolutions": [
     {
       "id": "cyndaquil_quilava",
-      "variant": "level_up",
       "result": "quilava",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 14
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

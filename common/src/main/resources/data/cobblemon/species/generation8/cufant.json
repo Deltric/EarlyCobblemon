@@ -99,9 +99,7 @@
   "evolutions": [
     {
       "id": "cufant_copperajah",
-      "variant": "level_up",
       "result": "copperajah",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "heavyslam"
       ],
@@ -110,7 +108,10 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

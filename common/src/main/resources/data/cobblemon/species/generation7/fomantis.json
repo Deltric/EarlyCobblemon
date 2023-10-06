@@ -102,9 +102,7 @@
   "evolutions": [
     {
       "id": "fomantis_lurantis",
-      "variant": "level_up",
       "result": "lurantis",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "petalblizzard"
       ],
@@ -117,7 +115,10 @@
           "variant": "time_range",
           "range": "day"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

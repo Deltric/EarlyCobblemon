@@ -127,16 +127,17 @@
   "evolutions": [
     {
       "id": "poochyena_mightyena",
-      "variant": "level_up",
       "result": "mightyena",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

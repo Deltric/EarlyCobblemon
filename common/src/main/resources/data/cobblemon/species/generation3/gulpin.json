@@ -154,9 +154,7 @@
   "evolutions": [
     {
       "id": "gulpin_swalot",
-      "variant": "level_up",
       "result": "swalot",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "bodyslam"
       ],
@@ -165,7 +163,10 @@
           "variant": "level",
           "minLevel": 26
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

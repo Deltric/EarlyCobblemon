@@ -167,9 +167,7 @@
   "evolutions": [
     {
       "id": "torchic_combusken",
-      "variant": "level_up",
       "result": "combusken",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "doublekick"
       ],
@@ -178,7 +176,10 @@
           "variant": "level",
           "minLevel": 16
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

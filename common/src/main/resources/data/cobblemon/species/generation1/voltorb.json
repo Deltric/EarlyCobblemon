@@ -119,14 +119,15 @@
       "evolutions": [
         {
           "id": "voltorb_electrode",
-          "variant": "item_interact",
           "result": "electrode form=hisui",
-          "consumeHeldItem": false,
           "learnableMoves": [
             "chloroblast"
           ],
           "requirements": [],
-          "requiredContext": "cobblemon:leaf_stone"
+          "trigger": {
+            "variant": "item_interact",
+            "requiredContext": "cobblemon:leaf_stone"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -268,16 +269,17 @@
   "evolutions": [
     {
       "id": "voltorb_electrode",
-      "variant": "level_up",
       "result": "electrode",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

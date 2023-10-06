@@ -115,16 +115,17 @@
   "evolutions": [
     {
       "id": "fletchinder_talonflame",
-      "variant": "level_up",
       "result": "talonflame",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

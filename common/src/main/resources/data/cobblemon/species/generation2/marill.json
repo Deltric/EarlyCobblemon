@@ -209,16 +209,17 @@
   "evolutions": [
     {
       "id": "marill_azumarill",
-      "variant": "level_up",
       "result": "azumarill",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -205,9 +205,7 @@
   "evolutions": [
     {
       "id": "kabuto_kabutops",
-      "variant": "level_up",
       "result": "kabutops",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "slash"
       ],
@@ -216,7 +214,10 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.1,

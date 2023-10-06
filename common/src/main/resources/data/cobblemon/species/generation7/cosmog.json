@@ -38,9 +38,7 @@
   "evolutions": [
     {
       "id": "cosmog_cosmoem",
-      "variant": "level_up",
       "result": "cosmoem",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "cosmicpower"
       ],
@@ -49,7 +47,10 @@
           "variant": "level",
           "minLevel": 43
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

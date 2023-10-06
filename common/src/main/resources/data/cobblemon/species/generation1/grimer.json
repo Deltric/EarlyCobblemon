@@ -202,16 +202,17 @@
       "evolutions": [
         {
           "id": "grimer_muk",
-          "variant": "level_up",
           "result": "muk form=alola",
-          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [
             {
               "variant": "level",
               "minLevel": 38
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -427,16 +428,17 @@
   "evolutions": [
     {
       "id": "grimer_muk",
-      "variant": "level_up",
       "result": "muk",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 38
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "aspects": [],

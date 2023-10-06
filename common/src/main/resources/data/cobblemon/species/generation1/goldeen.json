@@ -188,16 +188,17 @@
   "evolutions": [
     {
       "id": "goldeen_seaking",
-      "variant": "level_up",
       "result": "seaking",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 33
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.2,

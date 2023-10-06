@@ -185,16 +185,17 @@
   "evolutions": [
     {
       "id": "treecko_grovyle",
-      "variant": "level_up",
       "result": "grovyle",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 16
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

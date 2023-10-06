@@ -157,14 +157,15 @@
   "evolutions": [
     {
       "id": "nuzleaf_shiftry",
-      "variant": "item_interact",
       "result": "shiftry",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "leaftornado"
       ],
       "requirements": [],
-      "requiredContext": "cobblemon:leaf_stone"
+      "trigger": {
+        "variant": "item_interact",
+        "requiredContext": "cobblemon:leaf_stone"
+      }
     }
   ],
   "baseScale": 1,

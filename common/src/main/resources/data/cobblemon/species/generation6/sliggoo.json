@@ -113,9 +113,7 @@
       "evolutions": [
         {
           "id": "sliggoo_goodra",
-          "variant": "level_up",
           "result": "goodra form=hisui",
-          "consumeHeldItem": false,
           "learnableMoves": [
             "irontail"
           ],
@@ -124,7 +122,10 @@
               "variant": "level",
               "minLevel": 50
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -213,9 +214,7 @@
   "evolutions": [
     {
       "id": "sliggoo_goodra",
-      "variant": "level_up",
       "result": "goodra",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "aquatail"
       ],
@@ -224,7 +223,10 @@
           "variant": "level",
           "minLevel": 50
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

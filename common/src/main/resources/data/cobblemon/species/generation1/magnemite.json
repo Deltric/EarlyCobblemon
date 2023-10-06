@@ -185,9 +185,7 @@
   "evolutions": [
     {
       "id": "magnemite_magneton",
-      "variant": "level_up",
       "result": "magneton",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "triattack"
       ],
@@ -196,7 +194,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

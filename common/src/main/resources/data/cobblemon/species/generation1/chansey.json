@@ -292,16 +292,17 @@
   "evolutions": [
     {
       "id": "chansey_blissey",
-      "variant": "level_up",
       "result": "blissey",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "friendship",
           "amount": 160
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

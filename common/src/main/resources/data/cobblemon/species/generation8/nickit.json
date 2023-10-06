@@ -85,9 +85,7 @@
   "evolutions": [
     {
       "id": "nickit_thievul",
-      "variant": "level_up",
       "result": "thievul",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "thief"
       ],
@@ -96,7 +94,10 @@
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

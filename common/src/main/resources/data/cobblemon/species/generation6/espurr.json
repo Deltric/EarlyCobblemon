@@ -122,29 +122,31 @@
   "evolutions": [
     {
       "id": "espurr_meowstic",
-      "variant": "level_up",
       "result": "meowstic",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "espurr_meowstic",
-      "variant": "level_up",
       "result": "meowstic form=f",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

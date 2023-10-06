@@ -194,16 +194,17 @@
   "evolutions": [
     {
       "id": "paras_parasect",
-      "variant": "level_up",
       "result": "parasect",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 24
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

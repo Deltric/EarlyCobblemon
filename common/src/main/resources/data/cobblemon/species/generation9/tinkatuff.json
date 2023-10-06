@@ -100,9 +100,7 @@
   "evolutions": [
     {
       "id": "tinkatuff_tinkaton",
-      "variant": "level_up",
       "result": "tinkaton",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "gigatonhammer"
       ],
@@ -111,7 +109,10 @@
           "variant": "level",
           "minLevel": 38
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.0,

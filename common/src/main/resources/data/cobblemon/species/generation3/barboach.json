@@ -147,9 +147,7 @@
   "evolutions": [
     {
       "id": "barboach_whiscash",
-      "variant": "level_up",
       "result": "whiscash",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "thrash"
       ],
@@ -158,7 +156,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.65,

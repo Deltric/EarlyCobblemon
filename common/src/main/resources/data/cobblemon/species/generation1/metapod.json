@@ -72,9 +72,7 @@
   "evolutions": [
     {
       "id": "metapod_butterfree",
-      "variant": "level_up",
       "result": "butterfree",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "gust"
       ],
@@ -83,7 +81,10 @@
           "variant": "level",
           "minLevel": 10
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

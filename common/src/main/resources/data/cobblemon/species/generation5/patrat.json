@@ -112,16 +112,17 @@
   "evolutions": [
     {
       "id": "patrat_watchog",
-      "variant": "level_up",
       "result": "watchog",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

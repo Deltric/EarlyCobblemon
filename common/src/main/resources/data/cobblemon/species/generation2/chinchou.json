@@ -166,9 +166,7 @@
   "evolutions": [
     {
       "id": "chinchou_lanturn",
-      "variant": "level_up",
       "result": "lanturn",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "spitup",
         "stockpile",
@@ -179,7 +177,10 @@
           "variant": "level",
           "minLevel": 27
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

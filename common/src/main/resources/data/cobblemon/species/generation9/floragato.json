@@ -107,9 +107,7 @@
   "evolutions": [
     {
       "id": "floragato_meowscarada",
-      "variant": "level_up",
       "result": "meowscarada",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "flowertrick"
       ],
@@ -118,7 +116,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

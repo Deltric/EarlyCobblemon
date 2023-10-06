@@ -92,16 +92,17 @@
   "evolutions": [
     {
       "id": "blitzle_zebstrika",
-      "variant": "level_up",
       "result": "zebstrika",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 27
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

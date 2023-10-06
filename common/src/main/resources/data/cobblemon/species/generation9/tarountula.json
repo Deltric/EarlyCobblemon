@@ -86,9 +86,7 @@
   "evolutions": [
     {
       "id": "tarountula_spidops",
-      "variant": "level_up",
       "result": "spidops",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "silktrap"
       ],
@@ -97,7 +95,10 @@
           "variant": "level",
           "minLevel": 15
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

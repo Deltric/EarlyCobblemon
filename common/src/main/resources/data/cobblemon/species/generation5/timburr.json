@@ -131,16 +131,17 @@
   "evolutions": [
     {
       "id": "timburr_gurdurr",
-      "variant": "level_up",
       "result": "gurdurr",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

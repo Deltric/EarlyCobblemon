@@ -249,16 +249,17 @@
   "evolutions": [
     {
       "id": "lickitung_lickilicky",
-      "variant": "level_up",
       "result": "lickilicky",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "rollout"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

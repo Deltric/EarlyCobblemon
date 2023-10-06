@@ -77,16 +77,17 @@
   "evolutions": [
     {
       "id": "yamper_boltund",
-      "variant": "level_up",
       "result": "boltund",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.65,

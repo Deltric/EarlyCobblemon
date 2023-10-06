@@ -78,9 +78,7 @@
   "evolutions": [
     {
       "id": "rellor_rabsca",
-      "variant": "level_up",
       "result": "rabsca",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "revivalblessing"
       ],
@@ -89,7 +87,10 @@
           "variant": "blocks_traveled",
           "amount": 1000
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

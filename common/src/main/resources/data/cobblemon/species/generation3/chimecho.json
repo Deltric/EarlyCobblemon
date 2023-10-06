@@ -25,18 +25,9 @@
   ],
   "behaviour": {
     "moving": {
-      "walk": {
-        "canWalk": false
-      },
       "fly": {
         "canFly": true
       }
-    },
-    "resting": {
-      "canSleep": true,
-      "willSleepOnBed": false,
-      "depth": "normal",
-      "light": "0-4"
     }
   },
   "moves": [
@@ -150,13 +141,6 @@
     "tutor:wrap",
     "tutor:zenheadbutt"
   ],
-  "behaviour": {
-    "moving": {
-      "fly": {
-        "canFly": true
-      }
-    }
-  },
   "labels": [
     "gen3"
   ],

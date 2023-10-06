@@ -82,16 +82,17 @@
   "evolutions": [
     {
       "id": "smoliv_dolliv",
-      "variant": "level_up",
       "result": "dolliv",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

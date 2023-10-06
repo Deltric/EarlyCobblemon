@@ -27,7 +27,7 @@
     "fairy"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.2
       }
@@ -194,16 +194,17 @@
   "evolutions": [
     {
       "id": "snubbull_granbull",
-      "variant": "level_up",
       "result": "granbull",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 23
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

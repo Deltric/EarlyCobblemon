@@ -191,16 +191,17 @@
   "evolutions": [
     {
       "id": "nidoranf_nidorina",
-      "variant": "level_up",
       "result": "nidorina",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 16
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

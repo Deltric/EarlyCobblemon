@@ -147,16 +147,17 @@
   "evolutions": [
     {
       "id": "aron_lairon",
-      "variant": "level_up",
       "result": "lairon",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -54,9 +54,7 @@
   "evolutions": [
     {
       "id": "scatterbug_spewpa",
-      "variant": "level_up",
       "result": "spewpa",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "protect"
       ],
@@ -65,7 +63,10 @@
           "variant": "level",
           "minLevel": 9
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

@@ -117,16 +117,17 @@
   "evolutions": [
     {
       "id": "litten_torracat",
-      "variant": "level_up",
       "result": "torracat",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 17
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

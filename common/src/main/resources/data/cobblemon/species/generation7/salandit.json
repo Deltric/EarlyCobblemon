@@ -127,9 +127,7 @@
   "evolutions": [
     {
       "id": "salandit_salazzle",
-      "variant": "level_up",
       "result": "salazzle",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "firelash"
       ],
@@ -142,7 +140,10 @@
           "variant": "properties",
           "target": "gender=female"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

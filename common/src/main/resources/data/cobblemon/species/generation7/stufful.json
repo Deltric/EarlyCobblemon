@@ -124,9 +124,7 @@
   "evolutions": [
     {
       "id": "stufful_bewear",
-      "variant": "level_up",
       "result": "bewear",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "bind"
       ],
@@ -135,7 +133,10 @@
           "variant": "level",
           "minLevel": 27
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

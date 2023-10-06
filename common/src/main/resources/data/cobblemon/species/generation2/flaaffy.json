@@ -26,7 +26,7 @@
     "field"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.2
       }
@@ -164,9 +164,7 @@
   "evolutions": [
     {
       "id": "flaaffy_ampharos",
-      "variant": "level_up",
       "result": "ampharos",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "thunderpunch"
       ],
@@ -175,7 +173,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.0,

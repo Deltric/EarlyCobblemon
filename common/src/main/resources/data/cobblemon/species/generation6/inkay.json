@@ -129,9 +129,7 @@
   "evolutions": [
     {
       "id": "inkay_malamar",
-      "variant": "level_up",
       "result": "malamar",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -142,7 +140,10 @@
           "variant": "properties",
           "target": "nickname=jeb"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

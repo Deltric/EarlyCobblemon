@@ -34,7 +34,7 @@
     "water_1"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.3
       }
@@ -93,9 +93,7 @@
   "evolutions": [
     {
       "id": "quaxwell_quaquaval",
-      "variant": "level_up",
       "result": "quaquaval",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "aquastep"
       ],
@@ -104,7 +102,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

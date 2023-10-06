@@ -102,9 +102,7 @@
   "evolutions": [
     {
       "id": "glimmet_glimmora",
-      "variant": "level_up",
       "result": "glimmora",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "mortalspin"
       ],
@@ -113,7 +111,10 @@
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.45,

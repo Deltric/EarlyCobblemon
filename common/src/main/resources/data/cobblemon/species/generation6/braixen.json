@@ -25,7 +25,7 @@
     "field"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.4
       }
@@ -161,9 +161,7 @@
   "evolutions": [
     {
       "id": "braixen_delphox",
-      "variant": "level_up",
       "result": "delphox",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "mysticalfire"
       ],
@@ -172,7 +170,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.65,

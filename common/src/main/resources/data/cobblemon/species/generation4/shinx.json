@@ -145,16 +145,17 @@
   "evolutions": [
     {
       "id": "shinx_luxio",
-      "variant": "level_up",
       "result": "luxio",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 15
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

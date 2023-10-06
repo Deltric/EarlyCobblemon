@@ -160,11 +160,12 @@
       "evolutions": [
         {
           "id": "graveler_golem",
-          "variant": "trade",
           "result": "golem form=alola",
-          "consumeHeldItem": false,
           "learnableMoves": [],
-          "requirements": []
+          "requirements": [],
+          "trigger": {
+            "variant": "trade"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -326,11 +327,12 @@
   "evolutions": [
     {
       "id": "graveler_golem",
-      "variant": "trade",
       "result": "golem",
-      "consumeHeldItem": false,
       "learnableMoves": [],
-      "requirements": []
+      "requirements": [],
+      "trigger": {
+        "variant": "trade"
+      }
     }
   ],
   "baseScale": 1.1,

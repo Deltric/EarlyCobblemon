@@ -16,7 +16,7 @@
     "speed": 80
   },
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.3
       }
@@ -211,9 +211,7 @@
   "evolutions": [
     {
       "id": "charmeleon_charizard",
-      "variant": "level_up",
       "result": "charizard",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "airslash"
       ],
@@ -222,7 +220,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

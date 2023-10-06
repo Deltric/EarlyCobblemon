@@ -131,16 +131,17 @@
   "evolutions": [
     {
       "id": "cranidos_rampardos",
-      "variant": "level_up",
       "result": "rampardos",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

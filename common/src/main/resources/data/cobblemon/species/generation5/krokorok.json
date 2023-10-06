@@ -146,16 +146,17 @@
   "evolutions": [
     {
       "id": "krokorok_krookodile",
-      "variant": "level_up",
       "result": "krookodile",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

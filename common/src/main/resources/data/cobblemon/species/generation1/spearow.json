@@ -177,16 +177,17 @@
   "evolutions": [
     {
       "id": "spearow_fearow",
-      "variant": "level_up",
       "result": "fearow",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

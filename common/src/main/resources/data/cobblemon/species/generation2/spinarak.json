@@ -150,16 +150,17 @@
   "evolutions": [
     {
       "id": "spinarak_ariados",
-      "variant": "level_up",
       "result": "ariados",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 22
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

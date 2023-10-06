@@ -145,9 +145,7 @@
   "evolutions": [
     {
       "id": "tyrogue_hitmonlee",
-      "variant": "level_up",
       "result": "hitmonlee",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -158,13 +156,14 @@
           "variant": "attack_defence_ratio",
           "ratio": "ATTACK_HIGHER"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "tyrogue_hitmonchan",
-      "variant": "level_up",
       "result": "hitmonchan",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -175,13 +174,14 @@
           "variant": "attack_defence_ratio",
           "ratio": "DEFENCE_HIGHER"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "tyrogue_hitmontop",
-      "variant": "level_up",
       "result": "hitmontop",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "triplekick"
       ],
@@ -194,7 +194,10 @@
           "variant": "attack_defence_ratio",
           "ratio": "EQUAL"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

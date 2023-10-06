@@ -113,9 +113,7 @@
   "evolutions": [
     {
       "id": "naclstack_garganacl",
-      "variant": "level_up",
       "result": "garganacl",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "hammerarm"
       ],
@@ -124,7 +122,10 @@
           "variant": "level",
           "minLevel": 38
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

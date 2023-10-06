@@ -117,9 +117,7 @@
       "evolutions": [
         {
           "id": "zorua_zoroark",
-          "variant": "level_up",
           "result": "zoroark form=hisui",
-          "consumeHeldItem": false,
           "learnableMoves": [
             "shadowclaw"
           ],
@@ -128,7 +126,10 @@
               "variant": "level",
               "minLevel": 30
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -257,9 +258,7 @@
   "evolutions": [
     {
       "id": "zorua_zoroark",
-      "variant": "level_up",
       "result": "zoroark",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "nightslash"
       ],
@@ -268,7 +267,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

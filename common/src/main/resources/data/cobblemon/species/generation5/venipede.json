@@ -112,9 +112,7 @@
   "evolutions": [
     {
       "id": "venipede_whirlipede",
-      "variant": "level_up",
       "result": "whirlipede",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "irondefense"
       ],
@@ -123,7 +121,10 @@
           "variant": "level",
           "minLevel": 22
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

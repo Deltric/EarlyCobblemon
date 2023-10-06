@@ -128,16 +128,17 @@
   "evolutions": [
     {
       "id": "tepig_pignite",
-      "variant": "level_up",
       "result": "pignite",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 17
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.65,

@@ -110,16 +110,17 @@
   "evolutions": [
     {
       "id": "trubbish_garbodor",
-      "variant": "level_up",
       "result": "garbodor",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

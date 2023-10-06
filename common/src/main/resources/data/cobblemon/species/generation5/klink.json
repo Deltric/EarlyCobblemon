@@ -114,16 +114,17 @@
   "evolutions": [
     {
       "id": "klink_klang",
-      "variant": "level_up",
       "result": "klang",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 38
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

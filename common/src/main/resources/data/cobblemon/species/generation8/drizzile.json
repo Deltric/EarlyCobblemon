@@ -91,9 +91,7 @@
   "evolutions": [
     {
       "id": "drizzile_inteleon",
-      "variant": "level_up",
       "result": "inteleon",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "snipeshot"
       ],
@@ -102,7 +100,10 @@
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.75,

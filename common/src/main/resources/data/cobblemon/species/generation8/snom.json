@@ -56,9 +56,7 @@
   "evolutions": [
     {
       "id": "snom_frosmoth",
-      "variant": "level_up",
       "result": "frosmoth",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "icywind"
       ],
@@ -71,7 +69,10 @@
           "variant": "time_range",
           "range": "night"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

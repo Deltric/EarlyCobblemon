@@ -128,9 +128,7 @@
   "evolutions": [
     {
       "id": "dewott_samurott",
-      "variant": "level_up",
       "result": "samurott",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "slash"
       ],
@@ -139,13 +137,14 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "dewott_samurott",
-      "variant": "level_up",
       "result": "samurott form=hisui",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "ceaselessedge"
       ],
@@ -154,7 +153,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

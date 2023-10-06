@@ -66,9 +66,7 @@
   "evolutions": [
     {
       "id": "kricketot_kricketune",
-      "variant": "level_up",
       "result": "kricketune",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "furycutter"
       ],
@@ -77,7 +75,10 @@
           "variant": "level",
           "minLevel": 10
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

@@ -94,9 +94,7 @@
   "evolutions": [
     {
       "id": "carkol_coalossal",
-      "variant": "level_up",
       "result": "coalossal",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "tarshot"
       ],
@@ -105,7 +103,10 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

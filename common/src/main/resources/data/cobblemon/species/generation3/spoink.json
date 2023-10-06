@@ -161,9 +161,7 @@
   "evolutions": [
     {
       "id": "spoink_grumpig",
-      "variant": "level_up",
       "result": "grumpig",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "teeterdance"
       ],
@@ -172,7 +170,10 @@
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

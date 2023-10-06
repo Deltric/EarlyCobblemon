@@ -112,9 +112,7 @@
   "evolutions": [
     {
       "id": "nacli_naclstack",
-      "variant": "level_up",
       "result": "naclstack",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "saltcure"
       ],
@@ -123,7 +121,10 @@
           "variant": "level",
           "minLevel": 24
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

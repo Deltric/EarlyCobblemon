@@ -46,7 +46,7 @@
       "light": "0-4"
     },
     "moving": {
-      "moving" : {
+      "moving": {
         "walk": {
           "walkSpeed": 0.29
         }
@@ -206,9 +206,7 @@
   "evolutions": [
     {
       "id": "wartortle_blastoise",
-      "variant": "level_up",
       "result": "blastoise",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "flashcannon"
       ],
@@ -217,7 +215,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

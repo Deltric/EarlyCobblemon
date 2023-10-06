@@ -86,9 +86,7 @@
   "evolutions": [
     {
       "id": "arctibax_baxcalibur",
-      "variant": "level_up",
       "result": "baxcalibur",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "glaiverush"
       ],
@@ -97,7 +95,10 @@
           "variant": "level",
           "minLevel": 54
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

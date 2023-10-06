@@ -174,9 +174,7 @@
   "evolutions": [
     {
       "id": "swinub_piloswine",
-      "variant": "level_up",
       "result": "piloswine",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "icefang"
       ],
@@ -185,7 +183,10 @@
           "variant": "level",
           "minLevel": 33
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.1,

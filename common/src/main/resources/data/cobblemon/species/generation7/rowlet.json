@@ -148,16 +148,17 @@
   "evolutions": [
     {
       "id": "rowlet_dartrix",
-      "variant": "level_up",
       "result": "dartrix",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 17
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

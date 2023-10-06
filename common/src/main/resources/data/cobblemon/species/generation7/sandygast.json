@@ -122,16 +122,17 @@
   "evolutions": [
     {
       "id": "sandygast_palossand",
-      "variant": "level_up",
       "result": "palossand",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 42
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

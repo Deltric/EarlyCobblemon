@@ -126,9 +126,7 @@
   "evolutions": [
     {
       "id": "vullaby_mandibuzz",
-      "variant": "level_up",
       "result": "mandibuzz",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "bonerush"
       ],
@@ -137,7 +135,10 @@
           "variant": "level",
           "minLevel": 54
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

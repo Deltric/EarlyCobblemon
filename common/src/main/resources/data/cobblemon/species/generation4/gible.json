@@ -159,16 +159,17 @@
   "evolutions": [
     {
       "id": "gible_gabite",
-      "variant": "level_up",
       "result": "gabite",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 24
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.75,

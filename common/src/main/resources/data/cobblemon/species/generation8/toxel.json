@@ -62,9 +62,7 @@
   "evolutions": [
     {
       "id": "toxel_toxtricity",
-      "variant": "level_up",
       "result": "toxtricity",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "spark"
       ],
@@ -73,13 +71,14 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "toxel_toxtricity",
-      "variant": "level_up",
       "result": "toxtricity form=lowkey",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "spark"
       ],
@@ -88,7 +87,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

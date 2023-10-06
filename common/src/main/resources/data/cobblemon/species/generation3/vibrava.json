@@ -149,9 +149,7 @@
   "evolutions": [
     {
       "id": "vibrava_flygon",
-      "variant": "level_up",
       "result": "flygon",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "dragonclaw"
       ],
@@ -160,7 +158,10 @@
           "variant": "level",
           "minLevel": 45
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

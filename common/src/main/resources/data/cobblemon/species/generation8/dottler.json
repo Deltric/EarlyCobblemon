@@ -76,16 +76,17 @@
   "evolutions": [
     {
       "id": "dottler_orbeetle",
-      "variant": "level_up",
       "result": "orbeetle",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -151,16 +151,17 @@
   "evolutions": [
     {
       "id": "yanma_yanmega",
-      "variant": "level_up",
       "result": "yanmega",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "ancientpower"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

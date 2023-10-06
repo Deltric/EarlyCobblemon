@@ -197,11 +197,12 @@
   "evolutions": [
     {
       "id": "machoke_machamp",
-      "variant": "trade",
       "result": "machamp",
-      "consumeHeldItem": false,
       "learnableMoves": [],
-      "requirements": []
+      "requirements": [],
+      "trigger": {
+        "variant": "trade"
+      }
     }
   ],
   "baseScale": 1,

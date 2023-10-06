@@ -140,9 +140,7 @@
   "evolutions": [
     {
       "id": "tyrunt_tyrantrum",
-      "variant": "level_up",
       "result": "tyrantrum",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -153,7 +151,10 @@
           "variant": "time_range",
           "range": "day"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

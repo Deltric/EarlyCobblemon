@@ -205,9 +205,7 @@
   "evolutions": [
     {
       "id": "stantler_wyrdeer",
-      "variant": "level_up",
       "result": "wyrdeer",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -215,7 +213,10 @@
           "move": "psyshieldbash",
           "amount": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.2,

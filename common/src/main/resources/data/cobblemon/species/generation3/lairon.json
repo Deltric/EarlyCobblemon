@@ -138,16 +138,17 @@
   "evolutions": [
     {
       "id": "lairon_aggron",
-      "variant": "level_up",
       "result": "aggron",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 42
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

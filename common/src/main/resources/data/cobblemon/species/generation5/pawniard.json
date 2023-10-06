@@ -144,16 +144,17 @@
   "evolutions": [
     {
       "id": "pawniard_bisharp",
-      "variant": "level_up",
       "result": "bisharp",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 52
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

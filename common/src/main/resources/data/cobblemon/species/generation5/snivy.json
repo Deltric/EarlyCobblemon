@@ -119,16 +119,17 @@
   "evolutions": [
     {
       "id": "snivy_servine",
-      "variant": "level_up",
       "result": "servine",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 17
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.55,

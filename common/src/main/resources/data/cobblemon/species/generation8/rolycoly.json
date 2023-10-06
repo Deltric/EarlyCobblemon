@@ -80,9 +80,7 @@
   "evolutions": [
     {
       "id": "rolycoly_carkol",
-      "variant": "level_up",
       "result": "carkol",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "flamecharge"
       ],
@@ -91,7 +89,10 @@
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

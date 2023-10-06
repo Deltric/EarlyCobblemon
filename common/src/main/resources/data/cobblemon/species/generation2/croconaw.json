@@ -176,16 +176,17 @@
   "evolutions": [
     {
       "id": "croconaw_feraligatr",
-      "variant": "level_up",
       "result": "feraligatr",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

@@ -191,29 +191,31 @@
   "evolutions": [
     {
       "id": "mimejr_mrmime",
-      "variant": "level_up",
       "result": "mrmime",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "mimic"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "mimejr_mrmime",
-      "variant": "level_up",
       "result": "mrmime form=galar",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "mimic"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.6,

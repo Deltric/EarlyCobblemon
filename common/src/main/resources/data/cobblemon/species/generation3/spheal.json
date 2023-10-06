@@ -134,9 +134,7 @@
   "evolutions": [
     {
       "id": "spheal_sealeo",
-      "variant": "level_up",
       "result": "sealeo",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "swagger"
       ],
@@ -145,7 +143,10 @@
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

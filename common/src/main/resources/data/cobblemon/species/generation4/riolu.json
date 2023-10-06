@@ -176,9 +176,7 @@
   "evolutions": [
     {
       "id": "riolu_lucario",
-      "variant": "level_up",
       "result": "lucario",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "aurasphere"
       ],
@@ -191,7 +189,10 @@
           "variant": "time_range",
           "range": "day"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

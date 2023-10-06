@@ -100,16 +100,17 @@
   "evolutions": [
     {
       "id": "rookidee_corvisquire",
-      "variant": "level_up",
       "result": "corvisquire",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

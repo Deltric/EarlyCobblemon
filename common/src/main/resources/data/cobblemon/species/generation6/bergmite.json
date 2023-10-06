@@ -124,9 +124,7 @@
   "evolutions": [
     {
       "id": "bergmite_avalugg",
-      "variant": "level_up",
       "result": "avalugg",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "bodyslam"
       ],
@@ -135,13 +133,14 @@
           "variant": "level",
           "minLevel": 37
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "bergmite_avalugg",
-      "variant": "level_up",
       "result": "avalugg form=hisui",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "rockslide"
       ],
@@ -150,7 +149,10 @@
           "variant": "level",
           "minLevel": 37
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.95,

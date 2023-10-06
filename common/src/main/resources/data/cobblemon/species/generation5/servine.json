@@ -106,16 +106,17 @@
   "evolutions": [
     {
       "id": "servine_serperior",
-      "variant": "level_up",
       "result": "serperior",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.75,

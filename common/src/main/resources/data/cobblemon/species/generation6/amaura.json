@@ -141,9 +141,7 @@
   "evolutions": [
     {
       "id": "amaura_aurorus",
-      "variant": "level_up",
       "result": "aurorus",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -154,7 +152,10 @@
           "variant": "time_range",
           "range": "night"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

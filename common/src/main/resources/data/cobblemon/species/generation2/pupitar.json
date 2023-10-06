@@ -163,16 +163,17 @@
   "evolutions": [
     {
       "id": "pupitar_tyranitar",
-      "variant": "level_up",
       "result": "tyranitar",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 55
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

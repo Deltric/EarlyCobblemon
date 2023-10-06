@@ -152,9 +152,7 @@
   "evolutions": [
     {
       "id": "swablu_altaria",
-      "variant": "level_up",
       "result": "altaria",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "dragonpulse"
       ],
@@ -163,7 +161,10 @@
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

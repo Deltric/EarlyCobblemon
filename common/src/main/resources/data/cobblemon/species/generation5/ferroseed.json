@@ -118,9 +118,7 @@
   "evolutions": [
     {
       "id": "ferroseed_ferrothorn",
-      "variant": "level_up",
       "result": "ferrothorn",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "powerwhip"
       ],
@@ -129,7 +127,10 @@
           "variant": "level",
           "minLevel": 40
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

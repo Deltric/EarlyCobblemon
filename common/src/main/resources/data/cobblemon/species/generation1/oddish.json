@@ -163,16 +163,17 @@
   "evolutions": [
     {
       "id": "oddish_gloom",
-      "variant": "level_up",
       "result": "gloom",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 21
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

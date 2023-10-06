@@ -167,16 +167,17 @@
   "evolutions": [
     {
       "id": "pidgey_pidgeotto",
-      "variant": "level_up",
       "result": "pidgeotto",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

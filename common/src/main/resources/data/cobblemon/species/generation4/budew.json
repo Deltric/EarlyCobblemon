@@ -113,9 +113,7 @@
   "evolutions": [
     {
       "id": "budew_roselia",
-      "variant": "level_up",
       "result": "roselia",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
@@ -126,7 +124,10 @@
           "variant": "time_range",
           "range": "day"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

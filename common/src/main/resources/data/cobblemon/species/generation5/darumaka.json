@@ -129,14 +129,15 @@
       "evolutions": [
         {
           "id": "darumaka_darmanitan",
-          "variant": "item_interact",
           "result": "darmanitan form=galar",
-          "consumeHeldItem": false,
           "learnableMoves": [
             "iciclecrash"
           ],
           "requirements": [],
-          "requiredContext": "cobblemon:ice_stone"
+          "trigger": {
+            "variant": "item_interact",
+            "requiredContext": "cobblemon:ice_stone"
+          }
         }
       ],
       "cannotDynamax": false,
@@ -252,9 +253,7 @@
   "evolutions": [
     {
       "id": "darumaka_darmanitan",
-      "variant": "level_up",
       "result": "darmanitan",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "hammerarm"
       ],
@@ -263,7 +262,10 @@
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

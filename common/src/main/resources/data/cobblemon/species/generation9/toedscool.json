@@ -103,16 +103,17 @@
   "evolutions": [
     {
       "id": "toedscool_toedscruel",
-      "variant": "level_up",
       "result": "toedscruel",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

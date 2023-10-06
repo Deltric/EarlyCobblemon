@@ -135,16 +135,17 @@
   "evolutions": [
     {
       "id": "skrelp_dragalge",
-      "variant": "level_up",
       "result": "dragalge",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 48
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

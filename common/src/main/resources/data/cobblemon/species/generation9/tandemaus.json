@@ -106,16 +106,17 @@
   "evolutions": [
     {
       "id": "tandemaus_maushold",
-      "variant": "level_up",
       "result": "maushold",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

@@ -197,9 +197,7 @@
   "evolutions": [
     {
       "id": "dragonair_dragonite",
-      "variant": "level_up",
       "result": "dragonite",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "hurricane"
       ],
@@ -208,7 +206,10 @@
           "variant": "level",
           "minLevel": 55
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.9,

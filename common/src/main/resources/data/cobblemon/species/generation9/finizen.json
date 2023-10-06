@@ -89,9 +89,7 @@
   "evolutions": [
     {
       "id": "finizen_palafin",
-      "variant": "level_up",
       "result": "palafin",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "flipturn"
       ],
@@ -100,7 +98,10 @@
           "variant": "level",
           "minLevel": 38
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "cannotDynamax": false,

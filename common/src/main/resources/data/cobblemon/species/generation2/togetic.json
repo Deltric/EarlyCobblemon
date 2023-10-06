@@ -211,12 +211,13 @@
   "evolutions": [
     {
       "id": "togetic_togekiss",
-      "variant": "item_interact",
       "result": "togekiss",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [],
-      "requiredContext": "cobblemon:shiny_stone"
+      "trigger": {
+        "variant": "item_interact",
+        "requiredContext": "cobblemon:shiny_stone"
+      }
     }
   ],
   "baseScale": 1,

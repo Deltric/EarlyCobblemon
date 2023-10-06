@@ -107,16 +107,17 @@
   "evolutions": [
     {
       "id": "herdier_stoutland",
-      "variant": "level_up",
       "result": "stoutland",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 32
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.65,

@@ -22,7 +22,7 @@
       "walk": {
         "walkSpeed": 0.25
       }
-      },
+    },
     "resting": {
       "canSleep": true,
       "willSleepOnBed": false,

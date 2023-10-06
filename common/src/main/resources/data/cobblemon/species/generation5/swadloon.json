@@ -82,16 +82,17 @@
   "evolutions": [
     {
       "id": "swadloon_leavanny",
-      "variant": "level_up",
       "result": "leavanny",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "friendship",
           "amount": 160
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

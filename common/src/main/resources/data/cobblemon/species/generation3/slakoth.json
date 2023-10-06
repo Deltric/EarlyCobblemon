@@ -156,16 +156,17 @@
   "evolutions": [
     {
       "id": "slakoth_vigoroth",
-      "variant": "level_up",
       "result": "vigoroth",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 18
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

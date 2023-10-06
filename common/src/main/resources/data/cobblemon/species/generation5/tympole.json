@@ -109,16 +109,17 @@
   "evolutions": [
     {
       "id": "tympole_palpitoad",
-      "variant": "level_up",
       "result": "palpitoad",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 25
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

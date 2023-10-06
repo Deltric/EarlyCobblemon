@@ -107,14 +107,15 @@
   "evolutions": [
     {
       "id": "doublade_aegislash",
-      "variant": "item_interact",
       "result": "aegislash",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "kingsshield"
       ],
       "requirements": [],
-      "requiredContext": "cobblemon:dusk_stone"
+      "trigger": {
+        "variant": "item_interact",
+        "requiredContext": "cobblemon:dusk_stone"
+      }
     }
   ],
   "baseScale": 0.8,

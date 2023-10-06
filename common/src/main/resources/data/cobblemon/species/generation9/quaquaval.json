@@ -35,7 +35,7 @@
     "water_1"
   ],
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.25
       }

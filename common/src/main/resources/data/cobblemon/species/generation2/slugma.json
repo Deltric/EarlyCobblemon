@@ -155,16 +155,17 @@
   "evolutions": [
     {
       "id": "slugma_magcargo",
-      "variant": "level_up",
       "result": "magcargo",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 38
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

@@ -188,16 +188,17 @@
   "evolutions": [
     {
       "id": "tangela_tangrowth",
-      "variant": "level_up",
       "result": "tangrowth",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "ancientpower"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.5,

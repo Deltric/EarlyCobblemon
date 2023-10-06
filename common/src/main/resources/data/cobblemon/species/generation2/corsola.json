@@ -140,16 +140,17 @@
       "evolutions": [
         {
           "id": "corsola_cursola",
-          "variant": "level_up",
           "result": "cursola",
-          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [
             {
               "variant": "level",
               "minLevel": 38
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "cannotDynamax": false,

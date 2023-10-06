@@ -41,9 +41,7 @@
   "evolutions": [
     {
       "id": "tynamo_eelektrik",
-      "variant": "level_up",
       "result": "eelektrik",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "crunch"
       ],
@@ -52,7 +50,10 @@
           "variant": "level",
           "minLevel": 39
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

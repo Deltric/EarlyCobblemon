@@ -142,9 +142,7 @@
   "evolutions": [
     {
       "id": "cubchoo_beartic",
-      "variant": "level_up",
       "result": "beartic",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "iciclecrash"
       ],
@@ -153,7 +151,10 @@
           "variant": "level",
           "minLevel": 37
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

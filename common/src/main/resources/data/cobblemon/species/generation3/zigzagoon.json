@@ -132,9 +132,7 @@
       "evolutions": [
         {
           "id": "galarian_zigzagoon_linoone",
-          "variant": "level_up",
           "result": "linoone form=galar",
-          "consumeHeldItem": false,
           "learnableMoves": [
             "nightslash"
           ],
@@ -143,7 +141,10 @@
               "variant": "level",
               "minLevel": 20
             }
-          ]
+          ],
+          "trigger": {
+            "variant": "level_up"
+          }
         }
       ],
       "baseScale": 0.8,
@@ -296,9 +297,7 @@
   "evolutions": [
     {
       "id": "zigzagoon_linoone",
-      "variant": "level_up",
       "result": "linoone",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "slash"
       ],
@@ -307,7 +306,10 @@
           "variant": "level",
           "minLevel": 20
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.8,

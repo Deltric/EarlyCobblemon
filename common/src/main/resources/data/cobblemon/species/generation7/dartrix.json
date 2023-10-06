@@ -140,9 +140,7 @@
   "evolutions": [
     {
       "id": "dartrix_decidueye",
-      "variant": "level_up",
       "result": "decidueye",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "spiritshackle"
       ],
@@ -151,13 +149,14 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     },
     {
       "id": "dartrix_decidueye",
-      "variant": "level_up",
       "result": "decidueye form=hisui",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "triplearrows"
       ],
@@ -166,7 +165,10 @@
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

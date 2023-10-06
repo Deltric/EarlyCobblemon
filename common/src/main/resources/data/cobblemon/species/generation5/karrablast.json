@@ -114,12 +114,13 @@
   "evolutions": [
     {
       "id": "karrablast_escavalier",
-      "variant": "trade",
       "result": "escavalier",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [],
-      "requiredContext": "shelmet"
+      "trigger": {
+        "variant": "trade",
+        "requiredContext": "shelmet"
+      }
     }
   ],
   "baseScale": 1,

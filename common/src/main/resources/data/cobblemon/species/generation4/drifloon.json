@@ -187,9 +187,7 @@
   "evolutions": [
     {
       "id": "drifloon_drifblim",
-      "variant": "level_up",
       "result": "drifblim",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "phantomforce"
       ],
@@ -198,7 +196,10 @@
           "variant": "level",
           "minLevel": 28
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

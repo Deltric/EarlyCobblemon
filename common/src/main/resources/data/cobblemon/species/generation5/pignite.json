@@ -132,16 +132,17 @@
   "evolutions": [
     {
       "id": "pignite_emboar",
-      "variant": "level_up",
       "result": "emboar",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 36
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

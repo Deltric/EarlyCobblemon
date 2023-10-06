@@ -171,16 +171,17 @@
   "evolutions": [
     {
       "id": "elgyem_beheeyem",
-      "variant": "level_up",
       "result": "beheeyem",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 42
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

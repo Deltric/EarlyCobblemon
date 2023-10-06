@@ -176,9 +176,7 @@
   "evolutions": [
     {
       "id": "stunky_skuntank",
-      "variant": "level_up",
       "result": "skuntank",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "flamethrower"
       ],
@@ -187,7 +185,10 @@
           "variant": "level",
           "minLevel": 34
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

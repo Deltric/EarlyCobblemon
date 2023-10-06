@@ -125,9 +125,7 @@
   "evolutions": [
     {
       "id": "trapinch_vibrava",
-      "variant": "level_up",
       "result": "vibrava",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "dragonbreath"
       ],
@@ -136,7 +134,10 @@
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

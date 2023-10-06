@@ -111,9 +111,7 @@
   "evolutions": [
     {
       "id": "steenee_tsareena",
-      "variant": "level_up",
       "result": "tsareena",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "tropkick"
       ],
@@ -122,7 +120,10 @@
           "variant": "has_move",
           "move": "stomp"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

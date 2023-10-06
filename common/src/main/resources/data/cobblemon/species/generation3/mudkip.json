@@ -170,9 +170,7 @@
   "evolutions": [
     {
       "id": "mudkip_marshtomp",
-      "variant": "level_up",
       "result": "marshtomp",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "mudshot"
       ],
@@ -181,7 +179,10 @@
           "variant": "level",
           "minLevel": 16
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

@@ -111,16 +111,17 @@
   "evolutions": [
     {
       "id": "morelull_shiinotic",
-      "variant": "level_up",
       "result": "shiinotic",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 24
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

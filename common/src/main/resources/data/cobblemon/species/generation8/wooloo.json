@@ -84,16 +84,17 @@
   "evolutions": [
     {
       "id": "wooloo_dubwool",
-      "variant": "level_up",
       "result": "dubwool",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 24
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1.1,

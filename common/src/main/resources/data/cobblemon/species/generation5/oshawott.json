@@ -136,16 +136,17 @@
   "evolutions": [
     {
       "id": "oshawott_dewott",
-      "variant": "level_up",
       "result": "dewott",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 17
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.5,

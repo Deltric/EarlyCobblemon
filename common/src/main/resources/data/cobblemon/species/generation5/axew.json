@@ -150,16 +150,17 @@
   "evolutions": [
     {
       "id": "axew_fraxure",
-      "variant": "level_up",
       "result": "fraxure",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 38
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

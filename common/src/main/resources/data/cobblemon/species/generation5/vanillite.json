@@ -106,16 +106,17 @@
   "evolutions": [
     {
       "id": "vanillite_vanillish",
-      "variant": "level_up",
       "result": "vanillish",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

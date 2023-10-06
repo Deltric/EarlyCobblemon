@@ -40,9 +40,7 @@
   "evolutions": [
     {
       "id": "blipbug_dottler",
-      "variant": "level_up",
       "result": "dottler",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "confusion",
         "lightscreen",
@@ -53,7 +51,10 @@
           "variant": "level",
           "minLevel": 10
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -210,16 +210,17 @@
   "evolutions": [
     {
       "id": "girafarig_farigiraf",
-      "variant": "level_up",
       "result": "farigiraf",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "has_move",
           "move": "twinbeam"
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

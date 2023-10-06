@@ -88,9 +88,7 @@
   "evolutions": [
     {
       "id": "hattrem_hatterene",
-      "variant": "level_up",
       "result": "hatterene",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "psychocut"
       ],
@@ -99,7 +97,10 @@
           "variant": "level",
           "minLevel": 42
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,

@@ -111,16 +111,17 @@
   "evolutions": [
     {
       "id": "honedge_doublade",
-      "variant": "level_up",
       "result": "doublade",
-      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [
         {
           "variant": "level",
           "minLevel": 35
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 0.7,

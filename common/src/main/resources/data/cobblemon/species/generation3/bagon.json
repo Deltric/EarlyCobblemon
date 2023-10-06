@@ -139,9 +139,7 @@
   "evolutions": [
     {
       "id": "bagon_shelgon",
-      "variant": "level_up",
       "result": "shelgon",
-      "consumeHeldItem": false,
       "learnableMoves": [
         "protect"
       ],
@@ -150,7 +148,10 @@
           "variant": "level",
           "minLevel": 30
         }
-      ]
+      ],
+      "trigger": {
+        "variant": "level_up"
+      }
     }
   ],
   "baseScale": 1,
