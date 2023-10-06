@@ -17,7 +17,7 @@ import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferNotification
 import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket
 import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket.TradeablePokemon
 import com.cobblemon.mod.common.pokemon.Pokemon
-import com.cobblemon.mod.common.pokemon.evolution.variants.TradeEvolution
+import com.cobblemon.mod.common.pokemon.transformation.triggers.TradeTrigger
 import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.server.network.ServerPlayerEntity
@@ -98,13 +98,8 @@ object TradeManager {
         party2.add(pokemon1)
         party1.add(pokemon2)
 
-        pokemon1.evolutions.filterIsInstance<TradeEvolution>().firstOrNull {
-            it.attemptEvolution(pokemon1, pokemon2)
-        }
-
-        pokemon2.evolutions.filterIsInstance<TradeEvolution>().firstOrNull {
-            it.attemptEvolution(pokemon2, pokemon1)
-        }
+        pokemon1.transformationTriggers<TradeTrigger>().forEach { (trigger, transformation) -> trigger.testContext(pokemon1, pokemon2) && transformation.start(pokemon1) }
+        pokemon2.transformationTriggers<TradeTrigger>().forEach { (trigger, transformation) -> trigger.testContext(pokemon2, pokemon1) && transformation.start(pokemon2) }
         CobblemonEvents.TRADE_COMPLETED.post(TradeCompletedEvent(player1, pokemon2, player2, pokemon1))
     }
 }

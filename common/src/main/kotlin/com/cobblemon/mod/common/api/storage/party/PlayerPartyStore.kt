@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.storage.party
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.advancement.CobblemonCriteria
 import com.cobblemon.mod.common.advancement.criterion.PartyCheckContext
-import com.cobblemon.mod.common.api.pokemon.evolution.PassiveEvolution
+import com.cobblemon.mod.common.api.pokemon.transformation.trigger.PassiveTrigger
 import com.cobblemon.mod.common.api.storage.pc.PCStore
 import com.cobblemon.mod.common.battles.BattleRegistry
 import com.cobblemon.mod.common.pokemon.Pokemon
@@ -114,8 +114,8 @@ open class PlayerPartyStore(
                     }
                 }
 
-                // Passive evolutions
-                pokemon.evolutions.filterIsInstance<PassiveEvolution>().forEach { it.attemptEvolution(pokemon) }
+                // Passive evolutions and form changes
+                pokemon.transformationTriggers<PassiveTrigger>().forEach { (_, transformation) -> transformation.start(pokemon) }
             }
             // Friendship
             // ToDo expand this down the line just a very basic implementation for the first releases

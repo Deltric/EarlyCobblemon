@@ -32,9 +32,9 @@ import com.cobblemon.mod.common.battles.dispatch.WaitDispatch
 import com.cobblemon.mod.common.battles.interpreter.ContextManager
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.net.messages.client.battle.*
-import com.cobblemon.mod.common.pokemon.evolution.progress.DamageTakenEvolutionProgress
-import com.cobblemon.mod.common.pokemon.evolution.progress.RecoilEvolutionProgress
-import com.cobblemon.mod.common.pokemon.evolution.progress.UseMoveEvolutionProgress
+import com.cobblemon.mod.common.pokemon.transformation.progress.DamageTakenTransformationProgress
+import com.cobblemon.mod.common.pokemon.transformation.progress.RecoilTransformationProgress
+import com.cobblemon.mod.common.pokemon.transformation.progress.UseMoveTransformationProgress
 import com.cobblemon.mod.common.pokemon.status.PersistentStatus
 import com.cobblemon.mod.common.util.*
 import java.util.UUID
@@ -658,9 +658,9 @@ object ShowdownInterpreter {
             this.lastCauser[battle.battleId] = message
 
             userPokemon.effectedPokemon.let { pokemon ->
-                if (UseMoveEvolutionProgress.supports(pokemon, move)) {
-                    val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is UseMoveEvolutionProgress && it.currentProgress().move == move }) { UseMoveEvolutionProgress() }
-                    progress.updateProgress(UseMoveEvolutionProgress.Progress(move, progress.currentProgress().amount + 1))
+                if (UseMoveTransformationProgress.supports(pokemon, move)) {
+                    val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is UseMoveTransformationProgress && it.currentProgress().move == move }) { UseMoveTransformationProgress() }
+                    progress.updateProgress(UseMoveTransformationProgress.Progress(move, progress.currentProgress().amount + 1))
                 }
             }
 
@@ -1369,13 +1369,13 @@ object ShowdownInterpreter {
         val battlePokemon = publicMessage.getBattlePokemon(0, battle) ?: return
         if (privateMessage.optionalArgument("from")?.equals("recoil", true) == true) {
             battlePokemon.effectedPokemon.let { pokemon ->
-                if (RecoilEvolutionProgress.supports(pokemon)) {
+                if (RecoilTransformationProgress.supports(pokemon)) {
                     val newPercentage = privateMessage.argumentAt(1)?.split("/")?.getOrNull(0)?.toIntOrNull() ?: 0
                     val newHealth = (pokemon.hp * (newPercentage / 100.0)).roundToInt()
                     val difference = pokemon.currentHealth - newHealth
                     if (difference > 0) {
-                        val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is RecoilEvolutionProgress }) { RecoilEvolutionProgress() }
-                        progress.updateProgress(RecoilEvolutionProgress.Progress(progress.currentProgress().recoil + difference))
+                        val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is RecoilTransformationProgress }) { RecoilTransformationProgress() }
+                        progress.updateProgress(RecoilTransformationProgress.Progress(progress.currentProgress().recoil + difference))
                     }
                 }
             }
@@ -1418,9 +1418,9 @@ object ShowdownInterpreter {
                     battlePokemon.effectedPokemon.currentHealth = remainingHealth
                     if (difference > 0) {
                         battlePokemon.effectedPokemon.let { pokemon ->
-                            if (DamageTakenEvolutionProgress.supports(pokemon)) {
-                                val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is DamageTakenEvolutionProgress }) { DamageTakenEvolutionProgress() }
-                                progress.updateProgress(DamageTakenEvolutionProgress.Progress(progress.currentProgress().amount + difference))
+                            if (DamageTakenTransformationProgress.supports(pokemon)) {
+                                val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is DamageTakenTransformationProgress }) { DamageTakenTransformationProgress() }
+                                progress.updateProgress(DamageTakenTransformationProgress.Progress(progress.currentProgress().amount + difference))
                             }
                         }
                     }

@@ -39,8 +39,8 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.net.messages.client.battle.BattleEndPacket
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMessagePacket
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMusicPacket
-import com.cobblemon.mod.common.pokemon.evolution.progress.DefeatEvolutionProgress
-import com.cobblemon.mod.common.pokemon.evolution.requirements.DefeatRequirement
+import com.cobblemon.mod.common.pokemon.transformation.progress.DefeatTransformationProgress
+import com.cobblemon.mod.common.pokemon.transformation.requirements.DefeatRequirement
 import com.cobblemon.mod.common.util.battleLang
 import com.cobblemon.mod.common.util.getPlayer
 import java.io.File
@@ -214,8 +214,8 @@ open class PokemonBattle(
                             pokemon.evolutions.forEach { evolution ->
                                 evolution.requirements.filterIsInstance<DefeatRequirement>().forEach { defeatRequirement ->
                                     if (defeatRequirement.target.matches(faintedPokemon.effectedPokemon)) {
-                                        val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is DefeatEvolutionProgress && it.currentProgress().target == defeatRequirement.target }) { DefeatEvolutionProgress() }
-                                        progress.updateProgress(DefeatEvolutionProgress.Progress(defeatRequirement.target, progress.currentProgress().amount + 1))
+                                        val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is DefeatTransformationProgress && it.currentProgress().target == defeatRequirement.target }) { DefeatTransformationProgress() }
+                                        progress.updateProgress(DefeatTransformationProgress.Progress(defeatRequirement.target, progress.currentProgress().amount + 1))
                                     }
                                 }
                             }

@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.api.pokemon.experience
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.tags.CobblemonItemTags
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
-import com.cobblemon.mod.common.pokemon.evolution.requirements.LevelRequirement
+import com.cobblemon.mod.common.pokemon.transformation.requirements.LevelRequirement
 import kotlin.math.pow
 import kotlin.math.roundToInt
 

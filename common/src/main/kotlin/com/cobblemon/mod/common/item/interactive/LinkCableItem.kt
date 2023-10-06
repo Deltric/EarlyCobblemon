@@ -11,7 +11,7 @@ package com.cobblemon.mod.common.item.interactive
 import com.cobblemon.mod.common.api.interaction.PokemonEntityInteraction
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.item.CobblemonItem
-import com.cobblemon.mod.common.pokemon.evolution.variants.TradeEvolution
+import com.cobblemon.mod.common.pokemon.transformation.triggers.TradeTrigger
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 
@@ -19,13 +19,10 @@ class LinkCableItem : CobblemonItem(Settings()), PokemonEntityInteraction {
     override val accepted = setOf(PokemonEntityInteraction.Ownership.OWNER)
     override fun processInteraction(player: ServerPlayerEntity, entity: PokemonEntity, stack: ItemStack): Boolean {
         val pokemon = entity.pokemon
-        pokemon.evolutions.filterIsInstance<TradeEvolution>().forEach { evolution ->
-            // If an evolution is possible non-optional or has been successfully queued we will consume the item and stop
-            // validate requirements to respect required held items and such.
-            if (evolution.requirements.all { it.check(pokemon) } && evolution.evolve(pokemon)) {
-                this.consumeItem(player, stack)
-                return true
-            }
+        val transformed = pokemon.transformationTriggers<TradeTrigger>().map { (_, transformation) -> transformation.start(pokemon) }
+        if (transformed.any()) {
+            this.consumeItem(player, stack)
+            return true
         }
         return false
     }
