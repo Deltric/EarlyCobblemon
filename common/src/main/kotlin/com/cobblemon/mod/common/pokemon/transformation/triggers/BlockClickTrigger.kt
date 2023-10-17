@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.pokemon.transformation.triggers
 
 import com.cobblemon.mod.common.api.conditional.RegistryLikeCondition
 import com.cobblemon.mod.common.api.pokemon.transformation.trigger.ContextTrigger
-import com.cobblemon.mod.common.pokemon.Pokemon
+import com.cobblemon.mod.common.api.pokemon.transformation.trigger.TriggerContext
 import com.cobblemon.mod.common.registry.BlockIdentifierCondition
 import net.minecraft.block.Block
 import net.minecraft.registry.RegistryKeys
@@ -27,18 +27,18 @@ import net.minecraft.world.World
  */
 open class BlockClickTrigger(
     override val requiredContext: RegistryLikeCondition<Block> = BlockIdentifierCondition(Identifier("minecraft", "dirt")),
-) : ContextTrigger<BlockClickTrigger.BlockInteractionContext, RegistryLikeCondition<Block>> {
+) : ContextTrigger<RegistryLikeCondition<Block>> {
 
-    override fun testContext(pokemon: Pokemon, context: BlockInteractionContext): Boolean {
-        return this.requiredContext.fits(context.block, context.world.registryManager.get(RegistryKeys.BLOCK))
-    }
+    override fun testContext(context: TriggerContext) = context is Context &&
+        this.requiredContext.fits(context.block, context.world.registryManager.get(RegistryKeys.BLOCK))
 
-    data class BlockInteractionContext(
+    data class Context(
         val block: Block,
         val world: World
-    )
+    ): TriggerContext
 
     companion object {
         const val ADAPTER_VARIANT = "block_click"
     }
+
 }

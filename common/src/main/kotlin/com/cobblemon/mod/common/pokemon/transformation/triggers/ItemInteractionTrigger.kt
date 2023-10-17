@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.pokemon.transformation.triggers
 
 import com.cobblemon.mod.common.api.pokemon.transformation.trigger.ContextTrigger
-import com.cobblemon.mod.common.pokemon.Pokemon
+import com.cobblemon.mod.common.api.pokemon.transformation.trigger.TriggerContext
 import com.cobblemon.mod.common.pokemon.transformation.predicate.NbtItemPredicate
 import com.cobblemon.mod.common.registry.ItemIdentifierCondition
 import net.minecraft.item.ItemStack
@@ -27,17 +27,18 @@ import net.minecraft.world.World
  * @since March 20th, 2022
  */
 open class ItemInteractionTrigger(
-        override val requiredContext: NbtItemPredicate = NbtItemPredicate(ItemIdentifierCondition(Identifier("minecraft", "fish")), NbtPredicate.ANY),
-) : ContextTrigger<ItemInteractionTrigger.ItemInteractionContext, NbtItemPredicate> {
+    override val requiredContext: NbtItemPredicate =
+        NbtItemPredicate(ItemIdentifierCondition(Identifier("minecraft", "fish")), NbtPredicate.ANY),
+) : ContextTrigger<NbtItemPredicate> {
 
-    override fun testContext(pokemon: Pokemon, context: ItemInteractionContext): Boolean =
-        this.requiredContext.item.fits(context.stack.item, context.world.registryManager.get(RegistryKeys.ITEM))
-        && this.requiredContext.nbt.test(context.stack)
+    override fun testContext(context: TriggerContext) = context is Context &&
+        this.requiredContext.item.fits(context.stack.item, context.world.registryManager.get(RegistryKeys.ITEM)) &&
+        this.requiredContext.nbt.test(context.stack)
 
-    data class ItemInteractionContext(
+    data class Context(
         val stack: ItemStack,
         val world: World
-    )
+    ) : TriggerContext
 
     companion object {
         const val ADAPTER_VARIANT = "item_interact"

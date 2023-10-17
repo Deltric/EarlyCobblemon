@@ -78,7 +78,6 @@ import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.aspects.GENDER_ASPECT
 import com.cobblemon.mod.common.pokemon.aspects.SHINY_ASPECT
-import com.cobblemon.mod.common.pokemon.transformation.triggers.BlockClickTrigger
 import com.cobblemon.mod.common.pokemon.feature.TagSeasonResolver
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
 import com.cobblemon.mod.common.pokemon.properties.HiddenAbilityPropertyType
@@ -86,6 +85,7 @@ import com.cobblemon.mod.common.pokemon.properties.UncatchableProperty
 import com.cobblemon.mod.common.pokemon.properties.UntradeableProperty
 import com.cobblemon.mod.common.pokemon.properties.tags.PokemonFlagProperty
 import com.cobblemon.mod.common.pokemon.stat.CobblemonStatProvider
+import com.cobblemon.mod.common.pokemon.transformation.triggers.BlockClickTrigger
 import com.cobblemon.mod.common.starter.CobblemonStarterHandler
 import com.cobblemon.mod.common.trade.TradeManager
 import com.cobblemon.mod.common.util.*
@@ -197,10 +197,8 @@ object Cobblemon {
         PlatformEvents.RIGHT_CLICK_BLOCK.subscribe { event ->
             val player = event.player
             val block = player.world.getBlockState(event.pos).block
-            val context = BlockClickTrigger.BlockInteractionContext(block, player.world)
-            player.party().forEach { pokemon -> pokemon.transformationTriggers<BlockClickTrigger>().forEach {
-                (trigger, transformation) -> trigger.testContext(pokemon, context) && transformation.start(pokemon) }
-            }
+            val context = BlockClickTrigger.Context(block, player.world)
+            player.party().forEach { pokemon -> pokemon.triggerTransformations(BlockClickTrigger::class.java, context) }
         }
 
         PlatformEvents.CHANGE_DIMENSION.subscribe {

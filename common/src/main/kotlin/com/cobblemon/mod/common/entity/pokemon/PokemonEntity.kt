@@ -677,12 +677,11 @@ class PokemonEntity(
             return false
         }
 
-        // Check evolution item interaction
+        // Check evolution and form change item interaction
         if (pokemon.getOwnerPlayer() == player) {
-            val context = ItemInteractionTrigger.ItemInteractionContext(stack, player.world)
-            val transformed = pokemon.transformationTriggers<ItemInteractionTrigger>().map {
-                (trigger, transformation) -> trigger.testContext(pokemon, context) && transformation.start(pokemon)
-            }
+            val context = ItemInteractionTrigger.Context(stack, player.world)
+            val transformed = pokemon.triggerTransformations(ItemInteractionTrigger::class.java, context)
+
             if (transformed.any()) {
                 if (!player.isCreative) stack.decrement(1)
                 this.world.playSoundServer(position = this.pos, sound = CobblemonSounds.ITEM_USE, volume = 1F, pitch = 1F)
