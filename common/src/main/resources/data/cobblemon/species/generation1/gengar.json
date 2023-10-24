@@ -7,6 +7,23 @@
   "abilities": [
     "cursedbody"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "cobblemon:spell_tag",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:payapa_berry",
+        "percentage": 10.0
+      },
+      {
+        "item": "minecraft:ghast_tear",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 60,
     "attack": 65,

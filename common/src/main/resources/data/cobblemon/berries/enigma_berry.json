@@ -88,6 +88,18 @@
         "y": 52.5,
         "z": -5.0
       }
+    },
+    {
+      "position": {
+        "x": 14.0,
+        "y": 14.75,
+        "z": 7.0
+      },
+      "rotation": {
+        "x": 42.5,
+        "y": 77.5,
+        "z": -147.5
+      }
     }
   ],
   "mutations": {
@@ -95,34 +107,16 @@
     "cobblemon:kasib_berry": "cobblemon:kee_berry",
     "cobblemon:wacan_berry": "cobblemon:maranga_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "cone-sprout",
+  "matureShape": "cone-mature",
   "flavors": {
     "SPICY": 40,
     "DRY": 10
   },
   "weight": 1.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:enigma_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/enigma.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:enigma_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/enigma.png"
 }

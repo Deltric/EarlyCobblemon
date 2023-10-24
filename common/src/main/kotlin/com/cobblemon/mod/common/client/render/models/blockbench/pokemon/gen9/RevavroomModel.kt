@@ -8,6 +8,7 @@
 
 package com.cobblemon.mod.common.client.render.models.blockbench.pokemon.gen9
 
+import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.CryProvider
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPose
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import com.cobblemon.mod.common.entity.PoseType
@@ -17,15 +18,17 @@ import net.minecraft.util.math.Vec3d
 class RevavroomModel (root: ModelPart) : PokemonPoseableModel() {
     override val rootPart = root.registerChildWithAllChildren("revavroom")
 
-    override val portraitScale = 3.0F
-    override val portraitTranslation = Vec3d(-1.2, -1.7, 0.0)
+    override val portraitScale = 3.1F
+    override val portraitTranslation = Vec3d(-1.4, -1.7, 1.1)
 
-    override val profileScale = 1.0F
-    override val profileTranslation = Vec3d(-0.2, 0.1, 0.0)
+    override val profileScale = 0.9F
+    override val profileTranslation = Vec3d(-0.2, 0.3, 1.1)
 
     lateinit var standing: PokemonPose
     lateinit var walk: PokemonPose
     lateinit var sleep: PokemonPose
+
+    override val cryAnimation = CryProvider { _, _ -> bedrockStateful("revavroom", "cry").setPreventsIdle(false) }
 
     override fun registerPoses() {
         val blink = quirk("blink") { bedrockStateful("revavroom", "blink").setPreventsIdle(false) }
@@ -37,7 +40,7 @@ class RevavroomModel (root: ModelPart) : PokemonPoseableModel() {
         standing = registerPose(
             poseName = "standing",
             poseTypes = PoseType.STATIONARY_POSES + PoseType.UI_POSES,
-            transformTicks = 0,
+            transformTicks = 10,
             quirks = arrayOf(blink),
             idleAnimations = arrayOf(
                 bedrock("revavroom", "ground_idle")
@@ -47,7 +50,7 @@ class RevavroomModel (root: ModelPart) : PokemonPoseableModel() {
         walk = registerPose(
             poseName = "walk",
             poseTypes = PoseType.MOVING_POSES,
-            transformTicks = 0,
+            transformTicks = 10,
             quirks = arrayOf(blink),
             idleAnimations = arrayOf(
                 bedrock("revavroom", "ground_walk")

@@ -4,6 +4,10 @@
     "minecraft:ice_spikes",
     "minecraft:snowy_plains",
     {
+      "id": "#c:snowy_plains",
+      "required": false
+    },
+	{
       "id": "byg:cardinal_tundra",
       "required": false
     },
@@ -25,6 +29,30 @@
     },
 	{
       "id": "terralith:yellowstone",
+      "required": false
+    },
+    {
+      "id": "wythers:crimson_tundra",
+      "required": false
+    },
+    {
+      "id": "wythers:frigid_island",
+      "required": false
+    },
+    {
+      "id": "wythers:ice_cap",
+      "required": false
+    },
+    {
+      "id": "wythers:icy_crags",
+      "required": false
+    },
+	{
+      "id": "wythers:snowy_tundra",
+      "required": false
+    },
+	{
+      "id": "wythers:tundra",
       "required": false
     }
   ]

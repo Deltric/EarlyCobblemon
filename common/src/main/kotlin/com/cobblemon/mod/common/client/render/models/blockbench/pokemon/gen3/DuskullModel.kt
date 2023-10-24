@@ -36,7 +36,6 @@ class DuskullModel (root: ModelPart) : PokemonPoseableModel() {
 
         sleep = registerPose(
             poseType = PoseType.SLEEP,
-            condition = { !it.isBattling },
             idleAnimations = arrayOf(bedrock("duskull", "sleep"))
         )
 

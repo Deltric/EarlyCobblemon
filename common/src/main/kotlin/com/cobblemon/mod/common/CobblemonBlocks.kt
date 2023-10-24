@@ -33,6 +33,8 @@ import net.minecraft.util.math.intprovider.UniformIntProvider
 @Suppress("SameParameterValue", "HasPlatformType", "MemberVisibilityCanBePrivate", "unused")
 object CobblemonBlocks : PlatformRegistry<Registry<Block>, RegistryKey<Registry<Block>>, Block>() {
 
+
+
     override val registry: Registry<Block> = Registries.BLOCK
     override val registryKey: RegistryKey<Registry<Block>> = RegistryKeys.BLOCK
 
@@ -228,6 +230,8 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, RegistryKey<Registry<
         APRICORN_LOG to STRIPPED_APRICORN_LOG
     )
 
+
+
     private fun apricornBlock(name: String, apricorn: Apricorn): ApricornBlock = this.create(name, ApricornBlock(AbstractBlock.Settings.create().mapColor(apricorn.mapColor()).ticksRandomly().strength(Blocks.OAK_LOG.hardness, Blocks.OAK_LOG.blastResistance).sounds(BlockSoundGroup.WOOD).nonOpaque(), apricorn))
 
     private val berries = mutableMapOf<Identifier, BerryBlock>()
@@ -302,22 +306,55 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, RegistryKey<Registry<
     val WIKI_BERRY = this.berryBlock("wiki")
     val YACHE_BERRY = this.berryBlock("yache")
 
+    init {
+        /**
+         * Makes all blocks in array flammable by adding them to FireBlock's flammableRegistry.
+         * second value is burn chance and third value is spread chance
+         */
+        arrayOf(
+            Triple(APRICORN_LOG, 5, 5),
+            Triple(STRIPPED_APRICORN_LOG, 5, 5),
+            Triple(APRICORN_WOOD, 5, 5),
+            Triple(STRIPPED_APRICORN_WOOD, 5, 5),
+            Triple(APRICORN_PLANKS, 5, 20),
+            Triple(APRICORN_LEAVES, 30, 60),
+            Triple(APRICORN_FENCE, 5, 20),
+            Triple(APRICORN_FENCE_GATE, 5, 20),
+            Triple(APRICORN_SLAB, 5, 20),
+            Triple(APRICORN_STAIRS, 5, 20)
+        ).onEach{ data -> setFlammable(data.first, data.second, data.third) }
+    }
+
     fun berries() = this.berries.toMap()
 
     private fun berryBlock(name: String): BerryBlock {
         val identifier = cobblemonResource("${name}_berry")
-        val block = this.create(identifier.path, BerryBlock(identifier, AbstractBlock.Settings.copy(Blocks.WHEAT).dynamicBounds().sounds(BlockSoundGroup.CROP)))
+        val block = this.create(identifier.path, BerryBlock(identifier, AbstractBlock.Settings.copy(Blocks.WHEAT).dynamicBounds().sounds(BlockSoundGroup.CROP).strength(0.2F)))
         this.berries[identifier] = block
         return block
     }
 
     /**
-     * Helper method for creating logs
-     * copied over from Vanilla
+     * Calls helper method from Vanilla
      */
     private fun log(name: String, arg: MapColor = MapColor.DIRT_BROWN, arg2: MapColor = MapColor.DIRT_BROWN): PillarBlock {
         val block = BlocksInvoker.createLogBlock(arg, arg2)
         return this.create(name, block)
+    }
+
+    /**
+     * Method uses generic E in order to keep the block as the same return type.
+     * If E is not a block then it will not be set as flammable.
+     * Calls Vanilla implementation of registering a flammable block.
+     * Mixins looks cursed but it is java's fault.
+     */
+    private fun <E> setFlammable(block: E, burnChance: Int, spreadChance: Int): E {
+        if(block !is Block) return block
+
+        var fireBlock: FireBlock =  Blocks.FIRE as FireBlock
+        //Cursed Mixin stuff
+        (fireBlock as FireBlockInvoker).registerNewFlammableBlock(block as Block, burnChance, spreadChance)
+        return block
     }
 
     private fun evolutionStoneOre(name: String) = this.create(name, ExperienceDroppingBlock(AbstractBlock.Settings.copy(Blocks.IRON_ORE), UniformIntProvider.create(1, 2)))

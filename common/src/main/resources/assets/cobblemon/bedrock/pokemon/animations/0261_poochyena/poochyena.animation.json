@@ -159,6 +159,30 @@
 				}
 			}
 		},
+		"animation.poochyena.cry": {
+			"animation_length": 0.83333,
+			"bones": {
+				"head": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [-10, 0, 0],
+						"0.3333": [0, 0, 0]
+					}
+				},
+				"jaw": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.1667": [45, 0, 0],
+						"0.3333": [0, 0, 0]
+					}
+				}
+			},
+			"sound_effects": {
+				"0.0833": {
+					"effect": "pokemon.poochyena.cry"
+				}
+			}
+		},
 		"animation.poochyena.howl": {
 			"animation_length": 2,
 			"bones": {

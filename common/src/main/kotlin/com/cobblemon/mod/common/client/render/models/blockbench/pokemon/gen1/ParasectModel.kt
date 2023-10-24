@@ -63,5 +63,5 @@ class ParasectModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("parasect", "faint") else null
+    ) = bedrockStateful("parasect", "faint")
 }

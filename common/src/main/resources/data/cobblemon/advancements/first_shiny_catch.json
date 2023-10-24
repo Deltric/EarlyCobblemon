@@ -2,14 +2,15 @@
 	"display": {
 		"icon": {
 			"item": "cobblemon:pokemon_model",
-			"nbt": "{\"species\":\"cobblemon:gyarados\",\"aspects\":[\"shiny\"]}"
+			"nbt": "{\"species\":\"cobblemon:charizard\",\"aspects\":[\"shiny\"]}"
 		},
 		"title": {
 			"translate": "advancements.cobblemon.first_shiny_catch"
 		},
 		"description": {
 			"translate": "advancements.cobblemon.first_shiny_catch.description"
-		}
+		},
+		"frame": "challenge"
 	},
 	"parent": "cobblemon:first_catch",
 	"criteria": {

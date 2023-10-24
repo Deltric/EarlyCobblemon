@@ -43,12 +43,12 @@ class ApricornTreeFeature : Feature<SingleStateFeatureConfig>(SingleStateFeature
 
         if (isGenerating) {
             val biome = worldGenLevel.getBiome(origin)
-            val multiplier = if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_DENSE)) {
+            val multiplier = if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_SPARSE)) {
+                0.1F
+            } else if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_DENSE)) {
                 10F
             } else if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_NORMAL)) {
                 1.0F
-            } else if (biome.isIn(CobblemonBiomeTags.HAS_APRICORNS_SPARSE)) {
-                0.1F
             } else {
                 return false
             }

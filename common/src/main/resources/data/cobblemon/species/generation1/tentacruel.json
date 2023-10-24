@@ -45,20 +45,20 @@
     "light": "0-4"
   },
   "drops": {
-    "amount": "1",
+    "amount": 10,
     "entries": [
       {
-        "item": "cobblemon:poison_barb",
-        "percentage": 5
+        "item": "minecraft:ink_sac",
+        "quantityRange": "2-4"
       },
       {
         "item": "minecraft:glow_ink_sac",
         "quantityRange": "2-4",
-        "percentage": 10
+        "percentage": 10.0
       },
       {
-        "item": "minecraft:ink_sac",
-        "quantityRange": "2-4"
+        "item": "cobblemon:poison_barb",
+        "percentage": 5.0
       }
     ]
   },

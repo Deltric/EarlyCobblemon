@@ -7,36 +7,36 @@
 	"elements": [
 		{
 			"name": "soil1",
-			"from": [5, -1, 5],
-			"to": [11, 0, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, -1, 7]},
+			"from": [4, -1, 4],
+			"to": [12, 0, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, -1, -1]},
 			"faces": {
-				"north": {"uv": [5, 4, 11, 5], "texture": "#0"},
-				"east": {"uv": [6, 3, 12, 4], "texture": "#0"},
-				"south": {"uv": [5, 4, 11, 5], "texture": "#0"},
-				"west": {"uv": [5, 4, 11, 5], "texture": "#0"},
-				"up": {"uv": [1, 6, 7, 12], "texture": "#0"},
-				"down": {"uv": [5, 5, 11, 11], "texture": "#0"}
+				"north": {"uv": [5, 4, 13, 5], "texture": "#0"},
+				"east": {"uv": [12, 6, 13, 14], "rotation": 90, "texture": "#0"},
+				"south": {"uv": [5, 4, 13, 5], "texture": "#0"},
+				"west": {"uv": [12, 6, 13, 14], "rotation": 90, "texture": "#0"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"down": {"uv": [4, 4, 12, 12], "texture": "#0"}
 			}
 		},
 		{
 			"name": "soil2",
-			"from": [6, 0, 6],
-			"to": [10, 1, 10],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
+			"from": [5, 0, 5],
+			"to": [11, 1, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, -1]},
 			"faces": {
-				"north": {"uv": [8, 5, 12, 6], "texture": "#0"},
-				"east": {"uv": [8, 12, 9, 16], "rotation": 90, "texture": "#0"},
-				"south": {"uv": [12, 14, 16, 15], "texture": "#0"},
-				"west": {"uv": [10, 6, 11, 10], "rotation": 90, "texture": "#0"},
-				"up": {"uv": [6, 6, 10, 10], "texture": "#0"},
-				"down": {"uv": [6, 6, 10, 10], "texture": "#0"}
+				"north": {"uv": [5, 14, 11, 15], "texture": "#0"},
+				"east": {"uv": [7, 5, 8, 11], "rotation": 90, "texture": "#0"},
+				"south": {"uv": [5, 14, 11, 15], "texture": "#0"},
+				"west": {"uv": [7, 5, 8, 11], "rotation": 90, "texture": "#0"},
+				"up": {"uv": [5, 5, 11, 11], "texture": "#0"},
+				"down": {"uv": [5, 5, 11, 11], "texture": "#0"}
 			}
 		}
 	],
 	"groups": [
 		{
-			"name": "planted_berry",
+			"name": "planted",
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": [0, 1]

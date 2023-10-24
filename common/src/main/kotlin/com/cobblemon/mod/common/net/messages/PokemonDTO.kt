@@ -17,6 +17,7 @@ import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.api.pokemon.Natures
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.status.Statuses
+import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.net.IntSize
 import com.cobblemon.mod.common.pokemon.EVs
 import com.cobblemon.mod.common.pokemon.Gender
@@ -32,7 +33,6 @@ import java.util.UUID
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.text.MutableText
-import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 
 /**
@@ -70,6 +70,10 @@ class PokemonDTO : Encodable, Decodable {
     var mintNature: Identifier? = null
     var heldItem: ItemStack = ItemStack.EMPTY
     var tetheringId: UUID? = null
+    var teraType = ""
+    var dmaxLevel = 0
+    var gmaxFactor = false
+    var tradeable = true
 
     constructor()
     constructor(pokemon: Pokemon, toClient: Boolean) {
@@ -100,6 +104,10 @@ class PokemonDTO : Encodable, Decodable {
         this.mintNature = pokemon.mintedNature?.name
         this.heldItem = pokemon.heldItemNoCopy()
         this.tetheringId = pokemon.tetheringId
+        this.teraType = pokemon.teraType.name
+        this.dmaxLevel = pokemon.dmaxLevel
+        this.gmaxFactor = pokemon.gmaxFactor
+        this.tradeable = pokemon.tradeable
     }
 
     override fun encode(buffer: PacketByteBuf) {
@@ -133,6 +141,10 @@ class PokemonDTO : Encodable, Decodable {
         buffer.writeNullable(mintNature) { _, v -> buffer.writeIdentifier(v) }
         buffer.writeItemStack(this.heldItem)
         buffer.writeNullable(tetheringId) { _, v -> buffer.writeUuid(v) }
+        buffer.writeString(teraType)
+        buffer.writeInt(dmaxLevel)
+        buffer.writeBoolean(gmaxFactor)
+        buffer.writeBoolean(tradeable)
     }
 
     override fun decode(buffer: PacketByteBuf) {
@@ -167,6 +179,10 @@ class PokemonDTO : Encodable, Decodable {
         mintNature = buffer.readNullable { buffer.readIdentifier() }
         heldItem = buffer.readItemStack()
         tetheringId = buffer.readNullable { buffer.readUuid() }
+        teraType = buffer.readString()
+        dmaxLevel = buffer.readInt()
+        gmaxFactor = buffer.readBoolean()
+        tradeable = buffer.readBoolean()
     }
 
     fun create(): Pokemon {
@@ -212,6 +228,10 @@ class PokemonDTO : Encodable, Decodable {
             it.mintedNature = mintNature?.let { id -> Natures.getNature(id)!! }
             it.swapHeldItem(heldItem, false)
             it.tetheringId = tetheringId
+            it.teraType = ElementalTypes.getOrException(teraType)
+            it.dmaxLevel = dmaxLevel
+            it.gmaxFactor = gmaxFactor
+            it.tradeable = tradeable
         }
     }
 }

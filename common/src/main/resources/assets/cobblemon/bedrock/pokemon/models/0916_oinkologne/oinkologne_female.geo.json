@@ -13,7 +13,7 @@
 			"bones": [
 				{
 					"name": "oinkologne",
-					"pivot": [-1, -1, -4.25]
+					"pivot": [0, 0, 0]
 				},
 				{
 					"name": "body",

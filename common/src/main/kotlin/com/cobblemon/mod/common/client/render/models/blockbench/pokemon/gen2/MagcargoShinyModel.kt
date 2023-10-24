@@ -19,7 +19,7 @@ import net.minecraft.client.model.ModelPart
 import net.minecraft.util.math.Vec3d
 
 class MagcargoShinyModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
-    override val rootPart = root.registerChildWithAllChildren("magcargo_shiny")
+    override val rootPart = root.registerChildWithAllChildren("magcargo")
     override val head = getPart("head")
 
     override val portraitScale = 1.8F

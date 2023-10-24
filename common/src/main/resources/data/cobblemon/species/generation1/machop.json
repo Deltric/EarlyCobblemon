@@ -26,10 +26,18 @@
     "human_like"
   ],
   "drops": {
-    "amount": "1",
+    "amount": 3,
     "entries": [
       {
+        "item": "cobblemon:focus_band",
+        "percentage": 2.5
+      },
+      {
         "item": "cobblemon:muscle_band",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:wepear_berry",
         "percentage": 2.5
       }
     ]

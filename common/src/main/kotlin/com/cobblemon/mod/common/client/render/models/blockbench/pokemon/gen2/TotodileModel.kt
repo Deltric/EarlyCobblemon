@@ -43,8 +43,11 @@ class TotodileModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
     lateinit var battleidle: PokemonPose
     lateinit var water_surface_idle: PokemonPose
     lateinit var water_surface_swim: PokemonPose
+    lateinit var shoulderLeft: PokemonPose
+    lateinit var shoulderRight: PokemonPose
 
     val wateroffset = -10
+    val shoulderOffset = 5.5
 
     override val cryAnimation = CryProvider { _, _ -> bedrockStateful("totodile", "cry").setPreventsIdle(false) }
 
@@ -154,6 +157,30 @@ class TotodileModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
             ),
             transformedParts = arrayOf(
                 rootPart.asTransformed().addPosition(TransformedModelPart.Y_AXIS, wateroffset)
+            )
+        )
+
+        shoulderLeft = registerPose(
+            poseType = PoseType.SHOULDER_LEFT,
+            quirks = arrayOf(blink),
+            idleAnimations = arrayOf(
+                singleBoneLook(),
+                bedrock("totodile", "shoulder_right")
+            ),
+            transformedParts = arrayOf(
+                rootPart.asTransformed().addPosition(TransformedModelPart.X_AXIS, shoulderOffset)
+            )
+        )
+
+        shoulderRight = registerPose(
+            poseType = PoseType.SHOULDER_RIGHT,
+            quirks = arrayOf(blink),
+            idleAnimations = arrayOf(
+                singleBoneLook(),
+                bedrock("totodile", "shoulder_left")
+            ),
+            transformedParts = arrayOf(
+                rootPart.asTransformed().addPosition(TransformedModelPart.X_AXIS, -shoulderOffset)
             )
         )
     }

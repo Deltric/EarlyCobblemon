@@ -49,5 +49,5 @@ class MetapodModel(root: ModelPart) : PokemonPoseableModel() {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing)) bedrockStateful("metapod", "faint") else null
+    ) = bedrockStateful("metapod", "faint")
 }

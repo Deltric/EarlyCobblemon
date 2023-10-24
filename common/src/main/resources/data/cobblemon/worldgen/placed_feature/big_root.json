@@ -2,29 +2,21 @@
   "feature": "cobblemon:big_root",
   "placement": [
     {
+      "type": "rarity_filter",
+      "chance": 2
+    },
+    {
       "type": "minecraft:count",
-      "count": 4
+      "count": 2
     },
     {
       "type": "minecraft:in_square"
     },
     {
       "type": "cobblemon:beneath_heightmap",
-      "heightmap": "OCEAN_FLOOR",
+      "heightmap": "MOTION_BLOCKING_NO_LEAVES",
       "offset": -1,
-      "reach": 16
-    },
-    {
-      "type": "minecraft:height_range",
-      "height": {
-        "type": "minecraft:trapezoid",
-        "max_inclusive": {
-          "absolute": 100
-        },
-        "min_inclusive": {
-          "absolute": 20
-        }
-      }
+      "reach": 32
     },
     {
       "type": "minecraft:block_predicate_filter",
@@ -37,16 +29,18 @@
             "offset": [0, 1, 0]
           },
           {
-            "type": "minecraft:any_of",
-            "predicates": [
-              {
-                "type": "minecraft:matching_blocks",
-                "blocks": "minecraft:air"
-              },
-              {
-                "type": "minecraft:replaceable"
-              }
-            ]
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air",
+            "offset": [0, -1, 0]
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air",
+            "offset": [0, -2, 0]
           }
         ]
       }

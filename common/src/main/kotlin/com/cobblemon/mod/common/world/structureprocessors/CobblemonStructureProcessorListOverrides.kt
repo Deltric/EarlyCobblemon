@@ -8,50 +8,40 @@
 
 package com.cobblemon.mod.common.world.structureprocessors
 
-import com.cobblemon.mod.common.api.berry.BerryHelper
-import com.cobblemon.mod.common.block.BerryBlock
-import com.cobblemon.mod.common.bridges.StructureProcessorListBridge
-import net.minecraft.registry.Registry
 import net.minecraft.registry.RegistryKeys
-import net.minecraft.registry.tag.BlockTags
 import net.minecraft.server.MinecraftServer
-import net.minecraft.structure.processor.StructureProcessorList
-import net.minecraft.structure.processor.StructureProcessorLists
-import net.minecraft.structure.rule.TagMatchRuleTest
-import net.minecraft.util.math.Vec3i
-import net.minecraft.world.gen.blockpredicate.BlockPredicate
 
 object CobblemonStructureProcessorListOverrides {
     val registryKey = RegistryKeys.PROCESSOR_LIST
 
     fun register(server: MinecraftServer) {
         val registry = server.registryManager.get(registryKey)
-        registerFarmOverrides(registry)
+        // registerFarmOverrides(registry)
     }
 
-    fun registerFarmOverrides(registry: Registry<StructureProcessorList>) {
-        val desertFarm = registry[StructureProcessorLists.FARM_DESERT] as StructureProcessorListBridge
-        val plainsFarm = registry[StructureProcessorLists.FARM_PLAINS] as StructureProcessorListBridge
-        val taigaFarm = registry[StructureProcessorLists.FARM_TAIGA] as StructureProcessorListBridge
-        val savannahFarm = registry[StructureProcessorLists.FARM_SAVANNA] as StructureProcessorListBridge
-        val snowyFarm = registry[StructureProcessorLists.FARM_SNOWY] as StructureProcessorListBridge
-
-        val naturalBerries = BerryHelper.getNaturallyGeneratingBerries().map {
-            it.defaultState.with(BerryBlock.AGE, 5).with(BerryBlock.WAS_GENERATED, true)
-        }
-
-        val processor = RandomizedStructureMappedBlockStateProcessor(
-            naturalBerries,
-            3,
-            listOf(TagMatchRuleTest(BlockTags.CROPS)),
-            0.5f
-        )
-
-        desertFarm.append(processor)
-        plainsFarm.append(processor)
-        taigaFarm.append(processor)
-        savannahFarm.append(processor)
-        snowyFarm.append(processor)
-    }
+//    fun registerFarmOverrides(registry: Registry<StructureProcessorList>) {
+//        val desertFarm = registry[StructureProcessorLists.FARM_DESERT] as StructureProcessorListBridge
+//        val plainsFarm = registry[StructureProcessorLists.FARM_PLAINS] as StructureProcessorListBridge
+//        val taigaFarm = registry[StructureProcessorLists.FARM_TAIGA] as StructureProcessorListBridge
+//        val savannahFarm = registry[StructureProcessorLists.FARM_SAVANNA] as StructureProcessorListBridge
+//        val snowyFarm = registry[StructureProcessorLists.FARM_SNOWY] as StructureProcessorListBridge
+//
+//        val naturalBerries = BerryHelper.getNaturallyGeneratingBerries().map {
+//            it.defaultState.with(BerryBlock.AGE, 5).with(BerryBlock.WAS_GENERATED, true)
+//        }
+//
+//        val processor = RandomizedStructureMappedBlockStatePairProcessor(
+//            naturalBerries,
+//            3,
+//            listOf(TagMatchRuleTest(BlockTags.CROPS)),
+//            0.5f
+//        )
+//
+//        desertFarm.append(processor)
+//        plainsFarm.append(processor)
+//        taigaFarm.append(processor)
+//        savannahFarm.append(processor)
+//        snowyFarm.append(processor)
+//    }
 
 }

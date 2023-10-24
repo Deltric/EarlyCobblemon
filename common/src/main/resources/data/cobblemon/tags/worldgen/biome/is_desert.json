@@ -7,6 +7,14 @@
       "required": false
     },
 	{
+      "id": "#c:desert",
+      "required": false
+    },
+	{
+      "id": "#wythers:is_desert",
+      "required": false
+    },
+	{
       "id": "terralith:ancient_sands",
       "required": false
     },
@@ -36,6 +44,30 @@
     },
 	{
       "id": "terralith:sandstone_valley",
+      "required": false
+    },
+    {
+      "id": "wythers:badlands_desert",
+      "required": false
+    },
+    {
+      "id": "wythers:desert_island",
+      "required": false
+    },
+    {
+      "id": "wythers:kwongan_heath",
+      "required": false
+    },
+    {
+      "id": "wythers:outback_desert",
+      "required": false
+    },
+    {
+      "id": "wythers:red_desert",
+      "required": false
+    },
+    {
+      "id": "wythers:sandy_jungle",
       "required": false
     }
   ]

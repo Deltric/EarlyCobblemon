@@ -4,6 +4,14 @@
     "#minecraft:is_hill",
 	"#cobblemon:is_highlands",
     {
+      "id": "#c:mountain_slope",
+      "required": false
+    },
+	{
+      "id": "#forge:is_slope",
+      "required": false
+    },
+	{
       "id": "terralith:blooming_valley",
       "required": false
     },
@@ -37,6 +45,37 @@
     },
 	{
       "id": "terralith:yosemite_lowlands",
+      "required": false
+    },
+    {
+      "id": "wythers:autumnal_crags",
+      "required": false
+    },
+    {
+      "id": "wythers:ayers_rock",
+      "required": false
+    },
+    {
+      "id": "wythers:icy_crags",
+      "required": false
+    },    {
+      "id": "wythers:old_growth_taiga_crags",
+      "required": false
+    },
+    {
+      "id": "wythers:taiga_crags",
+      "required": false
+    },
+    {
+      "id": "wythers:temperate_rainforest_crags",
+      "required": false
+    },
+    {
+      "id": "wythers:thermal_taiga_crags",
+      "required": false
+    },
+    {
+      "id": "wythers:windswept_jungle",
       "required": false
     }
   ]

@@ -8,6 +8,31 @@
     "flashfire",
     "h:weakarmor"
   ],
+  "drops": {
+    "amount": 7,
+    "entries": [
+      {
+        "item": "minecraft:charcoal",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "minecraft:blaze_rod",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:charcoal_stick",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:auspicious_armor",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:rawst_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 85,
     "attack": 60,
@@ -58,6 +83,7 @@
     "1:leer",
     "1:mysticalfire",
     "1:wideguard",
+    "1:psyshock",
     "8:clearsmog",
     "12:firespin",
     "16:willowisp",

@@ -8,6 +8,7 @@
 
 package com.cobblemon.mod.common.client.gui.pasture
 
+import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.api.text.bold
 import com.cobblemon.mod.common.api.text.text
@@ -158,6 +159,7 @@ class PasturePokemonScrollList(
             xPos = 0,
             yPos = 0,
             onPress = {
+                parent.storageWidget.pcGui.playSound(CobblemonSounds.PC_CLICK)
                 UnpasturePokemonPacket(
                     pastureId = parent.pasturePCGUIConfiguration.pastureId,
                     pokemonId = pokemon.pokemonId

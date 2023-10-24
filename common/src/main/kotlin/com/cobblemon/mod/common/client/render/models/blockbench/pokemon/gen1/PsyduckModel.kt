@@ -83,5 +83,5 @@ class PsyduckModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("psyduck", "faint") else null
+    ) = bedrockStateful("psyduck", "faint")
 }

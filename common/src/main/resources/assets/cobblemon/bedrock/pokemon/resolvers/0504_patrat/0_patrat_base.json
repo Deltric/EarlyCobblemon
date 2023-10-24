@@ -23,7 +23,7 @@
       "layers": [
         {
           "name": "emissive",
-          "texture": "cobblemon:textures/pokemon/0504_patrat/patrat_emissive_shiny.png",
+          "texture": "cobblemon:textures/pokemon/0504_patrat/patrat_shiny_emissive.png",
           "emissive": true
         }
       ]

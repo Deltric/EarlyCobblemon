@@ -9,6 +9,19 @@
     "waterabsorb",
     "h:unaware"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:clay_ball",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:pecha_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 130,
     "attack": 75,
@@ -38,6 +51,7 @@
   "moves": [
     "1:poisonsting",
     "1:tailwhip",
+    "1:amnesia",
     "4:toxicspikes",
     "8:mudshot",
     "12:poisontail",
@@ -103,6 +117,12 @@
   "weight": 2230,
   "preEvolution": "wooper form=paldea",
   "evolutions": [],
+  "baseScale": 1.0,
+  "hitbox": {
+    "width": 1.4,
+    "height": 1.0,
+    "fixed": false
+  },
   "cannotDynamax": false,
   "pokedex": [
     "cobblemon.species.clodsire.desc"

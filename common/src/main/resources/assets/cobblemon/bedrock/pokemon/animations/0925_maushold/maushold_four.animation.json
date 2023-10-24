@@ -708,6 +708,11 @@
 						"1.25": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "pokemonn.mausholdfour.cry"
+				}
 			}
 		},
 		"animation.maushold_four.sleep": {
@@ -802,6 +807,5 @@
 				}
 			}
 		}
-	},
-	"geckolib_format_version": 2
+	}
 }

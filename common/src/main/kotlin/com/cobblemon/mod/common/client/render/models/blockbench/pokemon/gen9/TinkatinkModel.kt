@@ -13,6 +13,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.asTransformed
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BimanualFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BipedFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.HeadedFrame
+import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.CryProvider
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPose
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import com.cobblemon.mod.common.client.render.models.blockbench.pose.TransformedModelPart
@@ -43,6 +44,8 @@ class TinkatinkModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bi
     lateinit var shoulderRight: PokemonPose
 
     val shoulderOffset = 1
+
+    override val cryAnimation = CryProvider { _, _ -> bedrockStateful("tinkatink", "cry").setPreventsIdle(false) }
 
     override fun registerPoses() {
         val blink = quirk("blink") { bedrockStateful("tinkatink", "blink").setPreventsIdle(false) }

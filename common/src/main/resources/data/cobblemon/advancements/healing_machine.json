@@ -13,22 +13,26 @@
   },
   "parent": "cobblemon:craft_poke_ball",
   "criteria": {
-    "heal": {
-      "trigger": "minecraft:location",
+    "use_healing_machine": {
+      "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "player": [
           {
             "condition": "minecraft:entity_properties",
             "entity": "this",
+            "predicate": {}
+          }
+        ],
+        "location": [
+          {
+            "condition": "minecraft:location_check",
             "predicate": {
-              "location": {
-                "block": {
-                  "blocks": [
-                    "cobblemon:healing_machine"
-                  ],
-                  "state": {
-                    "charge": 6
-                  }
+              "block": {
+                "blocks": [
+                  "cobblemon:healing_machine"
+                ],
+                "state": {
+                  "charge": 6
                 }
               }
             }

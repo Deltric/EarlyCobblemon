@@ -25,11 +25,13 @@ import net.minecraft.world.biome.Biome
  * @since March 21st, 2022
  */
 class BiomeRequirement : EntityQueryRequirement {
-    val biomeCondition: RegistryLikeCondition<Biome> = BiomeIdentifierCondition(Identifier("plains"))
-    override fun check(pokemon: Pokemon, queriedEntity: LivingEntity) = biomeCondition.fits(
-        queriedEntity.world.getBiome(queriedEntity.blockPos).value(),
-        queriedEntity.world.registryManager.get(RegistryKeys.BIOME)
-    )
+    val biomeCondition: RegistryLikeCondition<Biome>? = null
+    val biomeAnticondition: RegistryLikeCondition<Biome>? = null
+    override fun check(pokemon: Pokemon, queriedEntity: LivingEntity): Boolean {
+        val biome = queriedEntity.world.getBiome(queriedEntity.blockPos).value()
+        val registry = queriedEntity.world.registryManager.get(RegistryKeys.BIOME)
+        return (biomeCondition == null || biomeCondition.fits(biome, registry)) && (biomeAnticondition == null || !biomeAnticondition.fits(biome, registry))
+    }
 
     companion object {
         const val ADAPTER_VARIANT = "biome"

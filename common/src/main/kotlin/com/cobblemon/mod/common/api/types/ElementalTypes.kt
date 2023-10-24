@@ -169,4 +169,6 @@ object ElementalTypes {
     }
 
     fun count() = allTypes.size
+
+    fun all() = this.allTypes.toList()
 }

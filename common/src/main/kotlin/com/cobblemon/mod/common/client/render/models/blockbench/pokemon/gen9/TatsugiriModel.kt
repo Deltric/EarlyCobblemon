@@ -9,6 +9,7 @@
 package com.cobblemon.mod.common.client.render.models.blockbench.pokemon.gen9
 
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.HeadedFrame
+import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.CryProvider
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPose
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import net.minecraft.client.model.ModelPart
@@ -28,6 +29,8 @@ class TatsugiriModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     lateinit var swimming: PokemonPose
     lateinit var standing: PokemonPose
     lateinit var walk: PokemonPose
+
+    override val cryAnimation = CryProvider { _, _ -> bedrockStateful("tatsugiri", "cry").setPreventsIdle(false) }
 
     override fun registerPoses() {
         standing = registerPose(

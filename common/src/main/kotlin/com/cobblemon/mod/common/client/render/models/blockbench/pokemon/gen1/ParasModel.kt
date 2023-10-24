@@ -68,5 +68,5 @@ class ParasModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>,
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("paras", "faint") else null
+    ) = bedrockStateful("paras", "faint")
 }

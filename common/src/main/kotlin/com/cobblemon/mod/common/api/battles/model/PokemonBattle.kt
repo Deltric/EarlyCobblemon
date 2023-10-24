@@ -40,6 +40,7 @@ import com.cobblemon.mod.common.net.messages.client.battle.BattleEndPacket
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMessagePacket
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMusicPacket
 import com.cobblemon.mod.common.pokemon.evolution.progress.DefeatEvolutionProgress
+import com.cobblemon.mod.common.pokemon.evolution.requirements.DefeatRequirement
 import com.cobblemon.mod.common.util.battleLang
 import com.cobblemon.mod.common.util.getPlayer
 import java.io.File
@@ -208,11 +209,16 @@ open class PokemonBattle(
                 faintedPokemons.forEach { faintedPokemon ->
                     for (opponentPokemon in opponentNonFaintedPokemons) {
                         val facedFainted = opponentPokemon.facedOpponents.contains(faintedPokemon)
-                        val defeatProgress = DefeatEvolutionProgress()
                         val pokemon = opponentPokemon.effectedPokemon
-                        if (facedFainted && defeatProgress.shouldKeep(pokemon)) {
-                            val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is DefeatEvolutionProgress && it.currentProgress().target.matches(faintedPokemon.effectedPokemon) }) { defeatProgress }
-                            progress.updateProgress(DefeatEvolutionProgress.Progress(progress.currentProgress().target, progress.currentProgress().amount + 1))
+                        if (facedFainted) {
+                            pokemon.evolutions.forEach { evolution ->
+                                evolution.requirements.filterIsInstance<DefeatRequirement>().forEach { defeatRequirement ->
+                                    if (defeatRequirement.target.matches(faintedPokemon.effectedPokemon)) {
+                                        val progress = pokemon.evolutionProxy.current().progressFirstOrCreate({ it is DefeatEvolutionProgress && it.currentProgress().target == defeatRequirement.target }) { DefeatEvolutionProgress() }
+                                        progress.updateProgress(DefeatEvolutionProgress.Progress(defeatRequirement.target, progress.currentProgress().amount + 1))
+                                    }
+                                }
+                            }
                         }
                         val multiplier = when {
                             // ToDo when Exp. All is implement if enabled && !facedFainted return 2.0, probably should be a configurable value too, this will have priority over the Exp. Share

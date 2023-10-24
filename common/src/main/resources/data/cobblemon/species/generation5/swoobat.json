@@ -8,6 +8,19 @@
     "klutz",
     "h:simple"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:light_blue_wool",
+        "quantityRange": "1-2"
+      },
+      {
+        "item": "cobblemon:colbur_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 67,
     "attack": 57,

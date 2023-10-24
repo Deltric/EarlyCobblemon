@@ -671,7 +671,6 @@
 			}
 		},
 		"animation.arrokuda.cry": {
-			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
 				"head": {

@@ -1,12 +1,12 @@
 {
   "parent": "cobblemon:recipes/root",
   "criteria": {
-    "has_charcoal": {
+    "has_fire": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:charcoal"
+              "cobblemon:fire_stone"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_charcoal",
+      "has_fire",
       "has_the_recipe"
     ]
   ],

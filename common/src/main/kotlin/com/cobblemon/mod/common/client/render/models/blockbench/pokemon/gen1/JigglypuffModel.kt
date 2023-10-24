@@ -63,5 +63,5 @@ class JigglypuffModel(root: ModelPart) : PokemonPoseableModel() {
     override fun getFaintAnimation(
             pokemonEntity: PokemonEntity,
             state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("jigglypuff", "faint") else null
+    ) = bedrockStateful("jigglypuff", "faint")
 }

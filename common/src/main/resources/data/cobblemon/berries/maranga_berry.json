@@ -77,29 +77,23 @@
         "y": -70.0,
         "z": 32.5
       }
+    },
+    {
+      "position": {
+        "x": 8.0,
+        "y": 14.0,
+        "z": 8.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 12.5,
+        "z": -180.0
+      }
     }
   ],
   "mutations": {},
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "short-sprout",
+  "matureShape": "short-mature",
   "flavors": {
     "SPICY": 10,
     "DRY": 10,
@@ -109,8 +103,8 @@
   },
   "weight": 1.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:maranga_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/maranga.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:maranga_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/maranga.png"
 }

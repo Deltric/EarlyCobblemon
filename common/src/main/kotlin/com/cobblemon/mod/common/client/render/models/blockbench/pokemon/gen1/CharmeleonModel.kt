@@ -76,5 +76,5 @@ class CharmeleonModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bi
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("charmeleon", "faint") else null
+    ) = if (state.isPosedIn(standing, walk, sleep)) bedrockStateful("charmeleon", "faint") else null
 }

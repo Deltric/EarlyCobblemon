@@ -11,11 +11,10 @@ package com.cobblemon.mod.common.client.gui.summary.widgets.screens.info
 import com.cobblemon.mod.common.api.gui.ColourLibrary
 import com.cobblemon.mod.common.api.gui.MultiLineLabelK
 import com.cobblemon.mod.common.api.gui.blitk
-import com.cobblemon.mod.common.api.text.bold
-import com.cobblemon.mod.common.api.text.plus
-import com.cobblemon.mod.common.api.text.text
+import com.cobblemon.mod.common.api.text.*
 import com.cobblemon.mod.common.client.CobblemonResources
 import com.cobblemon.mod.common.client.gui.summary.widgets.SoundlessWidget
+import com.cobblemon.mod.common.client.gui.summary.widgets.common.reformatNatureTextIfMinted
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.asTranslated
@@ -23,17 +22,21 @@ import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
+import net.minecraft.text.MutableText
 import net.minecraft.text.Text
+import net.minecraft.text.TextContent
+
 
 class InfoWidget(
     pX: Int,
     pY: Int,
     private val pokemon: Pokemon
-): SoundlessWidget(pX, pY, WIDTH, HEIGHT, Text.literal("InfoWidget")) {
+) : SoundlessWidget(pX, pY, WIDTH, HEIGHT, Text.literal("InfoWidget")) {
     companion object {
         private const val WIDTH = 134
         private const val HEIGHT = 148
         private val infoBaseResource = cobblemonResource("textures/gui/summary/summary_info_base.png")
+        private const val ROW_HEIGHT = 15
     }
 
     override fun renderButton(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
@@ -42,137 +45,89 @@ class InfoWidget(
         blitk(
             matrixStack = matrices,
             texture = infoBaseResource,
-            x= x,
+            x = x,
             y = y,
             width = width,
             height = height
         )
 
-        // Pokédex Number
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = lang("ui.info.pokedex_number").bold(),
-            x = x + 8,
-            y = y + 6,
-            shadow = true
-        )
 
+        // Pokédex Number
         // Add preceding zeroes if Pokédex number is less than 3 digits
         var dexNo = pokemon.species.nationalPokedexNumber.toString()
-        while(dexNo.length < 3) {
-            dexNo = "0$dexNo";
+        while (dexNo.length < 3) {
+            dexNo = "0$dexNo"
         }
 
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = dexNo.text().bold(),
-            x = x + 53,
-            y = y + 6,
-            shadow = true
+        val pokedexNumberWidget = InfoOneLineWidget(
+            pX = x,
+            pY = y,
+            width = width,
+            label = lang("ui.info.pokedex_number"),
+            value = dexNo.text()
         )
+        pokedexNumberWidget.render(context, pMouseX, pMouseY, pPartialTicks)
+
 
         // Species
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = lang("ui.info.species").bold(),
-            x = x + 8,
-            y = y + 21,
-            shadow = true
+        val speciesWidget = InfoOneLineWidget(
+            pX = x,
+            pY = y + ROW_HEIGHT,
+            width = width,
+            label = lang("ui.info.species"),
+            value = pokemon.species.translatedName
         )
-
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = pokemon.species.translatedName.bold(),
-            x = x + 53,
-            y = y + 21,
-            shadow = true
-        )
+        speciesWidget.render(context, pMouseX, pMouseY, pPartialTicks)
 
         // Type
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = lang("ui.info.type").bold(),
-            x = x + 8,
-            y = y + 36,
-            shadow = true
-        )
-
         val type = pokemon.types.map { it.displayName.copy() }.reduce { acc, next -> acc.plus("/").plus(next) }
-
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = type.bold(),
-            x = x + 53,
-            y = y + 36,
-            shadow = true
+        val typeWidget = InfoOneLineWidget(
+            pX = x,
+            pY = y + 2 * ROW_HEIGHT,
+            width = width,
+            label = lang("ui.info.type"),
+            value = type
         )
+        typeWidget.render(context, pMouseX, pMouseY, pPartialTicks)
 
         // OT
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = lang("ui.info.original_trainer").bold(),
-            x = x + 8,
-            y = y + 51,
-            shadow = true
-        )
-
+        var displayName: MutableText = MutableText.of(TextContent.EMPTY)
         if (pokemon.isPlayerOwned() && pokemon.getOwnerPlayer() != null) {
-            pokemon.getOwnerPlayer()?.displayName?.copy()?.let {
-                drawScaledText(
-                    context = context,
-                    font = CobblemonResources.DEFAULT_LARGE,
-                    text = it.bold(),
-                    x = x + 53,
-                    y = y + 51,
-                    shadow = true
-                )
-            }
+            displayName = pokemon.getOwnerPlayer()!!.displayName.copy()
         }
+        val otWidget = InfoOneLineWidget(
+            pX = x,
+            pY = y + 3 * ROW_HEIGHT,
+            width = width,
+            label = lang("ui.info.original_trainer"),
+            value = displayName // You'll need to provide the value for the Original Trainer
+        )
+        otWidget.render(context, pMouseX, pMouseY, pPartialTicks)
+
 
         // Nature
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = lang("ui.info.nature").bold(),
-            x = x + 8,
-            y = y + 66,
-            shadow = true
-        )
+        // Get the name of the MintItem used to mint the Pokémon's nature
+        val natureText = reformatNatureTextIfMinted(pokemon)
 
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = pokemon.nature.displayName.asTranslated().bold(),
-            x = x + 53,
-            y = y + 66,
-            shadow = true
+        val natureWidget = InfoOneLineWidget(
+            pX = x,
+            pY = y + 4 * ROW_HEIGHT,
+            width = width,
+            label = lang("ui.info.nature"),
+            value = natureText,
         )
+        natureWidget.render(context, pMouseX, pMouseY, pPartialTicks)
+
 
         // Ability
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = lang("ui.info.ability").bold(),
-            x = x + 8,
-            y = y + 81,
-            shadow = true
+        val abilityWidget = InfoOneLineWidget(
+            pX = x,
+            pY = y + 5 * ROW_HEIGHT,
+            width = width,
+            label = lang("ui.info.ability").bold(),
+            value = pokemon.ability.displayName.asTranslated().bold()
         )
-
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = pokemon.ability.displayName.asTranslated().bold(),
-            x = x + 53,
-            y = y + 81,
-            shadow = true
-        )
+        abilityWidget.render(context, pMouseX, pMouseY, pPartialTicks)
 
         val smallTextScale = 0.5F
 
@@ -212,8 +167,10 @@ class InfoWidget(
 
         val mcFont = MinecraftClient.getInstance().textRenderer
         val experience = pokemon.experience.toString().text()
-        val experienceForThisLevel = pokemon.experience - if (pokemon.level == 1) 0 else pokemon.experienceGroup.getExperience(pokemon.level)
-        val experienceToNext = pokemon.experienceGroup.getExperience(pokemon.level + 1) - pokemon.experienceGroup.getExperience(pokemon.level)
+        val experienceForThisLevel =
+            pokemon.experience - if (pokemon.level == 1) 0 else pokemon.experienceGroup.getExperience(pokemon.level)
+        val experienceToNext =
+            pokemon.experienceGroup.getExperience(pokemon.level + 1) - pokemon.experienceGroup.getExperience(pokemon.level)
 
         drawScaledText(
             context = context,

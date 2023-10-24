@@ -3,6 +3,10 @@
   "values": [
     "#minecraft:is_badlands",
 	{
+      "id": "#c:mesa",
+      "required": false
+    },
+	{
       "id": "terralith:ashen_savanna",
       "required": false
     },
@@ -16,6 +20,10 @@
     },
 	{
       "id": "terralith:white_mesa",
+      "required": false
+    },
+    {
+      "id": "wythers:danakil_desert",
       "required": false
     }
   ]

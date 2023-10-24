@@ -10,6 +10,7 @@ package com.cobblemon.mod.common.api.storage.pc
 
 import com.cobblemon.mod.common.api.reactive.Observable.Companion.stopAfter
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
+import com.cobblemon.mod.common.api.storage.InvalidSpeciesException
 import com.cobblemon.mod.common.api.storage.StoreCoordinates
 import com.cobblemon.mod.common.net.messages.client.storage.pc.SetPCBoxPokemonPacket
 import com.cobblemon.mod.common.pokemon.Pokemon
@@ -120,7 +121,12 @@ open class PCBox(val pc: PCStore) : Iterable<Pokemon> {
     open fun loadFromJSON(json: JsonObject): PCBox {
         for (slot in 0 until POKEMON_PER_BOX) {
             if (json.has(DataKeys.STORE_SLOT + slot)) {
-                pokemon[slot] = Pokemon().loadFromJSON(json.getAsJsonObject(DataKeys.STORE_SLOT + slot))
+                val pokemonJson = json.getAsJsonObject(DataKeys.STORE_SLOT + slot)
+                try {
+                    pokemon[slot] = Pokemon().loadFromJSON(pokemonJson)
+                } catch (_: InvalidSpeciesException) {
+                    pc.handleInvalidSpeciesJSON(pokemonJson)
+                }
             }
         }
         return this
@@ -129,7 +135,12 @@ open class PCBox(val pc: PCStore) : Iterable<Pokemon> {
     open fun loadFromNBT(nbt: NbtCompound): PCBox {
         for (slot in 0 until POKEMON_PER_BOX) {
             if (nbt.contains(DataKeys.STORE_SLOT + slot)) {
-                pokemon[slot] = Pokemon().loadFromNBT(nbt.getCompound(DataKeys.STORE_SLOT + slot))
+                val pokemonNBT = nbt.getCompound(DataKeys.STORE_SLOT + slot)
+                try {
+                    pokemon[slot] = Pokemon().loadFromNBT(pokemonNBT)
+                } catch (_: InvalidSpeciesException) {
+                    pc.handleInvalidSpeciesNBT(pokemonNBT)
+                }
             }
         }
         return this

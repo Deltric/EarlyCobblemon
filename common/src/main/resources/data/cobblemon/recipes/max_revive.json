@@ -9,6 +9,9 @@
         },
         {
             "item": "cobblemon:revive"
+        },
+		{
+            "item": "cobblemon:vivichoke"
         }
     ],
     "result": {

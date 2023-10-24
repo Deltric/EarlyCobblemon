@@ -148,6 +148,14 @@
 				}
 			}
 		},
+		"animation.whirlipede.cry": {
+			"animation_length": 1.41667,
+			"sound_effects": {
+				"0.0417": {
+					"effect": "pokemon.whirlipede.cry"
+				}
+			}
+		},
 		"animation.whirlipede.blink": {
 			"animation_length": 0.16667,
 			"bones": {

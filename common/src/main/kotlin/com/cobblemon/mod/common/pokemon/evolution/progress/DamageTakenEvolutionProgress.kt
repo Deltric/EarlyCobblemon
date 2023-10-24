@@ -38,14 +38,7 @@ class DamageTakenEvolutionProgress : EvolutionProgress<DamageTakenEvolutionProgr
         this.updateProgress(Progress(0))
     }
 
-    override fun shouldKeep(pokemon: Pokemon): Boolean {
-        val evolutionController = pokemon.evolutionProxy.server()
-        return pokemon.form.evolutions.any { evolution ->
-            evolution.requirements.any { requirement ->
-                requirement is DamageTakenRequirement && requirement.amount == this.currentProgress().amount && !evolutionController.contains(evolution)
-            }
-        }
-    }
+    override fun shouldKeep(pokemon: Pokemon): Boolean = supports(pokemon)
 
     override fun loadFromNBT(nbt: NbtCompound) {
         val amount = nbt.getInt(AMOUNT)
@@ -67,6 +60,14 @@ class DamageTakenEvolutionProgress : EvolutionProgress<DamageTakenEvolutionProgr
 
         val ID = cobblemonResource(DamageTakenRequirement.ADAPTER_VARIANT)
         private const val AMOUNT = "amount"
+
+        fun supports(pokemon: Pokemon): Boolean {
+            return pokemon.form.evolutions.any { evolution ->
+                evolution.requirements.any { requirement ->
+                    requirement is DamageTakenRequirement
+                }
+            }
+        }
 
     }
 

@@ -24,7 +24,15 @@ class PlayerAdvancementData {
         private set
     var totalBattleVictoryCount: Int = 0
         private set
+    var totalPvPBattleVictoryCount: Int = 0
+        private set
+    var totalPvWBattleVictoryCount: Int = 0
+        private set
+    var totalPvNBattleVictoryCount: Int = 0
+        private set
     var totalShinyCaptureCount: Int = 0
+        private set
+    var totalTradedCount: Int = 0
         private set
 
     private var totalTypeCaptureCounts = mutableMapOf<String, Int>()
@@ -45,11 +53,27 @@ class PlayerAdvancementData {
     }
 
     fun updateTotalBattleVictoryCount() {
-        totalEvolvedCount++
+        totalBattleVictoryCount++
+    }
+
+    fun updateTotalPvPBattleVictoryCount() {
+        totalPvPBattleVictoryCount++
+    }
+
+    fun updateTotalPvWBattleVictoryCount() {
+        totalPvWBattleVictoryCount++
+    }
+
+    fun updateTotalPvNBattleVictoryCount() {
+        totalPvNBattleVictoryCount++
     }
 
     fun updateTotalShinyCaptureCount() {
         totalShinyCaptureCount++
+    }
+
+    fun updateTotalTradedCount() {
+        totalTradedCount++
     }
 
     fun getTotalTypeCaptureCount(type: ElementalType): Int {

@@ -20,6 +20,10 @@ object CobblemonPlacementModifierTypes {
     val BENEATH_HEIGHTMAP = register("beneath_heightmap", BeneathHeightmapPlacementModifier.MODIFIER_CODEC)
     @JvmField
     val LOCATE_PREDICATE = register("locate_predicate", LocatePredicatePlacementModifier.MODIFIER_CODEC)
+    @JvmField
+    val CONDITIONAL_COUNT = register("conditional_count", ConditionalCountPlacementModifier.MODIFIER_CODEC)
+    @JvmField
+    val CONDITIONAL_RARITY_FILTER = register("conditional_rarity_filter", ConditionalRarityFilterPlacementModifier.MODIFIER_CODEC)
 
     fun <T : PlacementModifier> register(id: String, codec: Codec<T>): PlacementModifierType<T> {
         return Registry.register(Registries.PLACEMENT_MODIFIER_TYPE, cobblemonResource(id), PlacementModifierType { codec })

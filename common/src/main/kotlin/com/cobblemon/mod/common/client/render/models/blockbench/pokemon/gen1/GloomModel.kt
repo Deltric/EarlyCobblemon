@@ -60,5 +60,5 @@ class GloomModel(root: ModelPart) : PokemonPoseableModel() {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>,
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("gloom", "faint") else null
+    ) = bedrockStateful("gloom", "faint")
 }

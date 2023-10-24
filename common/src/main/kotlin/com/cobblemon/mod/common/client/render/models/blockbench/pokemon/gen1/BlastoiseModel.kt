@@ -105,5 +105,5 @@ class BlastoiseModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("blastoise", "faint") else null
+    ) = if (state.isPosedIn(standing, walk, sleep)) bedrockStateful("blastoise", "faint") else null
 }

@@ -17,11 +17,11 @@ import net.minecraft.util.math.Vec3d
 class MetangModel (root: ModelPart) : PokemonPoseableModel() {
     override val rootPart = root.registerChildWithAllChildren("metang")
 
-    override val portraitScale = 2.6F
-    override val portraitTranslation = Vec3d(-0.35, 1.9, 0.0)
+    override val portraitScale = 1.8F
+    override val portraitTranslation = Vec3d(-0.35, 0.0, 0.0)
 
-    override val profileScale = 0.65F
-    override val profileTranslation = Vec3d(0.0, 0.76, 0.0)
+    override val profileScale = 0.8F
+    override val profileTranslation = Vec3d(0.0, 0.65, 0.0)
 
     lateinit var standing: PokemonPose
     lateinit var walk: PokemonPose

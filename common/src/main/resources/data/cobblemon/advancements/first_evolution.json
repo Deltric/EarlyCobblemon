@@ -2,7 +2,7 @@
   "parent": "cobblemon:first_catch",
   "display": {
     "icon": {
-      "item": "cobblemon:link_cable"
+      "item": "cobblemon:rare_candy"
     },
     "title": {
       "translate": "advancements.cobblemon.first_evolution"
@@ -16,17 +16,14 @@
 	"hidden": false
   },
   "criteria": {
-    "evolve": {
-      "trigger": "cobblemon:pokemon_evolved",
-      "conditions": {
-        "count": 1
-      }
-    }
+	"evolve": {
+	  "trigger": "cobblemon:pokemon_evolved",
+	  "conditions": {
+			"species": "any",
+			"evolution": "any",
+			"times": 1
+		}
+	}
   },
-	"requirements": [
-		[
-			"evolve"
-		]
-	],
   "sends_telemetry_event": false
 }

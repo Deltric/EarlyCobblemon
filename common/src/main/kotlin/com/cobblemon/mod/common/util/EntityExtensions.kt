@@ -9,6 +9,8 @@
 package com.cobblemon.mod.common.util
 
 import net.minecraft.entity.Entity
+import net.minecraft.entity.data.DataTracker
+import net.minecraft.entity.data.TrackedData
 import net.minecraft.util.function.BooleanBiFunction
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -117,4 +119,12 @@ fun Entity.closestPosition(positions: Iterable<BlockPos>, filter: (BlockPos) -> 
     }
 
     return closest
+}
+
+fun <T> DataTracker.update(data: TrackedData<T>, mutator: (T) -> T) {
+    val value = get(data)
+    val newValue = mutator(value)
+    if (value != newValue) {
+        set(data, newValue)
+    }
 }

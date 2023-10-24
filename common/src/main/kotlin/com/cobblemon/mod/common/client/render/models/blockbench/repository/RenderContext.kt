@@ -33,7 +33,7 @@ class RenderContext {
      * @since 1.4.0
      */
     @Suppress("UNCHECKED_CAST")
-    fun <T : Any> request(key: Key<T>): T? = context[key] as T?
+    fun <T : Any> request(key: Key<T>): T? = this.context[key] as T?
 
     /**
      * Retrieves a value from the context associated with the provided key, assuming the value exists.
@@ -44,7 +44,7 @@ class RenderContext {
      *
      * @since 1.4.0
      */
-    fun <T : Any> requires(key: Key<T>): T = request(key) ?: throw NullPointerException("Required value not found in context for key: $key")
+    fun <T : Any> requires(key: Key<T>): T = this.request(key) ?: throw NullPointerException("Required value not found in context for key: $key")
 
     /**
      * Stores a value in the context associated with the provided key.
@@ -55,10 +55,19 @@ class RenderContext {
      * @since 1.4.0
      */
     fun <T : Any> put(key: Key<T>, value: T?) {
-        context[key] = value
+        this.context[key] = value
     }
 
-    fun pop() = context.clear();
+    /**
+     * Resets the context back to its initial state. In other words, this would represent an empty context set.
+     *
+     * @since 1.4.0
+     */
+    fun pop() = this.context.clear()
+
+    fun <T : Any> pop(key: Key<T>) {
+        this.context.remove(key)
+    }
 
     /**
      * Represents a key used for accessing values in the context.

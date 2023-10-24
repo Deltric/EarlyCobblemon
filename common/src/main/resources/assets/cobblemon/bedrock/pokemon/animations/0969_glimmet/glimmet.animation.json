@@ -543,6 +543,11 @@
 						"1.25": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.125": {
+					"effect": "pokemon.glimmet.cry"
+				}
 			}
 		}
 	}

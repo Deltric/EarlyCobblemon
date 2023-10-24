@@ -13,7 +13,11 @@ import com.cobblemon.mod.common.CobblemonBlocks
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.world.BigRootPropagatedEvent
 import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
-import net.minecraft.block.*
+import net.minecraft.block.Block
+import net.minecraft.block.BlockRenderType
+import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
+import net.minecraft.block.Fertilizable
 import net.minecraft.item.ItemStack
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundCategory
@@ -28,16 +32,29 @@ import net.minecraft.world.event.GameEvent
 
 @Suppress("OVERRIDE_DEPRECATION", "UNUSED_PARAMETER", "MemberVisibilityCanBePrivate", "DEPRECATION")
 abstract class RootBlock(settings: Settings) : Block(settings), Fertilizable, ShearableBlock {
-
     private val possibleDirections = setOf(Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST)
-
     override fun hasRandomTicks(state: BlockState) = true
 
     override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: Random) {
         // Check for propagation
-        if (random.nextDouble() < Cobblemon.config.bigRootPropagationChance && world.getLightLevel(pos) < MAX_PROPAGATING_LIGHT_LEVEL) {
+        if (random.nextDouble() < Cobblemon.config.bigRootPropagationChance && world.getLightLevel(pos) < MAX_PROPAGATING_LIGHT_LEVEL && !hasReachedSpreadCap(world, pos)) {
             this.spreadFrom(world, pos, random)
         }
+    }
+
+    fun hasReachedSpreadCap(world: World, pos: BlockPos): Boolean {
+        var nearby = 0
+        val nearbyPositions = BlockPos.iterate(pos.add(-4, -1, -4), pos.add(4, 1, 4)).iterator()
+        while (nearbyPositions.hasNext()) {
+            val blockPos = nearbyPositions.next()
+            if (world.getBlockState(blockPos).isIn(CobblemonBlockTags.ROOTS)) {
+                nearby++
+                if (nearby >= Cobblemon.config.maxRootsInArea) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean = this.canGoOn(state, world, pos) { true }
@@ -168,9 +185,6 @@ abstract class RootBlock(settings: Settings) : Block(settings), Fertilizable, Sh
     protected abstract fun shearedDrop(): ItemStack
 
     companion object {
-
         const val MAX_PROPAGATING_LIGHT_LEVEL = 11
-
     }
-
 }

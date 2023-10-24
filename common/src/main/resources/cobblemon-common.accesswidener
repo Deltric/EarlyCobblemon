@@ -8,6 +8,7 @@ accessWidener	v2	named
 # "transitive-" to ensure they will extend down to dev environments.
 
 transitive-accessible method net/minecraft/client/render/entity/LivingEntityRenderer addFeature (Lnet/minecraft/client/render/entity/feature/FeatureRenderer;)Z
+transitive-accessible field net/minecraft/entity/Entity AIR Lnet/minecraft/entity/data/TrackedData;
 transitive-accessible method net/minecraft/entity/player/PlayerEntity setShoulderEntityLeft (Lnet/minecraft/nbt/NbtCompound;)V
 transitive-accessible method net/minecraft/entity/player/PlayerEntity setShoulderEntityRight (Lnet/minecraft/nbt/NbtCompound;)V
 transitive-accessible method net/minecraft/entity/player/PlayerEntity dropShoulderEntity (Lnet/minecraft/nbt/NbtCompound;)V
@@ -16,6 +17,22 @@ transitive-accessible method net/minecraft/entity/player/PlayerEntity getShoulde
 transitive-accessible method net/minecraft/client/render/entity/EntityRenderers register (Lnet/minecraft/entity/EntityType;Lnet/minecraft/client/render/entity/EntityRendererFactory;)V
 transitive-accessible    field    net/minecraft/client/MinecraftClient    itemColors    Lnet/minecraft/client/color/item/ItemColors;
 transitive-accessible    field    net/minecraft/client/model/ModelPart    children    Ljava/util/Map;
+transitive-accessible    field    net/minecraft/client/model/ModelPart    cuboids    Ljava/util/List;
+transitive-accessible    field    net/minecraft/client/model/TexturedModelData data Lnet/minecraft/client/model/ModelData;
+transitive-accessible    field    net/minecraft/client/model/ModelPartData cuboidData Ljava/util/List;
+transitive-accessible    field    net/minecraft/client/model/ModelPartData rotationData Lnet/minecraft/client/model/ModelTransform;
+transitive-accessible    field    net/minecraft/client/model/ModelPartData children Ljava/util/Map;
+transitive-accessible field net/minecraft/client/model/ModelCuboidData offset Lorg/joml/Vector3f;
+transitive-accessible field net/minecraft/client/model/ModelCuboidData dimensions Lorg/joml/Vector3f;
+transitive-accessible field net/minecraft/client/model/ModelCuboidData textureUV Lnet/minecraft/client/util/math/Vector2f;
+transitive-accessible field net/minecraft/client/model/ModelCuboidData textureScale Lnet/minecraft/client/util/math/Vector2f;
+transitive-accessible field net/minecraft/client/model/ModelCuboidData extraSize Lnet/minecraft/client/model/Dilation;
+transitive-accessible field net/minecraft/client/model/Dilation radiusX F
+transitive-accessible field net/minecraft/client/model/Dilation radiusY F
+transitive-accessible field net/minecraft/client/model/Dilation radiusZ F
+
+
+
 transitive-accessible    field    net/minecraft/entity/player/PlayerInventory    combinedInventory    Ljava/util/List;
 #transitive-accessible method net/minecraft/world/gen/feature/TreeFeature createStraightBlobTree (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;IIII)Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration$TreeConfigurationBuilder;
 transitive-accessible method net/minecraft/block/LeavesBlock updateDistanceFromLogs (Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldAccess;Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/block/BlockState;
@@ -42,6 +59,9 @@ transitive-accessible class net/minecraft/client/render/RenderPhase$WriteMaskSta
 transitive-accessible field net/minecraft/client/render/RenderPhase ALL_MASK Lnet/minecraft/client/render/RenderPhase$WriteMaskState;
 transitive-accessible class net/minecraft/client/render/RenderPhase$Overlay
 transitive-accessible field net/minecraft/client/render/RenderPhase ENABLE_OVERLAY_COLOR Lnet/minecraft/client/render/RenderPhase$Overlay;
+transitive-accessible field net/minecraft/client/render/RenderPhase CUTOUT_PROGRAM Lnet/minecraft/client/render/RenderPhase$ShaderProgram;
+transitive-accessible field net/minecraft/client/render/RenderPhase ENABLE_LIGHTMAP Lnet/minecraft/client/render/RenderPhase$Lightmap;
+transitive-accessible field net/minecraft/client/render/RenderPhase DISABLE_CULLING Lnet/minecraft/client/render/RenderPhase$Cull;
 
 transitive-accessible field  net/minecraft/recipe/BrewingRecipeRegistry ITEM_RECIPES Ljava/util/List;
 transitive-accessible field  net/minecraft/recipe/BrewingRecipeRegistry POTION_RECIPES Ljava/util/List;
@@ -62,10 +82,14 @@ transitive-accessible field net/minecraft/advancement/PlayerAdvancementTracker p
 transitive-accessible field net/minecraft/entity/ai/goal/FollowOwnerGoal minDistance F
 transitive-accessible field net/minecraft/entity/ai/goal/FollowOwnerGoal maxDistance F
 
-accessible field net/minecraft/structure/pool/SinglePoolElement location Lcom/mojang/datafixers/util/Either;
-accessible class net/minecraft/structure/pool/StructurePoolBasedGenerator$StructurePoolGenerator
-accessible class net/minecraft/structure/pool/StructurePoolBasedGenerator$ShapedPoolStructurePiece
-accessible field net/minecraft/structure/pool/StructurePoolBasedGenerator$ShapedPoolStructurePiece piece Lnet/minecraft/structure/PoolStructurePiece;
+transitive-accessible field net/minecraft/structure/pool/SinglePoolElement location Lcom/mojang/datafixers/util/Either;
+transitive-accessible class net/minecraft/structure/pool/StructurePoolBasedGenerator$StructurePoolGenerator
+transitive-accessible class net/minecraft/structure/pool/StructurePoolBasedGenerator$ShapedPoolStructurePiece
+transitive-accessible field net/minecraft/structure/pool/StructurePoolBasedGenerator$ShapedPoolStructurePiece piece Lnet/minecraft/structure/PoolStructurePiece;
+transitive-accessible method net/minecraft/client/texture/SpriteAtlasHolder getSprite (Lnet/minecraft/util/Identifier;)Lnet/minecraft/client/texture/Sprite;
+transitive-accessible field net/minecraft/client/texture/SpriteAtlasHolder atlas Lnet/minecraft/client/texture/SpriteAtlasTexture;
+transitive-accessible field net/minecraft/client/texture/SpriteAtlasTexture width I
+transitive-accessible field net/minecraft/client/texture/SpriteAtlasTexture height I
 #accessible method net/minecraft/client/render/RenderLayer$MultiPhase (Ljava/lang/String;Lnet/minecraft/client/render/VertexFormat;Lnet/minecraft/client/render/VertexFormat$DrawMode;IZZLnet/minecraft/client/render/RenderLayer$MultiPhaseParameters;)Lnet/minecraft/client/render/RenderLayer$MultiPhase;
 
 #String name, VertexFormat vertexFormat, VertexFormat.DrawMode drawMode, int expectedBufferSize, boolean hasCrumbling, boolean translucent, MultiPhaseParameters phases

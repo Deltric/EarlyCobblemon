@@ -106,34 +106,16 @@
     "cobblemon:shuca_berry": "cobblemon:hondew_berry",
     "cobblemon:babiri_berry": "cobblemon:durin_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "lilypad-sprout",
+  "matureShape": "lilypad-mature",
   "flavors": {
     "BITTER": 20,
     "SOUR": 10
   },
   "weight": 1.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:rabuta_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/rabuta.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:rabuta_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/rabuta.png"
 }

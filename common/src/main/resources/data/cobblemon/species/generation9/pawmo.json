@@ -36,6 +36,7 @@
   "moves": [
     "1:growl",
     "1:scratch",
+    "1:armthrust",
     "3:thundershock",
     "6:quickattack",
     "8:charge",
@@ -103,7 +104,7 @@
       ],
       "requirements": [
         {
-          "variant": "walked_steps",
+          "variant": "blocks_traveled",
           "amount": 1000
         }
       ]
@@ -112,5 +113,14 @@
   "cannotDynamax": false,
   "pokedex": [
     "cobblemon.species.pawmo.desc"
-  ]
+  ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:cheri_berry",
+        "percentage": 5.0
+      }
+    ]
+  }
 }

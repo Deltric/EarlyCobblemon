@@ -8,6 +8,19 @@
     "sheerforce",
     "h:ironfist"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:muscle_band",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:razz_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 75,
     "attack": 80,
@@ -145,8 +158,8 @@
   ],
   "baseScale": 0.7,
   "hitbox": {
-    "width": 1,
-    "height": 1,
+    "width": 0.7,
+    "height": 1.3,
     "fixed": false
   },
   "baseFriendship": 70,

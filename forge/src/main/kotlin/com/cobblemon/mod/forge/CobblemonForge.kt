@@ -9,12 +9,16 @@
 package com.cobblemon.mod.forge
 
 import com.cobblemon.mod.common.*
-import com.cobblemon.mod.common.cobblemonstructures.CobblemonStructures
+import com.cobblemon.mod.common.api.data.JsonDataRegistry
 import com.cobblemon.mod.common.brewing.BrewingRecipes
+import com.cobblemon.mod.common.integration.adorn.AdornCompatibility
 import com.cobblemon.mod.common.item.MedicinalLeekItem
 import com.cobblemon.mod.common.item.group.CobblemonItemGroups
 import com.cobblemon.mod.common.particle.CobblemonParticles
+import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.util.didSleep
+import com.cobblemon.mod.common.util.endsWith
+import com.cobblemon.mod.common.world.CobblemonStructures
 import com.cobblemon.mod.common.world.feature.CobblemonFeatures
 import com.cobblemon.mod.common.world.placementmodifier.CobblemonPlacementModifierTypes
 import com.cobblemon.mod.common.world.predicate.CobblemonBlockPredicates
@@ -26,26 +30,24 @@ import com.cobblemon.mod.forge.net.CobblemonForgeNetworkManager
 import com.cobblemon.mod.forge.permission.ForgePermissionValidator
 import com.cobblemon.mod.forge.worldgen.CobblemonBiomeModifiers
 import com.mojang.brigadier.arguments.ArgumentType
+import java.util.UUID
+import kotlin.reflect.KClass
 import net.minecraft.advancement.criterion.Criteria
 import net.minecraft.advancement.criterion.Criterion
+import net.minecraft.block.ComposterBlock
 import net.minecraft.command.argument.ArgumentTypes
 import net.minecraft.command.argument.serialize.ArgumentSerializer
-import net.minecraft.item.ItemGroup
-import net.minecraft.item.ItemGroups
-import net.minecraft.registry.Registries
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
-import net.minecraft.item.PotionItem
+import net.minecraft.item.*
 import net.minecraft.potion.PotionUtil
 import net.minecraft.potion.Potions
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.tag.TagKey
-import net.minecraft.resource.ResourceReloader
-import net.minecraft.resource.ResourceType
+import net.minecraft.resource.*
+import net.minecraft.resource.ResourcePackProfile.PackFactory
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.test.TestContext
+import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import net.minecraft.world.GameRules
 import net.minecraft.world.biome.Biome
@@ -55,20 +57,21 @@ import net.minecraftforge.api.distmarker.Dist
 import net.minecraftforge.common.ForgeMod
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.ToolActions
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry
+import net.minecraftforge.common.brewing.IBrewingRecipe
+import net.minecraftforge.event.AddPackFindersEvent
 import net.minecraftforge.event.AddReloadListenerEvent
 import net.minecraftforge.event.OnDatapackSyncEvent
 import net.minecraftforge.event.RegisterCommandsEvent
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry
-import net.minecraftforge.common.brewing.IBrewingRecipe
-import net.minecraftforge.event.*
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent
 import net.minecraftforge.event.entity.player.PlayerEvent
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent
 import net.minecraftforge.event.level.BlockEvent
+import net.minecraftforge.event.server.ServerAboutToStartEvent
 import net.minecraftforge.event.village.VillagerTradesEvent
 import net.minecraftforge.event.village.WandererTradesEvent
 import net.minecraftforge.fml.DistExecutor
-import net.minecraftforge.event.server.ServerAboutToStartEvent
+import net.minecraftforge.fml.InterModComms
 import net.minecraftforge.fml.ModList
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent
@@ -76,10 +79,11 @@ import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import net.minecraftforge.fml.loading.FMLEnvironment
 import net.minecraftforge.registries.DeferredRegister
 import net.minecraftforge.registries.RegisterEvent
+import net.minecraftforge.resource.PathPackResources
 import net.minecraftforge.server.ServerLifecycleHooks
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
-import java.util.*
-import kotlin.reflect.KClass
+import java.io.File
+import java.util.concurrent.ExecutionException
 
 @Mod(Cobblemon.MODID)
 class CobblemonForge : CobblemonImplementation {
@@ -88,6 +92,8 @@ class CobblemonForge : CobblemonImplementation {
 
     private val commandArgumentTypes = DeferredRegister.create(RegistryKeys.COMMAND_ARGUMENT_TYPE, Cobblemon.MODID)
     private val reloadableResources = arrayListOf<ResourceReloader>()
+    private val queuedWork = arrayListOf<() -> Unit>()
+    private val queuedBuiltinResourcePacks = arrayListOf<Triple<Identifier, Text, ResourcePackActivationBehaviour>>()
 
     override val networkManager: NetworkManager = CobblemonForgeNetworkManager
 
@@ -99,6 +105,7 @@ class CobblemonForge : CobblemonImplementation {
             Cobblemon.preInitialize(this@CobblemonForge)
             addListener(CobblemonBiomeModifiers::register)
             addListener(this@CobblemonForge::on)
+            addListener(this@CobblemonForge::onAddPackFindersEvent)
         }
         with(MinecraftForge.EVENT_BUS) {
             addListener(this@CobblemonForge::onDataPackSync)
@@ -114,6 +121,7 @@ class CobblemonForge : CobblemonImplementation {
         }
         ForgePlatformEventHandler.register()
         DistExecutor.safeRunWhenOn(Dist.CLIENT) { DistExecutor.SafeRunnable(CobblemonForgeClient::init) }
+        this.attemptModCompat()
     }
 
     fun addCobblemonStructures(event: ServerAboutToStartEvent) {
@@ -126,6 +134,7 @@ class CobblemonForge : CobblemonImplementation {
         playerEntity.didSleep()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun serverInit(event: FMLDedicatedServerSetupEvent) {
     }
 
@@ -133,6 +142,9 @@ class CobblemonForge : CobblemonImplementation {
         Cobblemon.LOGGER.info("Initializing...")
         this.networkManager.registerClientBound()
         this.networkManager.registerServerBound()
+        event.enqueueWork {
+            this.queuedWork.forEach { it.invoke() }
+        }
         Cobblemon.initialize()
     }
 
@@ -170,7 +182,7 @@ class CobblemonForge : CobblemonImplementation {
             CobblemonPlacementModifierTypes.touch()
         }
 
-        event.register(RegistryKeys.PROCESSOR_LIST) {
+        event.register(RegistryKeys.STRUCTURE_PROCESSOR) {
             CobblemonProcessorTypes.touch()
         }
     }
@@ -243,7 +255,6 @@ class CobblemonForge : CobblemonImplementation {
                             .displayName(holder.displayName)
                             .icon(holder.displayIconProvider)
                             .entries(holder.entryCollector)
-                            .withTabsBefore(*ItemGroups.getGroups().mapNotNull { Registries.ITEM_GROUP.getId(it) }.toTypedArray())
                             .build()
                         helper.register(holder.key, itemGroup)
                         itemGroup
@@ -319,6 +330,60 @@ class CobblemonForge : CobblemonImplementation {
 
     override fun server(): MinecraftServer? = ServerLifecycleHooks.getCurrentServer()
 
+    override fun <T> reloadJsonRegistry(registry: JsonDataRegistry<T>, manager: ResourceManager): HashMap<Identifier, T> {
+        val data = hashMapOf<Identifier, T>()
+
+        manager.findResources(registry.resourcePath) { path -> path.endsWith(JsonDataRegistry.JSON_EXTENSION) }.forEach { (identifier, resource) ->
+            if (identifier.namespace == "pixelmon") {
+                return@forEach
+            }
+
+            resource.inputStream.use { stream ->
+                stream.bufferedReader().use { reader ->
+                    val resolvedIdentifier = Identifier(identifier.namespace, File(identifier.path).nameWithoutExtension)
+                    try {
+                        data[resolvedIdentifier] = registry.gson.fromJson(reader, registry.typeToken.type)
+                    } catch (exception: Exception) {
+                        throw ExecutionException("Error loading JSON for data: $identifier", exception)
+                    }
+                }
+            }
+        }
+        return data
+    }
+
+    override fun registerCompostable(item: ItemConvertible, chance: Float) {
+        this.queuedWork += {
+            ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(item, chance)
+        }
+    }
+
+    override fun registerBuiltinResourcePack(id: Identifier, title: Text, activationBehaviour: ResourcePackActivationBehaviour) {
+        this.queuedBuiltinResourcePacks += Triple(id, title, activationBehaviour)
+    }
+
+    fun onAddPackFindersEvent(event: AddPackFindersEvent) {
+        if (event.packType != ResourceType.CLIENT_RESOURCES) {
+            return
+        }
+        val modFile = ModList.get().getModFileById(Cobblemon.MODID).file
+        this.queuedBuiltinResourcePacks.forEach { (id, title, activationBehaviour) ->
+            // Fabric expects resourcepacks as the root so we do too here
+            val path = modFile.findResource("resourcepacks/${id.path}")
+            val factory = PackFactory { name -> PathPackResources(name, true, path) }
+            val profile = ResourcePackProfile.create(
+                id.toString(),
+                title,
+                activationBehaviour == ResourcePackActivationBehaviour.ALWAYS_ENABLED,
+                factory,
+                ResourceType.CLIENT_RESOURCES,
+                ResourcePackProfile.InsertionPosition.TOP, // Go top to match Fabric behaviour
+                ResourcePackSource.BUILTIN
+            )
+            event.addRepositorySource { consumer -> consumer.accept(profile) }
+        }
+    }
+
     private fun onVillagerTradesRegistry(e: VillagerTradesEvent) {
         CobblemonTradeOffers.tradeOffersFor(e.type).forEach { tradeOffer ->
             // Will never be null between 1 n 5
@@ -329,6 +394,18 @@ class CobblemonForge : CobblemonImplementation {
     private fun onWanderingTraderRegistry(e: WandererTradesEvent) {
         CobblemonTradeOffers.resolveWanderingTradeOffers().forEach { tradeOffer ->
             if (tradeOffer.isRareTrade) e.rareTrades.addAll(tradeOffer.tradeOffers) else e.genericTrades.addAll(tradeOffer.tradeOffers)
+        }
+    }
+
+    private fun attemptModCompat() {
+        if (this.isModInstalled("adorn")) {
+            AdornCompatibility.register()
+        }
+        // CarryOn has a tag key for this but for some reason Forge version just doesn't work instead we do this :)
+        // See https://github.com/Tschipp/CarryOn/wiki/IMC-support-for-Modders
+        if (this.isModInstalled("carryon")) {
+            InterModComms.sendTo("carryon", "blacklistEntity") { CobblemonEntities.POKEMON_KEY.toString() }
+            InterModComms.sendTo("carryon", "blacklistEntity") { CobblemonEntities.EMPTY_POKEBALL_KEY.toString() }
         }
     }
 

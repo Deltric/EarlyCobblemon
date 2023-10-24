@@ -7,7 +7,21 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "cobblemon:pasture"
+          "name": "cobblemon:pasture",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "cobblemon:pasture",
+              "properties": {
+                "part": "bottom"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }

@@ -1,0 +1,59 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:grove",
+	"minecraft:snowy_taiga",
+	{
+      "id": "terralith:alpha_islands_winter",
+      "required": false
+    },
+	{
+      "id": "terralith:alpine_grove",
+      "required": false
+    },
+	{
+      "id": "terralith:ice_marsh",
+      "required": false
+    },
+	{
+      "id": "terralith:siberian_grove",
+      "required": false
+    },
+	{
+      "id": "terralith:snowy_maple_forest",
+      "required": false
+    },
+	{
+      "id": "terralith:snowy_shield",
+      "required": false
+    },
+	{
+      "id": "terralith:wintry_forest",
+      "required": false
+    },
+	{
+      "id": "terralith:wintry_lowlands",
+      "required": false
+    },
+    {
+      "id": "wythers:deep_snowy_taiga",
+      "required": false
+    },
+    {
+      "id": "wythers:huangshan_highlands",
+      "required": false
+    },
+    {
+      "id": "wythers:jade_highlands",
+      "required": false
+    },
+    {
+      "id": "wythers:snowy_fen",
+      "required": false
+    },
+    {
+      "id": "wythers:snowy_thermal_taiga",
+      "required": false
+    }
+  ]
+}

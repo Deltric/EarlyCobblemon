@@ -87,6 +87,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.0833": {
+					"effect": "pokemon.swellow.cry"
+				}
 			}
 		},
 		"animation.swellow.ground_idle": {

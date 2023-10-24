@@ -219,6 +219,54 @@
 				}
 			}
 		},
+		"animation.garchomp.blink": {
+			"animation_length": 0.1667,
+			"bones": {
+				"eyelid_left": {
+					"position": {
+						"0.0": [0, 0, -0.1],
+						"0.125": [0, 0, -0.1],
+						"0.1667": [0, 0, 0]
+					}
+				},
+				"eyelid_right": {
+					"position": {
+						"0.0": [0, 0, -0.1],
+						"0.125": [0, 0, -0.1],
+						"0.1667": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.garchomp.cry": {
+			"animation_length": 1.5,
+			"bones": {
+				"neck": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [10, 0, 0],
+						"1.25": [10, 0, 0],
+						"1.5": [0, 0, 0]
+					}
+				},
+				"head": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [-15, 0, 0],
+						"1.25": [-15, 0, 0],
+						"1.5": [0, 0, 0]
+					}
+				},
+				"jaw": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [25, 0, 0],
+						"1.25": [25, 0, 0],
+						"1.5": [0, 0, 0]
+					}
+				}
+			}
+		},
 		"animation.garchomp.battle_idle": {
 			"loop": true,
 			"bones": {
@@ -238,7 +286,7 @@
 					"rotation": [0, "17.5+math.sin(q.anim_time*90*4)*4", 0]
 				},
 				"arm_left3": {
-					"rotation": [9.38803, "18.7864+math.sin(q.anim_time*90*4)*2", "-34.2092+math.sin(q.anim_time*90*4)*2"]
+					"rotation": [10, "19+math.sin(q.anim_time*90*4)*2", "-34+math.sin(q.anim_time*90*4)*2"]
 				},
 				"arm_right": {
 					"rotation": [-7.06071, "-15.3325+math.sin(q.anim_time*90*4-45)*4", -30.08578]
@@ -247,7 +295,7 @@
 					"rotation": [0, "-17.5-math.sin(q.anim_time*90*4)*4", 0]
 				},
 				"arm_right3": {
-					"rotation": [-340.20717, "-34.1698-math.sin(q.anim_time*90*4)*2", "-330.719-math.sin(q.anim_time*90*4)*2"]
+					"rotation": [17.5, "-34-math.sin(q.anim_time*90*4)*2", "30-math.sin(q.anim_time*90*4)*2"]
 				},
 				"tail2": {
 					"rotation": [10, "math.sin(q.anim_time*90*2-45)*8", 0]
@@ -301,54 +349,6 @@
 				},
 				"hand_right": {
 					"rotation": [0, 0, "-40-math.sin(q.anim_time*90*4)*6"]
-				}
-			}
-		},
-		"animation.garchomp.blink": {
-			"animation_length": 0.1667,
-			"bones": {
-				"eyelid_left": {
-					"position": {
-						"0.0": [0, 0, -0.1],
-						"0.125": [0, 0, -0.1],
-						"0.1667": [0, 0, 0]
-					}
-				},
-				"eyelid_right": {
-					"position": {
-						"0.0": [0, 0, -0.1],
-						"0.125": [0, 0, -0.1],
-						"0.1667": [0, 0, 0]
-					}
-				}
-			}
-		},
-		"animation.garchomp.cry": {
-			"animation_length": 1.5,
-			"bones": {
-				"neck": {
-					"rotation": {
-						"0.0": [0, 0, 0],
-						"0.25": [10, 0, 0],
-						"1.25": [10, 0, 0],
-						"1.5": [0, 0, 0]
-					}
-				},
-				"head": {
-					"rotation": {
-						"0.0": [0, 0, 0],
-						"0.25": [-15, 0, 0],
-						"1.25": [-15, 0, 0],
-						"1.5": [0, 0, 0]
-					}
-				},
-				"jaw": {
-					"rotation": {
-						"0.0": [0, 0, 0],
-						"0.25": [25, 0, 0],
-						"1.25": [25, 0, 0],
-						"1.5": [0, 0, 0]
-					}
 				}
 			}
 		}

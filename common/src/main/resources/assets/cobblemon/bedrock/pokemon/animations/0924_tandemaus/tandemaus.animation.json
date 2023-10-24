@@ -186,6 +186,11 @@
 						"1.25": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.0417": {
+					"effect": "pokemon.tandemaus.cry"
+				}
 			}
 		},
 		"animation.tandemaus.faint": {
@@ -456,6 +461,5 @@
 				}
 			}
 		}
-	},
-	"geckolib_format_version": 2
+	}
 }

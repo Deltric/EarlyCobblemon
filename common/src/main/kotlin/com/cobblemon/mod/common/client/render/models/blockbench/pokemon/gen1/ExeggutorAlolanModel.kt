@@ -36,11 +36,11 @@ class ExeggutorAlolanModel(root: ModelPart) : PokemonPoseableModel(), HeadedFram
         override val head: ModelPart = getPart("head3")
     }
 
-    override val portraitScale = 1.9F
-    override val portraitTranslation = Vec3d(-1.3, 11.5, 0.0)
+    override val portraitScale = 1.0F
+    override val portraitTranslation = Vec3d(-1.4, 16.55, 0.0)
 
-    override val profileScale = 0.9F
-    override val profileTranslation = Vec3d(0.0, 0.38, 0.0)
+    override val profileScale = 0.45F
+    override val profileTranslation = Vec3d(0.0, 1.0, 0.0)
 
     lateinit var standing: PokemonPose
     lateinit var walk: PokemonPose

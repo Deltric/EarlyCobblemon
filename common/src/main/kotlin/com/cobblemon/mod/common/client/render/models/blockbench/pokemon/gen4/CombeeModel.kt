@@ -50,7 +50,7 @@ class CombeeModel (root: ModelPart) : PokemonPoseableModel() {
 
         fly = registerPose(
             poseName = "fly",
-            poseTypes = setOf(PoseType.FLY, PoseType.SWIM),
+            poseTypes = PoseType.MOVING_POSES,
             quirks = arrayOf(blink1, blink2, blink3),
             idleAnimations = arrayOf(
                 bedrock("combee", "air_fly")

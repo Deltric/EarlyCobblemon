@@ -6,6 +6,15 @@
   "abilities": [
     "defeatist"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "quantityRange": "0-3"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 75,
     "attack": 140,

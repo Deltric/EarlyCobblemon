@@ -2090,6 +2090,11 @@
 						"0.875": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.25": {
+					"effect": "pokemon.ampharos.cry"
+				}
 			}
 		},
 		"animation.ampharos.blink": {

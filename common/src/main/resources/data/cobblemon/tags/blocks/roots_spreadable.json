@@ -6,6 +6,18 @@
   ],
   "values": [
     "#minecraft:dirt",
+    "minecraft:stone",
+    "minecraft:infested_stone",
+    "minecraft:andesite",
+    "minecraft:diorite",
+    "minecraft:granite",
+    "minecraft:deepslate",
+    "minecraft:infested_deepslate",
+    "minecraft:tuff",
+    "minecraft:cobblestone",
+    "minecraft:mossy_cobblestone",
+    "minecraft:infested_cobblestone",
+    "minecraft:cobbled_deepslate",
     {
       "id": "#c:dirt",
       "required": false

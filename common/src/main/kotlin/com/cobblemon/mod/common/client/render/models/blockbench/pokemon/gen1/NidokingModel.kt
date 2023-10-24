@@ -31,7 +31,7 @@ class NidokingModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bipe
     override val rightArm = getPart("right_shoulder")
 
     override val portraitScale = 1.5F
-    override val portraitTranslation = Vec3d(-0.3, 0.9, 0.0)
+    override val portraitTranslation = Vec3d(-0.4, 0.6, 0.0)
 
     override val profileScale = 0.7F
     override val profileTranslation = Vec3d(0.0, 0.65, 0.0)

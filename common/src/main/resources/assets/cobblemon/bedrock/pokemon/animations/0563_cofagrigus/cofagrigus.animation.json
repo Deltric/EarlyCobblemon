@@ -984,6 +984,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.125": {
+					"effect": "pokemon.cofagrigus.cry"
+				}
 			}
 		},
 		"animation.cofagrigus.sleep": {

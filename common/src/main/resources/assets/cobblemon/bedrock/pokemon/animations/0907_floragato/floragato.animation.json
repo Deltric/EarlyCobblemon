@@ -2883,7 +2883,7 @@
 			},
 			"sound_effects": {
 				"0.1667": {
-					"effect": "floragato_cry"
+					"effect": "pokemon.floragato.cry"
 				}
 			}
 		},

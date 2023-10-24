@@ -7,6 +7,19 @@
     "limber",
     "h:imposter"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:quick_powder",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "cobblemon:metal_powder",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 48,
     "attack": 48,

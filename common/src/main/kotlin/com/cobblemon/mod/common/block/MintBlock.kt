@@ -39,7 +39,7 @@ class MintBlock(private val mintType: MintType, settings: Settings) : CropBlock(
     // DO NOT use withAge
     // Explanation for these 2 beautiful copy pasta are basically that we need to keep the blockstate and that's not possible with the default impl :(
     override fun randomTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: Random) {
-        if (world.getBaseLightLevel(pos, 0) < 9 || this.isMature(state) || random.nextInt(50) != 0) {
+        if (world.getBaseLightLevel(pos, 0) < 9 || this.isMature(state) || random.nextInt(8) != 0) {
             return
         }
         this.applyGrowth(world, pos, state, false)

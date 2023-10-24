@@ -323,7 +323,7 @@ class StatWidget(
 
             // Nature-modified Stat Icons
             if (statTabIndex == STATS) {
-                val nature = pokemon.mintedNature ?: pokemon.nature
+                val nature = pokemon.effectiveNature
                 renderModifiedStatIcon(matrices, nature.increasedStat, true)
                 renderModifiedStatIcon(matrices, nature.decreasedStat, false)
             }
@@ -434,7 +434,7 @@ class StatWidget(
 
     private fun getModifiedStatColour(stat: Stat, enableColour: Boolean): Int {
         if (statTabIndex == STATS && enableColour) {
-            val nature = pokemon.mintedNature ?: pokemon.nature
+            val nature = pokemon.effectiveNature
 
             if (nature.increasedStat == stat) return RED
             if (nature.decreasedStat == stat) return BLUE

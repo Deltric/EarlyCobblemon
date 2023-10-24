@@ -13,6 +13,7 @@ import com.cobblemon.mod.common.api.mulch.MulchVariant
 import com.cobblemon.mod.common.api.mulch.Mulchable
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
 import net.minecraft.block.CropBlock
 import net.minecraft.block.ShapeContext
 import net.minecraft.item.ItemConvertible
@@ -50,8 +51,9 @@ class RevivalHerbBlock(settings: Settings) : CropBlock(settings), Mulchable {
 
     override fun canPlaceAt(state: BlockState, world: WorldView, pos: BlockPos): Boolean {
         val floor = world.getBlockState(pos.down())
+        val block = world.getBlockState(pos)
         // A bit of a copy pasta but we don't have access to the BlockState being attempted to be placed above on the canPlantOnTop
-        return (world.getBlockState(pos).isIn(BlockTags.REPLACEABLE_BY_TREES)) && ((state.get(IS_WILD) && floor.isIn(BlockTags.DIRT)) || this.canPlantOnTop(floor, world, pos))
+        return (block.isIn(BlockTags.REPLACEABLE_BY_TREES) || block.isOf(Blocks.AIR) || block.isOf(this)) && ((state.get(IS_WILD) && floor.isIn(BlockTags.DIRT)) || this.canPlantOnTop(floor, world, pos))
     }
 
     override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, context: ShapeContext): VoxelShape = AGE_SHAPES.getOrNull(this.getAge(state)) ?: VoxelShapes.fullCube()
@@ -63,7 +65,7 @@ class RevivalHerbBlock(settings: Settings) : CropBlock(settings), Mulchable {
 
     override fun applyMulch(world: ServerWorld, random: Random, pos: BlockPos, state: BlockState, variant: MulchVariant) {
         val picked = Mutation.values().filterNot { it == Mutation.NONE }.random()
-        world.setBlockState(pos, state.with(MUTATION, picked).with(AGE, MUTABLE_MAX_AGE + 1))
+        world.setBlockState(pos, state.with(MUTATION, picked))//.with(AGE, MUTABLE_MAX_AGE + 1))
     }
 
     /**
@@ -133,6 +135,7 @@ class RevivalHerbBlock(settings: Settings) : CropBlock(settings), Mulchable {
         val AGE = IntProperty.of("age", MIN_AGE, MAX_AGE)
         val IS_WILD = BooleanProperty.of("is_wild")
         val MUTATION = EnumProperty.of("mutation", Mutation::class.java)
+//        val MULCH = EnumProperty.of("mulch", MulchVariant::class.java)
 
         /**
          * The [VoxelShape] equivalent to a certain age.

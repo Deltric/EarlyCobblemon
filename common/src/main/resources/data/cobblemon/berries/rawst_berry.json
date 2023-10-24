@@ -130,39 +130,33 @@
         "y": -32.5,
         "z": 5.0
       }
+    },
+    {
+      "position": {
+        "x": 7.0,
+        "y": 3.0,
+        "z": 8.5
+      },
+      "rotation": {
+        "x": -155.0,
+        "y": -62.5,
+        "z": -10.0
+      }
     }
   ],
   "mutations": {
     "cobblemon:oran_berry": "cobblemon:lum_berry",
     "cobblemon:persim_berry": "cobblemon:aguav_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "blossom-sprout",
+  "matureShape": "blossom-mature",
   "flavors": {
     "BITTER": 10
   },
-  "weight": 1.0,
+  "weight": 20.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:rawst_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/rawst.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:rawst_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/rawst.png"
 }

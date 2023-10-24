@@ -20,8 +20,6 @@ object DownShiftPartyBinding : CobblemonKeyBinding(
     KeybindCategories.COBBLEMON_CATEGORY
 ) {
     override fun onPress() {
-        if (CobblemonClient.storage.selectedSlot >= 0) {
-            CobblemonClient.storage.shiftSelected(true)
-        }
+        CobblemonClient.storage.shiftSelected(true)
     }
 }

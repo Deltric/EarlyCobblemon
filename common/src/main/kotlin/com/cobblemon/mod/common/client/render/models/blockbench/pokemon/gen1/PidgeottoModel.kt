@@ -28,11 +28,11 @@ import net.minecraft.util.math.Vec3d
 
 class PidgeottoModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, BipedFrame, BiWingedFrame {
     override val rootPart = root.registerChildWithAllChildren("pidgeotto")
-    override val leftWing = getPart("wing_left")
-    override val rightWing = getPart("wing_right")
+    override val leftWing = getPart("wing_open_left")
+    override val rightWing = getPart("wing_open_right")
     override val leftLeg = getPart("leg_left")
     override val rightLeg = getPart("leg_right")
-    override val head = getPart("head")
+    override val head = getPart("neck")
     private val tail = getPart("tail")
 
     override val portraitScale = 2.8F

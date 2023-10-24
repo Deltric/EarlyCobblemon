@@ -8,6 +8,27 @@
     "weakarmor",
     "h:sandforce"
   ],
+  "drops": {
+    "amount": 5,
+    "entries": [
+      {
+        "item": "minecraft:raw_copper",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:hard_stone",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:everstone",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:black_augurite",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 70,
     "attack": 105,
@@ -32,7 +53,7 @@
       "depth": "normal",
       "light": "0-4"
     },
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.12
       }

@@ -1,20 +1,20 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "###",
-        "#M#",
-        "###"
-    ],
-    "key": {
-        "#": {
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
             "item": "minecraft:dirt"
         },
-        "M": {
+        {
+            "item": "minecraft:dirt"
+        },
+        {
+            "item": "minecraft:dirt"
+        },
+        {
             "item": "cobblemon:mulch_base"
         }
-    },
-    "result":
-    {
+    ],
+    "result": {
         "item": "cobblemon:loamy_mulch"
     }
 }

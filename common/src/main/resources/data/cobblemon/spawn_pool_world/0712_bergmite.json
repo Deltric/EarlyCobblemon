@@ -12,12 +12,12 @@
             "type": "pokemon",
             "context": "grounded",
             "bucket": "common",
-            "level": "9-30",
+            "level": "5-30",
             "weight": 9.0,
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_frozen"
+                    "#cobblemon:is_frozen_ocean"
                 ]
             }
         },
@@ -29,12 +29,46 @@
             ],
             "type": "pokemon",
             "bucket": "common",
-            "level": "9-30",
+            "level": "5-30",
             "weight": 9.0,
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_frozen"
+                    "#cobblemon:is_frozen_ocean"
+                ]
+            }
+        },
+        {
+            "id": "bergmite-3",
+            "pokemon": "bergmite",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "bucket": "common",
+            "context": "grounded",
+            "level": "5-30",
+            "weight": 9.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_nether_frozen"
+                ]
+            }
+        },
+        {
+            "id": "bergmite-3",
+            "pokemon": "bergmite",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "bucket": "common",
+            "context": "grounded",
+            "level": "5-30",
+            "weight": 9.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_nether_frozen"
                 ]
             }
         }

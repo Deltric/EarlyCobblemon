@@ -10,11 +10,11 @@ package com.cobblemon.mod.common.api.drop
 
 import com.cobblemon.mod.common.api.events.CobblemonEvents.LOOT_DROPPED
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
-import kotlin.random.Random
 import net.minecraft.entity.LivingEntity
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.Vec3d
+import kotlin.random.Random
 
 /**
  * A table of drops that can produce a list of [DropEntry]. You can produce a drop list from [getDrops] to

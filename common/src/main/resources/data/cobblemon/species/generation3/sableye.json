@@ -74,20 +74,23 @@
     "human_like"
   ],
   "drops": {
-    "amount": "3",
+    "amount": 5,
     "entries": [
       {
         "item": "minecraft:amethyst_shard",
-        "quantityRange": "1-2",
-        "percentage": 66
+        "quantityRange": "0-2"
       },
       {
         "item": "minecraft:diamond",
-        "percentage": 5
+        "percentage": 5.0
       },
       {
         "item": "minecraft:emerald",
-        "percentage": 5
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:roseli_berry",
+        "percentage": 5.0
       }
     ]
   },

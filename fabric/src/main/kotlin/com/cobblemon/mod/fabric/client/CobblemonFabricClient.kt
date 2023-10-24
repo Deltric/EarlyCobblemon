@@ -8,11 +8,9 @@
 
 package com.cobblemon.mod.fabric.client
 
-import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonClientImplementation
 import com.cobblemon.mod.common.CobblemonEntities
-import com.cobblemon.mod.common.api.text.gray
-import com.cobblemon.mod.common.client.CobblemonBerryAtlas
+import com.cobblemon.mod.common.client.render.CobblemonAtlases
 import com.cobblemon.mod.common.client.CobblemonClient
 import com.cobblemon.mod.common.client.CobblemonClient.reloadCodedAssets
 import com.cobblemon.mod.common.client.keybind.CobblemonKeyBinds
@@ -22,7 +20,6 @@ import com.cobblemon.mod.common.platform.events.ClientPlayerEvent
 import com.cobblemon.mod.common.platform.events.ClientTickEvent
 import com.cobblemon.mod.common.platform.events.ItemTooltipEvent
 import com.cobblemon.mod.common.platform.events.PlatformEvents
-import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.fabric.CobblemonFabric
 import java.util.function.Supplier
@@ -42,7 +39,6 @@ import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener
 import net.minecraft.block.Block
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
-import net.minecraft.client.MinecraftClient
 import net.minecraft.client.color.block.BlockColorProvider
 import net.minecraft.client.color.item.ItemColorProvider
 import net.minecraft.client.model.TexturedModelData
@@ -58,9 +54,9 @@ import net.minecraft.particle.ParticleType
 import net.minecraft.resource.ResourceManager
 import net.minecraft.resource.ResourceReloader
 import net.minecraft.resource.ResourceType
-import net.minecraft.util.Identifier
-import net.minecraft.util.Language
 import net.minecraft.util.profiler.Profiler
+import net.minecraft.util.profiling.jfr.event.WorldLoadFinishedEvent
+import net.minecraft.world.WorldEvents
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executor
 
@@ -83,18 +79,19 @@ class CobblemonFabricClient: ClientModInitializer, CobblemonClientImplementation
                 prepareExecutor: Executor?,
                 applyExecutor: Executor?
             ): CompletableFuture<Void> {
-                val result = CompletableFuture.runAsync() {
-                    CobblemonBerryAtlas(MinecraftClient.getInstance().textureManager).reload(synchronizer, manager, prepareProfiler, applyProfiler, prepareExecutor, applyExecutor)
+                //Atlases must be loaded before we reloadCodedAssets, BerryModelRepository needs the berry atlas
+                val atlasFutures = mutableListOf<CompletableFuture<Void>>()
+                CobblemonAtlases.atlases.forEach {
+                    atlasFutures.add(it.reload(synchronizer, manager, prepareProfiler, applyProfiler, prepareExecutor, applyExecutor))
+                }
+                val result = CompletableFuture.allOf(*atlasFutures.toTypedArray()).thenRun {
+                    reloadCodedAssets(manager!!)
                 }
                 return result
             }
 
-            override fun getFabricId() = cobblemonResource("berry_atlas")
+            override fun getFabricId() = cobblemonResource("atlases")
 
-        })
-        ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(object : SimpleSynchronousResourceReloadListener {
-            override fun getFabricId() = cobblemonResource("resources")
-            override fun reload(resourceManager: ResourceManager) { reloadCodedAssets(resourceManager) }
         })
 
         CobblemonKeyBinds.register(KeyBindingHelper::registerKeyBinding)

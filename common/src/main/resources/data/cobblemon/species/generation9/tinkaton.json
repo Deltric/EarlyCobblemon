@@ -9,6 +9,19 @@
     "owntempo",
     "h:pickpocket"
   ],
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:raw_iron",
+        "quantityRange": "0-3"
+      },
+      {
+        "item": "cobblemon:razz_berry",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 85,
     "attack": 75,
@@ -45,6 +58,7 @@
   "moves": [
     "1:astonish",
     "1:fairywind",
+    "1:gigatonhammer",
     "5:babydolleyes",
     "8:metalclaw",
     "11:covet",

@@ -54,6 +54,8 @@ class ClientStorageManager {
     fun switchToPokemon(pokemon: UUID) {
         selectedPokemon = pokemon
         selectedSlot = myParty.indexOf(myParty.findByUUID(pokemon))
+        // Check selected Pokémon in-case it's been set to -1 (Pokémon was not in the party for some reason)
+        checkSelectedPokemon()
     }
 
     fun checkSelectedPokemon() {

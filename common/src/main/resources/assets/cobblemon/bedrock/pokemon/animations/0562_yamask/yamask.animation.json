@@ -498,6 +498,11 @@
 						"1.2917": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.25": {
+					"effect": "pokemon.yamask.cry"
+				}
 			}
 		}
 	}

@@ -885,6 +885,11 @@
 						"1.4583": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "pokemon.ninjask.cry"
+				}
 			}
 		},
 		"animation.ninjask.run_quirk": {

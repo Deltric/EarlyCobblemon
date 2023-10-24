@@ -7,6 +7,15 @@
     "torrent",
     "h:sheerforce"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 50,
     "attack": 65,
@@ -17,7 +26,7 @@
   },
   "catchRate": 45,
   "maleRatio": 0.875,
-  "shoulderMountable": false,
+  "shoulderMountable": true,
   "baseExperienceYield": 63,
   "experienceGroup": "medium_slow",
   "eggCycles": 20,
@@ -37,6 +46,9 @@
         "canSwimInWater": true,
         "canBreatheUnderwater": true,
         "canWalkOnWater": true
+      },
+      "walk": {
+        "walkSpeed": 0.25
       }
     }
   },

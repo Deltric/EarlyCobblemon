@@ -27,6 +27,7 @@ repositories {
     mavenCentral()
     //JEI
     maven("https://maven.blamejared.com/")
+    maven("https://maven.tterrag.com/")
 }
 
 license {

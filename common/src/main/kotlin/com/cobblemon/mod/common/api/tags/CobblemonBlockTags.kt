@@ -26,7 +26,9 @@ object CobblemonBlockTags {
     @JvmField val APRICORN_LOGS = createTag("apricorn_logs")
     @JvmField val APRICORN_SAPLINGS = createTag("apricorn_saplings")
     @JvmField val APRICORNS = createTag("apricorns")
+    @JvmField val BERRY_WILD_SOIL = createTag("berry_wild_soil")
     @JvmField val BERRY_SOIL = createTag("berry_soil")
+    @JvmField val BERRY_REPLACEABLE = createTag("berry_replaceable")
     @JvmField val CROPS = createTag("crops")
     @JvmField val DRIPSTONE_GROWABLE = createTag("dripstone_growable")
     @JvmField val DRIPSTONE_REPLACEABLES = createTag("dripstone_replaceables")
@@ -36,7 +38,8 @@ object CobblemonBlockTags {
     @JvmField val ROOTS_SPREADABLE = createTag("roots_spreadable")
     @JvmField val SMALL_FLOWERS = createTag("small_flowers")
     @JvmField val SEES_SKY = createTag("sees_sky")
-
+    @JvmField val SNOW_BLOCK = createTag("snow_block")
+    @JvmField val ROOTS = createTag("roots")
     private fun createTag(name: String) = TagKey.of(RegistryKeys.BLOCK, cobblemonResource(name))
 
 }

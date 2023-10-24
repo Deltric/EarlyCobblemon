@@ -7,12 +7,13 @@
             "id": "spinda-1",
             "pokemon": "spinda",
             "presets": [
-                "natural"
+                "natural",
+				"wild"
             ],
             "type": "pokemon",
             "context": "grounded",
             "bucket": "rare",
-            "level": "10-36",
+            "level": "11-36",
             "weight": 9.9,
             "condition": {
                 "canSeeSky": true,
@@ -26,12 +27,13 @@
             "id": "spinda-2",
             "pokemon": "spinda special_spots=1 face_spots=none face_spots2=none",
             "presets": [
-                "natural"
+                "natural",
+				"wild"
             ],
             "type": "pokemon",
             "context": "grounded",
             "bucket": "rare",
-            "level": "10-36",
+            "level": "11-36",
             "weight": 0.025,
             "condition": {
                 "canSeeSky": true,
@@ -45,12 +47,13 @@
             "id": "spinda-3",
             "pokemon": "spinda special_spots=2 face_spots=none face_spots2=none",
             "presets": [
-                "natural"
+                "natural",
+				"wild"
             ],
             "type": "pokemon",
             "context": "grounded",
             "bucket": "rare",
-            "level": "10-36",
+            "level": "11-36",
             "weight": 0.025,
             "condition": {
                 "canSeeSky": true,
@@ -64,12 +67,13 @@
             "id": "spinda-4",
             "pokemon": "spinda special_spots=3 face_spots=none face_spots2=none",
             "presets": [
-                "natural"
+                "natural",
+				"wild"
             ],
             "type": "pokemon",
             "context": "grounded",
             "bucket": "rare",
-            "level": "10-36",
+            "level": "11-36",
             "weight": 0.025,
             "condition": {
                 "canSeeSky": true,
@@ -83,12 +87,13 @@
             "id": "spinda-5",
             "pokemon": "spinda special_spots=4 face_spots=none face_spots2=none",
             "presets": [
-                "natural"
+                "natural",
+				"wild"
             ],
             "type": "pokemon",
             "context": "grounded",
             "bucket": "rare",
-            "level": "10-36",
+            "level": "11-36",
             "weight": 0.025,
             "condition": {
                 "canSeeSky": true,

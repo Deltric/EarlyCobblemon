@@ -4,11 +4,27 @@
     "minecraft:dark_forest",
     "minecraft:mushroom_fields",
     {
+      "id": "#c:mushroom",
+      "required": false
+    },
+	{
+      "id": "#forge:is_mushroom",
+      "required": false
+    },
+	{
       "id": "terralith:cave/fungal_caves",
       "required": false
     },
 	{
       "id": "terralith:mirage_isles",
+      "required": false
+    },
+    {
+      "id": "wythers:ancient_taiga",
+      "required": false
+    },
+    {
+      "id": "wythers:deep_dark_incursion",
       "required": false
     }
   ]

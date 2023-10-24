@@ -9,6 +9,26 @@
 	{
       "id": "terralith:stony_spires",
       "required": false
+    },
+    {
+      "id": "wythers:fungous_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lichenous_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lush_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lush_fungous_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:mossy_dripstone_caves",
+      "required": false 
     }
   ]
 }

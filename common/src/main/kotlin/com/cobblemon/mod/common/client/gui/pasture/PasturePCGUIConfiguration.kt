@@ -9,6 +9,7 @@
 package com.cobblemon.mod.common.client.gui.pasture
 
 import com.cobblemon.mod.common.CobblemonNetwork
+import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.pasture.PasturePermissions
 import com.cobblemon.mod.common.api.reactive.SettableObservable
 import com.cobblemon.mod.common.client.gui.pc.PCGUIConfiguration
@@ -27,6 +28,7 @@ class PasturePCGUIConfiguration(
     selectOverride = { pcGui, position, pokemon ->
         if (pokemon != null && !pokemon.isFainted() && pokemon.tetheringId == null && permissions.canPasture) {
             CobblemonNetwork.sendToServer(PasturePokemonPacket(pokemonId = pokemon.uuid, pastureId = pastureId))
+            pcGui.playSound(CobblemonSounds.PC_CLICK)
         }
     },
     canSelect = { pokemon -> !pokemon.isFainted() && pokemon.tetheringId == null }

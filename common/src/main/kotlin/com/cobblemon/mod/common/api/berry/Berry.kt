@@ -23,6 +23,7 @@ import com.cobblemon.mod.common.util.writeBox
 import com.google.gson.annotations.SerializedName
 import java.awt.Color
 import java.util.EnumSet
+import kotlin.math.min
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.client.model.ModelPart
@@ -159,16 +160,14 @@ class Berry(
         val base = this.baseYield.random()
         val bonus = this.bonusYield(world, state, pos)
         var yield = base + bonus.first
-        val event = BerryYieldCalculationEvent(this, world, state, pos, placer, yield, bonus.second)
         val treeEntity = world.getBlockEntity(pos) as BerryBlockEntity
-        if (treeEntity.mulchVariant == MulchVariant.RICH) {
-            yield = yield.times(1.2).coerceAtMost(maxYield().toDouble()).toInt()
-            treeEntity.mulchDuration--
+        if (BerryBlock.getMulch(state) == MulchVariant.RICH) {
+            yield = min(yield + 1, maxYield())
+            treeEntity.decrementMulchDuration(world, pos, state)
         }
+        val event = BerryYieldCalculationEvent(this, world, state, pos, placer, yield, bonus.second)
         CobblemonEvents.BERRY_YIELD.post(event) { yield = it.yield }
         return yield
-        //Just for testing the renderer
-        //return growthPoints.size
     }
 
     /**
@@ -293,14 +292,13 @@ class Berry(
     private fun bonusYield(world: World, state: BlockState, pos: BlockPos): Pair<Int, Collection<GrowthFactor>> {
         var bonus = 0
         val passed = arrayListOf<GrowthFactor>()
-        val entity = world.getBlockEntity(pos) as BerryBlockEntity
-        val hasBiomeMulch = favoriteMulches.contains(entity.mulchVariant)
+        val mulchVariant = BerryBlock.getMulch(state)
+        val hasBiomeMulch = mulchVariant in favoriteMulches
         this.growthFactors.forEach { factor ->
             if (factor.isValid(world, state, pos)) {
                 bonus += factor.yield()
                 passed += factor
-            }
-            else if (hasBiomeMulch) {
+            } else if (hasBiomeMulch) {
                 bonus += factor.yield()
             }
         }

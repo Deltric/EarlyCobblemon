@@ -22,7 +22,7 @@ import net.minecraft.util.math.Vec3d
 
 class PersianModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, QuadrupedFrame {
     override val rootPart = root.registerChildWithAllChildren("persian")
-    override val head = getPart("head")
+    override val head = getPart("neck")
 
     override val foreLeftLeg= getPart("leg_front_left1")
     override val foreRightLeg = getPart("leg_front_right1")

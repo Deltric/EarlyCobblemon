@@ -20,7 +20,14 @@ import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
-import net.minecraft.block.*
+import net.minecraft.block.Block
+import net.minecraft.block.BlockRenderType
+import net.minecraft.block.BlockState
+import net.minecraft.block.BlockWithEntity
+import net.minecraft.block.Blocks
+import net.minecraft.block.HorizontalFacingBlock
+import net.minecraft.block.ShapeContext
+import net.minecraft.block.Waterloggable
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.LivingEntity
@@ -34,7 +41,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
 import net.minecraft.state.property.EnumProperty
-import net.minecraft.util.*
+import net.minecraft.util.ActionResult
+import net.minecraft.util.BlockMirror
+import net.minecraft.util.BlockRotation
+import net.minecraft.util.Hand
+import net.minecraft.util.StringIdentifiable
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
@@ -43,6 +54,7 @@ import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
+import net.minecraft.world.WorldEvents
 import net.minecraft.world.WorldView
 
 class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable {
@@ -168,15 +180,6 @@ class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable 
 
     private fun isBase(state: BlockState): Boolean = state.get(PART) == PCPart.BOTTOM
 
-    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity?) {
-        super.onBreak(world, pos, state, player)
-        val otherPart = world.getBlockState(getPositionOfOtherPart(state, pos))
-        if (otherPart.block is PCBlock) {
-            world.setBlockState(getPositionOfOtherPart(state, pos), Blocks.AIR.defaultState, 35)
-            world.syncWorldEvent(player, 2001, getPositionOfOtherPart(state, pos), Block.getRawIdFromState(otherPart))
-        }
-    }
-
     override fun onPlaced(world: World, pos: BlockPos, state: BlockState, placer: LivingEntity?, itemStack: ItemStack?) {
         world.setBlockState(pos.up(), state
             .with(PART, PCPart.TOP)
@@ -203,6 +206,20 @@ class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable 
         val blockPos = pos.down()
         val blockState = world.getBlockState(blockPos)
         return if (state.get(PART) == PCPart.BOTTOM) blockState.isSideSolidFullSquare(world, blockPos, Direction.UP) else blockState.isOf(this)
+    }
+
+    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity?) {
+        if (!world.isClient && player?.isCreative == true) {
+            var blockPos: BlockPos = BlockPos.ORIGIN
+            var blockState: BlockState = state
+            val part = state.get(PART)
+            if (part == PCPart.TOP && world.getBlockState(pos.down().also { blockPos = it }).also { blockState = it }.isOf(state.block) && blockState.get(PART) == PCPart.BOTTOM) {
+                val blockState2 = if (blockState.fluidState.isOf(Fluids.WATER)) Blocks.WATER.defaultState else Blocks.AIR.defaultState
+                world.setBlockState(blockPos, blockState2, NOTIFY_ALL or SKIP_DROPS)
+                world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, getRawIdFromState(blockState))
+            }
+        }
+        super.onBreak(world, pos, state, player)
     }
 
     @Deprecated("Deprecated in Java")
@@ -281,15 +298,24 @@ class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable 
 
     override fun getStateForNeighborUpdate(
         state: BlockState,
-        direction: Direction?,
-        neighborState: BlockState?,
+        direction: Direction,
+        neighborState: BlockState,
         world: WorldAccess,
-        pos: BlockPos?,
-        neighborPos: BlockPos?
-    ): BlockState? {
+        pos: BlockPos,
+        neighborPos: BlockPos
+    ): BlockState {
         if (state.get(WATERLOGGED)) {
             world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world))
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
+
+        val isPC = neighborState.isOf(this)
+        val part = state.get(PART)
+        if (!isPC && part == PCPart.TOP && neighborPos == pos.down()) {
+            return Blocks.AIR.defaultState
+        } else if (!isPC && part == PCPart.BOTTOM && neighborPos == pos.up()) {
+            return Blocks.AIR.defaultState
+        }
+
+        return state
     }
 }

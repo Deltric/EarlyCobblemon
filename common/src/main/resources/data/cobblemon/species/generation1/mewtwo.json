@@ -7,6 +7,14 @@
     "pressure",
     "h:unnerve"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:twisted_spoon"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 106,
     "attack": 110,

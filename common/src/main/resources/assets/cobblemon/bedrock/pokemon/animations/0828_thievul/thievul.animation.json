@@ -820,6 +820,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.125": {
+					"effect": "pokemon.thievul.cry"
+				}
 			}
 		},
 		"animation.thievul.faint_WIP": {

@@ -1,11 +1,13 @@
 {
   "parent": "cobblemon:recipes/root",
   "criteria": {
-    "has_seeds": {
+    "has_leaf": {
       "conditions": {
         "items": [
           {
-            "tag": "cobblemon:seeds"            
+            "items": [
+              "cobblemon:leaf_stone"
+            ]
           }
         ]
       },
@@ -20,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_seeds",
+      "has_leaf",
       "has_the_recipe"
     ]
   ],

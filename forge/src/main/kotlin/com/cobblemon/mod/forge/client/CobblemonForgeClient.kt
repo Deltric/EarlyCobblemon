@@ -11,8 +11,9 @@ package com.cobblemon.mod.forge.client
 import com.cobblemon.mod.common.CobblemonClientImplementation
 import com.cobblemon.mod.common.CobblemonEntities
 import com.cobblemon.mod.common.api.pokeball.PokeBalls
-import com.cobblemon.mod.common.client.CobblemonBerryAtlas
+import com.cobblemon.mod.common.client.render.CobblemonAtlases
 import com.cobblemon.mod.common.client.CobblemonClient
+import com.cobblemon.mod.common.client.CobblemonClient.reloadCodedAssets
 import com.cobblemon.mod.common.client.keybind.CobblemonKeyBinds
 import com.cobblemon.mod.common.item.group.CobblemonItemGroups
 import com.cobblemon.mod.common.particle.CobblemonParticles
@@ -40,6 +41,7 @@ import net.minecraft.resource.ReloadableResourceManagerImpl
 import net.minecraft.resource.ResourceManager
 import net.minecraft.resource.ResourceReloader
 import net.minecraft.resource.SynchronousResourceReloader
+import net.minecraft.util.profiler.Profiler
 import net.minecraftforge.client.ForgeHooksClient
 import net.minecraftforge.client.event.ModelEvent
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent
@@ -51,6 +53,8 @@ import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.Executor
 import java.util.function.Supplier
 
 object CobblemonForgeClient : CobblemonClientImplementation {
@@ -77,12 +81,25 @@ object CobblemonForgeClient : CobblemonClientImplementation {
     }
 
     private fun onRegisterReloadListener(event: RegisterClientReloadListenersEvent) {
-        event.registerReloadListener(CobblemonBerryAtlas(MinecraftClient.getInstance().textureManager))
-        event.registerReloadListener(object : SynchronousResourceReloader {
-            override fun reload(resourceManager: ResourceManager) {
-                CobblemonClient.reloadCodedAssets(resourceManager)
+        event.registerReloadListener { synchronizer, manager, prepareProfiler, applyProfiler, prepareExecutor, applyExecutor ->
+            val atlasFutures = mutableListOf<CompletableFuture<Void>>()
+            CobblemonAtlases.atlases.forEach {
+                atlasFutures.add(
+                    it.reload(
+                        synchronizer,
+                        manager,
+                        prepareProfiler,
+                        applyProfiler,
+                        prepareExecutor,
+                        applyExecutor
+                    )
+                )
             }
-        })
+            val result = CompletableFuture.allOf(*atlasFutures.toTypedArray()).thenRun {
+                reloadCodedAssets(manager!!)
+            }
+            result
+        }
 
     }
 
@@ -130,9 +147,17 @@ object CobblemonForgeClient : CobblemonClientImplementation {
         event.registerSpriteSet(CobblemonParticles.SNOWSTORM_PARTICLE_TYPE, SnowstormParticleType::Factory)
     }
 
+    var lastUpdateTime: Long? = null
+
     private fun onRenderGuiOverlayEvent(event: RenderGuiOverlayEvent.Pre) {
         if (event.overlay.id == VanillaGuiOverlay.CHAT_PANEL.id()) {
-            CobblemonClient.beforeChatRender(event.guiGraphics, event.partialTick)
+            val lastUpdateTime = lastUpdateTime
+            if (lastUpdateTime != null) {
+                // "Why don't you just use the event.partialDetalTicks"
+                // Well JAMES it's because for some reason the value is like 2.8x too big. Forge bug? Weird event structure? Don't know don't care
+                CobblemonClient.beforeChatRender(event.guiGraphics, (System.currentTimeMillis() - lastUpdateTime) / 1000F * 20F)
+            }
+            this.lastUpdateTime = System.currentTimeMillis()
         }
     }
 

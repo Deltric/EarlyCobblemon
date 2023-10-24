@@ -62,6 +62,8 @@ object PartySendBinding : CobblemonBlockingKeyBinding(
         canApplyChange = true
         val player = MinecraftClient.getInstance().player ?: return
 
+        if (player.isSpectator) return
+
         val battle = CobblemonClient.battle
         if (battle != null) {
             battle.minimised = !battle.minimised

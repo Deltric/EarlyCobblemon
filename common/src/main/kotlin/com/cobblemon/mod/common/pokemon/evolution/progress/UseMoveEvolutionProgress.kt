@@ -40,14 +40,7 @@ class UseMoveEvolutionProgress : EvolutionProgress<UseMoveEvolutionProgress.Prog
         this.progress = Progress(MoveTemplate.dummy(""), 0)
     }
 
-    override fun shouldKeep(pokemon: Pokemon): Boolean {
-        val evolutionController = pokemon.evolutionProxy.server()
-        return pokemon.form.evolutions.any { evolution ->
-            evolution.requirements.any { requirement ->
-                requirement is UseMoveRequirement && requirement.move == this.progress.move && requirement.amount == this.currentProgress().amount && !evolutionController.contains(evolution)
-            }
-        }
-    }
+    override fun shouldKeep(pokemon: Pokemon): Boolean = supports(pokemon, this.progress.move)
 
     override fun loadFromNBT(nbt: NbtCompound) {
         val moveId = nbt.getString(MOVE)
@@ -83,9 +76,19 @@ class UseMoveEvolutionProgress : EvolutionProgress<UseMoveEvolutionProgress.Prog
     )
 
     companion object {
+
         val ID = cobblemonResource("use_move")
         private const val MOVE = "move"
         private const val AMOUNT = "amount"
+
+        fun supports(pokemon: Pokemon, move: MoveTemplate): Boolean {
+            return pokemon.form.evolutions.any { evolution ->
+                evolution.requirements.any { requirement ->
+                    requirement is UseMoveRequirement && requirement.move == move
+                }
+            }
+        }
+
     }
 
 }

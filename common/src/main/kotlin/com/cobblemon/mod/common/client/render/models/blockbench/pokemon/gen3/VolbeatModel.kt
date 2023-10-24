@@ -56,7 +56,7 @@ class VolbeatModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bipe
             poseTypes = PoseType.UI_POSES + PoseType.STAND,
             transformTicks = 10,
             quirks = arrayOf(blink),
-            condition = { !it.isBattling },
+            condition = { !it.isBattling && !it.isTouchingWater},
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("volbeat", "ground_idle")
@@ -65,9 +65,10 @@ class VolbeatModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bipe
 
         hover = registerPose(
             poseName = "hover",
-            poseType = PoseType.HOVER,
+            poseTypes = setOf(PoseType.HOVER, PoseType.FLOAT),
             transformTicks = 10,
             quirks = arrayOf(blink),
+            condition = { it.isTouchingWater },
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("volbeat", "air_idle")
@@ -76,9 +77,10 @@ class VolbeatModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bipe
 
         fly = registerPose(
             poseName = "fly",
-            poseType = PoseType.FLY,
+            poseTypes = setOf(PoseType.FLY, PoseType.SWIM),
             transformTicks = 10,
             quirks = arrayOf(blink),
+            condition = { it.isTouchingWater },
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("volbeat", "air_fly")
@@ -90,6 +92,7 @@ class VolbeatModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bipe
             poseType = PoseType.WALK,
             transformTicks = 10,
             quirks = arrayOf(blink),
+            condition = { !it.isTouchingWater },
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("volbeat", "ground_walk")

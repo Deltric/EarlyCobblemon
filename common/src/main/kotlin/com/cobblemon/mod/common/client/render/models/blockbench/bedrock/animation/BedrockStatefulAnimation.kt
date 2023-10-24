@@ -33,13 +33,20 @@ open class BedrockStatefulAnimation<T : Entity>(
 
     var startedSeconds = -1F
     var isTransformAnimation = false
+    var isPosePauserAnimation = true
     private var afterAction: (T, PoseableEntityState<T>) -> Unit = { _, _ -> }
 
     override val isTransform: Boolean
         get() = isTransformAnimation
+    override val isPosePauser: Boolean
+        get() = isPosePauserAnimation
 
     fun isTransformAnimation(value: Boolean) = this.also {
         it.isTransformAnimation = value
+    }
+
+    fun isPosePauserAnimation(value: Boolean) = this.also {
+        it.isPosePauserAnimation = value
     }
 
     fun andThen(action: (entity: T, PoseableEntityState<T>) -> Unit) = this.also {

@@ -38,14 +38,7 @@ class RecoilEvolutionProgress : EvolutionProgress<RecoilEvolutionProgress.Progre
         this.updateProgress(Progress(0))
     }
 
-    override fun shouldKeep(pokemon: Pokemon): Boolean {
-        val evolutionController = pokemon.evolutionProxy.server()
-        return pokemon.form.evolutions.any { evolution ->
-            evolution.requirements.any { requirement ->
-                requirement is RecoilRequirement && requirement.amount == this.currentProgress().recoil && !evolutionController.contains(evolution)
-            }
-        }
-    }
+    override fun shouldKeep(pokemon: Pokemon): Boolean = supports(pokemon)
 
     override fun loadFromNBT(nbt: NbtCompound) {
         val recoil = nbt.getInt(RECOIL)
@@ -67,6 +60,14 @@ class RecoilEvolutionProgress : EvolutionProgress<RecoilEvolutionProgress.Progre
 
         val ID = cobblemonResource(RecoilRequirement.ADAPTER_VARIANT)
         private const val RECOIL = "recoil"
+
+        fun supports(pokemon: Pokemon): Boolean {
+            return pokemon.form.evolutions.any { evolution ->
+                evolution.requirements.any { requirement ->
+                    requirement is RecoilRequirement
+                }
+            }
+        }
 
     }
 

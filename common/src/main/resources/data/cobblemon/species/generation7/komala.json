@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "name": "Komala",
   "nationalPokedexNumber": 775,
   "primaryType": "normal",
@@ -12,6 +13,18 @@
     "special_attack": 75,
     "special_defence": 95,
     "speed": 65
+  },
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:acacia_log"
+      },
+      {
+        "item": "cobblemon:chesto_berry",
+        "percentage": 5.0
+      }
+    ]
   },
   "catchRate": 45,
   "maleRatio": 0.5,

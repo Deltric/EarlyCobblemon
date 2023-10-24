@@ -152,11 +152,11 @@
     }
   },
   "drops": {
-    "amount": "1",
+    "amount": 1,
     "entries": [
       {
         "item": "cobblemon:black_sludge",
-        "percentage": 5
+        "percentage": 5.0
       }
     ]
   },
@@ -289,7 +289,7 @@
   ],
   "preEvolution": "koffing",
   "evolutions": [],
-  "baseScale": 0.9,
+  "baseScale": 1.2,
   "hitbox": {
     "width": 1.3,
     "height": 1.4,

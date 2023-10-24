@@ -10,7 +10,6 @@ package com.cobblemon.mod.common.api.spawning
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.Cobblemon.config
-import com.cobblemon.mod.common.api.spawning.mixins.CachedOnlyChunkAccessor
 import com.cobblemon.mod.common.api.spawning.prospecting.SpawningProspector
 import com.cobblemon.mod.common.api.spawning.spawner.Spawner
 import com.cobblemon.mod.common.api.spawning.spawner.SpawningArea
@@ -81,8 +80,7 @@ object CobblemonSpawningProspector : SpawningProspector {
         for (x in area.baseX until area.baseX + area.length) {
             for (z in area.baseZ until area.baseZ + area.width) {
                 val query = chunks.computeIfAbsent(Pair(getSectionCoord(x), getSectionCoord(z))) {
-                    val manager = world.chunkManager as CachedOnlyChunkAccessor
-                    manager.`cobblemon$request`(it.first, it.second, ChunkStatus.FULL)
+                    world.getChunk(it.first, it.second, ChunkStatus.FULL, false)
                 } ?: continue
 
                 var canSeeSky = world.isSkyVisibleAllowingSea(pos.set(x, yRange.first, z))
@@ -90,7 +88,7 @@ object CobblemonSpawningProspector : SpawningProspector {
                     val state = query.getBlockState(pos.set(x, y, z))
                     blocks[x - area.baseX][y - baseY][z - area.baseZ] = WorldSlice.BlockData(
                         state = state,
-                        light = state.getOpacity(world, pos)
+                        light = world.getLightLevel(pos)
                     )
 
                     if (canSeeSky) {

@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.api.scheduling.after
 import com.cobblemon.mod.common.api.scheduling.lerp
 import com.cobblemon.mod.common.client.render.models.blockbench.PoseableEntityState
 import com.cobblemon.mod.common.client.render.models.blockbench.additives.EarBounceAdditive
+import com.cobblemon.mod.common.client.render.models.blockbench.animation.StatefulAnimation
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
@@ -46,6 +47,9 @@ class PokemonClientDelegate : PoseableEntityState<PokemonEntity>(), PokemonSideD
 
     private val minimumFallSpeed = -0.1F
     private val intensityVelocityCap = -0.5F
+
+    private var cryAnimation: StatefulAnimation<PokemonEntity, *>? = null
+
     override fun changePokemon(pokemon: Pokemon) {
         pokemon.isClient = true
         currentEntity.subscriptions.add(currentEntity.species.subscribeIncludingCurrent {
@@ -150,8 +154,13 @@ class PokemonClientDelegate : PoseableEntityState<PokemonEntity>(), PokemonSideD
     fun cry() {
         val model = currentModel ?: return
         if (model is PokemonPoseableModel) {
+           if (cryAnimation != null && cryAnimation in statefulAnimations) {
+               return
+           }
+
             val animation = model.cryAnimation(currentEntity, this) ?: return
             statefulAnimations.add(animation)
+            cryAnimation = animation
         }
     }
 }

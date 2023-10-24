@@ -20,123 +20,15 @@
       "aspects": [
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_shiny.png","layers": [
-      {
-        "name": "emissive",
-        "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_emissive_shiny.png",
-        "emissive": true,
-        "translucent": true
-      }
-    ]
-
-    },
-    {
-      "aspects": [
-        "tree-oak"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_oak.png"
-    },
-    {
-      "aspects": [
-        "tree-spruce"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_spruce.png"
-    },
-    {
-      "aspects": [
-        "tree-acacia"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_acacia.png"
-    },
-    {
-      "aspects": [
-        "tree-birch"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_birch.png"
-    },
-    {
-      "aspects": [
-        "tree-darkoak"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_dark_oak.png"
-    },
-    {
-      "aspects": [
-        "tree-jungle"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_jungle.png"
-    },
-    {
-      "aspects": [
-        "tree-mangrove"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_mangrove.png"
-    },
-    {
-      "aspects": [
-        "tree-cherry"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_cherry.png"
-    },
-    {
-      "aspects": [
-        "tree-apricorn"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_apricorn.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-oak"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_oak_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-spruce"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_spruce_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-acacia"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_acacia_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-birch"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_birch_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-darkoak"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_dark_oak_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-jungle"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_jungle_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-mangrove"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_mangrove_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-cherry"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_cherry_shiny.png"
-    },
-    {
-      "aspects": [
-        "shiny","tree-apricorn"
-      ],
-      "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_apricorn_shiny.png"
+        "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_shiny.png",
+        "layers": [
+          {
+            "name": "emissive",
+            "texture": "cobblemon:textures/pokemon/0709_trevenant/trevenant_emissive_shiny.png",
+            "emissive": true,
+            "translucent": true
+          }
+        ]
     }
   ]
 }

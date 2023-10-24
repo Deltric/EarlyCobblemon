@@ -8,6 +8,15 @@
     "sturdy",
     "h:swiftswim"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:scute",
+        "quantityRange": "0-2"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 54,
     "attack": 78,

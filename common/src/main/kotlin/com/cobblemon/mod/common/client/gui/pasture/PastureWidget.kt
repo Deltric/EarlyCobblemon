@@ -8,10 +8,12 @@
 
 package com.cobblemon.mod.common.client.gui.pasture
 
+import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.api.text.bold
 import com.cobblemon.mod.common.client.CobblemonResources
 import com.cobblemon.mod.common.client.gui.pc.PCGUI
+import com.cobblemon.mod.common.client.gui.pc.StorageWidget
 import com.cobblemon.mod.common.client.gui.summary.widgets.SoundlessWidget
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.net.messages.server.pasture.UnpastureAllPokemonPacket
@@ -21,6 +23,7 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.text.Text
 
 class PastureWidget(
+    val storageWidget: StorageWidget,
     val pasturePCGUIConfiguration: PasturePCGUIConfiguration,
     x: Int,
     y: Int
@@ -35,6 +38,7 @@ class PastureWidget(
         x = x + 6,
         y = y + 153
     ) {
+        storageWidget.pcGui.playSound(CobblemonSounds.PC_CLICK)
         UnpastureAllPokemonPacket(pasturePCGUIConfiguration.pastureId).sendToServer()
     }
 

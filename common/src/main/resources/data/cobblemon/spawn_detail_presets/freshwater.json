@@ -1,8 +1,12 @@
 {
   "condition": {
-    "biomes": [ "#cobblemon:is_freshwater" ]
+    "biomes": [
+	  "#cobblemon:is_freshwater"
+	]
   },
   "anticondition": {
-    "biomes": [ "#cobblemon:is_freezing" ]
+    "biomes": [
+	  "#cobblemon:is_freezing"
+	]
   }
 }

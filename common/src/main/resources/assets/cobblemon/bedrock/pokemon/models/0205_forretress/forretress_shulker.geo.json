@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.forretress",
+				"identifier": "geometry.forretress_shulker",
 				"texture_width": 128,
 				"texture_height": 128,
 				"visible_bounds_width": 3,
@@ -46,7 +46,6 @@
 					"parent": "body",
 					"pivot": [0, 4.5, 0],
 					"cubes": [
-						{"origin": [-7.5, 0, -7.5], "size": [15, 2, 15], "uv": [45, 72]},
 						{"origin": [-9, 2, -9], "size": [18, 5, 18], "uv": [0, 0]},
 						{"origin": [-9, 7, 9], "size": [18, 2, 0], "uv": [90, 47]},
 						{"origin": [9, 7, -9], "size": [0, 2, 18], "uv": [90, 27]},
@@ -61,14 +60,10 @@
 					"cubes": [
 						{"origin": [-9, 12, -9], "size": [18, 2, 0], "inflate": 0.001, "uv": [54, 25]},
 						{"origin": [9, 12, -9], "size": [0, 2, 18], "inflate": 0.001, "uv": [90, 5]},
-						{"origin": [-9, 12, 9], "size": [18, 2, 0], "inflate": 0.001, "uv": [89, 25]},
+						{"origin": [-9, 12, 9], "size": [18, 2, 0], "inflate": 0.001, "uv": [90, 25]},
 						{"origin": [-9, 12, -9], "size": [0, 2, 18], "inflate": 0.001, "uv": [54, 5]},
 						{"origin": [-9, 14, -9], "size": [18, 4, 18], "uv": [0, 23]},
-						{"origin": [-9, 18, -9], "size": [18, 2, 18], "uv": [0, 45]},
-						{"origin": [-7.5, 18.9, -7.5], "size": [15, 2, 15], "uv": [0, 65]},
-						{"origin": [-2.5, 19, -9], "size": [5, 4, 18], "inflate": -0.001, "uv": [0, 82]},
-						{"origin": [-10, 19, -8], "size": [5, 3, 16], "pivot": [-6.5, 22, 0], "rotation": [0, 0, -17.5], "uv": [72, 89]},
-						{"origin": [5, 19, -8], "size": [5, 3, 16], "pivot": [6.5, 22, 0], "rotation": [0, 0, 17.5], "uv": [30, 89], "mirror": true}
+						{"origin": [-9, 18, -9], "size": [18, 2, 18], "uv": [0, 45]}
 					]
 				},
 				{

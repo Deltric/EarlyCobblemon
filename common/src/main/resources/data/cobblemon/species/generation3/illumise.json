@@ -8,6 +8,19 @@
     "tintedlens",
     "h:prankster"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:bright_powder",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:bluk_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 65,
     "attack": 47,
@@ -30,6 +43,9 @@
     "moving": {
       "fly": {
         "canFly": true
+      },
+      "swim": {
+        "canWalkOnWater": true
       }
     },
     "resting": {

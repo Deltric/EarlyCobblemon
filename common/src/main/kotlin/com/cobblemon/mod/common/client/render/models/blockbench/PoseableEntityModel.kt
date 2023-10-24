@@ -397,6 +397,7 @@ abstract class PoseableEntityModel<T : Entity>(
         headPitch: Float = 0F,
         ageInTicks: Float = 0F
     ) {
+        this.context.pop(RenderContext.ENTITY)
         setDefault()
         val pose = poseTypes.firstNotNullOfOrNull { getPose(it) } ?: poses.values.first()
         pose.transformedParts.forEach { it.apply() }

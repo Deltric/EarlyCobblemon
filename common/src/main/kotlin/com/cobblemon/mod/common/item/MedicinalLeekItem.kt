@@ -8,8 +8,8 @@
 
 package com.cobblemon.mod.common.item
 
+import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.block.MedicinalLeekBlock
-import net.minecraft.block.ComposterBlock
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.*
 import net.minecraft.util.ActionResult
@@ -21,7 +21,7 @@ import net.minecraft.world.World
 class MedicinalLeekItem(block: MedicinalLeekBlock, settings: Settings) : AliasedBlockItem(block, settings) {
 
     init {
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE[this] = .65F
+        Cobblemon.implementation.registerCompostable(this, .65F)
     }
 
     override fun useOnBlock(context: ItemUsageContext): ActionResult = ActionResult.PASS

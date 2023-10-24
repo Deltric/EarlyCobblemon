@@ -31,6 +31,10 @@ class WildRestGoal(private val pokemonEntity: PokemonEntity) : Goal() {
         return true
     }
 
+    override fun canStop(): Boolean {
+        return false
+    }
+
     override fun shouldContinue(): Boolean {
         return if (pokemonEntity.canSleep() && !pokemonEntity.behaviour.resting.depth.shouldWake(pokemonEntity)) {
             true

@@ -47,13 +47,13 @@ class DiggersbyModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
 
         portrait = registerPose(
             poseName = "portrait",
-            poseTypes = PoseType.UI_POSES,
+            poseType = PoseType.PORTRAIT,
             idleAnimations = arrayOf(bedrock("diggersby", "portrait"))
         )
 
         standing = registerPose(
             poseName = "standing",
-            poseTypes = PoseType.STATIONARY_POSES,
+            poseTypes = PoseType.STATIONARY_POSES + PoseType.PROFILE,
             transformTicks = 10,
             condition = { !it.isBattling },
             idleAnimations = arrayOf(

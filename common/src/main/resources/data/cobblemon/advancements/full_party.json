@@ -12,13 +12,11 @@
   },
   "parent": "cobblemon:first_catch",
   "criteria": {
-    "catch": {
-      "trigger": "cobblemon:catch_pokemon",
-      "conditions": {
-        "count": 5,
-        "type": "any"
-      }
+	"full_party": {
+      "trigger": "cobblemon:party",
+	  "conditions": {
+		  "party": [ "any", "any", "any", "any", "any", "any" ]
+	  }
     }
-  },
-  "sends_telemetry_event": false
+  }
 }

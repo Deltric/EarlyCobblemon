@@ -25,13 +25,13 @@ import net.minecraft.world.World
 class MintItem(val nature: Nature) : CobblemonItem(Settings()), PokemonSelectingItem {
 
     override val bagItem = null
-    override fun canUseOnPokemon(pokemon: Pokemon) = (pokemon.mintedNature ?: pokemon.nature) != nature
+    override fun canUseOnPokemon(pokemon: Pokemon) = pokemon.effectiveNature != nature
     override fun applyToPokemon(
         player: ServerPlayerEntity,
         stack: ItemStack,
         pokemon: Pokemon
     ): TypedActionResult<ItemStack> {
-        return if ((pokemon.mintedNature ?: pokemon.nature) != nature) {
+        return if (pokemon.effectiveNature != nature) {
             if (!player.isCreative) {
                 stack.decrement(1)
             }

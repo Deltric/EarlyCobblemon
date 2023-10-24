@@ -19,6 +19,7 @@ import com.cobblemon.mod.common.client.CobblemonResources
 import com.cobblemon.mod.common.client.gui.ExitButton
 import com.cobblemon.mod.common.client.gui.TypeIcon
 import com.cobblemon.mod.common.client.gui.summary.Summary
+import com.cobblemon.mod.common.client.gui.summary.widgets.common.reformatNatureTextIfMinted
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.client.trade.ClientTrade
 import com.cobblemon.mod.common.net.messages.client.trade.TradeStartedPacket.TradeablePokemon
@@ -36,7 +37,6 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.sound.PositionedSoundInstance
 import net.minecraft.client.util.InputUtil
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.sound.SoundEvent
 import net.minecraft.text.MutableText
 
@@ -266,8 +266,8 @@ class TradeGUI(
 
         renderInfoLabels(context, x, y)
 
-        renderPokemonInfo(offeredPokemon, false, context, x, y)
-        renderPokemonInfo(opposingOfferedPokemon, true, context, x, y)
+        renderPokemonInfo(offeredPokemon, false, context, x, y, mouseX, mouseY)
+        renderPokemonInfo(opposingOfferedPokemon, true, context, x, y, mouseX, mouseY)
 
         if (trade.acceptedOppositeOffer) {
             blitk(
@@ -373,7 +373,7 @@ class TradeGUI(
         }
 
         // Calculate select pointer offset
-        var delayFactor = 3
+        val delayFactor = 3
         if (ticksElapsed % (2 * delayFactor) == 0) selectPointerOffsetIncrement = !selectPointerOffsetIncrement
         if (ticksElapsed % delayFactor == 0) selectPointerOffsetY += if (selectPointerOffsetIncrement) 1 else -1
 
@@ -422,7 +422,7 @@ class TradeGUI(
         MinecraftClient.getInstance().soundManager.play(PositionedSoundInstance.master(soundEvent, 1.0F))
     }
 
-    private fun renderPokemonInfo(pokemon: Pokemon?, isOpposing: Boolean, context: DrawContext, x: Int, y: Int) {
+    private fun renderPokemonInfo(pokemon: Pokemon?, isOpposing: Boolean, context: DrawContext, x: Int, y: Int, mouseX: Int, mouseY: Int) {
         if (pokemon != null) {
             val matrices = context.matrices
             // Level
@@ -530,14 +530,17 @@ class TradeGUI(
             val labelXOffset = if (isOpposing) 77 else 0
 
             // Nature
+            val natureText = reformatNatureTextIfMinted(pokemon)
             drawScaledText(
                 context = context,
-                text = pokemon.nature.displayName.asTranslated(),
+                text = natureText,
                 x = x + 108 + labelXOffset,
                 y = y + 146.5,
                 centered = true,
                 shadow = true,
-                scale = SCALE
+                scale = SCALE,
+                pMouseX = mouseX,
+                pMouseY = mouseY
             )
 
             // Ability

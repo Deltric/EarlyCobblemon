@@ -1,8 +1,17 @@
 {
   "replace": false,
   "values": [
-    "#minecraft:is_forest",
+	"#minecraft:is_forest",
+	"minecraft:cherry_grove",
     {
+      "id": "#c:flower_forests",
+      "required": false
+    },
+	{
+      "id": "#c:tree_deciduous",
+      "required": false
+    },
+	{
       "id": "terralith:alpha_islands",
       "required": false
     },
@@ -40,6 +49,34 @@
     },
 	{
       "id": "terralith:temperate_highlands",
+      "required": false
+    },
+    {
+      "id": "wythers:dry_tropical_forest",
+      "required": false
+    },
+    {
+      "id": "wythers:birch_taiga",
+      "required": false
+    },
+    {
+      "id": "wythers:boreal_forest_red",
+      "required": false
+    },
+    {
+      "id": "wythers:boreal_forest_yellow",
+      "required": false
+    },
+    {
+      "id": "wythers:subtropical_forest",
+      "required": false
+    },
+    {
+      "id": "wythers:tangled_forest",
+      "required": false
+    },
+    {
+      "id": "wythers:tropical_forest",
       "required": false
     }
   ]

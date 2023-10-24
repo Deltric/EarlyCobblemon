@@ -25,8 +25,8 @@ class NinjaskModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
 
     override val head = getPart("head")
 
-    override val portraitScale = 2.0F
-    override val portraitTranslation = Vec3d(-0.2, -0.3, 0.0)
+    override val portraitScale = 1.8F
+    override val portraitTranslation = Vec3d(-0.2, -0.4, 0.0)
 
     override val profileScale = 0.9F
     override val profileTranslation = Vec3d(0.0, 0.3, 0.0)
@@ -50,9 +50,8 @@ class NinjaskModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
 
         stand = registerPose(
             poseName = "standing",
-            poseTypes = PoseType.UI_POSES + PoseType.STAND,
+            poseTypes = PoseType.UI_POSES + PoseType.STATIONARY_POSES - PoseType.HOVER,
             transformTicks = 10,
-            condition = { !it.isBattling },
             quirks = arrayOf(blink),
             idleAnimations = arrayOf(
                 singleBoneLook(),
@@ -84,7 +83,7 @@ class NinjaskModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
 
         walk = registerPose(
             poseName = "walking",
-            poseType = PoseType.WALK,
+            poseTypes = PoseType.MOVING_POSES - PoseType.FLY,
             transformTicks = 10,
             quirks = arrayOf(blink, barrelRoll),
             idleAnimations = arrayOf(

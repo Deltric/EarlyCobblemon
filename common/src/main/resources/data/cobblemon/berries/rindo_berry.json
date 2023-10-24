@@ -31,7 +31,13 @@
     }
   ],
   "randomizedGrowthPoints": true,
-  "spawnConditions": [],
+  "spawnConditions": [
+    {
+      "variant": "cobblemon:preferred_biome",
+      "minGroveSize": 3,
+      "maxGroveSize": 5
+    }
+  ],
   "growthPoints": [
     {
       "position": {
@@ -92,40 +98,58 @@
         "y": -72.5,
         "z": 150.0
       }
+    },
+    {
+      "position": {
+        "x": 8.25,
+        "y": 28.0,
+        "z": 15.0
+      },
+      "rotation": {
+        "x": -165.0,
+        "y": 70.0,
+        "z": -125.0
+      }
+    },
+    {
+      "position": {
+        "x": 15.0,
+        "y": 23.25,
+        "z": 12.25
+      },
+      "rotation": {
+        "x": 160.0,
+        "y": 12.5,
+        "z": -175.0
+      }
+    },
+    {
+      "position": {
+        "x": 15.0,
+        "y": 27.5,
+        "z": 7.25
+      },
+      "rotation": {
+        "x": 22.5,
+        "y": -20.0,
+        "z": -2.5
+      }
     }
   ],
   "mutations": {
-    "cobblemon:sitrus_berry": "cobblemon:enigma_berry",
+    "cobblemon:hopo_berry": "cobblemon:enigma_berry",
     "cobblemon:cornn_berry": "cobblemon:kelpsy_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "box-sprout",
+  "matureShape": "box-mature",
   "flavors": {
     "SPICY": 10,
     "BITTER": 15
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:rindo_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/rindo.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:rindo_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/rindo.png"
 }

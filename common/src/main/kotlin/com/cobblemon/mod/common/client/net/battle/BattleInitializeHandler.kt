@@ -66,6 +66,7 @@ object BattleInitializeHandler : ClientNetworkPacketHandler<BattleInitializePack
                         aspects = it.aspects,
                         displayName = it.displayName,
                         hpValue = it.hpValue,
+                        maxHp = it.maxHp,
                         isHpFlat = isAlly,
                         status = it.status,
                         statChanges = it.statChanges,

@@ -196,5 +196,18 @@
   "height": 15,
   "weight": 380,
   "aspects": [],
-  "cannotDynamax": false
+  "cannotDynamax": false,
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:lucky_egg",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:shiny_stone",
+        "percentage": 10.0
+      }
+    ]
+  }
 }

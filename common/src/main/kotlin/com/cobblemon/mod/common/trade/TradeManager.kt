@@ -9,6 +9,8 @@
 package com.cobblemon.mod.common.trade
 
 import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent
 import com.cobblemon.mod.common.api.scheduling.after
 import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferExpiredPacket
 import com.cobblemon.mod.common.net.messages.client.trade.TradeOfferNotificationPacket
@@ -18,8 +20,8 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.evolution.variants.TradeEvolution
 import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.lang
-import java.util.UUID
 import net.minecraft.server.network.ServerPlayerEntity
+import java.util.*
 
 object TradeManager {
     class TradeRequest(val tradeOfferId: UUID, val senderId: UUID, val receiverId: UUID)
@@ -103,5 +105,6 @@ object TradeManager {
         pokemon2.evolutions.filterIsInstance<TradeEvolution>().firstOrNull {
             it.attemptEvolution(pokemon2, pokemon1)
         }
+        CobblemonEvents.TRADE_COMPLETED.post(TradeCompletedEvent(player1, pokemon2, player2, pokemon1))
     }
 }

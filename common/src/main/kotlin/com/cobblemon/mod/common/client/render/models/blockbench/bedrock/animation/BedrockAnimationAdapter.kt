@@ -161,27 +161,31 @@ object BedrockAnimationAdapter : JsonDeserializer<BedrockAnimation> {
             val timeDbl = time.toDouble()
             when {
                 keyframeJson is JsonObject -> {
+                    // The interpolation type, at time of writing, is only set for catmullrom ("smooth" in Blockbench)
+                    // while all other interpolation types, whether it's step or linear or bezier, work by just having
+                    // one or many linearly interpolated frames in some fancy way that I don't understand. Doesn't matter
+                    // though, once they write to a file they're just many little linear keyframes.
+                    val interpolationType = when (keyframeJson.get("lerp_mode")?.asString ?: "linear") {
+                        "catmullrom" -> InterpolationType.SMOOTH
+                        else -> InterpolationType.LINEAR
+                    }
                     if (keyframeJson.has("post")) {
                         val post = keyframeJson["post"]
-//                        val transformationData = keyframeJson["post"].asJsonArray.map { it.asDouble }
-//                        val transformationVector = Vec3d(transformationData[0], transformationData[1], transformationData[2])
                         keyframes[timeDbl] = JumpBedrockAnimationKeyFrame(
                             time = timeDbl,
                             transformation = transformation,
                             pre = deserializeMolangBoneValue(keyframeJson["pre"]?.asJsonArray ?: post.asJsonArray, transformation),
                             post = deserializeMolangBoneValue(post.asJsonArray, transformation),
-                            interpolationType = InterpolationType.SMOOTH
+                            interpolationType = interpolationType
                         )
                     } else if (keyframeJson.has("pre")) {
                         val pre = keyframeJson["pre"]
-//                        val transformationData = keyframeJson["post"].asJsonArray.map { it.asDouble }
-//                        val transformationVector = Vec3d(transformationData[0], transformationData[1], transformationData[2])
                         keyframes[timeDbl] = JumpBedrockAnimationKeyFrame(
                             time = timeDbl,
                             transformation = transformation,
                             pre = deserializeMolangBoneValue(pre.asJsonArray, transformation),
                             post = deserializeMolangBoneValue(keyframeJson["post"]?.asJsonArray ?: pre.asJsonArray, transformation),
-                            interpolationType = InterpolationType.SMOOTH
+                            interpolationType = interpolationType
                         )
                     } else {
                         throw IllegalStateException("transformation data ('post') could not be found")

@@ -8,6 +8,8 @@
 
 package com.cobblemon.mod.common.api.storage.player.adapter
 
+import com.cobblemon.mod.common.Cobblemon
+import com.cobblemon.mod.common.api.storage.player.DummyPlayerDataExtension
 import com.cobblemon.mod.common.api.storage.player.PlayerDataExtension
 import com.cobblemon.mod.common.api.storage.player.PlayerDataExtensionRegistry
 import com.google.gson.JsonDeserializationContext
@@ -34,7 +36,13 @@ object PlayerDataExtensionAdapter: JsonSerializer<PlayerDataExtension>, JsonDese
         val jObject = json.asJsonObject
         val name = jObject.get(PlayerDataExtension.NAME_KEY)
             ?: throw IllegalStateException("PlayerDataExtension without name")
-        val extension = PlayerDataExtensionRegistry.getOrException(name.asString)
-        return extension.getDeclaredConstructor().newInstance().deserialize(jObject)
+        val extension = PlayerDataExtensionRegistry.get(name.asString)
+
+        return if (extension != null) {
+            extension.getDeclaredConstructor().newInstance().deserialize(jObject)
+        } else {
+            Cobblemon.LOGGER.info("No PlayerDataExtension registered with name ${name.asString}, loading data with a dummy extension.")
+            DummyPlayerDataExtension(jObject)
+        }
     }
 }

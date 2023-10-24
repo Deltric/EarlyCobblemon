@@ -30,12 +30,18 @@
     }
   ],
   "randomizedGrowthPoints": true,
-  "spawnConditions": [],
+  "spawnConditions": [
+    {
+      "variant": "cobblemon:preferred_biome",
+      "minGroveSize": 3,
+      "maxGroveSize": 5
+    }
+  ],
   "growthPoints": [
     {
       "position": {
         "x": 7.0,
-        "y": 0.25,
+        "y": 1.25,
         "z": 7.0
       },
       "rotation": {
@@ -47,7 +53,7 @@
     {
       "position": {
         "x": 9.0,
-        "y": 0.25,
+        "y": 1.25,
         "z": 9.0
       },
       "rotation": {
@@ -59,7 +65,7 @@
     {
       "position": {
         "x": 9.25,
-        "y": -0.5,
+        "y": 0.5,
         "z": 5.75
       },
       "rotation": {
@@ -71,7 +77,7 @@
     {
       "position": {
         "x": 6.75,
-        "y": -0.75,
+        "y": 0.25,
         "z": 10.0
       },
       "rotation": {
@@ -83,7 +89,7 @@
     {
       "position": {
         "x": 9.75,
-        "y": 0.5,
+        "y": 1.5,
         "z": 6.75
       },
       "rotation": {
@@ -91,40 +97,34 @@
         "y": -62.5,
         "z": 52.5
       }
+    },
+    {
+      "position": {
+        "x": 6.25,
+        "y": 1.5,
+        "z": 9.5
+      },
+      "rotation": {
+        "x": -50.0,
+        "y": 70.0,
+        "z": 137.5
+      }
     }
   ],
   "mutations": {
-    "cobblemon:sitrus_berry": "cobblemon:enigma_berry",
+    "cobblemon:hopo_berry": "cobblemon:enigma_berry",
     "cobblemon:belue_berry": "cobblemon:rowap_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "blossom-sprout",
+  "matureShape": "blossom-mature",
   "flavors": {
     "DRY": 10,
     "BITTER": 15
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:coba_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/coba.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:coba_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/coba.png"
 }

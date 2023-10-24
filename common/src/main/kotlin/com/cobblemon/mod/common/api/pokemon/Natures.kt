@@ -167,6 +167,16 @@ object Natures {
     }
 
     /**
+     * Utility method to get a nature by string
+     * @return a nature type or null
+     */
+    fun getNature(identifier: String): Nature? {
+        val nature = getNature(cobblemonResource(identifier))
+        if(nature != null) return nature
+        return getNature(Identifier(identifier))
+    }
+
+    /**
      * Helper function for a random Nature
      * @return a random nature type
      */

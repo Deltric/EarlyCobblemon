@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.frame.HeadedFram
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPose
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import com.cobblemon.mod.common.entity.PoseType
+import com.cobblemon.mod.common.entity.PoseType.Companion.UI_POSES
 import com.cobblemon.mod.common.pokemon.Pokemon
 import net.minecraft.client.model.ModelPart
 import net.minecraft.util.math.Vec3d
@@ -21,10 +22,10 @@ class CrabominableModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame 
     override val head = getPart("head")
 
     override val portraitScale = 1.0F
-    override val portraitTranslation = Vec3d(-0.5, 1.7, 0.0)
+    override val portraitTranslation = Vec3d(-0.55, 1.65, 0.0)
 
-    override val profileScale = 1.0F
-    override val profileTranslation = Vec3d(0.0, 0.2, 0.0)
+    override val profileScale = 0.3F
+    override val profileTranslation = Vec3d(0.0, 1.2, 0.0)
 
     lateinit var standing: PokemonPose
     lateinit var walk: PokemonPose
@@ -32,7 +33,7 @@ class CrabominableModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame 
     override fun registerPoses() {
         standing = registerPose(
             poseName = "standing",
-            poseTypes = PoseType.STATIONARY_POSES,
+            poseTypes = PoseType.STATIONARY_POSES + UI_POSES,
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("crabominable", "ground_idle")

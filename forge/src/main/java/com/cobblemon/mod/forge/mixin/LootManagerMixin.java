@@ -21,22 +21,39 @@ import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceReloader;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
+import java.util.function.BiConsumer;
 
 @Mixin(LootManager.class)
 public class LootManagerMixin {
 
     @Shadow private Map<LootDataKey<?>, ?> keyToValue;
+
+    private static final String LOAD_CONDITIONS = "cobblemon:forge_load_conditions";
+
+    // Forge was going to add support to LootTable for their ICondition in 1.20, then it was 1.20.1, now it looks like it's 1.20.2
+    // Who knows when it will actually make it in, keep an eye on the necessity of this
+    @Redirect(method = "load", at = @At(value = "INVOKE", target = "Ljava/util/Map;forEach(Ljava/util/function/BiConsumer;)V"))
+    private void cobblemon$supportICondition(Map<Identifier, JsonElement> map, BiConsumer<Identifier, JsonElement> consumer) {
+        map.forEach((identifier, jsonElement) -> {
+            // If the element isn't present the result is true as well, also, it's safe to cast as JsonObject
+            if (CraftingHelper.processConditions(jsonElement.getAsJsonObject(), LOAD_CONDITIONS, ICondition.IContext.EMPTY)) {
+                consumer.accept(identifier, jsonElement);
+            }
+        });
+    }
 
     // Credit to https://github.com/FabricMC/fabric/blob/1.19.4/fabric-loot-api-v2/src/main/java/net/fabricmc/fabric/mixin/loot/LootManagerMixin.java#L49-L86
     // This is very much a copy pasta as it does exactly what we needed Forge has an event but it gets fired as each individual table loads, we need to know all the loaded ones.

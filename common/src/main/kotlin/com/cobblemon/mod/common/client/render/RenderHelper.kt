@@ -115,6 +115,7 @@ fun getDepletableRedGreen(
     return r.toFloat() to g.toFloat()
 }
 
+
 fun drawScaledText(
     context: DrawContext,
     font: Identifier? = null,
@@ -126,7 +127,9 @@ fun drawScaledText(
     maxCharacterWidth: Int = Int.MAX_VALUE,
     colour: Int = 0x00FFFFFF + ((opacity.toFloat() * 255).toInt() shl 24),
     centered: Boolean = false,
-    shadow: Boolean = false
+    shadow: Boolean = false,
+    pMouseX: Int? = null,
+    pMouseY: Int? = null
 ) {
     if (opacity.toFloat() < 0.05F) {
         return
@@ -138,7 +141,7 @@ fun drawScaledText(
     val matrices = context.matrices
     matrices.push()
     matrices.scale(scale * extraScale, scale * extraScale, 1F)
-    drawText(
+    val isHovered = drawText(
         context = context,
         font = font,
         text = text,
@@ -146,9 +149,15 @@ fun drawScaledText(
         y = y.toFloat() / (scale * extraScale) + (1 - extraScale) * fontHeight * scale,
         centered = centered,
         colour = colour,
-        shadow = shadow
+        shadow = shadow,
+        pMouseX = pMouseX?.toFloat()?.div((scale * extraScale)),
+        pMouseY = pMouseY?.toFloat()?.div(scale * extraScale)?.plus((1 - extraScale) * fontHeight * scale)
     )
     matrices.pop()
+    // Draw tooltip that was created with onHover and is attached to the MutableText
+    if (isHovered) {
+        context.drawHoverEvent(MinecraftClient.getInstance().textRenderer, text.style, pMouseX!!, pMouseY!!)
+    }
 }
 
 fun drawScaledText(

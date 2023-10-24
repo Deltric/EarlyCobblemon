@@ -990,7 +990,6 @@
 			}
 		},
 		"animation.frogadier.cry": {
-			"loop": true,
 			"animation_length": 1.16667,
 			"bones": {
 				"head": {

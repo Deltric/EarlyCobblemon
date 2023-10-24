@@ -19,6 +19,7 @@ class InBattleMove {
     var maxpp: Int = 100
     var target: MoveTarget = MoveTarget.self
     var disabled: Boolean = false
+    var gimmickMove: InBattleGimmickMove? = null
 
     companion object {
         fun loadFromBuffer(buffer: PacketByteBuf): InBattleMove {
@@ -41,6 +42,29 @@ class InBattleMove {
         buffer.writeString(move)
         buffer.writeSizedInt(IntSize.U_BYTE, pp)
         buffer.writeSizedInt(IntSize.U_BYTE, maxpp)
+        buffer.writeEnumConstant(target)
+        buffer.writeBoolean(disabled)
+    }
+}
+
+// Defined in sim/battle-actions.ts canZMove and getMaxMove
+class InBattleGimmickMove {
+    lateinit var move: String
+    var target: MoveTarget = MoveTarget.self
+    var disabled: Boolean = false
+
+    companion object {
+        fun loadFromBuffer(buffer: PacketByteBuf): InBattleGimmickMove {
+            return InBattleGimmickMove().apply {
+                move = buffer.readString()
+                target = buffer.readEnumConstant(MoveTarget::class.java)
+                disabled = buffer.readBoolean()
+            }
+        }
+    }
+
+    fun saveToBuffer(buffer: PacketByteBuf) {
+        buffer.writeString(move)
         buffer.writeEnumConstant(target)
         buffer.writeBoolean(disabled)
     }

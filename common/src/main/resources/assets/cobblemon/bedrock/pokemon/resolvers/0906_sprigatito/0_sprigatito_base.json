@@ -8,6 +8,12 @@
 			"model": "cobblemon:sprigatito.geo",
 			"texture": "cobblemon:textures/pokemon/0906_sprigatito/sprigatito.png",
 			"layers": []
+		},
+		{
+			"aspects": [
+				"shiny"
+			],
+			"texture": "cobblemon:textures/pokemon/0906_sprigatito/sprigatito_shiny.png"
 		}
 	]
 }

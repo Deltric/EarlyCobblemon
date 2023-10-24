@@ -13,7 +13,7 @@
             "type": "pokemon",
             "context": "submerged",
             "bucket": "common",
-            "level": "4-46",
+            "level": "21-46",
             "weight": 10.0,
             "condition": {
                 "canSeeSky": true,
@@ -30,7 +30,7 @@
             "type": "pokemon",
             "context": "submerged",
             "bucket": "uncommon",
-            "level": "4-46",
+            "level": "21-46",
             "weight": 10.0,
             "condition": {
                 "canSeeSky": true,
@@ -47,7 +47,7 @@
             "type": "pokemon",
             "context": "submerged",
             "bucket": "common",
-            "level": "4-46",
+            "level": "21-46",
             "weight": 5.0,
             "condition": {
                 "canSeeSky": true,
@@ -64,7 +64,7 @@
             "type": "pokemon",
             "context": "submerged",
             "bucket": "common",
-            "level": "4-46",
+            "level": "21-46",
             "weight": 10.0,
             "condition": {
                 "canSeeSky": true,
@@ -81,7 +81,7 @@
             "type": "pokemon",
             "context": "submerged",
             "bucket": "uncommon",
-            "level": "4-46",
+            "level": "21-46",
             "weight": 10.0,
             "condition": {
                 "canSeeSky": true,
@@ -98,7 +98,7 @@
             "type": "pokemon",
             "context": "submerged",
             "bucket": "common",
-            "level": "4-46",
+            "level": "21-46",
             "weight": 5.0,
             "condition": {
                 "canSeeSky": true,

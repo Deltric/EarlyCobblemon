@@ -42,7 +42,8 @@ class TradeStartedPacket(
         val aspects: Set<String>,
         val level: Int,
         val gender: Gender,
-        val heldItem: ItemStack
+        val heldItem: ItemStack,
+        val tradeable: Boolean
     ) {
         companion object {
             fun decode(buffer: PacketByteBuf) = TradeablePokemon(
@@ -51,7 +52,8 @@ class TradeStartedPacket(
                 buffer.readList { it.readString() }.toSet(),
                 buffer.readSizedInt(IntSize.U_SHORT),
                 Gender.values()[buffer.readSizedInt(IntSize.U_BYTE)],
-                buffer.readItemStack()
+                buffer.readItemStack(),
+                buffer.readBoolean()
             )
         }
 
@@ -61,7 +63,8 @@ class TradeStartedPacket(
             pokemon.aspects,
             pokemon.level,
             pokemon.gender,
-            pokemon.heldItem().copy()
+            pokemon.heldItem().copy(),
+            pokemon.tradeable
         )
 
         fun encode(buffer: PacketByteBuf) {
@@ -71,6 +74,7 @@ class TradeStartedPacket(
             buffer.writeSizedInt(IntSize.U_SHORT, level)
             buffer.writeSizedInt(IntSize.U_BYTE, gender.ordinal)
             buffer.writeItemStack(heldItem)
+            buffer.writeBoolean(tradeable)
         }
 
         fun asRenderablePokemon() = RenderablePokemon(

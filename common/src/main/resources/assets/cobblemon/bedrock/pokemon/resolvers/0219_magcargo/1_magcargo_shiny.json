@@ -5,7 +5,7 @@
     {
       "aspects": ["shiny"],
       "poser": "cobblemon:magcargo_shiny",
-      "model": "cobblemon:magcargo_shiny.geo",
+      "model": "cobblemon:magcargo.geo",
       "texture": "cobblemon:textures/pokemon/0219_magcargo/magcargo_shiny.png",
       "layers": [
         {

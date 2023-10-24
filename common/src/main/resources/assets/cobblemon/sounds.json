@@ -12,10 +12,10 @@
     "sounds": [ "cobblemon:block/healing_machine_active" ]
   },
   "mulch.place": {
-    "sounds": [ "cobblemon:mulch_place" ]
+    "sounds": [ "cobblemon:block/mulch_place_1", "cobblemon:block/mulch_place_2", "cobblemon:block/mulch_place_3" ]
   },
   "mulch.remove": {
-    "sounds": [ "cobblemon:mulch_remove" ]
+    "sounds": [ "cobblemon:block/mulch_remove_1", "cobblemon:block/mulch_remove_2", "cobblemon:block/mulch_remove_3" ]
   },
   "pc.on": {
     "sounds": [ "cobblemon:pc/pc_on" ]
@@ -43,7 +43,7 @@
     "sounds": [ "cobblemon:pokeball/capture_succeeded" ]
   },
   "poke_ball.shake": {
-    "sounds": [ "cobblemon:pokeball/shake" ]
+    "sounds": [ "cobblemon:pokeball/shake_1", "cobblemon:pokeball/shake_2", "cobblemon:pokeball/shake_3", "cobblemon:pokeball/shake_4" ]
   },
   "poke_ball.open": {
     "sounds": [ "cobblemon:pokeball/open" ]
@@ -80,6 +80,9 @@
   },
   "medicine_spray.use": {
     "sounds": [ "cobblemon:medicine_spray_use" ]
+  },
+  "berry.harvest": {
+    "sounds": [ "cobblemon:block/berry_harvest_1", "cobblemon:block/berry_harvest_2", "cobblemon:block/berry_harvest_3" ]
   },
   "berry.eat": {
     "sounds": [ "cobblemon:berry_eat" ]
@@ -5965,7 +5968,10 @@
     "sounds": [ "cobblemon:pokemon/tandemaus/tandemaus_cry" ]
   },
   "pokemon.maushold.cry": {
-    "sounds": [ "cobblemon:pokemon/maushold/maushold_cry" ]
+    "sounds": [ "cobblemon:pokemon/maushold/maushold_three_cry" ]
+  },
+  "pokemon.mausholdfour.cry": {
+    "sounds": [ "cobblemon:pokemon/maushold/maushold_four_cry" ]
   },
   "pokemon.cetoddle.cry": {
     "sounds": [ "cobblemon:pokemon/cetoddle/cetoddle_cry" ]

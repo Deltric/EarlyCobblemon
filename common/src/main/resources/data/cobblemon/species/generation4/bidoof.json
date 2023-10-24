@@ -8,6 +8,19 @@
     "unaware",
     "h:moody"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:stick",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "cobblemon:oran_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 59,
     "attack": 45,
@@ -44,15 +57,6 @@
       "depth": "normal",
       "light": "0-4"
     }
-  },
-  "drops": {
-    "amount": "1",
-    "entries": [
-      {
-        "item": "minecraft:stick",
-        "percentage": 50
-      }
-    ]
   },
   "moves": [
     "1:growl",

@@ -39,14 +39,22 @@
     "water_2"
   ],
   "drops": {
-    "amount": "1",
+    "amount": 4,
     "entries": [
       {
         "item": "minecraft:salmon"
       },
       {
         "item": "minecraft:bone_meal",
-        "percentage": 5
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:wacan_berry",
+        "percentage": 2.5
       }
     ]
   },

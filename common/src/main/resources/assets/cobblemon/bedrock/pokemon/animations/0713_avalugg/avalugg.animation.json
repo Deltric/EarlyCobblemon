@@ -2069,7 +2069,6 @@
 			}
 		},
 		"animation.avalugg.cry": {
-			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
 				"torso": {
@@ -2267,7 +2266,6 @@
 			}
 		},
 		"animation.avalugg.faint": {
-			"loop": true,
 			"animation_length": 3,
 			"bones": {
 				"body": {

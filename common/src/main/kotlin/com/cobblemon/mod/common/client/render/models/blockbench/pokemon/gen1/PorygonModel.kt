@@ -70,5 +70,5 @@ class PorygonModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Biped
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("porygon", "faint2") else null
+    ) = bedrockStateful("porygon", "faint2")
 }

@@ -35,7 +35,7 @@ interface SleepDepth {
 
             override fun shouldWake(pokemonEntity: PokemonEntity): Boolean {
                 val nearbyPlayers = pokemonEntity.world.getPlayers(TargetPredicate.createNonAttackable(), pokemonEntity, Box.of(pokemonEntity.pos, 16.0, 16.0, 16.0))
-                return nearbyPlayers.none { !it.isSneaking }
+                return nearbyPlayers.any { !it.isSneaking }
             }
         }
 

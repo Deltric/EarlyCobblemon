@@ -7,13 +7,28 @@
       "poser": "cobblemon:gengar",
       "model": "cobblemon:gengar.geo",
       "texture": "cobblemon:textures/pokemon/0094_gengar/gengar.png",
-      "layers": []
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0094_gengar/gengar_emissives.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
     },
     {
       "aspects": [
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0094_gengar/gengar_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0094_gengar/gengar_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0094_gengar/gengar_shiny_emissives.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
     }
   ]
 }

@@ -8,6 +8,27 @@
     "chlorophyll",
     "h:overcoat"
   ],
+  "drops": {
+    "amount": 6,
+    "entries": [
+      {
+        "item": "minecraft:string",
+        "quantityRange": "0-3"
+      },
+      {
+        "item": "cobblemon:mental_herb",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:revival_herb",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:coba_berry",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 75,
     "attack": 103,

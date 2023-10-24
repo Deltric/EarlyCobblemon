@@ -76,40 +76,70 @@
         "y": 42.5,
         "z": -2.5
       }
+    },
+    {
+      "position": {
+        "x": 13.0,
+        "y": 19.25,
+        "z": 7.75
+      },
+      "rotation": {
+        "x": -15.0,
+        "y": -77.5,
+        "z": 25.0
+      }
+    },
+    {
+      "position": {
+        "x": 7.5,
+        "y": 19.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 12.5,
+        "y": -12.5,
+        "z": 10.0
+      }
+    },
+    {
+      "position": {
+        "x": 3.0,
+        "y": 18.75,
+        "z": 7.75
+      },
+      "rotation": {
+        "x": -30.0,
+        "y": -75.0,
+        "z": 12.5
+      }
+    },
+    {
+      "position": {
+        "x": 7.75,
+        "y": 19.0,
+        "z": 13.0
+      },
+      "rotation": {
+        "x": -12.5,
+        "y": -10.0,
+        "z": 5.0
+      }
     }
   ],
   "mutations": {
     "cobblemon:hondew_berry": "cobblemon:petaya_berry",
     "cobblemon:charti_berry": "cobblemon:jaboca_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "cone-sprout",
+  "matureShape": "cone-mature",
   "flavors": {
     "BITTER": 30,
     "SOUR": 10
   },
   "weight": 1.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:durin_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/durin.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:durin_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/durin.png"
 }

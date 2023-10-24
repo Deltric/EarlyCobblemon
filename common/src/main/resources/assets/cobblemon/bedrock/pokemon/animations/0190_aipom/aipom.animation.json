@@ -736,7 +736,7 @@
 			},
 			"sound_effects": {
 				"0.0": {
-					"effect": "aipom_ambient"
+					"effect": "pokemon.aipom.cry"
 				}
 			}
 		},

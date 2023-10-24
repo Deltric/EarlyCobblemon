@@ -29,7 +29,7 @@ object TakePokemon {
                 CommandManager.argument("player", EntityArgumentType.player())
                     .then(
                         CommandManager.argument("slot", IntegerArgumentType.integer(1, 99))
-                            .executes { execute(it) }
+                            .executes(::execute)
                     )
             )
 

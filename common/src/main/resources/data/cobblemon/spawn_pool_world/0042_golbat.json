@@ -38,13 +38,19 @@
             "id": "golbat-2",
             "pokemon": "golbat",
             "presets": [
-                "underground"
+                "natural"
             ],
             "type": "pokemon",
             "context": "grounded",
             "bucket": "common",
             "level": "22-45",
             "weight": 0.9,
+			"weightMultiplier": {
+				"multiplier": 1.5,
+				"condition": {
+					"timeRange": "day"
+				}
+			},
             "condition": {
                 "canSeeSky": false,
                 "biomes": [
@@ -53,7 +59,7 @@
             },
             "anticondition": {
                 "biomes": [
-                    "#cobblemon:is_abyss"
+                    "#cobblemon:is_deep_dark"
                 ]
             }
         },
@@ -68,6 +74,12 @@
             "bucket": "uncommon",
             "level": "22-45",
             "weight": 0.9,
+			"weightMultiplier": {
+				"multiplier": 1.5,
+				"condition": {
+					"timeRange": "day"
+				}
+			},
             "condition": {
                 "canSeeSky": false,
                 "biomes": [
@@ -76,7 +88,7 @@
             },
             "anticondition": {
                 "biomes": [
-                    "#cobblemon:is_abyss"
+                    "#cobblemon:is_deep_dark"
                 ]
             }
         },
@@ -91,6 +103,12 @@
             "bucket": "common",
             "level": "22-45",
             "weight": 0.9,
+			"weightMultiplier": {
+				"multiplier": 1.5,
+				"condition": {
+					"timeRange": "night"
+				}
+			},
             "condition": {
                 "canSeeSky": true,
                 "biomes": [

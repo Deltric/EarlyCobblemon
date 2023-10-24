@@ -17,6 +17,7 @@ import com.cobblemon.mod.common.client.gui.ExitButton
 import com.cobblemon.mod.common.client.gui.TypeIcon
 import com.cobblemon.mod.common.client.gui.summary.Summary
 import com.cobblemon.mod.common.client.gui.summary.widgets.ModelWidget
+import com.cobblemon.mod.common.client.gui.summary.widgets.common.reformatNatureTextIfMinted
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.client.storage.ClientPC
 import com.cobblemon.mod.common.client.storage.ClientParty
@@ -31,7 +32,6 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.sound.PositionedSoundInstance
 import net.minecraft.client.util.InputUtil
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.sound.SoundEvent
 import net.minecraft.text.Text
 
@@ -309,14 +309,18 @@ class PCGUI(
             ).render(context)
 
             // Nature
+            val natureText = reformatNatureTextIfMinted(pokemon)
             drawScaledText(
                 context = context,
-                text = pokemon.nature.displayName.asTranslated(),
+                text = natureText,
                 x = x + 39,
                 y = y + 137,
                 centered = true,
                 shadow = true,
-                scale = SCALE
+                scale = SCALE,
+                colour = 0x32CBFF,
+                pMouseX = mouseX,
+                pMouseY = mouseY
             )
 
             // Ability
@@ -402,8 +406,14 @@ class PCGUI(
         if (pokemon != null && !pokemon.heldItemNoCopy().isEmpty) {
             val itemX = x + 3
             val itemY = y + 98
-            val itemHovered = mouseX.toFloat() in (itemX.toFloat()..(itemX.toFloat() + 16)) && mouseY.toFloat() in (itemY.toFloat()..(itemY.toFloat() + 16))
-            if (itemHovered) context.drawItemTooltip(MinecraftClient.getInstance().textRenderer, pokemon.heldItemNoCopy(), mouseX, mouseY)
+            val itemHovered =
+                mouseX.toFloat() in (itemX.toFloat()..(itemX.toFloat() + 16)) && mouseY.toFloat() in (itemY.toFloat()..(itemY.toFloat() + 16))
+            if (itemHovered) context.drawItemTooltip(
+                MinecraftClient.getInstance().textRenderer,
+                pokemon.heldItemNoCopy(),
+                mouseX,
+                mouseY
+            )
         }
     }
 
@@ -416,12 +426,22 @@ class PCGUI(
     }
 
     override fun mouseScrolled(mouseX: Double, mouseY: Double, amount: Double): Boolean {
-        if (storageWidget.pastureWidget != null) storageWidget.pastureWidget!!.pastureScrollList.mouseScrolled(mouseX, mouseY, amount)
+        if (storageWidget.pastureWidget != null) storageWidget.pastureWidget!!.pastureScrollList.mouseScrolled(
+            mouseX,
+            mouseY,
+            amount
+        )
         return children().any { it.mouseScrolled(mouseX, mouseY, amount) }
     }
 
     override fun mouseDragged(mouseX: Double, mouseY: Double, button: Int, deltaX: Double, deltaY: Double): Boolean {
-        if (storageWidget.pastureWidget != null) storageWidget.pastureWidget!!.pastureScrollList.mouseDragged(mouseX, mouseY, button, deltaX, deltaY)
+        if (storageWidget.pastureWidget != null) storageWidget.pastureWidget!!.pastureScrollList.mouseDragged(
+            mouseX,
+            mouseY,
+            button,
+            deltaX,
+            deltaY
+        )
         return super.mouseDragged(mouseX, mouseY, button, deltaX, deltaY)
     }
 
@@ -431,12 +451,14 @@ class PCGUI(
                 playSound(CobblemonSounds.PC_OFF)
                 UnlinkPlayerFromPCPacket().sendToServer()
             }
+
             InputUtil.GLFW_KEY_RIGHT -> {
-                playSound(CobblemonSounds.GUI_CLICK)
+                playSound(CobblemonSounds.PC_CLICK)
                 this.storageWidget.box += 1
             }
+
             InputUtil.GLFW_KEY_LEFT -> {
-                playSound(CobblemonSounds.GUI_CLICK)
+                playSound(CobblemonSounds.PC_CLICK)
                 this.storageWidget.box -= 1
             }
         }
@@ -454,7 +476,7 @@ class PCGUI(
         ticksElapsed++
 
         // Calculate select pointer offset
-        var delayFactor = 3
+        val delayFactor = 3
         if (ticksElapsed % (2 * delayFactor) == 0) selectPointerOffsetIncrement = !selectPointerOffsetIncrement
         if (ticksElapsed % delayFactor == 0) selectPointerOffsetY += if (selectPointerOffsetIncrement) 1 else -1
     }
@@ -480,8 +502,8 @@ class PCGUI(
                 offsetY = -10.0
             )
         } else {
-            previewPokemon = null;
-            modelWidget = null;
+            previewPokemon = null
+            modelWidget = null
         }
     }
 }

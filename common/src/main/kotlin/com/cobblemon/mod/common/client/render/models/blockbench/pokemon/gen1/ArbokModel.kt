@@ -122,5 +122,5 @@ class ArbokModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>,
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("arbok", "faint") else null
+    ) = if (state.isPosedIn(standing, walk, sleep)) bedrockStateful("arbok", "faint") else null
 }

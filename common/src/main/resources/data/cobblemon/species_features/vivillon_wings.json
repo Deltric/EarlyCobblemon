@@ -22,9 +22,7 @@
     "sandstorm",
     "savanna",
     "sun",
-    "tundra",
-    "blazing",
-    "ender"
+    "tundra"
   ],
   "isAspect": true,
   "aspectFormat": "vivillon-wings-{{choice}}"

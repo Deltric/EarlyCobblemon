@@ -1,6 +1,6 @@
 versions:
 
-  # jetbains
+  # jetbrains
   kotlin: 1.8.20
   coroutines: 1.6.4
   annotations: 23.0.0
@@ -15,13 +15,18 @@ versions:
   # fabric/remap
   loom: 1.1-SNAPSHOT
   fabric-loader: 0.14.21
-  fabric-api: 0.85.0+1.20.1
+  fabric-api: 0.89.0+1.20.1
   fabric-kotlin: 1.9.3+kotlin.1.8.20
   architectury-plugin: 3.4-SNAPSHOT
+  flywheelFabric: 0.6.9-1
+  fabric-permissions-api: 0.2-SNAPSHOT
+  adorn-fabric: 5.0.0-fabric
 
   # forge
   forge: 1.20.1-47.0.50
   kotlinForForge: 4.3.0
+  flywheelForge: 0.6.10-7
+  adorn-forge: 5.0.0-forge
 
   # common
   graal: 22.3.0
@@ -34,8 +39,6 @@ versions:
   classgraph: 4.8.153
   jei-api: 15.2.0.25
 
-  #
-  fabric-permissions-api: 0.2-SNAPSHOT
 
 dependencies:
 
@@ -125,6 +128,14 @@ dependencies:
     group: mezz.jei
     name: jei-1.20.1-fabric
     version: { ref: jei-api }
+  flywheelFabric:
+    group: com.jozufozu.flywheel
+    name: flywheel-fabric-1.20.1
+    version: { ref: flywheelFabric }
+  adornFabric:
+    group: maven.modrinth
+    name: adorn
+    version: { ref: adorn-fabric }
 
   # forge
   forge:
@@ -139,6 +150,25 @@ dependencies:
     group: mezz.jei
     name: jei-1.20.1-forge
     version: { ref: jei-api }
+  flywheelForge:
+    group: com.jozufozu.flywheel
+    name: flywheel-forge-1.20.1
+    version: { ref: flywheelForge }
+  adornForge:
+    group: maven.modrinth
+    name: adorn
+    version: { ref: adorn-forge }
+
+  # datastore
+  mongoDriverCore:
+    group: org.mongodb
+    name: mongodb-driver-core
+    version: 4.10.2
+
+  mongoDriverSync:
+    group: org.mongodb
+    name: mongodb-driver-sync
+    version: 4.10.2
 
   # test
   junitEngine:

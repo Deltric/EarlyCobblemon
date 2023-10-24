@@ -4,6 +4,18 @@
     "minecraft:dripstone_caves",
     "minecraft:lush_caves",
     {
+      "id": "#c:caves",
+      "required": false 
+    },
+	{
+      "id": "#c:underground",
+      "required": false 
+    },
+	{
+      "id": "#forge:is_underground",
+      "required": false 
+    },
+	{
       "id": "terralith:cave/andesite_caves",
       "required": false 
     },
@@ -33,6 +45,62 @@
     },
     {
       "id": "terralith:cave/underground_jungle",
+      "required": false 
+    },
+    {
+      "id": "wythers:calcite_caverns",
+      "required": false 
+    },
+    {
+      "id": "wythers:deep_dark_incursion",
+      "required": false 
+    },
+    {
+      "id": "wythers:deep_underground",
+      "required": false 
+    },
+    {
+      "id": "wythers:fungous_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lichenous_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lichenous_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lush_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lush_fungous_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:lush_shroom_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:mossy_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:mossy_dripstone_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:mushroom_caves",
+      "required": false 
+    },
+    {
+      "id": "wythers:underground",
+      "required": false
+    },
+    {
+      "id": "wythers:volcanic_chamber",
       "required": false 
     }
   ]

@@ -8,6 +8,19 @@
     "cheekpouch",
     "h:technician"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:wheat_seeds",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:chilan_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 74,
     "attack": 75,

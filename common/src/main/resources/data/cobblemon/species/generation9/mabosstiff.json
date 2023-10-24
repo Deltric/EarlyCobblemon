@@ -8,6 +8,23 @@
     "guarddog",
     "h:stakeout"
   ],
+  "drops": {
+    "amount": 5,
+    "entries": [
+      {
+        "item": "minecraft:bone",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "minecraft:rotten_flesh",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:tanga_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 80,
     "attack": 120,
@@ -37,6 +54,7 @@
     "1:leer",
     "1:scaryface",
     "1:tackle",
+    "1:comeuppance",
     "4:lick",
     "7:snarl",
     "10:honeclaws",

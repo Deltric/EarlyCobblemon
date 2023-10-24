@@ -40,6 +40,7 @@ open class PartySlot(
         private val genderIconMale = cobblemonResource("textures/gui/pc/gender_icon_male.png")
         private val genderIconFemale = cobblemonResource("textures/gui/pc/gender_icon_female.png")
         private val selectPointerResource = cobblemonResource("textures/gui/pc/pc_pointer.png")
+        private val untradeableResource = cobblemonResource("textures/gui/trade/trade_slot_icon_locked.png")
     }
 
     override fun playDownSound(soundManager: SoundManager) {
@@ -106,8 +107,22 @@ open class PartySlot(
                     scale = TradeGUI.SCALE
                 )
             }
-            matrices.pop()
+            if (!pokemon.tradeable) {
+                matrices.push()
+                matrices.translate(0F, 0F, 10F)
+                blitk(
+                    matrixStack = matrices,
+                    texture = untradeableResource,
+                    x = (x + 8) / TradeGUI.SCALE,
+                    y = (y + 8) / TradeGUI.SCALE,
+                    width = 20,
+                    height = 20,
+                    scale = TradeGUI.SCALE
+                )
+                matrices.pop()
+            }
 
+            matrices.pop()
             if (hasSelected()) {
                 blitk(
                     matrixStack = matrices,
@@ -139,5 +154,5 @@ open class PartySlot(
         return pokemon?.pokemonId == offeredPokemon?.uuid && pokemon != null
     }
 
-    fun isHovered(mouseX: Int, mouseY: Int) = mouseX.toFloat() in (x.toFloat()..(x.toFloat() + SIZE)) && mouseY.toFloat() in (y.toFloat()..(y.toFloat() + SIZE))
+    fun isHovered(mouseX: Int, mouseY: Int) = pokemon?.tradeable != false && mouseX.toFloat() in (x.toFloat()..(x.toFloat() + SIZE)) && mouseY.toFloat() in (y.toFloat()..(y.toFloat() + SIZE))
 }

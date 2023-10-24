@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent
 import net.minecraftforge.event.entity.player.PlayerEvent
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent
 import net.minecraftforge.event.entity.player.PlayerInteractEvent
+import net.minecraftforge.event.server.ServerAboutToStartEvent
 import net.minecraftforge.event.server.ServerStartedEvent
 import net.minecraftforge.event.server.ServerStartingEvent
 import net.minecraftforge.event.server.ServerStoppedEvent
@@ -34,7 +35,7 @@ object ForgePlatformEventHandler {
     }
 
     @SubscribeEvent
-    fun serverStarting(e: ServerStartingEvent) {
+    fun serverStarting(e: ServerAboutToStartEvent) {
         PlatformEvents.SERVER_STARTING.post(ServerEvent.Starting(e.server))
     }
 

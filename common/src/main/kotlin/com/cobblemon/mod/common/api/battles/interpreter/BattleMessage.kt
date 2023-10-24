@@ -10,6 +10,8 @@ package com.cobblemon.mod.common.api.battles.interpreter
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
+import com.cobblemon.mod.common.api.moves.MoveTemplate
+import com.cobblemon.mod.common.api.moves.Moves
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import java.util.UUID
@@ -192,6 +194,11 @@ class BattleMessage(rawMessage: String) {
     fun effect(argumentName: String = "from"): Effect? {
         val data = this.optionalArgument(argumentName) ?: return null
         return Effect.parse(data)
+    }
+
+    fun moveAt(index: Int): MoveTemplate? {
+        val argument = argumentAt(index)?.lowercase()?.replace("[^a-z0-9]".toRegex(), "") ?: return null
+        return Moves.getByName(argument)
     }
 
     /**

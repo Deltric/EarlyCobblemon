@@ -1,8 +1,12 @@
 {
   "condition": {
-    "biomes": [ "#cobblemon:is_river" ]
+    "biomes": [
+	  "#cobblemon:is_river"
+	]
   },
   "anticondition": {
-    "biomes": [ "#cobblemon:is_freezing" ]
+    "biomes": [
+	  "#cobblemon:is_freezing"
+	]
   }
 }

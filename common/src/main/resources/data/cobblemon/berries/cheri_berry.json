@@ -136,33 +136,15 @@
     "cobblemon:oran_berry": "cobblemon:lum_berry",
     "cobblemon:persim_berry": "cobblemon:figy_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "tall-sprout",
+  "matureShape": "tall-mature",
   "flavors": {
     "SPICY": 10
   },
-  "weight": 1.0,
+  "weight": 20.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:cheri_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/cheri.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:cheri_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/cheri.png"
 }

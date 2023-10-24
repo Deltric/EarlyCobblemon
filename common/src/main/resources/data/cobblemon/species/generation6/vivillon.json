@@ -9,6 +9,19 @@
     "compoundeyes",
     "h:friendguard"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:bright_powder",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:cheri_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 80,
     "attack": 52,
@@ -265,7 +278,7 @@
         "gen6"
       ],
       "aspects": [
-        "pokeball"
+        "poke-ball"
       ],
       "height": 12,
       "weight": 170,

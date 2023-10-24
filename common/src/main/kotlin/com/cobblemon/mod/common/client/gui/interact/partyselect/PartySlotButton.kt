@@ -35,6 +35,7 @@ import org.joml.Vector3f
 class PartySlotButton(
     x: Int, y: Int,
     val pokemon: PokemonProperties,
+    val aspects: Set<String>,
     val currentHealth: Int,
     val maxHealth: Int,
     val heldItem: ItemStack,
@@ -54,7 +55,7 @@ class PartySlotButton(
 
     val state = PokemonFloatingState()
 
-    private val renderablePokemon = pokemon.asRenderablePokemon()
+    private val renderablePokemon = pokemon.asRenderablePokemon().also { it.aspects = aspects }
 
     override fun render(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
         hovered = pMouseX >= x && pMouseY >= y && pMouseX < x + width && pMouseY < y + height && enabled

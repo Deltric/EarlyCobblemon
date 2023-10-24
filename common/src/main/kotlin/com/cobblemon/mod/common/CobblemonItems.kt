@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.api.pokemon.Natures
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.block.BerryBlock
+import com.cobblemon.mod.common.block.MintBlock
 import com.cobblemon.mod.common.block.MintBlock.MintType
 import com.cobblemon.mod.common.item.*
 import com.cobblemon.mod.common.item.battle.DireHitItem
@@ -32,7 +33,6 @@ import com.cobblemon.mod.common.pokeball.PokeBall
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.block.Block
-import net.minecraft.block.ComposterBlock
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.effect.StatusEffectInstance
 import net.minecraft.entity.effect.StatusEffects
@@ -117,40 +117,40 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val CHERISH_BALL = pokeBallItem(PokeBalls.CHERISH_BALL)
 
     @JvmField
-    val VIVICHOKE = create("vivichoke", Item(Item.Settings()))
+    val VIVICHOKE = compostableItem("vivichoke")
 
     @JvmField
-    val VIVICHOKE_SEEDS = create("vivichoke_seeds", VivichokeItem(CobblemonBlocks.VIVICHOKE_SEEDS))
+    val VIVICHOKE_SEEDS = compostableItem("vivichoke_seeds", VivichokeItem(CobblemonBlocks.VIVICHOKE_SEEDS))
 
     @JvmField
-    val RED_APRICORN = create("red_apricorn", ApricornItem(CobblemonBlocks.RED_APRICORN))
+    val RED_APRICORN = apricronItem("red", ApricornItem(CobblemonBlocks.RED_APRICORN))
     @JvmField
-    val YELLOW_APRICORN = create("yellow_apricorn", ApricornItem(CobblemonBlocks.YELLOW_APRICORN))
+    val YELLOW_APRICORN = apricronItem("yellow", ApricornItem(CobblemonBlocks.YELLOW_APRICORN))
     @JvmField
-    val GREEN_APRICORN = create("green_apricorn", ApricornItem(CobblemonBlocks.GREEN_APRICORN))
+    val GREEN_APRICORN = apricronItem("green", ApricornItem(CobblemonBlocks.GREEN_APRICORN))
     @JvmField
-    val BLUE_APRICORN = create("blue_apricorn", ApricornItem(CobblemonBlocks.BLUE_APRICORN))
+    val BLUE_APRICORN = apricronItem("blue", ApricornItem(CobblemonBlocks.BLUE_APRICORN))
     @JvmField
-    val PINK_APRICORN = create("pink_apricorn", ApricornItem(CobblemonBlocks.PINK_APRICORN))
+    val PINK_APRICORN = apricronItem("pink", ApricornItem(CobblemonBlocks.PINK_APRICORN))
     @JvmField
-    val BLACK_APRICORN = create("black_apricorn", ApricornItem(CobblemonBlocks.BLACK_APRICORN))
+    val BLACK_APRICORN = apricronItem("black", ApricornItem(CobblemonBlocks.BLACK_APRICORN))
     @JvmField
-    val WHITE_APRICORN = create("white_apricorn", ApricornItem(CobblemonBlocks.WHITE_APRICORN))
+    val WHITE_APRICORN = apricronItem("white", ApricornItem(CobblemonBlocks.WHITE_APRICORN))
 
     @JvmField
-    val RED_APRICORN_SEED = create("red_apricorn_seed", ApricornSeedItem(CobblemonBlocks.RED_APRICORN_SAPLING))
+    val RED_APRICORN_SEED = apricronSeedItem("red", ApricornSeedItem(CobblemonBlocks.RED_APRICORN_SAPLING))
     @JvmField
-    val YELLOW_APRICORN_SEED = create("yellow_apricorn_seed", ApricornSeedItem(CobblemonBlocks.YELLOW_APRICORN_SAPLING))
+    val YELLOW_APRICORN_SEED = apricronSeedItem("yellow", ApricornSeedItem(CobblemonBlocks.YELLOW_APRICORN_SAPLING))
     @JvmField
-    val GREEN_APRICORN_SEED = create("green_apricorn_seed", ApricornSeedItem(CobblemonBlocks.GREEN_APRICORN_SAPLING))
+    val GREEN_APRICORN_SEED = apricronSeedItem("green", ApricornSeedItem(CobblemonBlocks.GREEN_APRICORN_SAPLING))
     @JvmField
-    val BLUE_APRICORN_SEED = create("blue_apricorn_seed", ApricornSeedItem(CobblemonBlocks.BLUE_APRICORN_SAPLING))
+    val BLUE_APRICORN_SEED = apricronSeedItem("blue", ApricornSeedItem(CobblemonBlocks.BLUE_APRICORN_SAPLING))
     @JvmField
-    val PINK_APRICORN_SEED = create("pink_apricorn_seed", ApricornSeedItem(CobblemonBlocks.PINK_APRICORN_SAPLING))
+    val PINK_APRICORN_SEED = apricronSeedItem("pink", ApricornSeedItem(CobblemonBlocks.PINK_APRICORN_SAPLING))
     @JvmField
-    val BLACK_APRICORN_SEED = create("black_apricorn_seed", ApricornSeedItem(CobblemonBlocks.BLACK_APRICORN_SAPLING))
+    val BLACK_APRICORN_SEED = apricronSeedItem("black", ApricornSeedItem(CobblemonBlocks.BLACK_APRICORN_SAPLING))
     @JvmField
-    val WHITE_APRICORN_SEED = create("white_apricorn_seed", ApricornSeedItem(CobblemonBlocks.WHITE_APRICORN_SAPLING))
+    val WHITE_APRICORN_SEED = apricronSeedItem("white", ApricornSeedItem(CobblemonBlocks.WHITE_APRICORN_SAPLING))
 
     @JvmField
     val APRICORN_LOG = blockItem("apricorn_log", CobblemonBlocks.APRICORN_LOG)
@@ -163,13 +163,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     @JvmField
     val APRICORN_PLANKS = blockItem("apricorn_planks", CobblemonBlocks.APRICORN_PLANKS)
     @JvmField
-    val APRICORN_LEAVES = blockItem("apricorn_leaves", CobblemonBlocks.APRICORN_LEAVES).also {
-        val compostChance = ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.getFloat(Items.OAK_LEAVES)
-        // Should always pass unless Mojang reworks leaves to no longer work in the Composter, in that case we already updated w.o doing anything
-        if (compostChance != ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.defaultReturnValue()) {
-            ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE[it] = compostChance
-        }
-    }
+    val APRICORN_LEAVES = compostableBlockItem("apricorn_leaves", CobblemonBlocks.APRICORN_LEAVES)
 
     @JvmField
     val APRICORN_DOOR = blockItem("apricorn_door", CobblemonBlocks.APRICORN_DOOR)
@@ -338,7 +332,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     @JvmField
     val ROASTED_LEEK = create("roasted_leek", Item(Item.Settings().food(FoodComponent.Builder().snack().hunger(3).saturationModifier(0.3f).build())))
     @JvmField
-    val BRAISED_VIVICHOKE = create("braised_vivichoke", Item(Item.Settings().maxCount(1).food(FoodComponent.Builder().hunger(6).saturationModifier(0.6f).build())))
+    val BRAISED_VIVICHOKE = create("braised_vivichoke", Item(Item.Settings().food(FoodComponent.Builder().hunger(6).saturationModifier(0.6f).build())))
     @JvmField
     val VIVICHOKE_DIP = create("vivichoke_dip", object : StewItem(Settings().maxCount(1)
         .food(FoodComponent.Builder()
@@ -353,11 +347,11 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
         }
     })
     @JvmField
-    val ENERGY_ROOT = create("energy_root", EnergyRootItem(CobblemonBlocks.ENERGY_ROOT, Item.Settings().food(FoodComponent.Builder().hunger(1).snack().saturationModifier(0.2f).build())))
+    val ENERGY_ROOT = compostableItem("energy_root", EnergyRootItem(CobblemonBlocks.ENERGY_ROOT, Item.Settings().food(FoodComponent.Builder().hunger(1).snack().saturationModifier(0.2f).build())))
     @JvmField
-    val REVIVAL_HERB = create("revival_herb", RevivalHerbItem(CobblemonBlocks.REVIVAL_HERB))
+    val REVIVAL_HERB = compostableItem("revival_herb", RevivalHerbItem(CobblemonBlocks.REVIVAL_HERB))
     @JvmField
-    val PEP_UP_FLOWER = blockItem("pep_up_flower", CobblemonBlocks.PEP_UP_FLOWER)
+    val PEP_UP_FLOWER = compostableBlockItem("pep_up_flower", CobblemonBlocks.PEP_UP_FLOWER)
     @JvmField
     val MEDICINAL_BREW = create("medicinal_brew", Item(Item.Settings()))
     @JvmField
@@ -392,72 +386,74 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val PP_MAX = create("pp_max", PPUpItem(3))
 
     @JvmField
-    val RED_MINT_SEEDS = blockItem("red_mint_seeds", MintType.RED.getCropBlock())
+    val RED_MINT_SEEDS = mintSeed("red", MintType.RED.getCropBlock())
     @JvmField
-    val RED_MINT_LEAF = create("red_mint_leaf", MintLeafItem(MintType.RED))
+    val RED_MINT_LEAF = mintLeaf("red", MintLeafItem(MintType.RED))
     @JvmField
-    val BLUE_MINT_SEEDS = blockItem("blue_mint_seeds", MintType.BLUE.getCropBlock())
+    val BLUE_MINT_SEEDS = mintSeed("blue", MintType.BLUE.getCropBlock())
     @JvmField
-    val BLUE_MINT_LEAF = create("blue_mint_leaf", MintLeafItem(MintType.BLUE))
+    val BLUE_MINT_LEAF = mintLeaf("blue", MintLeafItem(MintType.BLUE))
     @JvmField
-    val CYAN_MINT_SEEDS = blockItem("cyan_mint_seeds", MintType.CYAN.getCropBlock())
+    val CYAN_MINT_SEEDS = mintSeed("cyan", MintType.CYAN.getCropBlock())
     @JvmField
-    val CYAN_MINT_LEAF = create("cyan_mint_leaf", MintLeafItem(MintType.CYAN))
+    val CYAN_MINT_LEAF = mintLeaf("cyan", MintLeafItem(MintType.CYAN))
     @JvmField
-    val PINK_MINT_SEEDS = blockItem("pink_mint_seeds", MintType.PINK.getCropBlock())
+    val PINK_MINT_SEEDS = mintSeed("pink", MintType.PINK.getCropBlock())
     @JvmField
-    val PINK_MINT_LEAF = create("pink_mint_leaf", MintLeafItem(MintType.PINK))
+    val PINK_MINT_LEAF = mintLeaf("pink", MintLeafItem(MintType.PINK))
     @JvmField
-    val GREEN_MINT_SEEDS = blockItem("green_mint_seeds", MintType.GREEN.getCropBlock())
+    val GREEN_MINT_SEEDS = mintSeed("green", MintType.GREEN.getCropBlock())
     @JvmField
-    val GREEN_MINT_LEAF = create("green_mint_leaf", MintLeafItem(MintType.GREEN))
+    val GREEN_MINT_LEAF = mintLeaf("green", MintLeafItem(MintType.GREEN))
     @JvmField
-    val WHITE_MINT_SEEDS = blockItem("white_mint_seeds", MintType.WHITE.getCropBlock())
+    val WHITE_MINT_SEEDS = mintSeed("white", MintType.WHITE.getCropBlock())
     @JvmField
-    val WHITE_MINT_LEAF = create("white_mint_leaf", MintLeafItem(MintType.WHITE))
+    val WHITE_MINT_LEAF = mintLeaf("white", MintLeafItem(MintType.WHITE))
+
+    val mints = mutableMapOf<String, MintItem>()
 
     @JvmField
-    val LONELY_MINT = create("lonely_mint", MintItem(Natures.LONELY))
+    val LONELY_MINT = mintItem("lonely_mint", MintItem(Natures.LONELY))
     @JvmField
-    val ADAMANT_MINT = create("adamant_mint", MintItem(Natures.ADAMANT))
+    val ADAMANT_MINT = mintItem("adamant_mint", MintItem(Natures.ADAMANT))
     @JvmField
-    val NAUGHTY_MINT = create("naughty_mint", MintItem(Natures.NAUGHTY))
+    val NAUGHTY_MINT = mintItem("naughty_mint", MintItem(Natures.NAUGHTY))
     @JvmField
-    val BRAVE_MINT = create("brave_mint", MintItem(Natures.BRAVE))
+    val BRAVE_MINT = mintItem("brave_mint", MintItem(Natures.BRAVE))
     @JvmField
-    val BOLD_MINT = create("bold_mint", MintItem(Natures.BOLD))
+    val BOLD_MINT = mintItem("bold_mint", MintItem(Natures.BOLD))
     @JvmField
-    val IMPISH_MINT = create("impish_mint", MintItem(Natures.IMPISH))
+    val IMPISH_MINT = mintItem("impish_mint", MintItem(Natures.IMPISH))
     @JvmField
-    val LAX_MINT = create("lax_mint", MintItem(Natures.LAX))
+    val LAX_MINT = mintItem("lax_mint", MintItem(Natures.LAX))
     @JvmField
-    val RELAXED_MINT = create("relaxed_mint", MintItem(Natures.RELAXED))
+    val RELAXED_MINT = mintItem("relaxed_mint", MintItem(Natures.RELAXED))
     @JvmField
-    val MODEST_MINT = create("modest_mint", MintItem(Natures.MODEST))
+    val MODEST_MINT = mintItem("modest_mint", MintItem(Natures.MODEST))
     @JvmField
-    val MILD_MINT = create("mild_mint", MintItem(Natures.MILD))
+    val MILD_MINT = mintItem("mild_mint", MintItem(Natures.MILD))
     @JvmField
-    val RASH_MINT = create("rash_mint", MintItem(Natures.RASH))
+    val RASH_MINT = mintItem("rash_mint", MintItem(Natures.RASH))
     @JvmField
-    val QUIET_MINT = create("quiet_mint", MintItem(Natures.QUIET))
+    val QUIET_MINT = mintItem("quiet_mint", MintItem(Natures.QUIET))
     @JvmField
-    val CALM_MINT = create("calm_mint", MintItem(Natures.CALM))
+    val CALM_MINT = mintItem("calm_mint", MintItem(Natures.CALM))
     @JvmField
-    val GENTLE_MINT = create("gentle_mint", MintItem(Natures.GENTLE))
+    val GENTLE_MINT = mintItem("gentle_mint", MintItem(Natures.GENTLE))
     @JvmField
-    val CAREFUL_MINT = create("careful_mint", MintItem(Natures.CAREFUL))
+    val CAREFUL_MINT = mintItem("careful_mint", MintItem(Natures.CAREFUL))
     @JvmField
-    val SASSY_MINT = create("sassy_mint", MintItem(Natures.SASSY))
+    val SASSY_MINT = mintItem("sassy_mint", MintItem(Natures.SASSY))
     @JvmField
-    val TIMID_MINT = create("timid_mint", MintItem(Natures.TIMID))
+    val TIMID_MINT = mintItem("timid_mint", MintItem(Natures.TIMID))
     @JvmField
-    val HASTY_MINT = create("hasty_mint", MintItem(Natures.HASTY))
+    val HASTY_MINT = mintItem("hasty_mint", MintItem(Natures.HASTY))
     @JvmField
-    val JOLLY_MINT = create("jolly_mint", MintItem(Natures.JOLLY))
+    val JOLLY_MINT = mintItem("jolly_mint", MintItem(Natures.JOLLY))
     @JvmField
-    val NAIVE_MINT = create("naive_mint", MintItem(Natures.NAIVE))
+    val NAIVE_MINT = mintItem("naive_mint", MintItem(Natures.NAIVE))
     @JvmField
-    val SERIOUS_MINT = create("serious_mint", MintItem(Natures.SERIOUS))
+    val SERIOUS_MINT = mintItem("serious_mint", MintItem(Natures.SERIOUS))
 
     @JvmField val X_ACCURACY = create("x_${Stats.ACCURACY.identifier.path}", XStatItem(Stats.ACCURACY))
     @JvmField val X_ATTACK = create("x_${Stats.ATTACK.identifier.path}", XStatItem(Stats.ATTACK))
@@ -616,11 +612,11 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     @JvmField
     val WISE_GLASSES = heldItem("wise_glasses")
     @JvmField
-    val MENTAL_HERB = heldItem("mental_herb")
+    val MENTAL_HERB = compostableHeldItem("mental_herb")
     @JvmField
-    val MIRROR_HERB = heldItem("mirror_herb")
+    val MIRROR_HERB = compostableHeldItem("mirror_herb")
     @JvmField
-    val POWER_HERB = heldItem("power_herb")
+    val POWER_HERB = compostableHeldItem("power_herb")
     @JvmField
     val WHITE_HERB = heldItem("white_herb")
     @JvmField
@@ -696,9 +692,12 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
         }
     )
 
+    private fun compostable(item: Item, increaseLevelChance: Float) = Cobblemon.implementation.registerCompostable(item, increaseLevelChance)
+
     private fun berryItem(name: String, berryBlock: BerryBlock): BerryItem {
         val finalName = "${name}_berry"
         val item = this.create(finalName, BerryItem(berryBlock))
+        compostable(item, .65f)
         this.berries[cobblemonResource(finalName)] = item
         return item
     }
@@ -706,7 +705,62 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     private fun berryItem(name: String, berryItem: BerryItem): BerryItem {
         val finalName = "${name}_berry"
         val item = this.create(finalName, berryItem)
+        compostable(item, .65f)
         this.berries[cobblemonResource(finalName)] = item
         return item
     }
+
+    private fun mintItem(name: String, mintItem: MintItem): MintItem {
+        val item = this.create(name, mintItem)
+        mints[item.nature.displayName] = item
+        compostable(item, .65f)
+        return item
+    }
+
+    private fun apricronItem(name: String, apricornItem: ApricornItem): ApricornItem {
+        val finalName = "${name}_apricorn"
+        val item = this.create(finalName, apricornItem)
+        compostable(item, .65f)
+        return item
+    }
+
+    private fun apricronSeedItem(name: String, apricronSeedItem: ApricornSeedItem): ApricornSeedItem {
+        val finalName = "${name}_apricorn_seed"
+        val item = this.create(finalName, apricronSeedItem)
+        compostable(item, .65f)
+        return item
+    }
+
+    private fun mintSeed(name: String, mintBlock: MintBlock): Item {
+        val finalName = "${name}_mint_seeds"
+        val item = this.blockItem(finalName, mintBlock)
+        compostable(item, .65f)
+        return item
+    }
+
+    private fun mintLeaf(name: String, mintLeafItem: MintLeafItem): MintLeafItem {
+        val finalName = "${name}_mint_leaf"
+        val item = this.create(finalName, mintLeafItem)
+        compostable(item, .65f)
+        return item
+    }
+
+    private fun compostableItem(name: String, item: Item? = null, increaseLevelChance: Float = .65f): Item {
+        val createdItem = this.create(name, item ?: Item(Item.Settings()))
+        compostable(createdItem, increaseLevelChance)
+        return createdItem
+    }
+
+    private fun compostableHeldItem(name: String, remappedName: String? = null, increaseLevelChance: Float = .65f): CobblemonItem {
+        val createdItem = heldItem(name, remappedName)
+        compostable(createdItem, increaseLevelChance)
+        return createdItem
+    }
+
+    private fun compostableBlockItem(name: String, block: Block, increaseLevelChance: Float = .65f): Item {
+        val createdItem = this.blockItem(name, block)
+        compostable(createdItem, increaseLevelChance)
+        return createdItem
+    }
+
 }

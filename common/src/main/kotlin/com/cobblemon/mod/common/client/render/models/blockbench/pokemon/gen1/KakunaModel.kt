@@ -52,5 +52,5 @@ class KakunaModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>,
-    ) = if (state.isPosedIn(standing)) bedrockStateful("kakuna", "faint") else null
+    ) = bedrockStateful("kakuna", "faint")
 }

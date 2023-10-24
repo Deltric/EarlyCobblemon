@@ -7,6 +7,19 @@
     "leafguard",
     "h:chlorophyll"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:leaf_stone",
+        "percentage": 25.0
+      },
+      {
+        "item": "cobblemon:miracle_seed",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 65,
     "attack": 110,

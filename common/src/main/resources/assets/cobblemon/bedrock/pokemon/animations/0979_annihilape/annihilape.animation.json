@@ -2647,7 +2647,7 @@
 			},
 			"sound_effects": {
 				"0.0": {
-					"effect": "annihilape_ambient"
+					"effect": "pokemon.annihilape.cry"
 				}
 			}
 		},

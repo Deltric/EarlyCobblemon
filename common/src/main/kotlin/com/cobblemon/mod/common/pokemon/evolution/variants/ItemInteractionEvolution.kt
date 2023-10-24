@@ -8,48 +8,49 @@
 
 package com.cobblemon.mod.common.pokemon.evolution.variants
 
-import com.cobblemon.mod.common.api.conditional.RegistryLikeCondition
 import com.cobblemon.mod.common.api.moves.MoveTemplate
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.evolution.ContextEvolution
 import com.cobblemon.mod.common.api.pokemon.evolution.requirement.EvolutionRequirement
 import com.cobblemon.mod.common.pokemon.Pokemon
+import com.cobblemon.mod.common.pokemon.evolution.predicate.NbtItemPredicate
 import com.cobblemon.mod.common.registry.ItemIdentifierCondition
-import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
+import net.minecraft.predicate.NbtPredicate
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
 
 /**
- * Represents a [ContextEvolution] with [Identifier] context.
- * These are triggered upon interaction with any [EvolutionItem] whose [Identifier] identifier matches the given context.
+ * Represents a [ContextEvolution] with [NbtItemPredicate] context.
+ * These are triggered upon interaction with any [ItemStack] that matches the given predicate.
  *
- * @property requiredContext The [Identifier] expected to match.
+ * @property requiredContext The [NbtItemPredicate] expected to match.
  * @author Licious
  * @since March 20th, 2022
  */
 open class ItemInteractionEvolution(
     override val id: String,
     override val result: PokemonProperties,
-    override val requiredContext: RegistryLikeCondition<Item>,
+    override val requiredContext: NbtItemPredicate,
     override var optional: Boolean,
     override var consumeHeldItem: Boolean,
     override val requirements: MutableSet<EvolutionRequirement>,
     override val learnableMoves: MutableSet<MoveTemplate>
-) : ContextEvolution<ItemInteractionEvolution.ItemInteractionContext, RegistryLikeCondition<Item>> {
+) : ContextEvolution<ItemInteractionEvolution.ItemInteractionContext, NbtItemPredicate> {
     constructor(): this(
         id = "id",
         result = PokemonProperties(),
-        requiredContext = ItemIdentifierCondition(Identifier("minecraft", "fish")),
+        requiredContext = NbtItemPredicate(ItemIdentifierCondition(Identifier("minecraft", "fish")), NbtPredicate.ANY),
         optional = true,
         consumeHeldItem = true,
         requirements = mutableSetOf(),
         learnableMoves = mutableSetOf()
     )
 
-    override fun testContext(pokemon: Pokemon, context: ItemInteractionContext): Boolean {
-        return this.requiredContext.fits(context.item, context.world.registryManager.get(RegistryKeys.ITEM))
-    }
+    override fun testContext(pokemon: Pokemon, context: ItemInteractionContext): Boolean =
+        this.requiredContext.item.fits(context.stack.item, context.world.registryManager.get(RegistryKeys.ITEM))
+        && this.requiredContext.nbt.test(context.stack)
 
     override fun equals(other: Any?) = other is ItemInteractionEvolution && other.id.equals(this.id, true)
 
@@ -60,7 +61,7 @@ open class ItemInteractionEvolution(
     }
 
     data class ItemInteractionContext(
-        val item: Item,
+        val stack: ItemStack,
         val world: World
     )
 

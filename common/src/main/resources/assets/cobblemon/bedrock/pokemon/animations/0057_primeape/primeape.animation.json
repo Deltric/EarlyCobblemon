@@ -599,6 +599,14 @@
 					}
 				}
 			}
+		},
+		"animation.primeape.cry": {
+			"animation_length": 0.95833,
+			"sound_effects": {
+				"0.0417": {
+					"effect": "pokemon.primeape.cry"
+				}
+			}
 		}
 	}
 }

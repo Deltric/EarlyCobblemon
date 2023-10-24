@@ -64,32 +64,38 @@
         "y": -25.0,
         "z": 20.0
       }
+    },
+    {
+      "position": {
+        "x": 5.75,
+        "y": 15.5,
+        "z": 8.75
+      },
+      "rotation": {
+        "x": -17.5,
+        "y": 30.0,
+        "z": -30.0
+      }
+    },
+    {
+      "position": {
+        "x": 9.25,
+        "y": 22.0,
+        "z": 6.5
+      },
+      "rotation": {
+        "x": 12.5,
+        "y": 30.0,
+        "z": 25.0
+      }
     }
   ],
   "mutations": {
     "cobblemon:durin_berry": "cobblemon:petaya_berry",
     "cobblemon:pomeg_berry": "cobblemon:starf_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "platform-sprout",
+  "matureShape": "platform-mature",
   "flavors": {
     "SPICY": 10,
     "DRY": 10,
@@ -97,8 +103,8 @@
   },
   "weight": 1.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:hondew_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/hondew.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:hondew_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/hondew.png"
 }

@@ -16,6 +16,7 @@ import com.cobblemon.mod.common.api.starter.StarterHandler
 import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.net.messages.client.starter.OpenStarterUIPacket
 import com.cobblemon.mod.common.util.lang
+import com.cobblemon.mod.common.world.gamerules.CobblemonGameRules
 import net.minecraft.server.network.ServerPlayerEntity
 
 open class CobblemonStarterHandler : StarterHandler {
@@ -60,6 +61,7 @@ open class CobblemonStarterHandler : StarterHandler {
                 it.pokemon.also {
                     playerData.starterSelected = true
                     playerData.starterUUID = it.uuid
+                    if (player.world.gameRules.getBoolean(CobblemonGameRules.SHINY_STARTERS)) { pokemon.shiny = true }
                 }
             )
             CobblemonCriteria.PICK_STARTER.trigger(player, pokemon)

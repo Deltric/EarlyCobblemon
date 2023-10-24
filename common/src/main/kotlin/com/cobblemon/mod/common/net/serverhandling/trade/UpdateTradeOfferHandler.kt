@@ -30,6 +30,8 @@ object UpdateTradeOfferHandler : ServerNetworkPacketHandler<UpdateTradeOfferPack
             val pokemon = party[partyPosition]
             if (pokemon == null || pokemon.uuid != pokemonId) {
                 return
+            } else if (!pokemon.tradeable) {
+                return
             } else {
                 trade.updateOffer(tradeParticipant, pokemon)
             }

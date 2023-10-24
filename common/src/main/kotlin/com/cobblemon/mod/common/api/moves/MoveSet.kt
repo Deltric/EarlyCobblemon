@@ -18,6 +18,8 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
 import net.minecraft.nbt.NbtList
 import net.minecraft.network.PacketByteBuf
+import kotlin.math.min
+
 class MoveSet : Iterable<Move> {
     val observable = SimpleObservable<MoveSet>()
     private var emit = true
@@ -60,6 +62,11 @@ class MoveSet : Iterable<Move> {
 
     fun heal() {
         getMoves().forEach { it.currentPp = it.maxPp }
+        update()
+    }
+
+    fun partialHeal() {
+        getMoves().forEach { it.currentPp = min((it.currentPp + (it.maxPp / 2)), it.maxPp)}
         update()
     }
 

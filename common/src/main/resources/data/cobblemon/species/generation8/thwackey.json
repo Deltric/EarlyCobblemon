@@ -26,15 +26,15 @@
     "grass"
   ],
   "drops": {
-    "amount": "2",
+    "amount": 3,
     "entries": [
       {
         "item": "minecraft:stick",
-        "maxSelectableTimes": 2
+        "quantityRange": "0-2"
       },
       {
         "item": "cobblemon:miracle_seed",
-        "percentage": 10
+        "percentage": 10.0
       }
     ]
   },

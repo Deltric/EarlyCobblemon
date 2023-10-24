@@ -187,5 +187,16 @@
   "height": 21,
   "weight": 1980,
   "aspects": [],
-  "cannotDynamax": false
+  "cannotDynamax": false,
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:charcoal_stick"
+      },
+      {
+        "item": "cobblemon:sacred_ash"
+      }
+    ]
+  }
 }

@@ -29,11 +29,11 @@ object ChangeScaleAndSize {
                     .then(
                         CommandManager.argument("scale", FloatArgumentType.floatArg())
                             .then(CommandManager.argument("width", FloatArgumentType.floatArg())
-                                .then(CommandManager.argument("height", FloatArgumentType.floatArg()).executes { execute(it) })
+                                .then(CommandManager.argument("height", FloatArgumentType.floatArg()).executes(::execute))
                             )
                     )
 
-                    .executes { execute(it) })
+                    .executes(::execute))
         dispatcher.register(command)
     }
 

@@ -65,5 +65,5 @@ class MagnemiteModel(root: ModelPart) : PokemonPoseableModel() {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("magnemite", "faint") else null
+    ) = bedrockStateful("magnemite", "faint")
 }

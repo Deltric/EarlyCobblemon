@@ -8,8 +8,8 @@
 
 package com.cobblemon.mod.common.item
 
-import com.cobblemon.mod.common.api.mulch.Mulchable
 import com.cobblemon.mod.common.api.mulch.MulchVariant
+import com.cobblemon.mod.common.api.mulch.Mulchable
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.world.ServerWorld
@@ -28,7 +28,7 @@ class MulchItem(val variant: MulchVariant) : CobblemonItem(Settings()) {
             if (!world.isClient) {
                 world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, pos, 0)
             }
-            return ActionResult.success(world.isClient)
+            return ActionResult.success(true)
         }
         return ActionResult.PASS
     }

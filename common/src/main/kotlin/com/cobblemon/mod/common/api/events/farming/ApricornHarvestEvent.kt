@@ -8,6 +8,7 @@
 
 package com.cobblemon.mod.common.api.events.farming
 
+import com.cobblemon.mod.common.api.apricorn.Apricorn
 import net.minecraft.block.BlockState
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
@@ -18,6 +19,7 @@ import net.minecraft.util.math.BlockPos
  */
 class ApricornHarvestEvent(
     val player: ServerPlayerEntity,
+    val apricorn: Apricorn,
     val world: ServerWorld,
     val pos: BlockPos
 ) {

@@ -8,6 +8,19 @@
     "guts",
     "h:hustle"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:rotten_flesh",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:chilan_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 55,
     "attack": 81,
@@ -17,7 +30,7 @@
     "speed": 97
   },
   "behaviour": {
-    "moving" : {
+    "moving": {
       "walk": {
         "walkSpeed": 0.33
       }
@@ -45,6 +58,16 @@
         "hustle",
         "h:thickfat"
       ],
+      "drops": {
+        "amount": 1,
+        "entries": [
+          {
+            "item": "minecraft:rotten_flesh",
+            "percentage": 66,
+            "quantityRange": "1-2"
+          }
+        ]
+      },
       "baseStats": {
         "hp": 75,
         "attack": 71,

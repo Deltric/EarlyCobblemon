@@ -24,6 +24,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import net.minecraft.util.math.Direction
@@ -33,6 +34,7 @@ import net.minecraft.util.math.Vec3d
 fun ServerPlayerEntity.party() = Cobblemon.storage.getParty(this)
 fun ServerPlayerEntity.pc() = Cobblemon.storage.getPC(this.uuid)
 fun ServerPlayerEntity.extraData(key: String) = Cobblemon.playerData.get(this).extraData[key]
+fun ServerPlayerEntity.hasKeyItem(key: Identifier) = Cobblemon.playerData.get(this).keyItems.contains(key)
 fun UUID.getPlayer() = server()?.playerManager?.getPlayer(this)
 
 fun ServerPlayerEntity.onLogout(handler: () -> Unit) {

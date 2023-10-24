@@ -137,7 +137,7 @@ class ApricornBlock(settings: Settings, val apricorn: Apricorn) : HorizontalFaci
             world.playSoundServer(position = pos.toVec3d(), sound = SoundEvents.ENTITY_ITEM_PICKUP, volume = 0.7F, pitch = 1.4F)
 
             if (world is ServerWorld && player is ServerPlayerEntity) {
-                CobblemonEvents.APRICORN_HARVESTED.post(ApricornHarvestEvent(player, world, pos))
+                CobblemonEvents.APRICORN_HARVESTED.post(ApricornHarvestEvent(player, apricorn, world, pos))
             }
         }
         return ActionResult.success(world.isClient)
@@ -166,7 +166,7 @@ class ApricornBlock(settings: Settings, val apricorn: Apricorn) : HorizontalFaci
     }
 
     override fun attemptShear(world: World, state: BlockState, pos: BlockPos, successCallback: () -> Unit): Boolean {
-        if (state.get(AGE) == MAX_AGE) {
+        if (state.get(AGE) != MAX_AGE) {
             return false
         }
         world.playSound(null, pos, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.BLOCKS, 1F, 1F)

@@ -10,15 +10,12 @@ package com.cobblemon.mod.common.command
 
 import com.cobblemon.mod.common.api.permission.CobblemonPermissions
 import com.cobblemon.mod.common.command.argument.PokemonArgumentType
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.FormData
-import com.cobblemon.mod.common.pokemon.ai.PokemonBehaviour
 import com.cobblemon.mod.common.util.permission
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.FloatArgumentType
 import com.mojang.brigadier.context.CommandContext
-import net.minecraft.entity.EntityDimensions
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 
@@ -29,10 +26,10 @@ object ChangeWalkSpeed {
             .permission(CobblemonPermissions.CHANGE_WALK_SPEED)
             .then(
                 CommandManager.argument("pokemon", PokemonArgumentType.pokemon())
-                    .then(CommandManager.argument("walkSpeed", FloatArgumentType.floatArg()).executes { execute(it) })
+                    .then(CommandManager.argument("walkSpeed", FloatArgumentType.floatArg()).executes(::execute))
             )
 
-            .executes { execute(it) }
+            .executes(::execute)
         dispatcher.register(command)
     }
 

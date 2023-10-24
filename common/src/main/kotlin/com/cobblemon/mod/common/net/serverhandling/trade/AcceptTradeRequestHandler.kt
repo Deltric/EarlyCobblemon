@@ -16,6 +16,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 
 object AcceptTradeRequestHandler : ServerNetworkPacketHandler<AcceptTradeRequestPacket> {
     override fun handle(packet: AcceptTradeRequestPacket, server: MinecraftServer, player: ServerPlayerEntity) {
+        if(player.isSpectator) return
         TradeManager.acceptTradeRequest(player, packet.tradeOfferId)
     }
 }

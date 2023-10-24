@@ -27,8 +27,8 @@ class WooperPaldeanModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame 
     override val rootPart = root.registerChildWithAllChildren("wooper_paldean")
     override val head = getPart("head")
 
-    override val portraitScale = 2.3F
-    override val portraitTranslation = Vec3d(-0.15, -0.7, 0.0)
+    override val portraitScale = 2.0F
+    override val portraitTranslation = Vec3d(-0.15, -0.65, 0.0)
 
     override val profileScale = 0.9F
     override val profileTranslation = Vec3d(0.0, 0.4, 0.0)
@@ -119,5 +119,5 @@ class WooperPaldeanModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame 
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isNotPosedIn(sleep)) bedrockStateful("wooper_paldean", "faint") else null
+    ) = if (state.isNotPosedIn(shoulderRight, shoulderLeft)) bedrockStateful("wooper_paldean", "faint") else null
 }

@@ -38,11 +38,11 @@ class ExeggutorModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
         override val head: ModelPart = getPart("head3")
     }
 
-    override val portraitScale = 2.1F
-    override val portraitTranslation = Vec3d(-1.0, 0.5, 0.0)
+    override val portraitScale = 1.2F
+    override val portraitTranslation = Vec3d(-1.0, 1.77, 0.0)
 
-    override val profileScale = 0.75F
-    override val profileTranslation = Vec3d(0.0, 0.65, 0.0)
+    override val profileScale = 0.45F
+    override val profileTranslation = Vec3d(0.0, 1.1, 0.0)
 
     lateinit var standing: PokemonPose
     lateinit var walk: PokemonPose
@@ -77,7 +77,6 @@ class ExeggutorModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
             quirks = arrayOf(blink1, blink2, blink3),
             condition = { !it.isBattling },
             idleAnimations = arrayOf(
-                BipedWalkAnimation(this, periodMultiplier = 0.7F, amplitudeMultiplier = 1f),
                 singleBoneLook(),
                 SingleBoneLookAnimation(head2, false, false, disableX = false, disableY = false),
                 SingleBoneLookAnimation(head3, false, false, disableX = false, disableY = false),
@@ -102,5 +101,5 @@ class ExeggutorModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk, battleidle)) bedrockStateful("exeggutor", "faint") else null
+    ) = bedrockStateful("exeggutor", "faint")
 }

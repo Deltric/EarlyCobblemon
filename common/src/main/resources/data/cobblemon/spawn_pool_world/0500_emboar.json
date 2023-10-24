@@ -15,12 +15,14 @@
             "level": "36-53",
             "weight": 0.1,
             "condition": {
-				"biomes": [
-                    "minecraft:crimson_forest"
-                ]
-			}
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_plains"
+                ],
+                "isRaining": false
+            }
         },
-        {
+		{
             "id": "emboar-2",
             "pokemon": "emboar",
             "presets": [
@@ -32,12 +34,11 @@
             "level": "36-53",
             "weight": 0.1,
             "condition": {
-                "canSeeSky": true,
-                "biomes": [
-                    "#cobblemon:is_plains"
-                ],
-                "isRaining": false
-            }
+				"biomes": [
+                    "#cobblemon:is_nether_crimson",
+					"#cobblemon:is_nether_overgrowth"
+                ]
+			}
         }
     ]
 }

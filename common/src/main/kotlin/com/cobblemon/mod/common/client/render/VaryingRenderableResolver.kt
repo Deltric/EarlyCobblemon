@@ -8,7 +8,6 @@
 
 package com.cobblemon.mod.common.client.render
 
-import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.client.render.models.blockbench.PoseableEntityModel
 import com.cobblemon.mod.common.client.render.models.blockbench.pose.Bone
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository
@@ -16,15 +15,14 @@ import com.cobblemon.mod.common.util.adapters.IdentifierAdapter
 import com.cobblemon.mod.common.util.adapters.ModelTextureSupplierAdapter
 import com.cobblemon.mod.common.util.adapters.Vector3fAdapter
 import com.cobblemon.mod.common.util.adapters.Vector4fAdapter
-import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.google.gson.GsonBuilder
 import com.google.gson.annotations.SerializedName
+import kotlin.math.floor
 import net.minecraft.entity.Entity
 import net.minecraft.util.Identifier
 import org.joml.Vector3f
 import org.joml.Vector4f
-import kotlin.math.floor
 
 /**
  * All the information required for rendering a Pokémon/Poké Ball/NPC with aspects.
@@ -69,7 +67,7 @@ class VaryingRenderableResolver<E : Entity, M : PoseableEntityModel<E>>(
                 }
             }
         }
-        return layerMaps.values
+        return layerMaps.values.filter(ModelLayer::enabled)
     }
 
     fun getAllModels(): Set<Identifier> {
@@ -199,6 +197,7 @@ class AnimatedModelTextureSupplier(
 
 class ModelLayer {
     val name: String = ""
+    val enabled: Boolean = true
     val tint: Vector4f = Vector4f(1F, 1F, 1F, 1F)
     val texture: ModelTextureSupplier? = null
     val emissive: Boolean = false

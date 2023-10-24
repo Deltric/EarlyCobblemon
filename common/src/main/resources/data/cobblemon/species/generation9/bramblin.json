@@ -94,7 +94,7 @@
       "learnableMoves": [],
       "requirements": [
         {
-          "variant": "walked_steps",
+          "variant": "blocks_traveled",
           "amount": 1000
         }
       ]
@@ -103,5 +103,18 @@
   "cannotDynamax": false,
   "pokedex": [
     "cobblemon.species.bramblin.desc"
-  ]
+  ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:stick",
+        "quantityRange": "0-1"
+      },
+      {
+        "item": "cobblemon:kasib_berry",
+        "percentage": 2.5
+      }
+    ]
+  }
 }

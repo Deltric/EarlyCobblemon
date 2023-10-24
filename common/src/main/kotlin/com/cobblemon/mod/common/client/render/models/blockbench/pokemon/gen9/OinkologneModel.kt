@@ -26,11 +26,11 @@ class OinkologneModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Q
     override val hindLeftLeg = getPart("leg_back_left")
     override val hindRightLeg = getPart("leg_back_right")
 
-    override val portraitScale = 1.1F
-    override val portraitTranslation = Vec3d(-0.65, 2.4, 0.0)
+    override val portraitScale = 2.0F
+    override val portraitTranslation = Vec3d(-0.65, -0.5, 0.0)
 
-    override val profileScale = 0.45F
-    override val profileTranslation = Vec3d(0.0, 1.3, 0.0)
+    override val profileScale = 0.9F
+    override val profileTranslation = Vec3d(0.0, 0.35, 0.0)
 
     //    lateinit var sleep: PokemonPose
     lateinit var standing: PokemonPose

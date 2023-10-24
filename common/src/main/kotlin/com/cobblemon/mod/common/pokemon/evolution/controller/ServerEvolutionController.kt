@@ -105,10 +105,11 @@ class ServerEvolutionController(override val pokemon: Pokemon) : EvolutionContro
         for (tag in progressList.filterIsInstance<NbtCompound>()) {
             EvolutionProgressFactory.create(tag.getString(ID))?.let { progress ->
                 progress.loadFromNBT(tag)
-                this.progress.add(progress)
+                if (progress.shouldKeep(this.pokemon)) {
+                    this.progress.add(progress)
+                }
             }
         }
-        this.verifyProgress()
     }
 
     override fun saveToJson(): JsonElement {
@@ -145,14 +146,11 @@ class ServerEvolutionController(override val pokemon: Pokemon) : EvolutionContro
             val jObject = element as? JsonObject ?: continue
             EvolutionProgressFactory.create(jObject.get(ID).asString)?.let { progress ->
                 progress.loadFromJson(jObject)
-                this.progress.add(progress)
+                if (progress.shouldKeep(this.pokemon)) {
+                    this.progress.add(progress)
+                }
             }
         }
-        this.verifyProgress()
-    }
-
-    private fun verifyProgress() {
-        this.progress.removeIf { progress -> !progress.shouldKeep(this.pokemon) }
     }
 
     override fun saveToBuffer(buffer: PacketByteBuf, toClient: Boolean) {

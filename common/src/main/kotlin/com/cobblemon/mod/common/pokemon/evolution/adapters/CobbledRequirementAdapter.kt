@@ -50,7 +50,7 @@ object CobblemonRequirementAdapter : RequirementAdapter {
         this.registerType(MoonPhaseRequirement.ADAPTER_VARIANT, MoonPhaseRequirement::class)
         this.registerType(RecoilRequirement.ADAPTER_VARIANT, RecoilRequirement::class)
         this.registerType(DefeatRequirement.ADAPTER_VARIANT, DefeatRequirement::class)
-        this.registerType(WalkedStepsRequirement.ADAPTER_VARIANT, WalkedStepsRequirement::class)
+        this.registerType(BlocksTraveledRequirement.ADAPTER_VARIANT, BlocksTraveledRequirement::class)
         this.registerType(AnyRequirement.ADAPTER_VARIANT, AnyRequirement::class)
     }
 

@@ -126,5 +126,10 @@
 	  "#c:vermiculite_ores",
 	  "#c:zinc_ores"
     ]
+  },
+  "anticondition": {
+	  "neededBaseBlocks": [
+      "minecraft:farmland"
+	  ]
   }
 }

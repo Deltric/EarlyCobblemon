@@ -95,6 +95,7 @@ class PartySelectGUI(
                     x = slotX,
                     y = slotY,
                     pokemon = pokemon.pokemonProperties,
+                    aspects = pokemon.aspects,
                     heldItem = pokemon.heldItem,
                     currentHealth = pokemon.currentHealth,
                     maxHealth = pokemon.maxHealth,

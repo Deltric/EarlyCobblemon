@@ -38,6 +38,7 @@ repositories {
     maven(url = "${rootProject.projectDir}/deps")
     mavenLocal()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
+    maven(url = "https://api.modrinth.com/maven")
 }
 
 dependencies {
@@ -56,6 +57,9 @@ dependencies {
     modApi(libs.fabricKotlin)
     modApi(libs.fabricPermissionsApi)
     modRuntimeOnly(libs.jeiFabric)
+    modCompileOnly(libs.adornFabric)
+//    modImplementation(libs.flywheelFabric)
+//    include(libs.flywheelFabric)
 
     listOf(
         libs.stdlib,

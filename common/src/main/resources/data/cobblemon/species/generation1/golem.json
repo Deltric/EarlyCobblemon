@@ -179,20 +179,23 @@
     "mineral"
   ],
   "drops": {
-    "amount": "3",
+    "amount": 6,
     "entries": [
       {
         "item": "minecraft:flint",
-        "quantityRange": "1-3",
-        "percentage": 75
+        "quantityRange": "0-3"
       },
       {
-        "item": "cobblemon:hard_stone",
-        "percentage": 10
+        "item": "cobblemon:everstone",
+        "percentage": 10.0
       },
       {
         "item": "cobblemon:black_augurite",
-        "percentage": 10
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:rindo_berry",
+        "percentage": 10.0
       }
     ]
   },

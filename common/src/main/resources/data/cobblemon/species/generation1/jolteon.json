@@ -7,6 +7,19 @@
     "voltabsorb",
     "h:quickfeet"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:thunder_stone",
+        "percentage": 25.0
+      },
+      {
+        "item": "cobblemon:magnet",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 65,
     "attack": 65,

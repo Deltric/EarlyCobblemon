@@ -14,9 +14,7 @@ import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.spawning.context.SpawningContext
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.feature.SeasonFeatureHandler
-import com.cobblemon.mod.common.util.toVec3d
 import com.cobblemon.mod.common.util.weightedSelection
-import kotlin.random.Random
 
 /**
  * A [SpawnAction] that will spawn a single [PokemonEntity].
@@ -34,10 +32,6 @@ class PokemonSpawnAction(
         if (props.species == null) LOGGER.error("PokemonSpawnAction run with null species - Spawn detail: ${detail.id}")
         if (props.level == null) {
             props.level = detail.getDerivedLevelRange().random()
-        }
-        if (props.shiny == null) {
-            // If the config value is at least 1, then do 1/x and use that as the shiny chance
-            props.shiny = Cobblemon.config.shinyRate.takeIf { it >= 1 }?.let { Random.Default.nextFloat() < 1 / it }
         }
         val heldItems = detail.heldItems?.takeIf { it.isNotEmpty() }?.toMutableList() ?: mutableListOf()
         val heldItem = if (heldItems.isNotEmpty()) {

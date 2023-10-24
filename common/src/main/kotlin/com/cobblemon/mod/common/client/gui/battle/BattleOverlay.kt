@@ -173,7 +173,7 @@ class BattleOverlay : InGameHud(MinecraftClient.getInstance(), MinecraftClient.g
             colour = Triple(r, g, b),
             opacity = opacity.toFloat(),
             ballState = activeBattlePokemon.ballCapturing,
-            maxHealth = truePokemon?.hp ?: 0,
+            maxHealth = battlePokemon.maxHp.toInt(),
             health = battlePokemon.hpValue,
             isFlatHealth = battlePokemon.isHpFlat
         )
@@ -387,7 +387,7 @@ class BattleOverlay : InGameHud(MinecraftClient.getInstance(), MinecraftClient.g
         reversed: Boolean = false
     ) {
         val model = PokeBallModelRepository.getPoser(state.pokeBall.name, state.aspects)
-        val texture = PokeBallModelRepository.getTexture(state.pokeBall.name, state.aspects, state)
+        val texture = PokeBallModelRepository.getTexture(state.pokeBall.name, state.aspects, state.animationSeconds)
         val renderType = model.getLayer(texture)
 
         RenderSystem.applyModelViewMatrix()

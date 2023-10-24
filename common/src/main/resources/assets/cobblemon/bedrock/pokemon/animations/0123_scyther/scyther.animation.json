@@ -273,7 +273,6 @@
 			}
 		},
 		"animation.scyther.cry": {
-			"loop": true,
 			"bones": {
 				"neck": {
 					"rotation": [-2.5, 0, 0]

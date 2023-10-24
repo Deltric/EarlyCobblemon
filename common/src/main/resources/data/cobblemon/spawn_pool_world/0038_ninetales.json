@@ -12,18 +12,46 @@
             "type": "pokemon",
             "context": "grounded",
             "bucket": "uncommon",
-            "level": "31-50",
-            "weight": 0.06,
+            "level": "25-51",
+            "weight": 0.6,
+			"weightMultiplier": {
+				"multiplier": 2.5,
+				"condition": {
+					"timeRange": "twilight"
+				}
+			},
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_forest"
-                ],
-                "timeRange": "twilight"
+                    "#cobblemon:is_forest",
+					"#cobblemon:is_taiga"
+                ]
             },
             "anticondition": {
                 "biomes": [
                     "#cobblemon:is_freezing"
+                ]
+            }
+        },
+		{
+            "id": "ninetales-2",
+            "pokemon": "ninetales",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "25-51",
+            "weight": 0.2,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_nether_forest"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "#cobblemon:is_nether_frozen"
                 ]
             }
         },
@@ -36,14 +64,36 @@
             "type": "pokemon",
             "context": "grounded",
             "bucket": "uncommon",
-            "level": "31-50",
-            "weight": 0.06,
+            "level": "25-51",
+            "weight": 0.6,
+			"weightMultiplier": {
+				"multiplier": 2.5,
+				"condition": {
+					"timeRange": "twilight"
+				}
+			},
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_snowy"
-                ],
-                "timeRange": "twilight"
+                    "#cobblemon:is_snowy_forest"
+                ]
+            }
+        },
+		{
+            "id": "ninetales-alolan-2",
+            "pokemon": "ninetales alolan",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "25-51",
+            "weight": 0.2,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_nether_frozen"
+                ]
             }
         }
     ]

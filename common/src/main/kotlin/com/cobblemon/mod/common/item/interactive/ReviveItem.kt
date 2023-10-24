@@ -9,6 +9,8 @@
 package com.cobblemon.mod.common.item.interactive
 
 import com.cobblemon.mod.common.CobblemonSounds
+import com.cobblemon.mod.common.advancement.CobblemonCriteria
+import com.cobblemon.mod.common.advancement.criterion.PokemonInteractContext
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.callback.PartySelectCallbacks
@@ -23,15 +25,16 @@ import com.cobblemon.mod.common.util.battleLang
 import com.cobblemon.mod.common.util.isHeld
 import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.party
-import kotlin.math.ceil
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
+import net.minecraft.registry.Registries
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundCategory
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
+import kotlin.math.ceil
 
 /**
  * Item for reviving a Pokémon. Opens a party selection GUI.
@@ -72,6 +75,7 @@ class ReviveItem(val max: Boolean): CobblemonItem(Settings()) {
                             if (!player.isCreative) {
                                 stack.decrement(1)
                             }
+                            CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(bp.entity?.pokemon?.species!!.resourceIdentifier, Registries.ITEM.getId(stack.item)))
                         }
                     }
                 }
@@ -87,6 +91,7 @@ class ReviveItem(val max: Boolean): CobblemonItem(Settings()) {
                         if (!player.isCreative) {
                             stack.decrement(1)
                         }
+                        CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(pk.species.resourceIdentifier, Registries.ITEM.getId(stack.item)))
                     }
                 }
             }

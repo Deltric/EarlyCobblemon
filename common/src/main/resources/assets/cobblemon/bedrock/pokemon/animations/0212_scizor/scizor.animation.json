@@ -293,7 +293,6 @@
 			}
 		},
 		"animation.scizor.cry": {
-			"loop": true,
 			"bones": {
 				"neck": {
 					"rotation": [-7.5, 0, 0]

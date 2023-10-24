@@ -27,8 +27,8 @@ import net.minecraft.util.math.Vec3d
 
 class PidgeotModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, BipedFrame, BiWingedFrame {
     override val rootPart = root.registerChildWithAllChildren("pidgeot")
-    override val leftWing = getPart("wing_left")
-    override val rightWing = getPart("wing_right")
+    override val leftWing = getPart("wing_open_left")
+    override val rightWing = getPart("wing_open_right")
     override val leftLeg = getPart("leg_left")
     override val rightLeg = getPart("leg_right")
     override val head = getPart("neck")

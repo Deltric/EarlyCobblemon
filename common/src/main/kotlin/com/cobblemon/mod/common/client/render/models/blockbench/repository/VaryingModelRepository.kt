@@ -136,14 +136,24 @@ abstract class VaryingModelRepository<E : Entity, M : PoseableEntityModel<E>> {
         return this.variations[fallback]!!.getPoser(aspects)
     }
 
-    fun getTexture(name: Identifier, aspects: Set<String>, state: PoseableEntityState<E>?): Identifier {
+    fun getTexture(name: Identifier, aspects: Set<String>, animationSeconds: Float = 0F): Identifier {
         try {
-            val texture = this.variations[name]?.getTexture(aspects, state?.animationSeconds ?: 0F)
+            val texture = this.variations[name]?.getTexture(aspects, animationSeconds)
             if (texture != null && texture.exists()) {
                 return texture
             }
         } catch(_: IllegalStateException) { }
-        return this.variations[fallback]!!.getTexture(aspects, state?.animationSeconds ?: 0F)
+        return this.variations[fallback]!!.getTexture(aspects, animationSeconds)
+    }
+
+    fun getTextureNoSubstitute(name: Identifier, aspects: Set<String>, animationSeconds: Float = 0F): Identifier? {
+        try {
+            val texture = this.variations[name]?.getTexture(aspects, animationSeconds)
+            if (texture != null && texture.exists()) {
+                return texture
+            }
+        } catch(_: IllegalStateException) {}
+        return null
     }
 
     fun getLayers(name: Identifier, aspects: Set<String>): Iterable<ModelLayer> {

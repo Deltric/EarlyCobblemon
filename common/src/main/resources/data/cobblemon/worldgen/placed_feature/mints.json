@@ -2,30 +2,81 @@
   "feature": "cobblemon:mints",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 50
-    },
-    {
       "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:heightmap",
-      "heightmap": "WORLD_SURFACE"
+      "heightmap": "MOTION_BLOCKING_NO_LEAVES"
     },
     {
       "type": "minecraft:block_predicate_filter",
       "predicate": {
-        "type": "minecraft:all_of",
-        "predicates": [
-          {
-            "type": "cobblemon:altitude",
-            "min": 100
-          },
-          {
-            "type": "minecraft:matching_blocks",
-            "blocks": "#minecraft:dirt"
-          }
-        ]
+        "type": "cobblemon:altitude",
+        "min": 70
+      }
+    },
+    {
+      "type": "cobblemon:conditional_rarity_filter",
+      "chance": 88,
+      "predicate": {
+        "type": "cobblemon:altitude",
+        "min": 70,
+        "max": 79
+      }
+    },
+    {
+      "type": "cobblemon:conditional_rarity_filter",
+      "chance": 77,
+      "predicate": {
+        "type": "cobblemon:altitude",
+        "min": 80,
+        "max": 89
+      }
+    },
+    {
+      "type": "cobblemon:conditional_rarity_filter",
+      "chance": 55,
+      "predicate": {
+        "type": "cobblemon:altitude",
+        "min": 90,
+        "max": 99
+      }
+    },
+    {
+      "type": "cobblemon:conditional_rarity_filter",
+      "chance": 33,
+      "predicate": {
+        "type": "cobblemon:altitude",
+        "min": 100,
+        "max": 109
+      }
+    },
+    {
+      "type": "cobblemon:conditional_rarity_filter",
+      "chance": 22,
+      "predicate": {
+        "type": "cobblemon:altitude",
+        "min": 110,
+        "max": 119
+      }
+    },
+    {
+      "type": "cobblemon:conditional_rarity_filter",
+      "chance": 12,
+      "predicate": {
+        "type": "cobblemon:altitude",
+        "min": 120
+      }
+    },
+    {
+      "type": "cobblemon:locate_predicate",
+      "maxTries": 64,
+      "xzRange": 8,
+      "yRange": 1,
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "offset": [0, -1, 0],
+        "blocks": "#minecraft:dirt"
       }
     }
   ]

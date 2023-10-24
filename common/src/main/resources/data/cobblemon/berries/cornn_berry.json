@@ -100,40 +100,46 @@
         "y": -35.0,
         "z": -2.5
       }
+    },
+    {
+      "position": {
+        "x": 5.0,
+        "y": 6.0,
+        "z": 11.0
+      },
+      "rotation": {
+        "x": -140.0,
+        "y": -45.0,
+        "z": -5.0
+      }
+    },
+    {
+      "position": {
+        "x": 11.0,
+        "y": 6.25,
+        "z": 11.0
+      },
+      "rotation": {
+        "x": -40.0,
+        "y": -50.0,
+        "z": -175.0
+      }
     }
   ],
   "mutations": {
     "cobblemon:rindo_berry": "cobblemon:kelpsy_berry",
     "cobblemon:passho_berry": "cobblemon:pamtre_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "short-sprout",
+  "matureShape": "short-mature",
   "flavors": {
     "DRY": 20,
     "SWEET": 10
   },
   "weight": 1.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:cornn_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/cornn.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:cornn_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/cornn.png"
 }

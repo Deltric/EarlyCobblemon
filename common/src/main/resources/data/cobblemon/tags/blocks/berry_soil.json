@@ -1,5 +1,13 @@
 {
   "values": [
-    "minecraft:farmland"
+    "minecraft:farmland",
+    {
+      "id": "#c:farmlands",
+      "required": false
+    },
+    {
+      "id": "#forge:farmlands",
+      "required": false
+    }
   ]
 }

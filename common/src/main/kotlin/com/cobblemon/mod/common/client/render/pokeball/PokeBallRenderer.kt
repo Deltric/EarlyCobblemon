@@ -24,7 +24,7 @@ import net.minecraft.util.math.RotationAxis
 class PokeBallRenderer(context: EntityRendererFactory.Context) : EntityRenderer<EmptyPokeBallEntity>(context) {
 
     override fun getTexture(pEntity: EmptyPokeBallEntity): Identifier {
-        return PokeBallModelRepository.getTexture(pEntity.pokeBall.name, pEntity.aspects.get(), pEntity.delegate as EmptyPokeBallClientDelegate)
+        return PokeBallModelRepository.getTexture(pEntity.pokeBall.name, pEntity.aspects.get(), (pEntity.delegate as EmptyPokeBallClientDelegate).animationSeconds)
     }
 
     override fun render(entity: EmptyPokeBallEntity, yaw: Float, partialTicks: Float, poseStack: MatrixStack, buffer: VertexConsumerProvider, packedLight: Int) {

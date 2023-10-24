@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonBlockEntities
 import com.cobblemon.mod.common.CobblemonBlocks
 import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
+import com.cobblemon.mod.common.advancement.CobblemonCriteria
 import com.cobblemon.mod.common.api.pasture.PastureLinkManager
 import com.cobblemon.mod.common.api.scheduling.afterOnMain
 import com.cobblemon.mod.common.api.text.red
@@ -25,8 +26,6 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.DataKeys
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.toVec3d
-import java.util.UUID
-import kotlin.math.ceil
 import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.block.entity.BlockEntity
@@ -46,6 +45,8 @@ import net.minecraft.util.math.Box
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3i
 import net.minecraft.world.World
+import java.util.*
+import kotlin.math.ceil
 
 class PokemonPastureBlockEntity(pos: BlockPos, val state: BlockState) : BlockEntity(CobblemonBlockEntities.PASTURE, pos, state) {
     open class Tethering(
@@ -159,6 +160,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, val state: BlockState) : BlockEnt
                     entity.tethering = tethering
                     tethering.toDTO(player)?.let { player.sendPacket(PokemonPasturedPacket(it)) }
                     markDirty()
+                    CobblemonCriteria.PASTURE_USE.trigger(player, pokemon)
                     return true
                 } else {
                     Cobblemon.LOGGER.warn("Couldn't spawn pastured Pokémon for some reason")
@@ -197,12 +199,6 @@ class PokemonPastureBlockEntity(pos: BlockPos, val state: BlockState) : BlockEnt
             }
         }
     }
-
-    override fun markRemoved() {
-        super.markRemoved()
-        onBroken()
-    }
-
 
     fun isSafeFloor(world: World, pos: BlockPos, entity: PokemonEntity): Boolean {
         val state = world.getBlockState(pos)

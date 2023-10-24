@@ -6,6 +6,15 @@
     "moldbreaker",
     "h:sheerforce"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:bones",
+        "quantityRange": "0-2"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 97,
     "attack": 165,

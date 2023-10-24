@@ -17,8 +17,10 @@ import net.minecraft.structure.processor.StructureProcessorType
 
 object CobblemonProcessorTypes {
     val registry = Registries.STRUCTURE_PROCESSOR
+    val lists = CobblemonStructureProcessorLists
 
-    val RANDOM_POOLED_STATES = register("random_pooled_states", RandomizedStructureMappedBlockStateProcessor.CODEC)
+    @JvmField
+    val RANDOM_POOLED_STATES = register("random_pooled_states", RandomizedStructureMappedBlockStatePairProcessor.CODEC)
 
     fun <T : StructureProcessor> register(id: String, codec: Codec<T>): StructureProcessorType<T> {
         return Registry.register(registry, cobblemonResource(id), StructureProcessorType { codec })

@@ -16,6 +16,7 @@ import com.cobblemon.mod.common.api.pokemon.Natures
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.api.properties.CustomPokemonProperty
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
+import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.net.messages.client.data.PropertiesCompletionRegistrySyncPacket
 import com.cobblemon.mod.common.pokemon.EVs
 import com.cobblemon.mod.common.pokemon.Gender
@@ -135,6 +136,10 @@ internal object PropertiesCompletionProvider : DataRegistry {
         this.inject(setOf("pokeball"), PokeBalls.all().map { if (it.name.namespace == Cobblemon.MODID) it.name.path else it.name.toString() })
         this.inject(setOf("nature"), Natures.all().map { if (it.name.namespace == Cobblemon.MODID) it.name.path else it.name.toString() })
         this.inject(setOf("ability"), Abilities.all().map { if (it.name.asIdentifierDefaultingNamespace().namespace == Cobblemon.MODID) it.name.asIdentifierDefaultingNamespace().path else it.name })
+        this.inject(setOf("dmax"), setOf("0", Cobblemon.config.maxDynamaxLevel.toString()))
+        this.inject(setOf("gmax"), setOf("yes", "no"))
+        this.inject(setOf("tera"), ElementalTypes.all().map { it.name })
+        this.inject(setOf("tradeable"), setOf("yes", "no"))
 
         Stats.PERMANENT.forEach{ stat ->
             val statName = stat.toString().lowercase()

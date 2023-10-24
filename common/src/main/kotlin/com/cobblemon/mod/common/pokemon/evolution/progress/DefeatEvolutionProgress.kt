@@ -40,10 +40,9 @@ class DefeatEvolutionProgress : EvolutionProgress<DefeatEvolutionProgress.Progre
     }
 
     override fun shouldKeep(pokemon: Pokemon): Boolean {
-        val evolutionController = pokemon.evolutionProxy.server()
         return pokemon.form.evolutions.any { evolution ->
             evolution.requirements.any { requirement ->
-                requirement is DefeatRequirement && requirement.target.originalString.equals(this.progress.target.originalString, true) && requirement.amount == this.currentProgress().amount && !evolutionController.contains(evolution)
+                requirement is DefeatRequirement && requirement.target.originalString.equals(this.progress.target.originalString, true)
             }
         }
     }

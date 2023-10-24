@@ -9,6 +9,7 @@
 package com.cobblemon.mod.common.item
 
 import com.bedrockk.molang.runtime.MoLangRuntime
+import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonMechanics
 import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
@@ -19,7 +20,6 @@ import com.cobblemon.mod.common.block.RevivalHerbBlock
 import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.pokemon.Pokemon
 import kotlin.math.ceil
-import net.minecraft.block.ComposterBlock
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.AliasedBlockItem
 import net.minecraft.item.ItemStack
@@ -34,7 +34,7 @@ class RevivalHerbItem(block: RevivalHerbBlock) : AliasedBlockItem(block, Setting
 
     init {
         // 65% to raise composter level
-        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE[this] = .65F
+        Cobblemon.implementation.registerCompostable(this, .65F)
     }
 
     private val runtime = MoLangRuntime()
@@ -64,16 +64,16 @@ class RevivalHerbItem(block: RevivalHerbBlock) : AliasedBlockItem(block, Setting
         stack: ItemStack,
         pokemon: Pokemon
     ): TypedActionResult<ItemStack>? {
-        if (pokemon.isFainted()) {
+        return if (pokemon.isFainted()) {
             player.playSound(CobblemonSounds.MEDICINE_HERB_USE, SoundCategory.PLAYERS, 1F, 1F)
             pokemon.currentHealth = ceil(pokemon.hp / 4F).toInt()
             pokemon.decrementFriendship(CobblemonMechanics.remedies.getFriendshipDrop(runtime))
             if (!player.isCreative) {
                 stack.decrement(1)
             }
-            return TypedActionResult.success(stack)
+            TypedActionResult.success(stack)
         } else {
-            return TypedActionResult.pass(stack)
+            TypedActionResult.pass(stack)
         }
     }
 

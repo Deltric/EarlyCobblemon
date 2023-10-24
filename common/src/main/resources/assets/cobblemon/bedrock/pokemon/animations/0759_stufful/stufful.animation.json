@@ -630,7 +630,7 @@
 			},
 			"sound_effects": {
 				"0.0": {
-					"effect": "stufful_ambient"
+					"effect": "pokemon.stufful.cry"
 				}
 			}
 		}

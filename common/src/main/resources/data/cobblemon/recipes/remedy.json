@@ -1,6 +1,6 @@
 {
   "type": "minecraft:smelting",
-  "group": "misc",
+  "group": "remedy",
   "ingredient": {
     "item": "cobblemon:big_root"
   },

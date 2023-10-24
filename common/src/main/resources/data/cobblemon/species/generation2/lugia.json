@@ -237,5 +237,14 @@
   "height": 52,
   "weight": 2160,
   "aspects": [],
-  "cannotDynamax": false
+  "cannotDynamax": false,
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "quantityRange": "2-4"
+      }
+    ]
+  }
 }

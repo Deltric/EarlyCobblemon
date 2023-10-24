@@ -28,7 +28,7 @@ class BerryBlockRenderer(private val context: BlockEntityRendererFactory.Context
 
     override fun isInRenderDistance(blockEntity: BerryBlockEntity, pos: Vec3d): Boolean {
         return super.isInRenderDistance(blockEntity, pos)
-                && MinecraftClient.getInstance().worldRenderer.frustum.isVisible(Box.of(pos, 2.0, 1.5, 2.0))
+                && MinecraftClient.getInstance().worldRenderer.frustum.isVisible(Box.of(pos, 2.0, 4.0, 2.0))
     }
 
     override fun render(entity: BerryBlockEntity, tickDelta: Float, matrices: MatrixStack, vertexConsumers: VertexConsumerProvider, light: Int, overlay: Int) {

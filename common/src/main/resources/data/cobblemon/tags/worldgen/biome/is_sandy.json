@@ -3,7 +3,7 @@
   "values": [
     "#cobblemon:is_badlands",
 	"#cobblemon:is_desert",
-    {
+	{
       "id": "#byg:is_sandy",
       "required": false
     }

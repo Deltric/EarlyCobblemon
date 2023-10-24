@@ -97,7 +97,7 @@ abstract class PoseableEntityState<T : Entity> {
             val poseImpl = model.getPose(pose) ?: return
             poseParticles.removeIf { particle -> poseImpl.idleAnimations.filterIsInstance<BedrockStatelessAnimation<*>>().flatMap { it.particleKeyFrames }.none(particle::isSameAs) }
             poseImpl.onTransitionedInto(this)
-            val entity = model.context.request(RenderContext.ENTITY) as T?
+            val entity = getEntity()
             if (entity != null) {
                 poseImpl.idleAnimations
                     .filterIsInstance<BedrockStatelessAnimation<*>>()

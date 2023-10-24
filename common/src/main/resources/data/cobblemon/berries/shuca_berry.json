@@ -4,7 +4,8 @@
     "max": 3
   },
   "preferredBiomeTags": [
-    "cobblemon:is_arid"
+    "cobblemon:is_arid",
+    "cobblemon:is_grassland"
   ],
   "growthTime": {
     "min": 50,
@@ -15,6 +16,7 @@
     "max": 26
   },
   "favoriteMulches": [
+    "loamy",
     "sandy"
   ],
   "growthFactors": [
@@ -27,7 +29,13 @@
     }
   ],
   "randomizedGrowthPoints": true,
-  "spawnConditions": [],
+  "spawnConditions": [
+    {
+      "variant": "cobblemon:preferred_biome",
+      "minGroveSize": 3,
+      "maxGroveSize": 5
+    }
+  ],
   "growthPoints": [
     {
       "position": {
@@ -88,40 +96,58 @@
         "y": 45.0,
         "z": 0.0
       }
+    },
+    {
+      "position": {
+        "x": 12.25,
+        "y": 10.0,
+        "z": 3.75
+      },
+      "rotation": {
+        "x": 15.0,
+        "y": -45.0,
+        "z": 0.0
+      }
+    },
+    {
+      "position": {
+        "x": 12.25,
+        "y": 10.0,
+        "z": 12.25
+      },
+      "rotation": {
+        "x": 15.0,
+        "y": -135.0,
+        "z": 0.0
+      }
+    },
+    {
+      "position": {
+        "x": 3.75,
+        "y": 10.0,
+        "z": 12.25
+      },
+      "rotation": {
+        "x": 15.0,
+        "y": 135.0,
+        "z": 0.0
+      }
     }
   ],
   "mutations": {
-    "cobblemon:sitrus_berry": "cobblemon:enigma_berry",
+    "cobblemon:hopo_berry": "cobblemon:enigma_berry",
     "cobblemon:rabuta_berry": "cobblemon:hondew_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "short-sprout",
+  "matureShape": "short-mature",
   "flavors": {
     "SPICY": 10,
     "SWEET": 15
   },
-  "weight": 1.0,
+  "weight": 2.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:shuca_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/shuca.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:shuca_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/shuca.png"
 }

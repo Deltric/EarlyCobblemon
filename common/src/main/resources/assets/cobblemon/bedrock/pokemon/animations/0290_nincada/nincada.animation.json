@@ -1294,6 +1294,11 @@
 						"0.875": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "pokemon.nincada.cry"
+				}
 			}
 		},
 		"animation.nincada.quirk_wingflutter": {

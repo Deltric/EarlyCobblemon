@@ -33,6 +33,8 @@ class SpawnPokemonPacket(
     private val nickname: MutableText?,
     private val labelLevel: Int,
     private val poseType: PoseType,
+    private val unbattlable: Boolean,
+    private val hideLabel: Boolean,
     vanillaSpawnPacket: EntitySpawnS2CPacket
 ) : SpawnExtraDataEntityPacket<SpawnPokemonPacket, PokemonEntity>(vanillaSpawnPacket) {
 
@@ -49,6 +51,8 @@ class SpawnPokemonPacket(
         entity.pokemon.nickname,
         if (Cobblemon.config.displayEntityLevelLabel) entity.labelLevel.get() else -1,
         entity.getPoseType(),
+        entity.unbattleable.get(),
+        entity.hideLabel.get(),
         vanillaSpawnPacket
     )
 
@@ -63,6 +67,8 @@ class SpawnPokemonPacket(
         buffer.writeNullable(this.nickname) { _, v -> buffer.writeText(v) }
         buffer.writeInt(this.labelLevel)
         buffer.writeEnumConstant(this.poseType)
+        buffer.writeBoolean(this.unbattlable)
+        buffer.writeBoolean(this.hideLabel)
     }
 
     override fun applyData(entity: PokemonEntity) {
@@ -80,6 +86,8 @@ class SpawnPokemonPacket(
         entity.species.set(entity.pokemon.species.resourceIdentifier.toString())
         entity.aspects.set(aspects)
         entity.poseType.set(poseType)
+        entity.unbattleable.set(unbattlable)
+        entity.hideLabel.set(hideLabel)
     }
 
     override fun checkType(entity: Entity): Boolean = entity is PokemonEntity
@@ -98,8 +106,10 @@ class SpawnPokemonPacket(
             val nickname = buffer.readNullable { buffer.readText().copy() }
             val labelLevel = buffer.readInt()
             val poseType = buffer.readEnumConstant(PoseType::class.java)
+            val unbattlable = buffer.readBoolean()
+            val hideLabel = buffer.readBoolean()
             val vanillaPacket = decodeVanillaPacket(buffer)
-            return SpawnPokemonPacket(ownerId, scaleModifier, species, form, aspects, phasingTargetId, beamModeEmitter, nickname, labelLevel, poseType, vanillaPacket)
+            return SpawnPokemonPacket(ownerId, scaleModifier, species, form, aspects, phasingTargetId, beamModeEmitter, nickname, labelLevel, poseType, unbattlable, hideLabel, vanillaPacket)
         }
     }
 

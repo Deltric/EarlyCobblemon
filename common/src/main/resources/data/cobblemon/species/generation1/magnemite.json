@@ -43,14 +43,22 @@
     }
   },
   "drops": {
-    "amount": "2",
+    "amount": 4,
     "entries": [
       {
         "item": "minecraft:raw_iron",
-        "percentage": 50
+        "quantityRange": "0-1"
       },
       {
         "item": "cobblemon:magnet",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:metal_coat",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:shuca_berry",
         "percentage": 2.5
       }
     ]

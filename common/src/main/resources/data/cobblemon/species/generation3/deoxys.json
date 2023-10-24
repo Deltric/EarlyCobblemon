@@ -344,5 +344,13 @@
     }
   ],
   "aspects": [],
-  "cannotDynamax": false
+  "cannotDynamax": false,
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "minecraft:eye_of_ender"
+      }
+    ]
+  }
 }

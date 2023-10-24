@@ -27,7 +27,7 @@ object StopBattleCommand {
             .permission(CobblemonPermissions.STOP_BATTLE)
             .then(
                 CommandManager.argument("player", EntityArgumentType.player())
-                    .executes { execute(it) }
+                    .executes(::execute)
             ))
     }
 

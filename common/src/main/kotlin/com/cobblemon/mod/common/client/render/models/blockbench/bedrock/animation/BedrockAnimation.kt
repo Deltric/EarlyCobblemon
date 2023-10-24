@@ -68,7 +68,7 @@ class BedrockParticleKeyframe(
     }
 
     override fun <T : Entity> run(entity: T, state: PoseableEntityState<T>) {
-        val world = entity.world as ClientWorld
+        val world = entity.world as? ClientWorld ?: return
         val matrixWrapper = state.locatorStates[locator] ?: state.locatorStates["root"]!!
         val effect = effect
 

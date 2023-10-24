@@ -28,9 +28,9 @@ class NincadaModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Quad
     override val hindRightLeg = getPart("leg_back_right")
 
     override val portraitScale = 2.0F
-    override val portraitTranslation = Vec3d(-0.26, -1.20, 0.0)
-    override val profileScale = 0.9F
-    override val profileTranslation = Vec3d(0.0, 0.4, 0.0)
+    override val portraitTranslation = Vec3d(-0.26, -1.0, 0.0)
+    override val profileScale = 0.7F
+    override val profileTranslation = Vec3d(0.0, 0.6, 0.0)
 
     lateinit var sleep: PokemonPose
     lateinit var standing: PokemonPose

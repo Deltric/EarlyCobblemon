@@ -11,25 +11,8 @@
             ],
             "type": "pokemon",
             "context": "grounded",
-            "bucket": "uncommon",
-            "level": "20-47",
-            "weight": 10.0,
-            "condition": {
-				"biomes": [
-                    "minecraft:basalt_deltas"
-                ]
-			}
-        },
-        {
-            "id": "torkoal-2",
-            "pokemon": "torkoal",
-            "presets": [
-                "natural"
-            ],
-            "type": "pokemon",
-            "context": "grounded",
             "bucket": "common",
-            "level": "20-47",
+            "level": "22-47",
             "weight": 10.0,
             "condition": {
                 "biomes": [
@@ -42,15 +25,15 @@
             }
         },
         {
-            "id": "torkoal-3",
+            "id": "torkoal-2",
             "pokemon": "torkoal",
             "presets": [
-                "underground"
+                "natural"
             ],
             "type": "pokemon",
             "context": "grounded",
             "bucket": "uncommon",
-            "level": "20-47",
+            "level": "22-47",
             "weight": 10.0,
             "condition": {
                 "canSeeSky": false,
@@ -63,9 +46,26 @@
             },
 			"anticondition": {
 				"biomes": [
-                    "#cobblemon:is_abyss",
+                    "#cobblemon:is_deep_dark",
 					"#cobblemon:is_mountain",
 					"#cobblemon:is_thermal"
+                ]
+			}
+        },
+		{
+            "id": "torkoal-3",
+            "pokemon": "torkoal",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "22-47",
+            "weight": 2.0,
+            "condition": {
+				"biomes": [
+                    "#cobblemon:is_nether_basalt"
                 ]
 			}
         }

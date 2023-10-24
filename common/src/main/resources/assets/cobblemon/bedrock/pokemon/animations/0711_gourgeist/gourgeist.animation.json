@@ -447,7 +447,32 @@
 					}
 				}
 			}
+		},
+		"animation.gourgeist.cry": {
+			"animation_length": 1.75,
+			"bones": {
+				"mouth_closed": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.0417": [0, 0, 0.1],
+						"1.4583": [0, 0, 0.1],
+						"1.5": [0, 0, 0]
+					}
+				},
+				"mouth_open": {
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.0417": [0, 0, -0.1],
+						"1.4583": [0, 0, -0.1],
+						"1.5": [0, 0, 0]
+					}
+				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "pokemon.gourgeist.cry"
+				}
+			}
 		}
-	},
-	"geckolib_format_version": 2
+	}
 }

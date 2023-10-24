@@ -131,40 +131,46 @@
         "y": 170.0,
         "z": 5.0
       }
+    },
+    {
+      "position": {
+        "x": 11.25,
+        "y": 17.0,
+        "z": 2.0
+      },
+      "rotation": {
+        "x": -2.5,
+        "y": -32.5,
+        "z": -7.5
+      }
+    },
+    {
+      "position": {
+        "x": 2.0,
+        "y": 23.5,
+        "z": 5.25
+      },
+      "rotation": {
+        "x": -32.5,
+        "y": 75.0,
+        "z": -30.0
+      }
     }
   ],
   "mutations": {
     "cobblemon:oran_berry": "cobblemon:leppa_berry",
     "cobblemon:mago_berry": "cobblemon:magost_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "tall-sprout",
+  "matureShape": "tall-mature",
   "flavors": {
     "SWEET": 10,
     "BITTER": 10
   },
-  "weight": 1.0,
+  "weight": 15.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:nanab_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/nanab.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:nanab_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/nanab.png"
 }

@@ -1,12 +1,6 @@
 {
   "condition": {
 	"neededNearbyBlocks": [
-      "minecraft:dirt_path",
-      "minecraft:cut_sandstone",
-      "minecraft:cut_red_sandstone",
-      "minecraft:bricks",
-      "minecraft:smooth_stone",
-      "minecraft:smooth_stone_slab",
       "minecraft:white_concrete",
       "minecraft:orange_concrete",
       "minecraft:magenta_concrete",
@@ -24,5 +18,10 @@
       "minecraft:red_concrete",
       "minecraft:black_concrete"
     ]
+  },
+  "anticondition": {
+    "structures": [
+	  "minecraft:trail_ruins"
+	]
   }
 }

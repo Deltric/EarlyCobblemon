@@ -194,6 +194,14 @@
 				}
 			}
 		},
+		"animation.aegislash.cry": {
+			"animation_length": 0.91667,
+			"sound_effects": {
+				"0.0417": {
+					"effect": "pokemon.aegislash.cry"
+				}
+			}
+		},
 		"animation.aegislash.blink": {
 			"animation_length": 0.5,
 			"bones": {

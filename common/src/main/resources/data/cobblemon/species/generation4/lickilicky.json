@@ -8,6 +8,19 @@
     "oblivious",
     "h:cloudnine"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:slime_ball",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:oran_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 110,
     "attack": 85,
@@ -32,16 +45,6 @@
   "eggGroups": [
     "monster"
   ],
-  "drops": {
-    "amount": "1",
-    "entries": [
-      {
-        "item": "minecraft:slime_ball",
-        "quantityRange": "1-2",
-        "percentage": 66
-      }
-    ]
-  },
   "moves": [
     "1:defensecurl",
     "1:lick",

@@ -2,10 +2,6 @@
   "replace": false,
   "values": [
     {
-      "id": "terralith:skylands",
-      "required": false
-    },
-    {
       "id": "terralith:skylands_autumn",
       "required": false
     },

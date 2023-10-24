@@ -33,7 +33,7 @@
             "weight": 0.1,
             "condition": {
                 "biomes": [
-                    "minecraft:basalt_deltas"
+                    "#cobblemon:is_nether_basalt"
                 ]
             }
         }

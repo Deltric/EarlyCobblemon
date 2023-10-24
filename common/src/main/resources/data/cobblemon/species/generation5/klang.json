@@ -8,6 +8,15 @@
     "minus",
     "h:clearbody"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:raw_iron",
+        "quantityRange": "0-2"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 60,
     "attack": 80,
@@ -33,16 +42,6 @@
   "eggGroups": [
     "mineral"
   ],
-  "drops": {
-    "amount": "1",
-    "entries": [
-      {
-        "item": "minecraft:raw_iron",
-        "quantityRange": "1-2",
-        "percentage": 66
-      }
-    ]
-  },
   "moves": [
     "1:bind",
     "1:charge",

@@ -15,7 +15,7 @@ import net.minecraft.client.util.InputUtil
 object HidePartyBinding : CobblemonKeyBinding(
     "key.cobblemon.hideparty",
     InputUtil.Type.KEYSYM,
-    InputUtil.GLFW_KEY_P,
+    InputUtil.GLFW_KEY_O,
     KeybindCategories.COBBLEMON_CATEGORY
 ) {
     var shouldHide = false

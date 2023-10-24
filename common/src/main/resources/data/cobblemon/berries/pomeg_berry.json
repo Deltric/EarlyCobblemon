@@ -64,6 +64,42 @@
         "y": 35.0,
         "z": -80.0
       }
+    },
+    {
+      "position": {
+        "x": 9.0,
+        "y": 12.0,
+        "z": 6.5
+      },
+      "rotation": {
+        "x": 67.5,
+        "y": 27.5,
+        "z": 82.5
+      }
+    },
+    {
+      "position": {
+        "x": 6.6,
+        "y": 12.5,
+        "z": 8.0
+      },
+      "rotation": {
+        "x": -2.5,
+        "y": 12.5,
+        "z": -65.0
+      }
+    },
+    {
+      "position": {
+        "x": 9.0,
+        "y": 12.0,
+        "z": 9.5
+      },
+      "rotation": {
+        "x": -55.0,
+        "y": -27.5,
+        "z": 77.5
+      }
     }
   ],
   "mutations": {
@@ -73,26 +109,8 @@
     "cobblemon:grepa_berry": "cobblemon:starf_berry",
     "cobblemon:tamato_berry": "cobblemon:starf_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "frill-sprout",
+  "matureShape": "frill-mature",
   "flavors": {
     "SPICY": 10,
     "SWEET": 10,
@@ -100,8 +118,8 @@
   },
   "weight": 1.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:pomeg_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/pomeg.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:pomeg_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/pomeg.png"
 }

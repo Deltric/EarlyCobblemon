@@ -34,6 +34,6 @@ class CaughtPokemonCriterionCondition(id: Identifier, predicate: LootContextPred
     }
 
     override fun matches(player: ServerPlayerEntity, context: CountablePokemonTypeContext): Boolean {
-        return super.matches(player, context) && context.type == type
+        return super.matches(player, context) && (context.type == type || type == "any")
     }
 }

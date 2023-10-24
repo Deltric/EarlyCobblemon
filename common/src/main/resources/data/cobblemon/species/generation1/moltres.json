@@ -312,5 +312,20 @@
   "height": 20,
   "weight": 600,
   "aspects": [],
-  "cannotDynamax": false
+  "cannotDynamax": false,
+  "drops": {
+    "amount": 6,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "quantityRange": "2-4"
+      },
+      {
+        "item": "minecraft:cooked_chicken"
+      },
+      {
+        "item": "cobblemon:charcoal_stick"
+      }
+    ]
+  }
 }

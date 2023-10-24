@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.animation.WingFl
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BiWingedFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BipedFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.HeadedFrame
+import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.CryProvider
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPose
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import com.cobblemon.mod.common.client.render.models.blockbench.pose.TransformedModelPart
@@ -43,7 +44,7 @@ class FletchlingModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, B
     lateinit var hover: PokemonPose
     lateinit var fly: PokemonPose
 
-//    override val cryAnimation = CryProvider { _, _ -> bedrockStateful("fletchling", "cry").setPreventsIdle(false) }
+    override val cryAnimation = CryProvider { _, _ -> bedrockStateful("fletchling", "cry").setPreventsIdle(false) }
 
     override fun registerPoses() {
 //        sleep = registerPose(

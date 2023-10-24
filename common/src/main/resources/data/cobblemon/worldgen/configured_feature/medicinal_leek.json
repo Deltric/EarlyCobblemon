@@ -26,6 +26,23 @@
             "type": "minecraft:all_of",
             "predicates": [
               {
+                "type": "minecraft:matching_fluids",
+                "offset": [
+                  0,
+                  -1,
+                  0
+                ],
+                "fluids": "#minecraft:water"
+              },
+              {
+                "type": "cobblemon:biome",
+                "excludedBiomes": [
+                  "#cobblemon:is_freezing",
+                  "#cobblemon:is_coast",
+                  "#cobblemon:is_ocean"
+                ]
+              },
+              {
                 "type": "minecraft:matching_blocks",
                 "blocks": "minecraft:air"
               },

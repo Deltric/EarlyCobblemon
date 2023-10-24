@@ -5,6 +5,14 @@
   "abilities": [
     "baddreams"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:reaper_cloth"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 70,
     "attack": 90,

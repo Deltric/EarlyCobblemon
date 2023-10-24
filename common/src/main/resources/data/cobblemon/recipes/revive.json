@@ -2,13 +2,10 @@
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
-            "item": "cobblemon:revival_herb"
+            "item": "cobblemon:heal_powder"
         },
         {
-            "item": "cobblemon:vivichoke"
-        },
-        {
-            "item": "minecraft:sugar"
+            "item": "minecraft:honey_bottle"
         }
     ],
     "result": {

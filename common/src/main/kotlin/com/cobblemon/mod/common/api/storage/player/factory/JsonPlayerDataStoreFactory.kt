@@ -26,7 +26,7 @@ class JsonPlayerDataStoreFactory : PlayerDataStoreFactory {
     }
 
     override fun load(uuid: UUID): PlayerData {
-        return if(cache.contains(uuid))
+        return if (cache.contains(uuid))
             cache[uuid]!!;
         else {
             val data = adapter.load(uuid);
@@ -40,7 +40,7 @@ class JsonPlayerDataStoreFactory : PlayerDataStoreFactory {
     }
 
     override fun saveAll() {
-        cache.forEach { (_, pd) -> adapter.save(pd)}
+        cache.forEach { (_, pd) -> adapter.save(pd) }
         cache.removeIf { (uuid, _) -> uuid.getPlayer() == null }
     }
 

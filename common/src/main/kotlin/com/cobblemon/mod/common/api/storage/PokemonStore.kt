@@ -146,8 +146,10 @@ abstract class PokemonStore<T : StorePosition> : Iterable<Pokemon> {
 
     operator fun get(uuid: UUID) = find { it.uuid == uuid }
 
+    open fun handleInvalidSpeciesNBT(nbt: NbtCompound) {}
     abstract fun saveToNBT(nbt: NbtCompound): NbtCompound
     abstract fun loadFromNBT(nbt: NbtCompound): PokemonStore<T>
+    open fun handleInvalidSpeciesJSON(json: JsonObject) {}
     abstract fun saveToJSON(json: JsonObject): JsonObject
     abstract fun loadFromJSON(json: JsonObject): PokemonStore<T>
     abstract fun savePositionToNBT(position: T, nbt: NbtCompound)

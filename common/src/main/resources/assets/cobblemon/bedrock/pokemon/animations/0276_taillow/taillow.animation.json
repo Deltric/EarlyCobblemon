@@ -561,6 +561,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.25": {
+					"effect": "pokemon.taillow.cry"
+				}
 			}
 		}
 	}

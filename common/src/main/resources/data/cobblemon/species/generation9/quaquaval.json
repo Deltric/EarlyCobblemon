@@ -8,6 +8,15 @@
     "torrent",
     "h:moxie"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 25.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 85,
     "attack": 120,
@@ -34,12 +43,20 @@
     "flying",
     "water_1"
   ],
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.25
+      }
+    }
+  },
   "moves": [
     "1:counter",
     "1:doublehit",
     "1:growl",
     "1:pound",
     "1:watergun",
+    "1:aquastep",
     "7:workup",
     "10:wingattack",
     "13:aquajet",

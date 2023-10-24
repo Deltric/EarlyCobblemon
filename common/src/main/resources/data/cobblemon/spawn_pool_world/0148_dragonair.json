@@ -39,6 +39,25 @@
                     "#cobblemon:is_overworld"
                 ]
             }
+        },
+		{
+            "id": "dragonair-3",
+            "pokemon": "dragonair",
+            "presets": [
+                "underwater",
+				"ocean_ruins"
+            ],
+            "type": "pokemon",
+            "context": "submerged",
+            "bucket": "uncommon",
+            "level": "30-42",
+            "weight": 9.0,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_ocean"
+                ]
+            }
         }
     ]
 }

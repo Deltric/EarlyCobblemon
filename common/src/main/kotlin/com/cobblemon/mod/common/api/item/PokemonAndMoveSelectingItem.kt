@@ -98,6 +98,11 @@ interface PokemonAndMoveSelectingItem {
     fun canUseOnMove(move: Move): Boolean
 
     fun interactWithSpecific(player: ServerPlayerEntity, stack: ItemStack, pokemon: Pokemon): TypedActionResult<ItemStack>? {
+
+        if (player.isSneaking) {
+            return TypedActionResult.pass(stack)
+        }
+
         MoveSelectCallbacks.create(
             player = player,
             moves = pokemon.moveSet.toList(),

@@ -32,6 +32,9 @@ object BedrockAnimationReferenceFactory : AnimationReferenceFactory {
 
     override fun stateful(model: JsonPokemonPoseableModel, animString: String, ): StatefulAnimation<PokemonEntity, ModelFrame> {
         val split = animString.replace("bedrock(", "").replace(")", "").split(",").map(String::trim)
-        return model.bedrockStateful(animationGroup = split[0], animation = split[1])
+        return model.bedrockStateful(
+            animationGroup = split[0],
+            animation = split[1]
+        ).setPreventsIdle(if (split.size == 3) split[2].toBoolean() else JsonPokemonPoseableModel.StatefulAnimationAdapter.preventsIdleDefault)
     }
 }

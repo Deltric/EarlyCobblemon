@@ -158,6 +158,7 @@ fun String.stripCodes(): String = this.replace("[&§][A-Ea-e0-9K-Ok-oRr]".toRege
 fun MutableText.onClick(consumed: AtomicBoolean, action: (p: ServerPlayerEntity) -> Unit) = also { it.style = it.style.withClickEvent(click(consumed, action)) }
 fun MutableText.onClick(onlyOnce: Boolean = false, action: (p: ServerPlayerEntity) -> Unit) = also { it.style = it.style.withClickEvent(click(onlyOnce, action)) }
 fun MutableText.onHover(string: String) = also { it.style = it.style.withHoverEvent(hover(string)) }
+fun MutableText.onHover(text: Text) = also { it.style = it.style.withHoverEvent(hover(text)) }
 fun MutableText.onHover(text: MutableText) = also { it.style = it.style.withHoverEvent(hover(text)) }
 fun MutableText.underline() = also { it.style = it.style.withUnderline(true) }
 fun MutableText.bold() = also { it.style = it.style.withBold(true) }

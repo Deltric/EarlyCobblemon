@@ -10,6 +10,7 @@ package com.cobblemon.mod.common.client.render.models.blockbench.pokemon.gen9
 
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.HeadedFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.QuadrupedFrame
+import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.CryProvider
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPose
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import com.cobblemon.mod.common.entity.PoseType
@@ -37,6 +38,8 @@ class FidoughModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Quadr
     lateinit var standing: PokemonPose
     lateinit var walking: PokemonPose
     lateinit var sleeping: PokemonPose
+
+    override val cryAnimation = CryProvider { _, _ -> bedrockStateful("fidough", "cry").setPreventsIdle(false) }
 
     override fun registerPoses() {
         val blink = quirk("blink") { bedrockStateful("fidough", "blink").setPreventsIdle(false) }

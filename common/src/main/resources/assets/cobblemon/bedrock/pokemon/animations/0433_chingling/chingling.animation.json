@@ -383,6 +383,11 @@
 						"1.25": [0, 0, 0]
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1667": {
+					"effect": "pokemon.chingling.cry"
+				}
 			}
 		},
 		"animation.chingling.ground_walk": {

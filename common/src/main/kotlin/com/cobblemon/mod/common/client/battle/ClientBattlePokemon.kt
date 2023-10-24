@@ -27,6 +27,7 @@ import net.minecraft.text.MutableText
  * @property properties
  * @property aspects
  * @property hpValue The current value of the HP.
+ * @property maxHp The maximum value of HP.
  * @property isHpFlat If this is a flat value, this will be true if the client is the player controlling the Pokémon or is an ally of the controller.
  * @property status
  * @property statChanges
@@ -37,6 +38,7 @@ class ClientBattlePokemon(
     var properties: PokemonProperties,
     var aspects: Set<String>,
     var hpValue: Float,
+    var maxHp: Float,
     var isHpFlat: Boolean,
     var status: PersistentStatus?,
     var statChanges: MutableMap<Stat, Int>

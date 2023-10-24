@@ -24,7 +24,7 @@ class PhantumpModel (root: ModelPart) : PokemonPoseableModel() {
     override val rootPart = root.registerChildWithAllChildren("phantump")
 
     override val portraitScale = 2.0F
-    override val portraitTranslation = Vec3d(-0.1, -0.6, 0.0)
+    override val portraitTranslation = Vec3d(-0.1, -0.2, 0.0)
 
     override val profileScale = 0.9F
     override val profileTranslation = Vec3d(0.0, 0.5, 0.0)

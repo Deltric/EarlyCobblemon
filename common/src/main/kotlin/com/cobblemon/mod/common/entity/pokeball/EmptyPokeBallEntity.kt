@@ -392,7 +392,7 @@ class EmptyPokeBallEntity : ThrownItemEntity, Poseable, WaterDragModifier {
         val displace = velocity
         captureState.set(CaptureState.HIT.ordinal.toByte())
         val mul = if (random.nextBoolean()) 1 else -1
-        world.playSoundServer(pos, CobblemonSounds.POKE_BALL_HIT, volume = 0.8F)
+        world.playSoundServer(pos, CobblemonSounds.POKE_BALL_HIT, volume = 0.4F)
         // Bounce backwards away from the hit Pokémon
         velocity = displace.multiply(-1.0, 0.0, -1.0).normalize().rotateY(mul * PI/3).multiply(0.1, 0.0, 0.1).add(0.0, 1.0 / 3, 0.0)
         pokemonEntity.phasingTargetId.set(this.id)
@@ -400,7 +400,7 @@ class EmptyPokeBallEntity : ThrownItemEntity, Poseable, WaterDragModifier {
             // Start beaming them up.
             velocity = Vec3d.ZERO
             setNoGravity(true)
-            world.playSoundServer(pos, CobblemonSounds.POKE_BALL_CAPTURE_STARTED, volume = 0.8F)
+            world.playSoundServer(pos, CobblemonSounds.POKE_BALL_CAPTURE_STARTED, volume = 0.6F)
             pokemonEntity.beamModeEmitter.set(2.toByte())
         }
 

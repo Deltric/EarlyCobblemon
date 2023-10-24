@@ -18,6 +18,7 @@ import net.minecraft.world.gen.blockpredicate.BlockPredicateType
 object CobblemonBlockPredicates {
     @JvmField
     val ALTITUDE = register("altitude", AltitudePredicate.CODEC)
+    val BIOME = register("biome", BiomePredicate.CODEC)
 
     fun <P : BlockPredicate?> register(id: String, codec: Codec<P>): BlockPredicateType<P> {
         return Registry.register(Registries.BLOCK_PREDICATE_TYPE, cobblemonResource(id), BlockPredicateType { codec })

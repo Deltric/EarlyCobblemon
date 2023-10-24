@@ -12,6 +12,7 @@ package com.cobblemon.mod.common.client.render.models.blockbench.pokemon.gen9
 import com.cobblemon.mod.common.client.render.models.blockbench.PoseableEntityState
 import com.cobblemon.mod.common.client.render.models.blockbench.animation.BimanualSwingAnimation
 import com.cobblemon.mod.common.client.render.models.blockbench.animation.BipedWalkAnimation
+import com.cobblemon.mod.common.client.render.models.blockbench.asTransformed
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BimanualFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BipedFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.HeadedFrame
@@ -29,11 +30,11 @@ import net.minecraft.util.math.Vec3d
 class CetitanModel(root: ModelPart) : PokemonPoseableModel() {
     override val rootPart = root.registerChildWithAllChildren("cetitan")
 
-    override val portraitScale = 1.6F
-    override val portraitTranslation = Vec3d(-0.3, -0.3, 0.0)
+    override val portraitScale = 0.55F
+    override val portraitTranslation = Vec3d(-0.4, 1.0, 0.0)
 
-    override val profileScale = 0.8F
-    override val profileTranslation = Vec3d(0.0, 0.55, 0.0)
+    override val profileScale = 0.4F
+    override val profileTranslation = Vec3d(-0.1, 1.1, 0.0)
 
     lateinit var standing: PokemonPose
     lateinit var walking: PokemonPose

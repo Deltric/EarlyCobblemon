@@ -10,9 +10,11 @@ package com.cobblemon.mod.common.client.render.models.blockbench.pokemon.gen5
 
 import com.cobblemon.mod.common.client.render.models.blockbench.animation.BipedWalkAnimation
 import com.cobblemon.mod.common.client.render.models.blockbench.animation.WingFlapIdleAnimation
+import com.cobblemon.mod.common.client.render.models.blockbench.asTransformed
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BiWingedFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.BipedFrame
 import com.cobblemon.mod.common.client.render.models.blockbench.frame.HeadedFrame
+import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.CryProvider
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPose
 import com.cobblemon.mod.common.client.render.models.blockbench.pokemon.PokemonPoseableModel
 import com.cobblemon.mod.common.client.render.models.blockbench.pose.TransformedModelPart
@@ -30,16 +32,23 @@ class UnfezantModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
     override val rightLeg = getPart("leg_right")
     override val head = getPart("head_ai")
 
-    override val portraitScale = 2.2F
-    override val portraitTranslation = Vec3d(-0.6, 0.15, 0.0)
-    override val profileScale = 0.9F
-    override val profileTranslation = Vec3d(0.0, 0.4, 0.0)
+    val openWingLeft = getPart("open_left")
+    val openWingRight = getPart("open_right")
+    val closedWingLeft = getPart("closed_left")
+    val closedWingRight = getPart("closed_right")
+
+    override val portraitScale = 2.1F
+    override val portraitTranslation = Vec3d(-0.5, 1.5, 0.0)
+    override val profileScale = 0.7F
+    override val profileTranslation = Vec3d(0.0, 0.7, 0.0)
 
     //    lateinit var sleep: PokemonPose
     lateinit var stand: PokemonPose
     lateinit var walk: PokemonPose
     lateinit var hover: PokemonPose
     lateinit var fly: PokemonPose
+
+    override val cryAnimation = CryProvider { _, _ -> bedrockStateful("unfezant", "cry").setPreventsIdle(false) }
 
     override fun registerPoses() {
 //        sleep = registerPose(
@@ -52,6 +61,12 @@ class UnfezantModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
             poseName = "stand",
             poseTypes = PoseType.STATIONARY_POSES - PoseType.HOVER - PoseType.FLOAT + PoseType.UI_POSES,
             quirks = arrayOf(blink),
+            transformedParts = arrayOf(
+                openWingLeft.asTransformed().withVisibility(visibility = false),
+                openWingRight.asTransformed().withVisibility(visibility = false),
+                closedWingLeft.asTransformed().withVisibility(visibility = true),
+                closedWingRight.asTransformed().withVisibility(visibility = true)
+            ),
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("unfezant", "ground_idle")
@@ -62,6 +77,12 @@ class UnfezantModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
             poseName = "walk",
             poseTypes = PoseType.MOVING_POSES - PoseType.FLY - PoseType.SWIM,
             quirks = arrayOf(blink),
+            transformedParts = arrayOf(
+                openWingLeft.asTransformed().withVisibility(visibility = false),
+                openWingRight.asTransformed().withVisibility(visibility = false),
+                closedWingLeft.asTransformed().withVisibility(visibility = true),
+                closedWingRight.asTransformed().withVisibility(visibility = true)
+            ),
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("unfezant", "ground_idle"),
@@ -73,6 +94,12 @@ class UnfezantModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
             poseName = "floating",
             poseTypes = setOf(PoseType.FLOAT, PoseType.HOVER),
             quirks = arrayOf(blink),
+            transformedParts = arrayOf(
+                openWingLeft.asTransformed().withVisibility(visibility = true),
+                openWingRight.asTransformed().withVisibility(visibility = true),
+                closedWingLeft.asTransformed().withVisibility(visibility = false),
+                closedWingRight.asTransformed().withVisibility(visibility = false)
+            ),
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("unfezant", "air_idle"),
@@ -88,6 +115,12 @@ class UnfezantModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Bip
             poseName = "flying",
             poseTypes = setOf(PoseType.FLY, PoseType.SWIM),
             quirks = arrayOf(blink),
+            transformedParts = arrayOf(
+                openWingLeft.asTransformed().withVisibility(visibility = true),
+                openWingRight.asTransformed().withVisibility(visibility = true),
+                closedWingLeft.asTransformed().withVisibility(visibility = false),
+                closedWingRight.asTransformed().withVisibility(visibility = false)
+            ),
             idleAnimations = arrayOf(
                 singleBoneLook(),
                 bedrock("unfezant", "air_idle"),

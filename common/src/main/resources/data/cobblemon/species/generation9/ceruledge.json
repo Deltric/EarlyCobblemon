@@ -8,6 +8,31 @@
     "flashfire",
     "h:weakarmor"
   ],
+  "drops": {
+    "amount": 7,
+    "entries": [
+      {
+        "item": "minecraft:charcoal",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "minecraft:blaze_rod",
+        "quantityRange": "0-2"
+      },
+      {
+        "item": "cobblemon:charcoal_stick",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:malicious_armor",
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:rawst_berry",
+        "percentage": 5.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 75,
     "attack": 125,
@@ -55,6 +80,7 @@
     "1:quickguard",
     "1:shadowsneak",
     "1:solarblade",
+    "1:shadowclaw",
     "8:clearsmog",
     "12:firespin",
     "16:willowisp",

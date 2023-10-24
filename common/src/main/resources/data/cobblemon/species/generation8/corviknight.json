@@ -9,6 +9,26 @@
     "unnerve",
     "h:mirrorarmor"
   ],
+  "drops": {
+    "amount": 6,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "quantityRange": "0-3"
+      },
+      {
+        "item": "minecraft:chicken"
+      },
+      {
+        "item": "cobblemon:metal_coat",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:wacan_berry",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 98,
     "attack": 87,

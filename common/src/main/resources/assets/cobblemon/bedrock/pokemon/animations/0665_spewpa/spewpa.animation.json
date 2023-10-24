@@ -122,6 +122,11 @@
 						}
 					}
 				}
+			},
+			"sound_effects": {
+				"0.1667": {
+					"effect": "pokemon.spewpa.cry"
+				}
 			}
 		},
 		"animation.spewpa.pose": {

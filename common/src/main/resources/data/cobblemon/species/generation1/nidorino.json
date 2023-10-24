@@ -35,11 +35,15 @@
     "field"
   ],
   "drops": {
-    "amount": "1",
+    "amount": 2,
     "entries": [
       {
         "item": "cobblemon:poison_barb",
-        "percentage": 5
+        "percentage": 5.0
+      },
+      {
+        "item": "cobblemon:pecha_berry",
+        "percentage": 5.0
       }
     ]
   },

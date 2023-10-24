@@ -73,5 +73,5 @@ class BulbasaurModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, Qua
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("bulbasaur", "faint") else null
+    ) = if (state.isPosedIn(standing, walk, sleep)) bedrockStateful("bulbasaur", "faint") else null
 }

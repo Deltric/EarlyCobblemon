@@ -67,5 +67,5 @@ class SandshrewModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("sandshrew", "faint") else null
+    ) = bedrockStateful("sandshrew", "faint")
 }

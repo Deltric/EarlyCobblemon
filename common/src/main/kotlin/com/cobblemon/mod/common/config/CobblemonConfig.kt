@@ -59,6 +59,11 @@ class CobblemonConfig {
     @NodeCategory(Category.Storage)
     var preventCompletePartyDeposit = false
 
+    @NodeCategory(Category.Storage)
+    var mongoDBConnectionString = "mongodb://localhost:27017"
+    @NodeCategory(Category.Storage)
+    var mongoDBDatabaseName = "cobblemon"
+
     // TODO new types of constraint
 
     @NodeCategory(Category.Spawning)
@@ -185,10 +190,20 @@ class CobblemonConfig {
     var appleLeftoversChance = 0.025
 
     @NodeCategory(Category.World)
+    var maxRootsInArea = 5
+
+    @NodeCategory(Category.World)
     var bigRootPropagationChance = 0.1
 
     @NodeCategory(Category.World)
     var energyRootChance = 0.25
+
+    @NodeCategory(Category.Pokemon)
+    @IntConstraint(min = 0, max = 10)
+    var maxDynamaxLevel = 10
+
+    @NodeCategory(Category.Spawning)
+    var teraTypeRate = 20F
 
     @NodeCategory(Category.Pokemon)
     @LastChangedVersion("1.4.0")

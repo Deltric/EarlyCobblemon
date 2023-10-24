@@ -1,0 +1,29 @@
+# is the number of "done" APPROVED words for the language when the last update from crowdin happened
+Remember when updating from crowdin to only replace our mod lang files up to but not including the moves/abilities/species dex information.
+Those don't get translated on crowdin because it's 500 million words, and we have official translations for some that we don't want to replace.
+They're always the bottom bulk of our mod lang files.
+
+zh_cn 4662
+zh_tw
+cs_cz 1671
+nl_nl 1006
+eo_eo 500
+fr_fr 4662
+fr_ca 4662
+de_de 3442
+el_cy 1836
+hu_hu 1363
+it_it 2215
+ja_jp 3078
+ko_kr 1538
+en_pt 4662
+pl_pl 3235
+pt_pt 4662
+pt_br 4662
+ru_ru 4662
+es_es 3235
+es_mx 4662
+sv_se 175
+th_th 4662
+tr_tr 1369
+uk_ua 1460

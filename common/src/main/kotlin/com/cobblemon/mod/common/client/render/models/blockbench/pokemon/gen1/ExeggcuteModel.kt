@@ -77,5 +77,5 @@ class ExeggcuteModel(root: ModelPart) : PokemonPoseableModel() {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("exeggcute", "faint") else null
+    ) = bedrockStateful("exeggcute", "faint")
 }

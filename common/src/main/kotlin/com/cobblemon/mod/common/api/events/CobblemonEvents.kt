@@ -13,8 +13,10 @@ import com.cobblemon.mod.common.api.events.battles.BattleFledEvent
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent
 import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
-import com.cobblemon.mod.common.api.events.berry.*
-import com.cobblemon.mod.common.api.events.battles.*
+import com.cobblemon.mod.common.api.events.berry.BerryHarvestEvent
+import com.cobblemon.mod.common.api.events.berry.BerryMutationOfferEvent
+import com.cobblemon.mod.common.api.events.berry.BerryMutationResultEvent
+import com.cobblemon.mod.common.api.events.berry.BerryYieldCalculationEvent
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
 import com.cobblemon.mod.common.api.events.entity.PokemonEntityLoadEvent
 import com.cobblemon.mod.common.api.events.entity.PokemonEntitySaveEvent
@@ -87,6 +89,9 @@ object CobblemonEvents {
     val POKEMON_SENT_POST = EventObservable<PokemonSentPostEvent>()
     @JvmField
     val POKEMON_RECALLED = EventObservable<PokemonRecalledEvent>()
+
+    @JvmField
+    val TRADE_COMPLETED = EventObservable<TradeCompletedEvent>()
 
     @JvmField
     val LEVEL_UP_EVENT = EventObservable<LevelUpEvent>()

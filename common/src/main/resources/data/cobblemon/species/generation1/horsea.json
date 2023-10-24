@@ -35,11 +35,11 @@
     }
   },
   "drops": {
-    "amount": "2",
+    "amount": 2,
     "entries": [
       {
         "item": "minecraft:prismarine_shard",
-        "percentage": 50
+        "quantityRange": "0-1"
       },
       {
         "item": "cobblemon:dragon_scale",

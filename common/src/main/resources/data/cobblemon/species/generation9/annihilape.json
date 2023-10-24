@@ -9,6 +9,19 @@
     "innerfocus",
     "h:defiant"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:muscle_band",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:payapa_berry",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 110,
     "attack": 115,
@@ -53,6 +66,7 @@
     "1:focusenergy",
     "1:leer",
     "1:scratch",
+    "1:shadowpunch",
     "5:furyswipes",
     "8:lowkick",
     "12:seismictoss",

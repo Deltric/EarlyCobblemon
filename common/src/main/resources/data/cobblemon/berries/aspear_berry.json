@@ -131,39 +131,45 @@
         "y": 80.0,
         "z": -32.5
       }
+    },
+    {
+      "position": {
+        "x": 11.0,
+        "y": 23.0,
+        "z": 8.0
+      },
+      "rotation": {
+        "x": -65.0,
+        "y": 72.5,
+        "z": -20.0
+      }
+    },
+    {
+      "position": {
+        "x": 5.0,
+        "y": 22.5,
+        "z": 5.5
+      },
+      "rotation": {
+        "x": 52.5,
+        "y": 80.0,
+        "z": 7.5
+      }
     }
   ],
   "mutations": {
     "cobblemon:oran_berry": "cobblemon:lum_berry",
     "cobblemon:persim_berry": "cobblemon:iapapa_berry"
   },
-  "sproutShape": [
-    {
-      "minX": 7,
-      "minY": -1,
-      "minZ": 7,
-      "maxX": 9,
-      "maxY": 0,
-      "maxZ": 9
-    }
-  ],
-  "matureShape": [
-    {
-      "minX": 0,
-      "minY": 0,
-      "minZ": 0,
-      "maxX": 16,
-      "maxY": 32,
-      "maxZ": 16
-    }
-  ],
+  "sproutShape": "standard-sprout",
+  "matureShape": "standard-mature",
   "flavors": {
     "SOUR": 10
   },
-  "weight": 1.0,
+  "weight": 20.0,
   "tintIndexes": [],
-  "flowerModel": "cobblemon:aspear_flower.geo",
-  "flowerTexture": "cobblemon:textures/berries/aspear.png",
+  "flowerModel": "cobblemon:flower.geo",
+  "flowerTexture": "cobblemon:textures/berries/flower.png",
   "fruitModel": "cobblemon:aspear_berry.geo",
   "fruitTexture": "cobblemon:textures/berries/aspear.png"
 }

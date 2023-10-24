@@ -12,12 +12,12 @@
             "type": "pokemon",
             "context": "grounded",
             "bucket": "common",
-            "level": "8-25",
-            "weight": 1.8,
+            "level": "1-25",
+            "weight": 5.4,
             "condition": {
                 "biomes": [
-                    "minecraft:basalt_deltas",
-                    "minecraft:nether_wastes"
+                    "#cobblemon:is_nether_basalt",
+                    "#cobblemon:is_nether_wasteland"
                 ]
             }
         },
@@ -30,7 +30,7 @@
             "type": "pokemon",
             "context": "surface",
             "bucket": "common",
-            "level": "8-25",
+            "level": "1-25",
             "weight": 9.0,
             "condition": {
                 "biomes": [
@@ -47,7 +47,7 @@
             "type": "pokemon",
             "context": "surface",
             "bucket": "common",
-            "level": "8-25",
+            "level": "1-25",
             "weight": 1.8,
             "condition": {
                 "biomes": [
@@ -69,7 +69,7 @@
             "type": "pokemon",
             "context": "grounded",
             "bucket": "common",
-            "level": "8-25",
+            "level": "1-25",
             "weight": 9.0,
             "condition": {
                 "biomes": [
@@ -89,7 +89,7 @@
             "type": "pokemon",
             "context": "surface",
             "bucket": "common",
-            "level": "8-25",
+            "level": "1-25",
             "weight": 9.0,
             "condition": {
                 "biomes": [

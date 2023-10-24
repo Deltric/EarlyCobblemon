@@ -29,6 +29,14 @@
 					"position": [0, 0, -0.1]
 				}
 			}
+		},
+		"animation.nacli.cry": {
+			"animation_length": 1,
+			"sound_effects": {
+				"0.0": {
+					"effect": "pokemon.nacli.cry"
+				}
+			}
 		}
 	}
 }

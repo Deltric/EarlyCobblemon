@@ -67,5 +67,5 @@ class WeedleModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("weedle", "faint") else null
+    ) = bedrockStateful("weedle", "faint")
 }

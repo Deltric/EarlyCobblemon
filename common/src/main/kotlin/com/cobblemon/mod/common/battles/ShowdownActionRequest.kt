@@ -8,14 +8,22 @@
 
 package com.cobblemon.mod.common.battles
 
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle
+import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.net.IntSize
+import com.cobblemon.mod.common.util.cobblemonResource
+import com.cobblemon.mod.common.util.hasKeyItem
 import com.cobblemon.mod.common.util.readSizedInt
 import com.cobblemon.mod.common.util.writeSizedInt
+import com.google.gson.*
+import com.google.gson.reflect.TypeToken
 import java.lang.Integer.max
 import java.util.UUID
 import net.minecraft.network.PacketByteBuf
+import java.lang.reflect.Type
+
 class ShowdownActionRequest(
     var wait: Boolean = false,
     var active: MutableList<ShowdownMoveset>? = null,
@@ -63,6 +71,22 @@ class ShowdownActionRequest(
         }
         return this
     }
+
+    fun sanitize(battle: PokemonBattle, battleActor: BattleActor) {
+        val player = battle.players.find { it.uuid == battleActor.uuid } ?: return
+        this.active?.forEach { moveset ->
+            moveset.getGimmicks().forEach { gimmick ->
+                // TODO: use the Identifiers of actual items
+                val triggerItem = when(gimmick) {
+                    ShowdownMoveset.Gimmick.MEGA_EVOLUTION -> cobblemonResource("key_stone")
+                    ShowdownMoveset.Gimmick.DYNAMAX -> cobblemonResource("dynamax_band")
+                    ShowdownMoveset.Gimmick.TERASTALLIZATION -> cobblemonResource("tera_orb")
+                    else -> cobblemonResource("z_ring")
+                }
+                if (!player.hasKeyItem(triggerItem)) moveset.blockGimmick(gimmick)
+            }
+        }
+    }
 }
 
 enum class ShowdownActionResponseType(val loader: (PacketByteBuf) -> ShowdownActionResponse) {
@@ -91,18 +115,20 @@ abstract class ShowdownActionResponse(val type: ShowdownActionResponseType) {
     abstract fun toShowdownString(activeBattlePokemon: ActiveBattlePokemon, showdownMoveSet: ShowdownMoveset?): String
 }
 
-data class MoveActionResponse(var moveName: String, var targetPnx: String? = null): ShowdownActionResponse(ShowdownActionResponseType.MOVE) {
+data class MoveActionResponse(var moveName: String, var targetPnx: String? = null, var gimmickID: String? = null): ShowdownActionResponse(ShowdownActionResponseType.MOVE) {
     override fun isValid(activeBattlePokemon: ActiveBattlePokemon, showdownMoveSet: ShowdownMoveset?, forceSwitch: Boolean): Boolean {
         if (forceSwitch || showdownMoveSet == null) {
             return false
         }
 
         val move = showdownMoveSet.moves.find { it.id == moveName } ?: return false
-        if (!move.canBeUsed()) {
+        val gimmickMove = move.gimmickMove
+        val validGimmickMove = gimmickMove != null && !gimmickMove.disabled
+        if (!validGimmickMove && !move.canBeUsed()) {
             // No PP or disabled or something
             return false
         }
-        val availableTargets = move.target.targetList(activeBattlePokemon)?.takeIf { it.isNotEmpty() } ?: return true
+        val availableTargets = (gimmickMove?.target ?: move.target).targetList(activeBattlePokemon)?.takeIf { it.isNotEmpty() } ?: return true
 
         val pnx = targetPnx ?: return false // If the targets list is non-null then they need to have specified a target
         val (_, targetPokemon) = activeBattlePokemon.actor.battle.getActorAndActiveSlotFromPNX(pnx)
@@ -124,22 +150,21 @@ data class MoveActionResponse(var moveName: String, var targetPnx: String? = nul
             "move $moveIndex $digit"
         } else {
             "move $moveIndex"
-        }
+        }.plus(gimmickID?.let { " $gimmickID" } ?: "")
     }
 
     override fun saveToBuffer(buffer: PacketByteBuf) {
         super.saveToBuffer(buffer)
         buffer.writeString(moveName)
-        buffer.writeBoolean(targetPnx != null)
-        targetPnx?.let(buffer::writeString)
+        buffer.writeNullable(targetPnx) { _, targetPnx -> buffer.writeString(targetPnx) }
+        buffer.writeNullable(gimmickID) { _, gimmickID -> buffer.writeString(gimmickID) }
     }
 
     override fun loadFromBuffer(buffer: PacketByteBuf): ShowdownActionResponse {
         super.loadFromBuffer(buffer)
         moveName = buffer.readString()
-        if (buffer.readBoolean()) {
-            targetPnx = buffer.readString()
-        }
+        targetPnx = buffer.readNullable { buffer.readString() }
+        gimmickID = buffer.readNullable { buffer.readString() }
         return this
     }
 }
@@ -243,11 +268,31 @@ class BagItemActionResponse(val bagItem: BagItem, val target: BattlePokemon, val
 class ShowdownMoveset {
     lateinit var moves: List<InBattleMove>
     var trapped = false
+    var canMegaEvo = false
+    var canUltraBurst = false
+    var canZMove: List<InBattleGimmickMove?>? = null
+    var canDynamax = false
+    var maxMoves: List<InBattleGimmickMove?>? = null
+    var canTerastallize: String? = null
 
     fun saveToBuffer(buffer: PacketByteBuf) {
         buffer.writeSizedInt(IntSize.U_BYTE, moves.size)
         moves.forEach { it.saveToBuffer(buffer) }
         buffer.writeBoolean(trapped)
+        buffer.writeBoolean(canMegaEvo)
+        buffer.writeBoolean(canUltraBurst)
+        buffer.writeNullable(canZMove) { _, canZMove ->
+            canZMove.forEach {
+                buffer.writeNullable(it) { _, zmove -> zmove.saveToBuffer(buffer)}
+            }
+        }
+        buffer.writeBoolean(canDynamax)
+        buffer.writeNullable(maxMoves) { _, maxMoves ->
+            maxMoves.forEach {
+                buffer.writeNullable(it) { _, maxMove -> maxMove.saveToBuffer(buffer)}
+            }
+        }
+        buffer.writeNullable(canTerastallize) { _, teraType -> buffer.writeString(teraType) }
     }
 
     fun loadFromBuffer(buffer: PacketByteBuf): ShowdownMoveset {
@@ -257,7 +302,59 @@ class ShowdownMoveset {
         }
         this.moves = moves
         this.trapped = buffer.readBoolean()
+        this.canMegaEvo = buffer.readBoolean()
+        this.canUltraBurst = buffer.readBoolean()
+        this.canZMove = buffer.readNullable {
+            val zMoves = mutableListOf<InBattleGimmickMove?>()
+            repeat(moves.size) { zMoves.add(buffer.readNullable { InBattleGimmickMove.loadFromBuffer(buffer) }) }
+            return@readNullable zMoves
+        }
+        this.canDynamax = buffer.readBoolean()
+        this.maxMoves = buffer.readNullable {
+            val maxMoves = mutableListOf<InBattleGimmickMove?>()
+            repeat(moves.size) { maxMoves.add(buffer.readNullable { InBattleGimmickMove.loadFromBuffer(buffer) }) }
+            return@readNullable maxMoves
+        }
+        this.canTerastallize = buffer.readNullable{ buffer.readString() }
+        this.setGimmickMapping()
         return this
+    }
+
+    /** Showdown IDs of battle gimmicks. */
+    enum class Gimmick(val id: String) {
+        MEGA_EVOLUTION("mega"),
+        ULTRA_BURST("ultra"),
+        Z_POWER("zmove"),
+        DYNAMAX("max"),
+        TERASTALLIZATION("terastal")
+    }
+
+    /** Check whether Dynamax/Gigantamax is already active. */
+    fun hasActiveGimmick() = !this.canDynamax && this.maxMoves != null
+
+    /** [Gimmick]s that can be activated with a [MoveActionResponse]. */
+    fun getGimmicks() = if (!hasActiveGimmick()) buildList{
+        if (canMegaEvo) add(Gimmick.MEGA_EVOLUTION)
+        if (canUltraBurst) add(Gimmick.ULTRA_BURST)
+        if (canZMove != null) add(Gimmick.Z_POWER)
+        if (canDynamax) add(Gimmick.DYNAMAX)
+        if (canTerastallize != null) add(Gimmick.TERASTALLIZATION)
+    }.toList() else listOf() // keep this immutable
+
+    /** Map each [InBattleMove] to their respective [InBattleGimmickMove] variant. */
+    fun setGimmickMapping() = (canZMove ?: maxMoves)?.let { gimmickMoves ->
+        moves.forEachIndexed { index, move -> move.gimmickMove = gimmickMoves[index] }
+    }
+
+    /** Sanitize Moveset by disabling gimmick. */
+    fun blockGimmick(gimmick: Gimmick) {
+        when (gimmick) {
+            Gimmick.MEGA_EVOLUTION -> this.canMegaEvo = false
+            Gimmick.DYNAMAX -> this.canDynamax = false
+            Gimmick.ULTRA_BURST -> this.canUltraBurst = false
+            Gimmick.Z_POWER -> this.canZMove = null
+            else -> this.canTerastallize = null
+        }
     }
 }
 class ShowdownSide {
@@ -319,5 +416,31 @@ class ShowdownPokemon {
         pokeball = buffer.readString()
         ability = buffer.readString()
         return this
+    }
+}
+/** Unwraps useless maxMoves object and initializes [ShowdownMoveset.gimmickMapping] */
+object ShowdownMovesetAdapter : JsonDeserializer<ShowdownMoveset> {
+
+    val gson = GsonBuilder().addDeserializationExclusionStrategy(MovesetExclusionStrategy).create()
+
+    object MovesetExclusionStrategy : ExclusionStrategy {
+        override fun shouldSkipField(field: FieldAttributes?): Boolean {
+            return field?.name == "maxMoves"
+        }
+        override fun shouldSkipClass(p0: Class<*>?): Boolean {
+            return false;
+        }
+    }
+
+    override fun deserialize(jsonElement: JsonElement, type: Type, context: JsonDeserializationContext): ShowdownMoveset {
+        val json = jsonElement.asJsonObject
+        val moveset = gson.fromJson(json, ShowdownMoveset::class.java)
+
+        json.get("maxMoves")?.asJsonObject?.let { dynamaxOptions ->
+            val maxMovesToken = object: TypeToken<List<InBattleGimmickMove?>?>() {}.type
+            moveset.maxMoves = Gson().fromJson(dynamaxOptions.get("maxMoves"), maxMovesToken)
+        }
+        moveset.setGimmickMapping()
+        return moveset
     }
 }

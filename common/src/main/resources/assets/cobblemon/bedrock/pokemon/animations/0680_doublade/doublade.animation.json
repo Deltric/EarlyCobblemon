@@ -304,6 +304,14 @@
 				}
 			}
 		},
+		"animation.doublade.cry": {
+			"animation_length": 1.04167,
+			"sound_effects": {
+				"0.0833": {
+					"effect": "pokemon.doublade.cry"
+				}
+			}
+		},
 		"animation.doublade.blink": {
 			"animation_length": 0.5,
 			"bones": {

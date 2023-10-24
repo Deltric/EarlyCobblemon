@@ -3,7 +3,11 @@
   "values": [
 	"#minecraft:is_mountain",
     "#cobblemon:is_hills",
-    {
+	{
+      "id": "#forge:is_mountain",
+      "required": false
+    },
+	{
       "id": "terralith:stony_spires",
       "required": false
     },
@@ -17,6 +21,22 @@
     },
 	{
       "id": "terralith:yosemite_cliffs",
+      "required": false
+    },
+    {
+      "id": "wythers:tibesti_mountains",
+      "required": false
+    },
+    {
+      "id": "wythers:tropical_volcano",
+      "required": false
+    },
+    {
+      "id": "wythers:tsingy_forest",
+      "required": false
+    },
+    {
+      "id": "wythers:volcano",
       "required": false
     }
   ]

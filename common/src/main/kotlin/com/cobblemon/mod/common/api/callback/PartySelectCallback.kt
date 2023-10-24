@@ -121,6 +121,7 @@ class PartySelectCallback(
 
 open class PartySelectPokemonDTO(
     val pokemonProperties: PokemonProperties,
+    val aspects: Set<String>,
     val heldItem: ItemStack = ItemStack.EMPTY,
     var currentHealth: Int,
     var maxHealth: Int,
@@ -129,13 +130,13 @@ open class PartySelectPokemonDTO(
     @JvmOverloads
     constructor(pokemon: Pokemon, enabled: Boolean = true): this(
         pokemonProperties = pokemon.createPokemonProperties(
-            PokemonPropertyExtractor.ASPECTS,
             PokemonPropertyExtractor.SPECIES,
             PokemonPropertyExtractor.LEVEL,
             PokemonPropertyExtractor.NICKNAME,
             PokemonPropertyExtractor.POKEBALL,
-            PokemonPropertyExtractor.STATUS
+            PokemonPropertyExtractor.STATUS,
         ),
+        aspects = pokemon.aspects,
         heldItem = pokemon.heldItemNoCopy(),
         currentHealth = pokemon.currentHealth,
         maxHealth = pokemon.hp,
@@ -144,6 +145,7 @@ open class PartySelectPokemonDTO(
 
     constructor(buffer: PacketByteBuf): this(
         pokemonProperties = PokemonProperties().loadFromNBT(buffer.readNbt() as NbtCompound),
+        aspects = buffer.readList { it.readString() }.toSet(),
         heldItem = buffer.readItemStack(),
         currentHealth = buffer.readInt(),
         maxHealth = buffer.readInt(),
@@ -152,6 +154,7 @@ open class PartySelectPokemonDTO(
 
     fun writeToBuffer(buffer: PacketByteBuf) {
         buffer.writeNbt(pokemonProperties.saveToNBT())
+        buffer.writeCollection(aspects) { _, aspect -> buffer.writeString(aspect) }
         buffer.writeItemStack(heldItem)
         buffer.writeInt(currentHealth)
         buffer.writeInt(maxHealth)

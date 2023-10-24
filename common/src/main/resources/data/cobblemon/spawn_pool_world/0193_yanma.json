@@ -12,12 +12,50 @@
             ],
             "type": "pokemon",
             "bucket": "common",
-            "level": "11-39",
+            "level": "14-39",
             "weight": 5.4,
             "condition": {
                 "canSeeSky": true,
                 "timeRange": "day",
                 "isRaining": false
+            }
+        },
+		{
+            "id": "yanma-2",
+            "pokemon": "yanma",
+            "presets": [
+                "water_surface"
+            ],
+            "type": "pokemon",
+            "bucket": "common",
+            "level": "14-39",
+            "weight": 1.8,
+            "condition": {
+                "canSeeSky": false,
+				"biomes": [
+                    "#cobblemon:is_lush"
+                ]
+            }
+        },
+		{
+            "id": "yanma-3",
+            "pokemon": "yanma",
+            "presets": [
+                "water_surface"
+            ],
+            "type": "pokemon",
+            "bucket": "common",
+            "level": "14-39",
+            "weight": 1.8,
+            "condition": {
+				"biomes": [
+                    "#the_bumblezone:the_bumblezone"
+                ]
+            },
+            "anticondition": {
+                "structures": [
+					"#the_bumblezone:sempiternal_sanctums"
+				]
             }
         }
     ]

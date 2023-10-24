@@ -74,5 +74,5 @@ class PonytaGalarianModel (root: ModelPart) : PokemonPoseableModel(), HeadedFram
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk, sleep)) bedrockStateful("ponyta_galar", "faint") else null
+    ) = bedrockStateful("ponyta_galar", "faint")
 }

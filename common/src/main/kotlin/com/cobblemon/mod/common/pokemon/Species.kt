@@ -13,6 +13,8 @@ import com.cobblemon.mod.common.api.abilities.AbilityPool
 import com.cobblemon.mod.common.api.data.ClientDataSynchronizer
 import com.cobblemon.mod.common.api.data.ShowdownIdentifiable
 import com.cobblemon.mod.common.api.drop.DropTable
+import com.cobblemon.mod.common.api.pokemon.PokemonProperties
+import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.effect.ShoulderEffect
 import com.cobblemon.mod.common.api.pokemon.egg.EggGroup
 import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
@@ -153,11 +155,7 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
         this.forms.forEach(FormData::resolveEvolutionMoves)
     }
 
-    fun create(level: Int = 10) = Pokemon().apply {
-        species = this@Species
-        this.level = level
-        initialize()
-    }
+    fun create(level: Int = 10) = PokemonProperties.parse("species=\"${this.name}\" level=${level}").create()
 
     fun getForm(aspects: Set<String>) = forms.lastOrNull { it.aspects.all { it in aspects } } ?: standardForm
 
@@ -171,6 +169,8 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
         entity.getPoseType() in FLYING_POSES -> this.flyingEyeHeight ?: standingEyeHeight
         else -> this.standingEyeHeight
     }
+
+    fun canGmax() = this.forms.find { it.formOnlyShowdownId() == "gmax" } != null
 
     override fun encode(buffer: PacketByteBuf) {
         buffer.writeBoolean(this.implemented)

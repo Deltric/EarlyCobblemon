@@ -18,7 +18,6 @@ import com.mojang.brigadier.context.CommandContext
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.server.network.ServerPlayerEntity
 
 object ClearPartyCommand {
 
@@ -28,7 +27,7 @@ object ClearPartyCommand {
     fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
         val command = CommandManager.literal(NAME)
              .permission(CobblemonPermissions.CLEAR_PARTY)
-             .then( CommandManager.argument(PLAYER, EntityArgumentType.players()).executes { execute(it) }
+             .then( CommandManager.argument(PLAYER, EntityArgumentType.players()).executes(::execute)
                 )
         dispatcher.register(command)
     }
@@ -47,12 +46,7 @@ object ClearPartyCommand {
             party.remove(pokemon)
         }
 
-        if (context.source.entity != target) {
-            if (context.source.entity is ServerPlayerEntity) {
-                context.source.sendFeedback({ commandLang("$NAME.cleared", target.displayName) }, true)
-                return Command.SINGLE_SUCCESS
-            }
-        }
+        context.source.sendFeedback({ commandLang("$NAME.cleared", target.displayName) }, true)
         return Command.SINGLE_SUCCESS
     }
 }

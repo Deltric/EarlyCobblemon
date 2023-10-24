@@ -32,7 +32,7 @@ object CobblemonTradeOffers {
      * @return The resulting list.
      */
     fun tradeOffersFor(profession: VillagerProfession): List<VillagerTradeOffer> = when (profession) {
-        VillagerProfession.FARMER -> listOf(VillagerTradeOffer(VillagerProfession.FARMER, 3, listOf(TradeOffers.SellItemFactory(CobblemonItems.VIVICHOKE_SEEDS, 32, 1, 1, 6))))
+        VillagerProfession.FARMER -> listOf(VillagerTradeOffer(VillagerProfession.FARMER, 3, listOf(TradeOffers.SellItemFactory(CobblemonItems.VIVICHOKE_SEEDS, 24, 1, 1, 6))))
         else -> emptyList()
     }
 
@@ -42,7 +42,7 @@ object CobblemonTradeOffers {
      * @return The resulting list.
      */
     fun resolveWanderingTradeOffers(): List<WandererTradeOffer> = listOf(
-        WandererTradeOffer(false, listOf(TradeOffers.SellItemFactory(CobblemonItems.VIVICHOKE_SEEDS, 32, 1, 1, 6)))
+        WandererTradeOffer(false, listOf(TradeOffers.SellItemFactory(CobblemonItems.VIVICHOKE_SEEDS, 24, 1, 1, 6)))
     )
 
     /**

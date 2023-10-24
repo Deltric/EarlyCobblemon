@@ -10,14 +10,15 @@ package com.cobblemon.mod.common.events
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.advancement.CobblemonCriteria
-import com.cobblemon.mod.common.advancement.criterion.CountablePokemonTypeContext
-import com.cobblemon.mod.common.advancement.criterion.trigger
+import com.cobblemon.mod.common.advancement.criterion.*
 import com.cobblemon.mod.common.api.battles.model.actor.ActorType
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
+import com.cobblemon.mod.common.api.events.pokemon.LevelUpEvent
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent
+import com.cobblemon.mod.common.api.events.pokemon.TradeCompletedEvent
 import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionCompleteEvent
 import com.cobblemon.mod.common.util.getPlayer
-import java.util.UUID
+import java.util.*
 
 object AdvancementHandler {
 
@@ -48,12 +49,21 @@ object AdvancementHandler {
 //    }
 
     fun onEvolve(event: EvolutionCompleteEvent) {
-        val playerData = event.pokemon.getOwnerPlayer()?.let { Cobblemon.playerData.get(it) }
-        if (playerData != null) {
+        val player = event.pokemon.getOwnerPlayer()
+        if (player != null) {
+            val playerData = Cobblemon.playerData.get(player)
             val advancementData = playerData.advancementData
             advancementData.updateTotalEvolvedCount()
+            advancementData.updateAspectsCollected(player, event.pokemon)
             Cobblemon.playerData.saveSingle(playerData)
-            CobblemonCriteria.EVOLVE_POKEMON.trigger(event.pokemon.getOwnerPlayer()!!, advancementData.totalEvolvedCount)
+            CobblemonCriteria.EVOLVE_POKEMON.trigger(
+                player, EvolvePokemonContext(
+                    event.pokemon.preEvolution!!.species.resourceIdentifier,
+                    event.pokemon.species.resourceIdentifier,
+                    advancementData.totalEvolvedCount
+                )
+            )
+            CobblemonCriteria.COLLECT_ASPECT.trigger(player, advancementData.aspectsCollected)
         }
     }
 
@@ -77,18 +87,50 @@ object AdvancementHandler {
                         Cobblemon.playerData.saveSingle(playerData)
                         CobblemonCriteria.DEFEAT_POKEMON.trigger(player, advancementData.totalBattleVictoryCount)
                     }
-                return
+            }
+        }
+        event.winners
+            .flatMap { it.getPlayerUUIDs().mapNotNull(UUID::getPlayer) }
+            .forEach { player ->
+                val playerData = Cobblemon.playerData.get(player)
+                val advancementData = playerData.advancementData
+                advancementData.updateTotalBattleVictoryCount()
+                if (event.battle.isPvW)
+                    advancementData.updateTotalPvWBattleVictoryCount()
+                if (event.battle.isPvP)
+                    advancementData.updateTotalPvPBattleVictoryCount()
+                if (event.battle.isPvN)
+                    advancementData.updateTotalPvNBattleVictoryCount()
+                Cobblemon.playerData.saveSingle(playerData)
+                CobblemonCriteria.WIN_BATTLE.trigger(player, BattleCountableContext(advancementData.totalBattleVictoryCount, event.battle))
             }
 
-            event.winners
-                .flatMap { it.getPlayerUUIDs().mapNotNull(UUID::getPlayer) }
-                .forEach { player ->
-                    val playerData = Cobblemon.playerData.get(player)
-                    val advancementData = playerData.advancementData
-                    advancementData.updateTotalBattleVictoryCount()
-                    Cobblemon.playerData.saveSingle(playerData)
-                    CobblemonCriteria.WIN_BATTLE.trigger(player, advancementData.totalBattleVictoryCount)
-                }
+    }
+
+    fun onLevelUp(event : LevelUpEvent) {
+        event.pokemon.getOwnerPlayer()?.let { CobblemonCriteria.LEVEL_UP.trigger(it, LevelUpContext(event.newLevel, event.pokemon)) }
+    }
+
+    fun onTradeCompleted(event : TradeCompletedEvent) {
+        val player1 = event.tradeParticipant1Pokemon.getOwnerPlayer()
+        val player2 = event.tradeParticipant2Pokemon.getOwnerPlayer()
+        if (player1 != null) {
+            CobblemonCriteria.TRADE_POKEMON.trigger(player1, TradePokemonContext(event.tradeParticipant1Pokemon, event.tradeParticipant2Pokemon))
+            val playerData = Cobblemon.playerData.get(player1)
+            val advancementData = playerData.advancementData
+            advancementData.updateTotalTradedCount()
+            advancementData.updateAspectsCollected(player1, event.tradeParticipant2Pokemon)
+            CobblemonCriteria.COLLECT_ASPECT.trigger(player1, advancementData.aspectsCollected)
+            Cobblemon.playerData.saveSingle(playerData)
+        }
+        if (player2 != null) {
+            CobblemonCriteria.TRADE_POKEMON.trigger(player2, TradePokemonContext(event.tradeParticipant2Pokemon, event.tradeParticipant1Pokemon))
+            val playerData = Cobblemon.playerData.get(player2)
+            val advancementData = playerData.advancementData
+            advancementData.updateTotalTradedCount()
+            advancementData.updateAspectsCollected(player2, event.tradeParticipant1Pokemon)
+            CobblemonCriteria.COLLECT_ASPECT.trigger(player2, advancementData.aspectsCollected)
+            Cobblemon.playerData.saveSingle(playerData)
         }
     }
 }

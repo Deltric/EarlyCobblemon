@@ -1,6 +1,6 @@
 {
   "type": "minecraft:smelting",
-  "group": "misc",
+  "group": "heal_powder",
   "ingredient": {
     "item": "cobblemon:revival_herb"
   },

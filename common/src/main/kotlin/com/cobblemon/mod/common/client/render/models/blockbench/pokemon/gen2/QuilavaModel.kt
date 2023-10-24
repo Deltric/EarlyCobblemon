@@ -31,7 +31,7 @@ class QuilavaModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
     lateinit var sleep: PokemonPose
     lateinit var battleidle: PokemonPose
 
-    override val cryAnimation = CryProvider { entity, _ -> if (entity.isBattling) bedrockStateful("quilava", "battle_cry").setPreventsIdle(false) else bedrockStateful("quilava", "cry").setPreventsIdle(false) }
+    override val cryAnimation = CryProvider { entity, _ -> if (entity.isBattling) bedrockStateful("quilava", "battle_cry").setPreventsIdle(false) else bedrockStateful("quilava", "cry").setPreventsIdle(true) }
 
     override fun registerPoses() {
         val blink = quirk("blink") { bedrockStateful("quilava", "blink").setPreventsIdle(false) }
@@ -49,6 +49,7 @@ class QuilavaModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
             quirks = arrayOf(blink),
             idleAnimations = arrayOf(
                 singleBoneLook(),
+                bedrock("quilava", "fire_idle"),
                 bedrock("quilava", "ground_idle")
             )
         )
@@ -60,6 +61,7 @@ class QuilavaModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
             quirks = arrayOf(blink),
             idleAnimations = arrayOf(
                 singleBoneLook(),
+                bedrock("quilava", "fire_idle"),
                 bedrock("quilava", "ground_walk")
             )
         )
@@ -72,6 +74,7 @@ class QuilavaModel (root: ModelPart) : PokemonPoseableModel(), HeadedFrame {
             condition = { it.isBattling },
             idleAnimations = arrayOf(
                 singleBoneLook(),
+                bedrock("quilava", "fire_idle"),
                 bedrock("quilava", "battle_idle")
             )
         )

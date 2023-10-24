@@ -7,6 +7,15 @@
   "abilities": [
     "airlock"
   ],
+  "drops": {
+    "amount": 5,
+    "entries": [
+      {
+        "item": "minecraft:dragon_breath",
+        "quantityRange": "3-5"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 105,
     "attack": 150,
@@ -63,7 +72,8 @@
       "weight": 3920,
       "evolutions": [],
       "cannotDynamax": false,
-      "battleOnly": true
+      "battleOnly": true,
+      "requiredMove": "Dragon Ascent"
     }
   ],
   "baseExperienceYield": 340,

@@ -179,5 +179,13 @@
   "height": 19,
   "weight": 2050,
   "aspects": [],
-  "cannotDynamax": false
+  "cannotDynamax": false,
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:metal_coat"
+      }
+    ]
+  }
 }

@@ -1,15 +1,15 @@
 {
   "display": {
     "icon": {
-      "item": "cobblemon:great_ball"
+      "item": "cobblemon:pokemon_model",
+			"nbt": "{\"species\":\"cobblemon:rattata\"}"
     },
     "title": {
       "translate": "advancements.cobblemon.first_catch"
     },
     "description": {
       "translate": "advancements.cobblemon.first_catch.description"
-    },
-    "background": "cobblemon:textures/blocks/apricorn_planks.png"
+    }
   },
   "parent": "cobblemon:craft_poke_ball",
   "criteria": {

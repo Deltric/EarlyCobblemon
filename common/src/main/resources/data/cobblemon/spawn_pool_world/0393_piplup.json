@@ -17,7 +17,7 @@
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_frozen"
+                    "#cobblemon:is_frozen_ocean"
                 ]
             }
         },
@@ -35,7 +35,7 @@
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_frozen"
+                    "#cobblemon:is_frozen_ocean"
                 ]
             }
         }

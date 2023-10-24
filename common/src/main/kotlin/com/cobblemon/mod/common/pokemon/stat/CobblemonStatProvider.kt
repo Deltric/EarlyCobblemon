@@ -100,7 +100,7 @@ object CobblemonStatProvider : StatProvider {
                 truncate(truncate(2.0 * base + iv + truncate(ev / 4.0) + 100) * level / 100.0 + 10).toInt()
             }
         } else {
-            pokemon.nature.modifyStat(stat, ((2 * base + iv + (ev / 4)) * level) / 100 + 5)
+            pokemon.effectiveNature.modifyStat(stat, ((2 * base + iv + (ev / 4)) * level) / 100 + 5)
         }
     }
 

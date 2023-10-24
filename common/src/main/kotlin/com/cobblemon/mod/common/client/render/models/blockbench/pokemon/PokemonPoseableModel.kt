@@ -94,10 +94,10 @@ abstract class PokemonPoseableModel : PoseableEntityModel<PokemonEntity>() {
 //        state: PoseableEntityState<PokemonEntity>
 //    ): StatefulAnimation<PokemonEntity, ModelFrame>? = null
 
-    override fun setupEntityTypeContext (entity: PokemonEntity?) {
+    override fun setupEntityTypeContext(entity: PokemonEntity?) {
         entity?.let {
             context.put(RenderContext.SCALE, it.pokemon.form.baseScale)
-            PokemonModelRepository.variations[it.pokemon.species.resourceIdentifier]?.getTexture(it.pokemon.aspects, 0f).let { texture -> context.put(RenderContext.TEXTURE, texture) }
+            PokemonModelRepository.getTexture(it.pokemon.species.resourceIdentifier, it.pokemon.aspects, 0f).let { texture -> context.put(RenderContext.TEXTURE, texture) }
         }
     }
 }

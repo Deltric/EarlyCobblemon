@@ -47,13 +47,13 @@ object CobblemonCriteria {
     val EVOLVE_POKEMON = this.create(
         SimpleCriterionTrigger(
             cobblemonResource("pokemon_evolved"),
-            SimpleCountableCriterionCondition::class.java
+            EvolvePokemonCriterionCondition::class.java
         )
     )
     val WIN_BATTLE = this.create(
-        SimpleCriterionTrigger(
+        BattleCountableCriterionTrigger(
             cobblemonResource("battles_won"),
-            SimpleCountableCriterionCondition::class.java
+            BattleCountableCriterionCondition::class.java
         )
     )
 
@@ -68,6 +68,41 @@ object CobblemonCriteria {
         AspectCriterionTrigger(
             cobblemonResource("aspects_collected"),
             AspectCriterionCondition::class.java
+        )
+    )
+
+    val POKEMON_INTERACT = this.create(
+        SimpleCriterionTrigger(
+            cobblemonResource("pokemon_interact"),
+            PokemonInteractCriterion::class.java
+        )
+    )
+
+    val PARTY_CHECK = this.create(
+        SimpleCriterionTrigger(
+            cobblemonResource("party"),
+            PartyCheckCriterion::class.java
+        )
+    )
+
+    val LEVEL_UP = this.create(
+        SimpleCriterionTrigger(
+            cobblemonResource("level_up"),
+            LevelUpCriterionCondition::class.java
+        )
+    )
+
+    val PASTURE_USE = this.create(
+        SimpleCriterionTrigger(
+            cobblemonResource("pasture_use"),
+            PickStarterCriterionCondition::class.java
+        )
+    )
+
+    val TRADE_POKEMON = this.create(
+        SimpleCriterionTrigger(
+            cobblemonResource("trade_pokemon"),
+            TradePokemonCriterionCondition::class.java
         )
     )
 

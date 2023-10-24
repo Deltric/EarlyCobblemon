@@ -27,7 +27,7 @@ import net.minecraft.util.math.Vec3d
 
 class DragoniteModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, BiWingedFrame, BipedFrame, BimanualFrame {
     override val rootPart = root.registerChildWithAllChildren("dragonite")
-    override val head = getPart("neck")
+    override val head = getPart("head")
     override val leftLeg = getPart("leg_left")
     override val rightLeg = getPart("leg_right")
     override val leftWing = getPart("wing_left")

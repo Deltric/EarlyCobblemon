@@ -63,5 +63,5 @@ class OddishModel(root: ModelPart) : PokemonPoseableModel() {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("oddish", "faint") else null
+    ) = bedrockStateful("oddish", "faint")
 }

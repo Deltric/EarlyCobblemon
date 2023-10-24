@@ -16,9 +16,9 @@ import com.cobblemon.mod.common.api.pokemon.helditem.HeldItemProvider
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
+import com.cobblemon.mod.common.battles.runner.ShowdownService
 import com.cobblemon.mod.common.net.messages.client.battle.BattleChallengeExpiredPacket
 import com.cobblemon.mod.common.util.getPlayer
-import com.cobblemon.mod.common.battles.runner.ShowdownService
 import com.google.gson.GsonBuilder
 import java.time.Instant
 import java.util.Optional
@@ -38,7 +38,10 @@ object BattleRegistry {
         fun isExpired() = Instant.now().isAfter(challengedTime.plusSeconds(expiryTimeSeconds.toLong()))
     }
 
-    val gson = GsonBuilder().disableHtmlEscaping().create()
+    val gson = GsonBuilder()
+        .disableHtmlEscaping()
+        .registerTypeAdapter(ShowdownMoveset::class.java, ShowdownMovesetAdapter)
+        .create()
     private val battleMap = ConcurrentHashMap<UUID, PokemonBattle>()
     // Challenger to challenge
     val pvpChallenges = mutableMapOf<UUID, BattleChallenge>()
@@ -105,7 +108,7 @@ object BattleRegistry {
                 }|"
             )
             // Nature
-            val battleNature = pk.mintedNature ?: pk.nature
+            val battleNature = pk.effectiveNature
             packedTeamBuilder.append("${battleNature.name.path}|")
             // EVs
             val evsInOrder = Stats.PERMANENT.map { pk.evs.getOrDefault(it) }.joinToString(separator = ",")
@@ -130,11 +133,12 @@ object BattleRegistry {
             // Hidden Power Type
             packedTeamBuilder.append(",")
             // Gigantamax
-            packedTeamBuilder.append(",")
+            packedTeamBuilder.append("${if (pk.gmaxFactor) "G" else ""},")
             // DynamaxLevel
-            packedTeamBuilder.append(",")
+            // 0 - 9, empty == 10
+            packedTeamBuilder.append("${if (pk.dmaxLevel < 10) pk.dmaxLevel else ""},")
             // Teratype
-            packedTeamBuilder.append(",")
+            packedTeamBuilder.append("${pokemon.effectedPokemon.teraType.name},")
 
             team.add(packedTeamBuilder.toString())
         }

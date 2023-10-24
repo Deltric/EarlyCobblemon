@@ -46,6 +46,14 @@
 					"rotation": [15, 0, 0]
 				}
 			}
+		},
+		"animation.tatsugiri.cry": {
+			"animation_length": 1,
+			"sound_effects": {
+				"0.0": {
+					"effect": "pokemon.tatsugiri.cry"
+				}
+			}
 		}
 	},
 	"geckolib_format_version": 2

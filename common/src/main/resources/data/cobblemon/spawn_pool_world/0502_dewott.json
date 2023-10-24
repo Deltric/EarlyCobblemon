@@ -20,24 +20,6 @@
                     "#cobblemon:is_coast"
                 ]
             }
-        },
-        {
-            "id": "dewott-2",
-            "pokemon": "dewott",
-            "presets": [
-                "underwater"
-            ],
-            "type": "pokemon",
-            "context": "submerged",
-            "bucket": "ultra-rare",
-            "level": "17-41",
-            "weight": 0.9,
-            "condition": {
-                "canSeeSky": true,
-                "biomes": [
-                    "#cobblemon:is_coast"
-                ]
-            }
         }
     ]
 }

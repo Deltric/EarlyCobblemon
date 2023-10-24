@@ -35,10 +35,14 @@
     }
   },
   "drops": {
-    "amount": "1",
+    "amount": 2,
     "entries": [
       {
         "item": "cobblemon:kings_rock",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:pinap_berry",
         "percentage": 2.5
       }
     ]

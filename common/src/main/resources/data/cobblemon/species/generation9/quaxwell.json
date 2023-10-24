@@ -7,6 +7,15 @@
     "torrent",
     "h:moxie"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 10.0
+      }
+    ]
+  },
   "baseStats": {
     "hp": 70,
     "attack": 85,
@@ -33,6 +42,13 @@
     "flying",
     "water_1"
   ],
+  "behaviour": {
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.3
+      }
+    }
+  },
   "moves": [
     "1:doublehit",
     "1:growl",

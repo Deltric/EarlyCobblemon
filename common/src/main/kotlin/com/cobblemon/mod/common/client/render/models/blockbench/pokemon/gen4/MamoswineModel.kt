@@ -26,11 +26,11 @@ class MamoswineModel(root: ModelPart) : PokemonPoseableModel(), QuadrupedFrame {
     override val foreLeftLeg= getPart("leg_front_left")
     override val foreRightLeg = getPart("leg_front_right")
 
-    override val portraitScale = 2.0F
-    override val portraitTranslation = Vec3d(-0.5, -0.45, 0.0)
+    override val portraitScale = 0.7F
+    override val portraitTranslation = Vec3d(-0.7, 1.5, 0.0)
 
-    override val profileScale = 0.95F
-    override val profileTranslation = Vec3d(0.0, 0.3, 0.0)
+    override val profileScale = 0.35F
+    override val profileTranslation = Vec3d(-0.05, 1.1, 0.0)
 
     lateinit var sleep: PokemonPose
     lateinit var standing: PokemonPose

@@ -14,7 +14,7 @@ import com.cobblemon.mod.common.api.reactive.Observable.Companion.emitWhile
 import com.cobblemon.mod.common.api.storage.PokemonStore
 import com.cobblemon.mod.common.api.storage.StorePosition
 import com.cobblemon.mod.common.api.storage.adapter.SerializedStore
-import com.cobblemon.mod.common.api.storage.adapter.flatifle.FileStoreAdapter
+import com.cobblemon.mod.common.api.storage.adapter.flatfile.FileStoreAdapter
 import com.cobblemon.mod.common.api.storage.party.PlayerPartyStore
 import com.cobblemon.mod.common.api.storage.pc.PCStore
 import com.cobblemon.mod.common.platform.events.PlatformEvents
@@ -123,7 +123,7 @@ open class FileBackedPokemonStoreFactory<S>(
     }
 
     override fun onPlayerDisconnect(playerID: UUID) {
-        dirtyStores.find { it.uuid == playerID }?.let { save(it) }
+        dirtyStores.filter { it.uuid == playerID }.forEach(::save)
         storeCaches.forEach { (_, cache) -> cache.cacheMap.remove(playerID) }
     }
 

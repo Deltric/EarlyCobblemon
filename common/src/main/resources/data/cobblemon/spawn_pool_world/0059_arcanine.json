@@ -7,27 +7,50 @@
             "id": "arcanine-1",
             "pokemon": "arcanine",
 			"presets": [
-                "urban",
-                "natural"
+                "natural",
+				"urban"
             ],
             "type": "pokemon",
             "context": "grounded",
-            "bucket": "uncommon",
-            "level": "36-55",
-            "weight": 0.06,
+            "bucket": "common",
+            "level": "30-56",
+            "weight": 0.6,
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_forest",
-                    "#cobblemon:is_grassland",
-                    "#cobblemon:is_snowy",
-                    "#cobblemon:is_tundra"
-                ],
-                "timeRange": "day"
+                    "#cobblemon:is_overworld"
+                ]
             },
             "anticondition": {
                 "biomes": [
-                    "#cobblemon:is_spooky"
+                    "#cobblemon:is_desert"
+                ],
+                "structures": [
+                    "#minecraft:village"
+                ]
+            }
+        },
+        {
+            "id": "arcanine-2",
+            "pokemon": "arcanine",
+			"presets": [
+                "natural",
+				"village"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "30-56",
+            "weight": 0.6,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_overworld"
+                ]
+            },
+            "anticondition": {
+                "biomes": [
+                    "#cobblemon:is_desert"
                 ]
             }
         }

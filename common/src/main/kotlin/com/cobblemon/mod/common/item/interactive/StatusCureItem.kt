@@ -48,6 +48,9 @@ class StatusCureItem(val itemName: String, vararg val status: Status) : Cobblemo
         return if (currentStatus != null && (status.isEmpty() || currentStatus in status)) {
             pokemon.status = null
             player.playSound(CobblemonSounds.MEDICINE_SPRAY_USE, SoundCategory.PLAYERS, 1F, 1F)
+            if (!player.isCreative)  {
+                stack.decrement(1)
+            }
             TypedActionResult.success(stack)
         } else {
             TypedActionResult.fail(stack)

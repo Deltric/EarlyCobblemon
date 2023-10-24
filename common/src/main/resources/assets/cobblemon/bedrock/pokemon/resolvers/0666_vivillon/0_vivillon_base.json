@@ -245,28 +245,6 @@
           "texture": "cobblemon:textures/pokemon/0666_vivillon/vivillon_wings_tundra.png"
         }
       ]
-    },
-    {
-      "aspects": [
-        "vivillon-wings-blazing"
-      ],
-      "layers": [
-        {
-          "name": "wings",
-          "texture": "cobblemon:textures/pokemon/0666_vivillon/vivillon_wings_blazing.png"
-        }
-      ]
-    },
-    {
-      "aspects": [
-        "vivillon-wings-ender"
-      ],
-      "layers": [
-        {
-          "name": "wings",
-          "texture": "cobblemon:textures/pokemon/0666_vivillon/vivillon_wings_ender.png"
-        }
-      ]
     }
   ]
 }

@@ -18,8 +18,8 @@ import net.minecraft.util.math.Vec3d
 class WishiwashiSchoolingModel (root: ModelPart) : PokemonPoseableModel(){
     override val rootPart = root.registerChildWithAllChildren("wishiwashi_school")
 
-    override val portraitScale = 0.55F
-    override val portraitTranslation = Vec3d(-1.21, 0.4, 0.0)
+    override val portraitScale = 0.5F
+    override val portraitTranslation = Vec3d(-0.4, 0.8, 0.0)
 
     override val profileScale = 0.2F
     override val profileTranslation = Vec3d(0.0, 1.0, 0.0)
@@ -40,7 +40,7 @@ class WishiwashiSchoolingModel (root: ModelPart) : PokemonPoseableModel(){
 
         standing = registerPose(
             poseName = "standing",
-            poseTypes = PoseType.STANDING_POSES - PoseType.FLOAT,
+            poseTypes = PoseType.STANDING_POSES - PoseType.FLOAT + PoseType.UI_POSES,
             idleAnimations = arrayOf(
                 bedrock("wishiwashi_school", "water_idle")
             ),
@@ -62,7 +62,7 @@ class WishiwashiSchoolingModel (root: ModelPart) : PokemonPoseableModel(){
 
         floating = registerPose(
             poseName = "floating",
-            poseTypes = PoseType.UI_POSES + PoseType.FLOAT,
+            poseType = PoseType.FLOAT,
             idleAnimations = arrayOf(
                 bedrock("wishiwashi_school", "water_idle")
             )

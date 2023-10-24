@@ -1,55 +1,199 @@
 {
-  "variants": {
-    "age=0": {
-      "model": "cobblemon:block/revival_herb_stage_0"
+  "multipart": [
+    {
+      "when": {
+        "age": "0"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_0",
+        "uvlock": true
+      }
     },
-    "age=1": {
-      "model": "cobblemon:block/revival_herb_stage_1"
+    {
+      "when": {
+        "age": "1"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_1",
+        "uvlock": true
+      }
     },
-    "age=2": {
-      "model": "cobblemon:block/revival_herb_stage_2"
+    {
+      "when": {
+        "age": "2"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_2",
+        "uvlock": true
+      }
     },
-    "age=3": {
-      "model": "cobblemon:block/revival_herb_stage_3"
+    {
+      "when": {
+        "age": "3"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_3",
+        "uvlock": true
+      }
     },
-    "age=4": {
-      "model": "cobblemon:block/revival_herb_stage_4"
+    {
+      "when": {
+        "age": "4"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_4",
+        "uvlock": true
+      }
     },
-    "age=5": {
-      "model": "cobblemon:block/revival_herb_stage_5"
+    {
+      "when": {
+        "age": "5"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_5",
+        "uvlock": true
+      }
     },
-    "age=6": {
-      "model": "cobblemon:block/revival_herb_stage_6"
+    {
+      "when": {
+        "age": "6"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_6",
+        "uvlock": true
+      }
     },
-    "age=7,mutation=none": {
-      "model": "cobblemon:block/revival_herb_stage_7"
+    {
+      "when": {
+        "age": "7",
+        "mutation": "none"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_7",
+        "uvlock": true
+      }
     },
-    "age=8,mutation=none": {
-      "model": "cobblemon:block/revival_herb_stage_8"
+    {
+      "when": {
+        "age": "8",
+        "mutation": "none"
+      },
+      "apply": {
+        "model": "cobblemon:block/revival_herb_stage_8",
+        "uvlock": true
+      }
     },
-    "age=7,mutation=mental": {
-      "model": "cobblemon:block/mental_herb_stage_0"
+    {
+      "when": {
+        "age": "7",
+        "mutation": "mental"
+      },
+      "apply": {
+        "model": "cobblemon:block/mental_herb_stage_0",
+        "uvlock": true
+      }
     },
-    "age=8,mutation=mental": {
-      "model": "cobblemon:block/mental_herb_stage_1"
+    {
+      "when": {
+        "age": "8",
+        "mutation": "mental"
+      },
+      "apply": {
+        "model": "cobblemon:block/mental_herb_stage_1",
+        "uvlock": true
+      }
     },
-    "age=7,mutation=power": {
-      "model": "cobblemon:block/power_herb_stage_0"
+    {
+      "when": {
+        "age": "7",
+        "mutation": "power"
+      },
+      "apply": {
+        "model": "cobblemon:block/power_herb_stage_0",
+        "uvlock": true
+      }
     },
-    "age=8,mutation=power": {
-      "model": "cobblemon:block/power_herb_stage_1"
+    {
+      "when": {
+        "age": "8",
+        "mutation": "power"
+      },
+      "apply": {
+        "model": "cobblemon:block/power_herb_stage_1",
+        "uvlock": true
+      }
     },
-    "age=7,mutation=white": {
-      "model": "cobblemon:block/white_herb_stage_0"
+    {
+      "when": {
+        "age": "7",
+        "mutation": "white"
+      },
+      "apply": {
+        "model": "cobblemon:block/white_herb_stage_0",
+        "uvlock": true
+      }
     },
-    "age=8,mutation=white": {
-      "model": "cobblemon:block/white_herb_stage_1"
+    {
+      "when": {
+        "age": "8",
+        "mutation": "white"
+      },
+      "apply": {
+        "model": "cobblemon:block/white_herb_stage_1",
+        "uvlock": true
+      }
     },
-    "age=7,mutation=mirror": {
-      "model": "cobblemon:block/mirror_herb_stage_0"
+    {
+      "when": {
+        "age": "7",
+        "mutation": "mirror"
+      },
+      "apply": {
+        "model": "cobblemon:block/mirror_herb_stage_0",
+        "uvlock": true
+      }
     },
-    "age=8,mutation=mirror": {
-      "model": "cobblemon:block/mirror_herb_stage_1"
+    {
+      "when": {
+        "age": "8",
+        "mutation": "mirror"
+      },
+      "apply": {
+        "model": "cobblemon:block/mirror_herb_stage_1",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "mutation": "white"
+      },
+      "apply": {
+        "model": "cobblemon:block/surprise_mulch"
+      }
+    },
+    {
+      "when": {
+        "mutation": "mirror"
+      },
+      "apply": {
+        "model": "cobblemon:block/surprise_mulch"
+      }
+    },
+    {
+      "when": {
+        "mutation": "power"
+      },
+      "apply": {
+        "model": "cobblemon:block/surprise_mulch"
+      }
+    },
+    {
+      "when": {
+        "mutation": "mental"
+      },
+      "apply": {
+        "model": "cobblemon:block/surprise_mulch"
+      }
     }
-  }
+  ]
 }

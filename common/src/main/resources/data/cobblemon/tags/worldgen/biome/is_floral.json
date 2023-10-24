@@ -1,11 +1,20 @@
 {
   "replace": false,
   "values": [
-    "minecraft:flower_forest",
+    "minecraft:cherry_grove",
+	"minecraft:flower_forest",
 	"minecraft:meadow",
 	"minecraft:sunflower_plains",
     {
       "id": "#byg:is_floral",
+      "required": false
+    },
+	{
+      "id": "#c:floral",
+      "required": false
+    },
+	{
+      "id": "#c:flower_forests",
       "required": false
     },
 	{
@@ -54,6 +63,34 @@
     },
 	{
       "id": "terralith:sakura_valley",
+      "required": false
+    },
+    {
+      "id": "wythers:autumnal_flower_forest",
+      "required": false
+    },
+    {
+      "id": "wythers:flowering_pantanal",
+      "required": false
+    },
+    {
+      "id": "wythers:jacaranda_savanna",
+      "required": false
+    },
+    {
+      "id": "wythers:lapacho_plains",
+      "required": false
+    },
+    {
+      "id": "wythers:sakura_forest",
+      "required": false
+    },
+    {
+      "id": "wythers:spring_flower_fields",
+      "required": false
+    },
+    {
+      "id": "wythers:spring_flower_forest",
       "required": false
     }
   ]

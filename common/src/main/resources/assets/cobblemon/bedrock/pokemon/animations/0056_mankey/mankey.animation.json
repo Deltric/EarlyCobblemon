@@ -1243,6 +1243,14 @@
 					}
 				}
 			}
+		},
+		"animation.mankey.cry": {
+			"animation_length": 0.95833,
+			"sound_effects": {
+				"0.0833": {
+					"effect": "pokemon.mankey.cry"
+				}
+			}
 		}
 	}
 }

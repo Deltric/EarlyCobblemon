@@ -88,5 +88,5 @@ class MeowthGalarianModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walking, battleidle, sleep)) bedrockStateful("meowth_galarian", "faint") else null
+    ) = bedrockStateful("meowth_galarian", "faint")
 }
