@@ -1,3 +1,5 @@
+{{ license }}
+
 package com.cobblemon.mod.common
 
 object CobblemonConstants {

@@ -1,6 +1,7 @@
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.util.StringJoiner
 
 /*
  *
@@ -71,6 +72,21 @@ sourceSets {
     main {
         blossom {
             kotlinSources {
+                fun generateLicenseHeader() : String {
+                    val builder = StringBuilder()
+                    builder.append("/*\n")
+                    rootProject.file("HEADER").forEachLine {
+                        if(it.isEmpty()) {
+                            builder.append(" *").append("\n")
+                        } else {
+                            builder.append(" * ").append(it).append("\n")
+                        }
+                    }
+
+                    return builder.append(" */").append("\n").toString()
+                }
+
+                property("license", generateLicenseHeader())
                 property("modid", "cobblemon")
                 property("version", rootProject.version.toString())
                 property("modVersion", rootProject.property("mod_version").toString())

@@ -28,4 +28,6 @@ interface RidingCapability {
 
     fun tick()
 
+    fun attribute(identifier: Identifier): RidingAttribute? = this.attributes[identifier]
+
 }
