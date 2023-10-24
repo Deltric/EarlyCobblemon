@@ -324,7 +324,7 @@ object Cobblemon {
             ).apply { mute = true }
         }
 
-        throw RuntimeException()
+        //throw RuntimeException()
     }
 
     fun getLevel(dimension: RegistryKey<World>): World? {
