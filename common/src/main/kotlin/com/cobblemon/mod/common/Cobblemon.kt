@@ -132,7 +132,7 @@ import org.apache.logging.log4j.LogManager
 
 object Cobblemon {
     const val MODID = CobblemonConstants.MOD_ID
-
+    const val VERSION = "1.4.0"
     const val CONFIG_PATH = "config/$MODID/main.json"
     val LOGGER = LogManager.getLogger()
 
