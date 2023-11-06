@@ -19,6 +19,7 @@
 - Fixed Dispensers being unable to shear grown Apricorns.
 - Fixed Bowl not being given back to player after using Berry Juice
 - Fixed Battle text for Disable, Laser Focus, Foresight, Fire Spin, Telekinesis, and Curse
+- Fixed Battle text for 100+ moves so they display correctly in battle
 - Fixed Moonphases for Clefairy line
 - Fixed issue where Potions, Super Potions, and Hyper Potions did not work during battle
 - Fixed the compatibility patch with the Forge version of [Carry On](https://modrinth.com/mod/carry-on) due to a bug on the mod, the Fabric version was unchanged and is still compatible.
