@@ -825,12 +825,6 @@
   "cobblemon.battle.start.dynamax": "%1$s Dynamaxed!",
   "cobblemon.battle.start.gmax": "%1$s Gigantamaxed!",
 
-  "cobblemon.battle.block.ingrain": "%1$s is anchored in place with its roots!",
-  "cobblemon.battle.block.protect": "%1$s protected itself!",
-  "cobblemon.battle.block.uproar": "But the uproar kept %1$s awake!",
-  "cobblemon.battle.block.matblock": "%1$s was blocked by the kicked-up mat!",
-
-  "cobblemon.battle.fail.substitute": "But it does not have enough HP left to make a substitute!",
 
   "cobblemon.battle.fieldstart.electricterrain": "An electric current ran across the battlefield!",
   "cobblemon.battle.fieldstart.grassyterrain": "Grass grew to cover the battlefield!",
