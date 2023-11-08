@@ -790,7 +790,6 @@
   "cobblemon.battle.start.powershift": "%1$s swapped its offensive stats with its defensive stats!",
   "cobblemon.battle.start.telekinesis": "%1$s was hurled into the air!",
   "cobblemon.battle.start.laserfocus": "%1$s concentrated intensely!",
-  "cobblemon.battle.start.lockon": "%2$s took aim at %1$s!",
   "cobblemon.battle.start.yawn": "%1$s grew drowsy!",
   "cobblemon.battle.start.perish": "%1$s's perish count fell to %2$s.",
   "cobblemon.battle.start.leechseed": "%1$s was seeded!",
@@ -908,7 +907,6 @@
   "cobblemon.battle.activate.afteryou": "%1$s took the kind offer!",
   "cobblemon.battle.activate.beatup": "%1$s's attack!",
   "cobblemon.battle.activate.celebrate": "Congratulations, %1$s!",
-  "cobblemon.battle.activate.haze": "All Status changes are eliminated!",
   "cobblemon.battle.activate.substitute": "The substitute took damage for %1$s!",
   "cobblemon.battle.activate.infestation": "%1$s has become infested!",
   "cobblemon.battle.activate.phantomforce": "It broke through %1$s's protection!",
@@ -919,7 +917,6 @@
 
   "cobblemon.battle.prepare.bounce": "%1$s sprang up!",
   "cobblemon.battle.prepare.dig": "%1$s burrowed its way under the ground!",
-  "cobblemon.battle.prepare.shelltrap": "%1$s set a shell trap!",
   "cobblemon.battle.prepare.dive": "%1$s hid underwater!",
   "cobblemon.battle.prepare.fly": "%1$s flew up high!",
   "cobblemon.battle.prepare.freezeshock": "%1$s became cloaked in a freezing light!",
@@ -933,7 +930,6 @@
   "cobblemon.battle.prepare.skyattack": "%1$s became cloaked in a harsh light!",
   "cobblemon.battle.prepare.skydrop": "%1$s took its target into the sky!",
   "cobblemon.battle.prepare.solarbeam": "%1$s absorbed light!",
-  "cobblemon.battle.prepare.solarblade": "%1$s absorbed light!",
 
   "cobblemon.battle.swapboost.generic": "%1$s swapped stat boosts with %2$s!",
 
