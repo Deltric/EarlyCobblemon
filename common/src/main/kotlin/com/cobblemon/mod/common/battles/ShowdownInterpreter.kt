@@ -987,6 +987,7 @@ object ShowdownInterpreter {
                 }
                 "focussash", "focusband" -> battleLang("activate.focusband", pokemonName, message.effectAt(1)!!.typelessData)
                 "maxguard", "protect" -> battleLang("activate.protect", pokemonName)
+                "shadowforce", "hyperspacefury", "hyperspacehole" -> battleLang("activate.phantomforce", pokemonName)
                 else -> battleLang("activate.${effect.id}", pokemonName, sourceName)
             }
             battle.broadcastChatMessage(lang)
@@ -1418,6 +1419,8 @@ object ShowdownInterpreter {
                         lang("status.$status.hurt", pokemonName)
                     }
                     "aftermath" -> battleLang("damage.generic", pokemonName)
+                    "chloroblast", "steelbeam" -> battleLang("damage.mindblown", pokemonName)
+                    "jumpkick" -> battleLang("damage.highjumpkick", pokemonName)
                     else -> battleLang("damage.${effect.id}", pokemonName, sourceName)
                 }
                 battle.broadcastChatMessage(lang.red())
