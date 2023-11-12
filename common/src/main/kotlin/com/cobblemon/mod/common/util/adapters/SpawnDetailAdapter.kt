@@ -68,14 +68,22 @@ object SpawnDetailAdapter : JsonDeserializer<SpawnDetail> {
             ?: throw IllegalStateException("Spawn detail type name not mentioned in either presets or in spawn detail.")
         val registeredSpawnDetail = SpawnDetail.spawnDetailTypes[spawnDetailTypeName]
             ?: throw IllegalStateException("Unrecognized spawn detail type name: $spawnDetailTypeName.")
-        val ctxName = presets.firstNotNullOfOrNull { it.context?.name }
-            ?: element.get("context").asString
+        val ctxName = if(element.has("context")) {
+            element.get("context").asString
+        } else {
+            presets.firstNotNullOfOrNull { it.context?.name }
+                ?: element.get("context").asString
+        }
         val ctxType = SpawningContext.getByName(ctxName)
             ?: throw IllegalStateException("Unrecognized context name: $ctxName")
         SpawnLoader.deserializingConditionClass = SpawningCondition.getByName(ctxType.defaultCondition)
             ?: throw IllegalStateException("There is no spawning condition registered with the name '${ctxType.defaultCondition}'")
         val detail = registeredSpawnDetail.deserializeDetail(element, ctx)
         presets.forEach { it.apply(detail) }
+        // Overwrite the context if it is specified explicitly in the spawn detail
+        if (element.has("context")) {
+            detail.context = ctxType
+        }
         if (detail.bucket.name.isBlank()) {
             throw IllegalStateException("No bucket was specified for spawn: ${detail.id}")
         }
