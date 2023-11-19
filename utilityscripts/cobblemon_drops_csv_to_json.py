@@ -8,6 +8,13 @@ from sqlalchemy import create_engine
 from tqdm import tqdm
 
 
+# Initialize lists for report
+no_drops_base_forms = []
+removed_drops_pokemon = []
+no_form_entry_files = []
+no_drops_forms = []
+
+
 def main():
     """
     The drops_csv to json script does the following:
@@ -17,17 +24,33 @@ def main():
     4. Writes the DataFrame to an SQLite database.
     """
     # Retrieve the DataFrame containing the drops data
-    drops_df, pokemon_data_dir, sqlite_db_name, sqlite_table_name = get_drops_df()
+    drops_df, pokemon_data_dir, _sqlite_db_name, _sqlite_table_name = get_drops_df()
 
     # Filter the filenames by Pokémon names
     files_to_change = filter_filenames_by_pokemon_names(pokemon_data_dir, drops_df['Pokémon'])
 
     # Modify the files based on the drops data
-    for file in tqdm(files_to_change, bar_format='{l_bar}{bar:96}{r_bar}', colour='blue'):
+    for file in tqdm(files_to_change, bar_format='\033[92m' + 'Processing: ' + '{l_bar}\033[0m{bar:96}\033[92m{r_bar}\033[0m',
+                     colour='blue'):
         modify_files(file, pokemon_data_dir, drops_df)
 
     # Write the DataFrame to an SQLite database
-    write_to_sqlite(drops_df, sqlite_db_name, sqlite_table_name)
+    # write_to_sqlite(drops_df, _sqlite_db_name, _sqlite_table_name)
+
+    # Print report
+    if no_drops_base_forms:
+        print("\nNo drops specified for base forms in the drops sheet:")
+        print(no_drops_base_forms)
+    if no_drops_forms:
+        print("\nNo drops specified for forms in the drops sheet:")
+        print(no_drops_forms)
+    if removed_drops_pokemon:
+        print("\nRemoved drops specified for Pokémon in the drops sheet:")
+        print(removed_drops_pokemon)
+    if no_form_entry_files:
+        print("\nNo form entry found for the following files, but form drops were specified in the drops sheet:")
+        print(no_form_entry_files)
+
 
 
 def get_drops_df():
@@ -55,30 +78,44 @@ def modify_files(file, pokemon_data_dir, drops_df):
     with open(pokemon_data_dir + "/" + file, 'r', encoding="utf8") as f:
         data = json.load(f)
 
+    with open(pokemon_data_dir + "/" + file, 'r', encoding="utf8") as f:
+        data = json.load(f)
+
     for _, row in drops_df.iterrows():
         pokemon = sanitize_pokemon(row['Pokémon'].split("[")[0].strip())
         pokemon_form = row['Pokémon'].split("[")[1].split("]")[0].strip() if "[" in row['Pokémon'] else None
         if pokemon_form is None:
             if pokemon == file.split('/')[-1][:-5].lower():
                 if pd.isna(row['Drops']) or row['Drops'] == '':
+                    no_drops_base_forms.append(file)
                     data.pop('drops', None)
-                elif "REMOVED" not in row['Drops']:
+                elif "REMOVED" in row['Drops']:
+                    removed_drops_pokemon.append(file)
+                    data.pop('drops', None)
+                else:
                     data['drops'] = parse_drops(row['Drops'])
         else:
             if pokemon == file.split('/')[-1][:-5].lower():
                 if 'forms' in data:
+                    form_found = False
                     for form in data['forms']:
                         if form['name'] == pokemon_form:
+                            form_found = True
                             if pd.isna(row['Drops']) or row['Drops'] == '':
+                                no_drops_forms.append(f'{pokemon} [{pokemon_form}]')
                                 form.pop('drops', None)
-                            elif "REMOVED" not in row['Drops']:
+                            elif "REMOVED" in row['Drops']:
+                                removed_drops_pokemon.append(file)
+                                form.pop('drops', None)
+                            else:
                                 form['drops'] = parse_drops(row['Drops'])
-                            # Check if the 'drops' field exists in the form and in the base data
                             if 'drops' in form and 'drops' in data:
-                                # Compare the 'drops' field of the form with the 'drops' field of the base Pokémon
                                 if form['drops'] == data['drops']:
-                                    # If they are the same, remove the 'drops' field from the form
                                     form.pop('drops')
+                    if not form_found:
+                        no_form_entry_files.append(f'{pokemon} [{pokemon_form}]')
+                else:
+                    no_form_entry_files.append(f'{pokemon} [{pokemon_form}]')
 
     with open(pokemon_data_dir + "/" + file, 'w', encoding="utf8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -165,6 +202,9 @@ def load_data_from_csv(csv_data):
 
 
 def filter_filenames_by_pokemon_names(directory, pokemon_names):
+    # Apply the sanitize_pokemon function to the pokemon_names
+    pokemon_names = pokemon_names.apply(sanitize_pokemon)
+
     # Get list of subdirectories in the provided directory
     subdirectories = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
 
@@ -178,7 +218,13 @@ def filter_filenames_by_pokemon_names(directory, pokemon_names):
 
     filtered_files = [file for file in all_files if
                       file.split('/')[-1][:-5].lower() in pokemon_names.str.lower().tolist()]
-    print(filtered_files)
+
+    # Get the files that did not pass the filter
+    not_filtered_files = [file for file in all_files if file not in filtered_files]
+
+    print("\nSpecies file found, but ignored:  [[located at resources/data/cobblemon/species/]]")
+    print(not_filtered_files)
+    print('\n')
     return filtered_files
 
 
@@ -188,7 +234,7 @@ def write_to_sqlite(df, db_name, table_name):
 
 
 def sanitize_pokemon(pokemon):
-    return pokemon.replace("-", "").replace("♂", "m").replace("♀", "f").replace(".", "").replace("'", "").replace(' ', '').lower()
+    return pokemon.replace("-", "").replace("♂", "m").replace("♀", "f").replace(".", "").replace("'", "").replace(' ', '').replace('é', 'e').replace(':', '').lower()
 
 
 if __name__ == "__main__":
