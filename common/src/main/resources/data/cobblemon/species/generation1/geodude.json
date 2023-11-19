@@ -179,7 +179,28 @@
         }
       ],
       "cannotDynamax": false,
-      "battleOnly": false
+      "battleOnly": false,
+      "drops": {
+        "amount": 4,
+        "entries": [
+          {
+            "item": "minecraft:raw_copper",
+            "quantityRange": "0-1"
+          },
+          {
+            "item": "cobblemon:cell_battery",
+            "percentage": 2.5
+          },
+          {
+            "item": "cobblemon:magnet",
+            "percentage": 2.5
+          },
+          {
+            "item": "cobblemon:shuca_berry",
+            "percentage": 2.5
+          }
+        ]
+      }
     }
   ],
   "baseExperienceYield": 60,

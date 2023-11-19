@@ -115,7 +115,19 @@
       "weight": 9,
       "evolutions": [],
       "cannotDynamax": false,
-      "battleOnly": false
+      "battleOnly": false,
+      "drops": {
+        "amount": 2,
+        "entries": [
+          {
+            "item": "minecraft:wither_rose"
+          },
+          {
+            "item": "cobblemon:kebia_berry",
+            "percentage": 5.0
+          }
+        ]
+      }
     }
   ],
   "baseExperienceYield": 130,

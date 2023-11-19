@@ -222,7 +222,15 @@
       "preEvolution": "cubone",
       "evolutions": [],
       "cannotDynamax": false,
-      "battleOnly": false
+      "battleOnly": false,
+      "drops": {
+        "amount": 1,
+        "entries": [
+          {
+            "item": "minecraft:bone"
+          }
+        ]
+      }
     },
     {
       "name": "Alola-Totem",

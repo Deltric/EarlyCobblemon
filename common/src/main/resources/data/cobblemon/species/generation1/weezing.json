@@ -135,7 +135,20 @@
       "preEvolution": "koffing",
       "evolutions": [],
       "cannotDynamax": false,
-      "battleOnly": false
+      "battleOnly": false,
+      "drops": {
+        "amount": 2,
+        "entries": [
+          {
+            "item": "cobblemon:black_sludge",
+            "percentage": 5.0
+          },
+          {
+            "item": "cobblemon:payapa_berry",
+            "percentage": 5.0
+          }
+        ]
+      }
     }
   ],
   "baseExperienceYield": 172,

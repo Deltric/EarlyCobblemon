@@ -130,7 +130,20 @@
       "preEvolution": "ponyta form=galar",
       "evolutions": [],
       "cannotDynamax": false,
-      "battleOnly": false
+      "battleOnly": false,
+      "drops": {
+        "amount": 3,
+        "entries": [
+          {
+            "item": "minecraft:leather",
+            "quantityRange": "0-2"
+          },
+          {
+            "item": "cobblemon:razz_berry",
+            "percentage": 5.0
+          }
+        ]
+      }
     }
   ],
   "baseExperienceYield": 175,
