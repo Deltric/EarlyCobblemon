@@ -7,7 +7,7 @@
     "h:aromaveil"
   ],
   "drops": {
-    "amount": 1,
+    "amount": 3,
     "entries": [
       {
         "item": "cobblemon:kebia_berry",
@@ -15,8 +15,8 @@
       },
       {
         "item": "cobblemon:fairy_feather",
-        "quantityRange": "1-2",
-        "percentage": 66
+        "quantityRange": "0-2",
+        "percentage": 66.0
       }
     ]
   },

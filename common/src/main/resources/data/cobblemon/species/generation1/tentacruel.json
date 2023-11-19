@@ -45,7 +45,7 @@
     "light": "0-4"
   },
   "drops": {
-    "amount": 10,
+    "amount": 9,
     "entries": [
       {
         "item": "minecraft:ink_sac",
