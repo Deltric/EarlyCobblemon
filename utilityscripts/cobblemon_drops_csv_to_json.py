@@ -76,19 +76,21 @@ def parse_drops(drops_str):
             print("Item ID: " + item_id)
 
         currentDrop = {"item": item_id}
+        quantityRangePresent = False
 
         # Iterate over remaining item info fields and add their values to the currentDrop
         for i in range(1, len(item_info)):
-            if "%" in item_info[i]:
-                percentage = float(item_info[i].replace('%', ''))
-                currentDrop.update({"percentage": percentage})
-                if noOr:
-                    amount += 1
-            elif '-' in item_info[i]:
+            if '-' in item_info[i]:
                 if noOr:
                     amount += (int(item_info[i].split('-')[1]))
                 quantityRange = item_info[i]
                 currentDrop.update({"quantityRange": quantityRange})
+                quantityRangePresent = True
+            elif "%" in item_info[i]:
+                percentage = float(item_info[i].replace('%', ''))
+                currentDrop.update({"percentage": percentage})
+                if noOr and not quantityRangePresent:
+                    amount += 1
             elif '(Nether)' in item_info[i] or '(End)' in item_info[i] or '(Overworld)' in item_info[i] or item_info[i] == '':
                 # Do nothing
                 pass
@@ -99,9 +101,8 @@ def parse_drops(drops_str):
                 if noOr:
                     amount += (int(item_info[i]))
 
-        if len(item_info) == 1:
-            if noOr:
-                amount += 1
+        if len(item_info) == 1 and noOr:
+            amount += 1
 
         entries.append(currentDrop)
 
@@ -141,9 +142,6 @@ def download_spreadsheet_data(url, max_retries=5):
 
 
 def load_data_from_csv(csv_data):
-    print("CSV data:")
-    print(csv_data)
-    print("----------- END OF CSV DATA -----------")
     return pd.read_csv(StringIO(csv_data), encoding='utf8', engine='python', dtype={'Pokémon': str, 'Drops': str})
 
 
