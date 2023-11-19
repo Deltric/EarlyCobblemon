@@ -39,10 +39,10 @@ def main():
 
     # Print report
     if no_drops_base_forms:
-        print("\nNo drops specified for base forms in the drops sheet:")
+        print("\nNo drops specified for base forms in the drops sheet, but species files exists:")
         print(no_drops_base_forms)
     if no_drops_forms:
-        print("\nNo drops specified for forms in the drops sheet:")
+        print("\nNo drops specified for forms in the drops sheet, but form entries exist:")
         print(no_drops_forms)
     if removed_drops_pokemon:
         print("\nRemoved drops specified for Pokémon in the drops sheet:")
