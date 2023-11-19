@@ -5,6 +5,7 @@ import pandas as pd
 import json
 from io import StringIO
 from sqlalchemy import create_engine
+from tqdm import tqdm
 
 
 def main():
@@ -22,7 +23,7 @@ def main():
     files_to_change = filter_filenames_by_pokemon_names(pokemon_data_dir, drops_df['Pokémon'])
 
     # Modify the files based on the drops data
-    for file in files_to_change:
+    for file in tqdm(files_to_change, bar_format='{l_bar}{bar:96}{r_bar}', colour='blue'):
         modify_files(file, pokemon_data_dir, drops_df)
 
     # Write the DataFrame to an SQLite database
@@ -55,13 +56,29 @@ def modify_files(file, pokemon_data_dir, drops_df):
         data = json.load(f)
 
     for _, row in drops_df.iterrows():
-        if row['Pokémon'].lower() == file.split('/')[-1][:-5].lower():
-            if pd.isna(row['Drops']) or row['Drops'] == '':
-                data.pop('drops', None)
-                break
-            if "REMOVED" not in row['Drops']:
-                data['drops'] = parse_drops(row['Drops'])
-            break
+        pokemon = sanitize_pokemon(row['Pokémon'].split("[")[0].strip())
+        pokemon_form = row['Pokémon'].split("[")[1].split("]")[0].strip() if "[" in row['Pokémon'] else None
+        if pokemon_form is None:
+            if pokemon == file.split('/')[-1][:-5].lower():
+                if pd.isna(row['Drops']) or row['Drops'] == '':
+                    data.pop('drops', None)
+                elif "REMOVED" not in row['Drops']:
+                    data['drops'] = parse_drops(row['Drops'])
+        else:
+            if pokemon == file.split('/')[-1][:-5].lower():
+                if 'forms' in data:
+                    for form in data['forms']:
+                        if form['name'] == pokemon_form:
+                            if pd.isna(row['Drops']) or row['Drops'] == '':
+                                form.pop('drops', None)
+                            elif "REMOVED" not in row['Drops']:
+                                form['drops'] = parse_drops(row['Drops'])
+                            # Check if the 'drops' field exists in the form and in the base data
+                            if 'drops' in form and 'drops' in data:
+                                # Compare the 'drops' field of the form with the 'drops' field of the base Pokémon
+                                if form['drops'] == data['drops']:
+                                    # If they are the same, remove the 'drops' field from the form
+                                    form.pop('drops')
 
     with open(pokemon_data_dir + "/" + file, 'w', encoding="utf8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
@@ -168,6 +185,10 @@ def filter_filenames_by_pokemon_names(directory, pokemon_names):
 def write_to_sqlite(df, db_name, table_name):
     engine = create_engine(f'sqlite:///{db_name}', echo=True)
     df.to_sql(table_name, con=engine, if_exists='replace', index=False)
+
+
+def sanitize_pokemon(pokemon):
+    return pokemon.replace("-", "").replace("♂", "m").replace("♀", "f").replace(".", "").replace("'", "").replace(' ', '').lower()
 
 
 if __name__ == "__main__":
