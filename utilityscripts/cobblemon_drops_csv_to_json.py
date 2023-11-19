@@ -8,36 +8,28 @@ from sqlalchemy import create_engine
 
 
 def main():
-    drops_df, pokemon_data_dir, sqlite_db_name, sqlite_table_name = getDropsDF()
+    """
+    The drops_csv to json script does the following:
+    1. Retrieves the DataFrame containing the drops data.
+    2. Filters the filenames by Pokémon names contained in drops df.
+    3. Modifies the files based on the drops data.
+    4. Writes the DataFrame to an SQLite database.
+    """
+    # Retrieve the DataFrame containing the drops data
+    drops_df, pokemon_data_dir, sqlite_db_name, sqlite_table_name = get_drops_df()
 
-    # Filter filenames from ..\common\src\main\resources\data\cobblemon\species based on Pokémon names that have drops
-    filesToChange = filter_filenames_by_pokemon_names(pokemon_data_dir, drops_df['Pokémon'])
+    # Filter the filenames by Pokémon names
+    files_to_change = filter_filenames_by_pokemon_names(pokemon_data_dir, drops_df['Pokémon'])
 
-    # For each file, replace the drops or create them if not present
-    for file in filesToChange:
-        with open(pokemon_data_dir + "/" + file, 'r', encoding="utf8") as f:
-            data = json.load(f)  # Deserialize JSON to Python object
+    # Modify the files based on the drops data
+    for file in files_to_change:
+        modify_files(file, pokemon_data_dir, drops_df)
 
-        for index, row in drops_df.iterrows():
-            if row['Pokémon'].lower() == file.split('/')[-1][:-5].lower():
-                if row['Drops'] != row['Drops'] or row['Drops'] == '':
-                    # Remove drops field
-                    data.pop('drops', None)
-                    break
-                # Instead of string manipulation, just modify the Python object directly
-                if "REMOVED" not in row['Drops']:
-                    data['drops'] = parse_drops(row['Drops'])
-                break
-
-        with open(pokemon_data_dir + "/" + file, 'w', encoding="utf8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)  # Serialize Python object to JSON
-
-    # Save data to SQLite
+    # Write the DataFrame to an SQLite database
     write_to_sqlite(drops_df, sqlite_db_name, sqlite_table_name)
 
 
-def getDropsDF():
-    # Configuration data
+def get_drops_df():
     drops_spreadsheet_csv_url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR51bmzKMTvCfa1UKf454nnlNBCUVMtVNQvxdAiYU09E5pWS7mbsrVt45ABsCGZTByt9N_YEgnSwj8V/pub?gid=0&single=true&output=csv'
     conversion_csv_url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRmvHzUc6_UUKbcvRche7AVebNoljqC1bf3iccusJqW9-C3k0KtESJxOCXShykSejIarAB2jHJ2bHCb/pub?gid=0&single=true&output=csv'
     pokemon_data_dir = '../common/src/main/resources/data/cobblemon/species'
@@ -58,13 +50,30 @@ def getDropsDF():
     return drops_df, pokemon_data_dir, sqlite_db_name, sqlite_table_name
 
 
+def modify_files(file, pokemon_data_dir, drops_df):
+    with open(pokemon_data_dir + "/" + file, 'r', encoding="utf8") as f:
+        data = json.load(f)
+
+    for _, row in drops_df.iterrows():
+        if row['Pokémon'].lower() == file.split('/')[-1][:-5].lower():
+            if pd.isna(row['Drops']) or row['Drops'] == '':
+                data.pop('drops', None)
+                break
+            if "REMOVED" not in row['Drops']:
+                data['drops'] = parse_drops(row['Drops'])
+            break
+
+    with open(pokemon_data_dir + "/" + file, 'w', encoding="utf8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+
 def parse_drops(drops_str):
     entries = []
     drops_parts = drops_str.split(', ')
-    amount = 0 # Calculate the max amount of drops possible (if everything rolls max)
-    noOr = True
-    if "OR" in drops_str:
-        noOr = False
+    amount = 0  # Calculate the max amount of drops possible (if everything rolls max)
+    no_or = "OR" not in drops_str
+
+    if not no_or:
         drops_parts = drops_str.split(" OR ")
         amount = 1
 
@@ -75,36 +84,35 @@ def parse_drops(drops_str):
         if "minecraft:" not in item_id and "cobblemon:" not in item_id:
             print("Item ID: " + item_id)
 
-        currentDrop = {"item": item_id}
-        quantityRangePresent = False
+        current_drop = {"item": item_id}
+        quantity_range_present = False
 
         # Iterate over remaining item info fields and add their values to the currentDrop
         for i in range(1, len(item_info)):
             if '-' in item_info[i]:
-                if noOr:
+                if no_or:
                     amount += (int(item_info[i].split('-')[1]))
-                quantityRange = item_info[i]
-                currentDrop.update({"quantityRange": quantityRange})
-                quantityRangePresent = True
+                quantity_range = item_info[i]
+                current_drop.update({"quantityRange": quantity_range})
+                quantity_range_present = True
             elif "%" in item_info[i]:
                 percentage = float(item_info[i].replace('%', ''))
-                currentDrop.update({"percentage": percentage})
-                if noOr and not quantityRangePresent:
+                current_drop.update({"percentage": percentage})
+                if no_or and not quantity_range_present:
                     amount += 1
             elif '(Nether)' in item_info[i] or '(End)' in item_info[i] or '(Overworld)' in item_info[i] or item_info[i] == '':
-                # Do nothing
                 pass
             else:
                 quantity = item_info[i]
                 if quantity != "1":
-                    currentDrop.update({"quantityRange": quantity})
-                if noOr:
+                    current_drop.update({"quantityRange": quantity})
+                if no_or:
                     amount += (int(item_info[i]))
 
-        if len(item_info) == 1 and noOr:
+        if len(item_info) == 1 and no_or:
             amount += 1
 
-        entries.append(currentDrop)
+        entries.append(current_drop)
 
     return {
         "amount": amount,
@@ -114,24 +122,18 @@ def parse_drops(drops_str):
 
 def replace_names_in_string(drop_str, mapping_dict):
     for natural_name, minecraft_id in mapping_dict.items():
-        if drop_str != drop_str:  # NaN check
+        if pd.isna(drop_str):
             break
         drop_str = drop_str.replace(natural_name, minecraft_id)
     return drop_str
-
-
-def load_and_filter_data(filename, columns, filter_column, filter_value):
-    df = pd.read_csv(filename, sep=',', usecols=columns)
-    df = df[df[filter_column] == filter_value]
-    return df
 
 
 def download_spreadsheet_data(url, max_retries=5):
     delay = 1
     for attempt in range(max_retries):
         try:
-            response = requests.get(url)
-            response.raise_for_status()  # will raise an HTTPError if the HTTP request returned an unsuccessful status code
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
             return response.content.decode('utf-8')
         except requests.RequestException as e:
             if attempt < max_retries - 1:
@@ -159,6 +161,7 @@ def filter_filenames_by_pokemon_names(directory, pokemon_names):
 
     filtered_files = [file for file in all_files if
                       file.split('/')[-1][:-5].lower() in pokemon_names.str.lower().tolist()]
+    print(filtered_files)
     return filtered_files
 
 
