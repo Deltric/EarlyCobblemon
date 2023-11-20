@@ -23,14 +23,14 @@ class GolemModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, BipedFr
     override val rootPart = root.registerChildWithAllChildren("golem")
     override val head = getPart("head")
 
-    override val leftLeg = getPart("leg_left")
-    override val rightLeg = getPart("leg_right")
+    override val leftLeg = getPart("left_upper_leg")
+    override val rightLeg = getPart("right_upper_leg")
 
-    override val portraitScale = 2.0F
-    override val portraitTranslation = Vec3d(-0.55, -0.55, 0.0)
+    override val portraitScale = 1.7F
+    override val portraitTranslation = Vec3d(-0.6, -0.25, 0.0)
 
-    override val profileScale = 0.88F
-    override val profileTranslation = Vec3d(0.0, 0.42, 0.0)
+    override val profileScale = 0.75F
+    override val profileTranslation = Vec3d(0.0, 0.55, 0.0)
 
     lateinit var standing: PokemonPose
     lateinit var walk: PokemonPose
@@ -43,7 +43,7 @@ class GolemModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, BipedFr
             quirks = arrayOf(blink),
             idleAnimations = arrayOf(
                 singleBoneLook(),
-                bedrock("golem", "ground_idle")
+                bedrock("golem", "test")
             )
         )
 
@@ -54,7 +54,7 @@ class GolemModel(root: ModelPart) : PokemonPoseableModel(), HeadedFrame, BipedFr
             idleAnimations = arrayOf(
                 BipedWalkAnimation(this, periodMultiplier = 1.2F, amplitudeMultiplier = 0.9f),
                 singleBoneLook(),
-                bedrock("golem", "ground_idle")
+                bedrock("golem", "test")
                 //bedrock("golem", "ground_walk")
             )
         )

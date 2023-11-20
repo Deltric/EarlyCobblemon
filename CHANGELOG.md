@@ -7,6 +7,7 @@
 - Turtwig can now be put on shoulder.
 - Shuckles can now be milked for Berry Juice using a wooden bowl
 - Updated Zubat line model, texture, and animations.
+- Updated Geodude line models and textures.
 - Added animations for Hitmontop, Tyrogue, and Mightyena.
 - Tweaked animations for Dusknoir, Ratatta, Bewear, Exeggutor, and Alolan Exeggutor.
 - Sized Kantonian Exeggutor down. Still big but not TOO BIG.
@@ -18,7 +19,7 @@
 - The Healing Machine now has a more difficult recipe, placing it later game.
 - Heal Powder can now be composted with a 75% chance of adding a layer
 - Mental, Power, White, and Mirror Herbs can now be composted with a 100% chance of adding a layer.
-- Added emissive to Hoothoot.
+- Added emissive to Hoothoot and Noctowl.
 - Mining Evolution Stone Ores with a Fortune pickaxe will now increase the amount of items recieved
 - Black Augurite can now be used to craft stone axes and obsidian.
 - Using Experience Candies brings up the Party Pokémon Select screen when not targeting a Pokémon.
@@ -32,9 +33,9 @@
 - Giving Pokémon items now plays a sound
 - A boat, sign and hanging sign is now craftable with Apricorn wood. The recipes are the same shape as Minecraft's equivalent with Apricorn planks as replacements.
 - Added the Cleanse Tag, Flame Orb, Life Orb, Smoke Ball, and Toxic Orb held items.
-- Added Fairy Feather drops to some pokemon.
+- Added Fairy Feather drops to some Pokemon.
 - Added the Inferno, Void, and Forsaken patterns for Vivillon. These can be obtained by evolving a Spewpa in the Nether, End, or Deep Dark respectively.
-- Added the Litwick line.
+- Added the Litwick and Drifloon lines.
 - Bees can now be fed using Pep-Up Flowers.
 - Mooshtank can now be milked with a bowl for Mushroom Stew.
 - Updated Showdown version to use gen9 battle data
@@ -82,6 +83,7 @@
 - Fixed Shroomish not using its idle.
 - Fixed a possible visual duplication of sent out Pokémon.
 - Fixed battle text for Trace, Receiver, and Power of Alchemy.
+- Fixed tooltips being appended too late in items.
 
 ### Developer
 - Fixed the `SpawnEvent` not respecting usage of `Cancelable#cancel`.

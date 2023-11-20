@@ -100,6 +100,7 @@ object CobblemonClient {
         PlatformEvents.CLIENT_ITEM_TOOLTIP.subscribe { event ->
             val stack = event.stack
             val lines = event.lines
+            val size = lines.size
             @Suppress("DEPRECATION")
             if (stack.item.registryEntry.key.isPresent && stack.item.registryEntry.key.get().value.namespace == Cobblemon.MODID) {
                 if (stack.nbt?.getBoolean(DataKeys.HIDE_TOOLTIP) == true) {
@@ -107,13 +108,14 @@ object CobblemonClient {
                 }
                 val language = Language.getInstance()
                 val key = this.baseLangKeyForItem(stack)
+                val offset = if (size > 1) 1 else 0
                 if (language.hasTranslation(key)) {
-                    lines.add(key.asTranslated().gray())
+                    lines.add(size - offset, key.asTranslated().gray())
                 }
                 var i = 1
                 var listKey = "${key}_$i"
                 while(language.hasTranslation(listKey)) {
-                    lines.add(listKey.asTranslated().gray())
+                    lines.add(size - offset, listKey.asTranslated().gray())
                     listKey = "${key}_${++i}"
                 }
             }
