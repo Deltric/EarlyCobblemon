@@ -116,6 +116,33 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val MASTER_BALL = pokeBallItem(PokeBalls.MASTER_BALL)
     @JvmField
     val CHERISH_BALL = pokeBallItem(PokeBalls.CHERISH_BALL)
+    @JvmField
+    val ANCIENT_POKE_BALL = pokeBallItem(PokeBalls.ANCIENT_POKE_BALL)
+    @JvmField
+    val ANCIENT_CITRINE_BALL = pokeBallItem(PokeBalls.ANCIENT_CITRINE_BALL)
+    @JvmField
+    val ANCIENT_AZURE_BALL = pokeBallItem(PokeBalls.ANCIENT_AZURE_BALL)
+    @JvmField
+    val ANCIENT_ROSEATE_BALL = pokeBallItem(PokeBalls.ANCIENT_ROSEATE_BALL)
+    @JvmField
+    val ANCIENT_SLATE_BALL = pokeBallItem(PokeBalls.ANCIENT_SLATE_BALL)
+    @JvmField
+    val ANCIENT_PREMIER_BALL = pokeBallItem(PokeBalls.ANCIENT_PREMIER_BALL)
+    @JvmField
+    val ANCIENT_GREAT_BALL = pokeBallItem(PokeBalls.ANCIENT_GREAT_BALL)
+    @JvmField
+    val ANCIENT_ULTRA_BALL = pokeBallItem(PokeBalls.ANCIENT_ULTRA_BALL)
+    @JvmField
+    val ANCIENT_HEAVY_BALL = pokeBallItem(PokeBalls.ANCIENT_HEAVY_BALL)
+    @JvmField
+    val ANCIENT_FEATHER_BALL = pokeBallItem(PokeBalls.ANCIENT_FEATHER_BALL)
+    @JvmField
+    val ANCIENT_GIGATON_BALL = pokeBallItem(PokeBalls.ANCIENT_GIGATON_BALL)
+    @JvmField
+    val ANCIENT_WING_BALL = pokeBallItem(PokeBalls.ANCIENT_WING_BALL)
+    @JvmField
+    val ANCIENT_JET_BALL = pokeBallItem(PokeBalls.ANCIENT_JET_BALL)
+
 
     @JvmField
     val VIVICHOKE = compostableItem("vivichoke")

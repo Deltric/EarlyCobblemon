@@ -121,6 +121,32 @@ object PokeBalls : JsonDataRegistry<PokeBall> {
         get() = this.byName("dream_ball")
     val BEAST_BALL
         get() = this.byName("beast_ball")
+    val ANCIENT_POKE_BALL
+        get() = this.byName("ancient_poke_ball")
+    val ANCIENT_CITRINE_BALL
+        get() = this.byName("ancient_citrine_ball")
+    val ANCIENT_AZURE_BALL
+        get() = this.byName("ancient_azure_ball")
+    val ANCIENT_ROSEATE_BALL
+        get() = this.byName("ancient_roseate_ball")
+    val ANCIENT_SLATE_BALL
+        get() = this.byName("ancient_slate_ball")
+    val ANCIENT_PREMIER_BALL
+        get() = this.byName("ancient_premier_ball")
+    val ANCIENT_GREAT_BALL
+        get() = this.byName("ancient_great_ball")
+    val ANCIENT_ULTRA_BALL
+        get() = this.byName("ancient_ultra_ball")
+    val ANCIENT_HEAVY_BALL
+        get() = this.byName("ancient_heavy_ball")
+    val ANCIENT_FEATHER_BALL
+        get() = this.byName("ancient_feather_ball")
+    val ANCIENT_GIGATON_BALL
+        get() = this.byName("ancient_gigaton_ball")
+    val ANCIENT_WING_BALL
+        get() = this.byName("ancient_wing_ball")
+    val ANCIENT_JET_BALL
+        get() = this.byName("ancient_jet_ball")
 
     init {
         createDefault("poke_ball")
@@ -157,6 +183,19 @@ object PokeBalls : JsonDataRegistry<PokeBall> {
         createDefault("park_ball", CatchRateModifiers.PARK)
         createDefault("dream_ball", CatchRateModifiers.statusBoosting(4F, Statuses.SLEEP))
         createDefault("beast_ball", LabelModifier(5F, true, CobblemonPokemonLabels.ULTRA_BEAST)/*, LabelModifier(0.1F, false, CobblemonPokemonLabels.ULTRA_BEAST))*/)
+        createDefault("ancient_poke_ball")
+        createDefault("ancient_citrine_ball")
+        createDefault("ancient_azure_ball")
+        createDefault("ancient_roseate_ball")
+        createDefault("ancient_slate_ball")
+        createDefault("ancient_premier_ball")
+        createDefault("ancient_great_ball")
+        createDefault("ancient_ultra_ball")
+        createDefault("ancient_heavy_ball")
+        createDefault("ancient_feather_ball")
+        createDefault("ancient_gigaton_ball")
+        createDefault("ancient_wing_ball")
+        createDefault("ancient_jet_ball")
         // Luxury ball effect
         CobblemonEvents.FRIENDSHIP_UPDATED.subscribe(priority = Priority.LOWEST) { event ->
             var increment = (event.newFriendship - event.pokemon.friendship).toFloat()
