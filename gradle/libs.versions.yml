@@ -20,12 +20,6 @@ versions:
   fabric-permissions-api: 0.2-SNAPSHOT
   adorn-fabric: 5.0.0-fabric
 
-  # forge
-  forge: 1.20.1-47.1.0
-  kotlinForForge: 4.3.0
-  flywheelForge: 0.6.10-7
-  adorn-forge: 5.0.0-forge
-
   # common
   graal: 22.3.0
   molang: 1.1.5
@@ -126,28 +120,6 @@ dependencies:
     group: maven.modrinth
     name: adorn
     version: { ref: adorn-fabric }
-
-  # forge
-  forge:
-    group: net.minecraftforge
-    name: forge
-    version: { ref: forge }
-  kotlinForForge:
-    group: thedarkcolour
-    name: kotlinforforge
-    version: { ref: kotlinForForge }
-  jeiForge:
-    group: mezz.jei
-    name: jei-1.20.1-forge
-    version: { ref: jei-api }
-  flywheelForge:
-    group: com.jozufozu.flywheel
-    name: flywheel-forge-1.20.1
-    version: { ref: flywheelForge }
-  adornForge:
-    group: maven.modrinth
-    name: adorn
-    version: { ref: adorn-forge }
 
   # datastore
   mongoDriverCore:
