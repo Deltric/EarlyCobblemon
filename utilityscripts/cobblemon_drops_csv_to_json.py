@@ -6,6 +6,7 @@ import json
 from io import StringIO
 from sqlalchemy import create_engine
 from tqdm import tqdm
+from scriptutils import printCobblemonHeader, print_cobblemon_script_description, print_cobblemon_script_footer, print_list_filtered, print_warning
 
 
 # Initialize lists for report
@@ -23,6 +24,12 @@ def main():
     3. Modifies the files based on the drops data.
     4. Writes the DataFrame to an SQLite database.
     """
+    # Print header
+    printCobblemonHeader()
+    scriptname = "Cobblemon Drops Generator"
+    scriptdescription = "This script generates the drops for each Pokémon based on the data in the Google Spreadsheet. It also generates the drops for each form of a Pokémon, if the Pokémon has any forms and if the forms drops are different from the base forms drops. It also generates a report, hinting at potential problems with the data in the Google Spreadsheet or in the JSON files."
+    print_cobblemon_script_description(scriptname, scriptdescription)
+
     # Retrieve the DataFrame containing the drops data
     drops_df, pokemon_data_dir, _sqlite_db_name, _sqlite_table_name = get_drops_df()
 
@@ -30,7 +37,8 @@ def main():
     files_to_change = filter_filenames_by_pokemon_names(pokemon_data_dir, drops_df['Pokémon'])
 
     # Modify the files based on the drops data
-    for file in tqdm(files_to_change, bar_format='\033[92m' + 'Processing: ' + '{l_bar}\033[0m{bar:96}\033[92m{r_bar}\033[0m',
+    print_warning("Modifying files...")
+    for file in tqdm(files_to_change, bar_format='\033[92m' + '{l_bar}\033[0m{bar:58}\033[92m{r_bar}\033[0m',
                      colour='blue'):
         modify_files(file, pokemon_data_dir, drops_df)
 
@@ -40,17 +48,17 @@ def main():
     # Print report
     if no_drops_base_forms:
         print("\nNo drops specified for base forms in the drops sheet, but species files exists:")
-        print(no_drops_base_forms)
+        print_list_filtered(no_drops_base_forms)
     if no_drops_forms:
         print("\nNo drops specified for forms in the drops sheet, but form entries exist:")
-        print(no_drops_forms)
+        print_list_filtered(no_drops_forms)
     if removed_drops_pokemon:
         print("\nRemoved drops specified for Pokémon in the drops sheet:")
-        print(removed_drops_pokemon)
+        print_list_filtered(removed_drops_pokemon)
     if no_form_entry_files:
         print("\nNo form entry found for the following files, but form drops were specified in the drops sheet:")
-        print(no_form_entry_files)
-
+        print_list_filtered(no_form_entry_files)
+    print_cobblemon_script_footer("Thanks for using the Cobblemon Drops Generator, provided to you by Waldleufer!")
 
 
 def get_drops_df():
@@ -75,14 +83,12 @@ def get_drops_df():
 
 
 def modify_files(file, pokemon_data_dir, drops_df):
-    with open(pokemon_data_dir + "/" + file, 'r', encoding="utf8") as f:
-        data = json.load(f)
 
     with open(pokemon_data_dir + "/" + file, 'r', encoding="utf8") as f:
         data = json.load(f)
 
     for _, row in drops_df.iterrows():
-        pokemon = sanitize_pokemon(row['Pokémon'].split("[")[0].strip())
+        pokemon = sanitize_crysheet_pokemon(row['Pokémon'].split("[")[0].strip())
         pokemon_form = row['Pokémon'].split("[")[1].split("]")[0].strip() if "[" in row['Pokémon'] else None
         if pokemon_form is None:
             if pokemon == file.split('/')[-1][:-5].lower():
@@ -203,7 +209,7 @@ def load_data_from_csv(csv_data):
 
 def filter_filenames_by_pokemon_names(directory, pokemon_names):
     # Apply the sanitize_pokemon function to the pokemon_names
-    pokemon_names = pokemon_names.apply(sanitize_pokemon)
+    pokemon_names = pokemon_names.apply(sanitize_crysheet_pokemon)
 
     # Get list of subdirectories in the provided directory
     subdirectories = [d for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
@@ -223,8 +229,7 @@ def filter_filenames_by_pokemon_names(directory, pokemon_names):
     not_filtered_files = [file for file in all_files if file not in filtered_files]
 
     print("\nSpecies file found, but ignored:  [[located at resources/data/cobblemon/species/]]")
-    print(not_filtered_files)
-    print('\n')
+    print_list_filtered(not_filtered_files)
     return filtered_files
 
 
@@ -233,7 +238,7 @@ def write_to_sqlite(df, db_name, table_name):
     df.to_sql(table_name, con=engine, if_exists='replace', index=False)
 
 
-def sanitize_pokemon(pokemon):
+def sanitize_crysheet_pokemon(pokemon):
     return pokemon.replace("-", "").replace("♂", "m").replace("♀", "f").replace(".", "").replace("'", "").replace(' ', '').replace('é', 'e').replace(':', '').lower()
 
 

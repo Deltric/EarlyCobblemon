@@ -8,7 +8,7 @@ import requests
 import pandas as pd
 from sqlalchemy import create_engine
 import openpyxl
-from cobblemon_drops_csv_to_json import getDropsDF, parse_drops
+from cobblemon_drops_csv_to_json import get_drops_df, parse_drops
 
 # This script is used to convert the data from the cobblemon spawning spreadsheet into a json format
 
@@ -591,7 +591,7 @@ def readEnvFile(param):
 
 
 def load_special_drops_data():
-    drops_df, _a, _b, _c = getDropsDF()
+    drops_df, _a, _b, _c = get_drops_df()
     # delete all rows that have a blank "Spawn Specific Drops" column
     drops_df = drops_df[drops_df['Spawn Specific Drops'].notna()]
     # remove all columns except "Pokémon" and "Spawn Specific Drops"
