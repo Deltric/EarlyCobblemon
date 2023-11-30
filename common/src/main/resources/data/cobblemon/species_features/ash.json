@@ -1,0 +1,6 @@
+{
+  "keys": ["ash"],
+  "type": "battle_flag",
+  "isAspect": true,
+  "default": false
+}
