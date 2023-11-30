@@ -27,7 +27,7 @@ class PastureSlotIconButton(
         private val baseResource = cobblemonResource("textures/gui/pasture/pasture_slot_icon_move.png")
     }
 
-    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         blitk(
             matrixStack = context.matrices,
             x = xPos / SCALE,

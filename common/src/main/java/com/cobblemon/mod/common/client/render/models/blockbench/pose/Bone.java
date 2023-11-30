@@ -8,12 +8,9 @@
 
 package com.cobblemon.mod.common.client.render.models.blockbench.pose;
 
-import com.cobblemon.mod.common.client.render.models.blockbench.PoseableEntityModel;
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 

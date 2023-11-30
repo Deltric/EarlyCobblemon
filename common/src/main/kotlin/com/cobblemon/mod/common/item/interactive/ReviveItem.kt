@@ -10,7 +10,6 @@ package com.cobblemon.mod.common.item.interactive
 
 import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.advancement.CobblemonCriteria
-import com.cobblemon.mod.common.advancement.criterion.PokemonInteractContext
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.callback.PartySelectCallbacks
@@ -75,7 +74,7 @@ class ReviveItem(val max: Boolean): CobblemonItem(Settings()) {
                             if (!player.isCreative) {
                                 stack.decrement(1)
                             }
-                            CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(bp.entity?.pokemon?.species!!.resourceIdentifier, Registries.ITEM.getId(stack.item)))
+                            CobblemonCriteria.POKEMON_INTERACT.trigger(player, bp.entity?.pokemon?.species!!.resourceIdentifier, Registries.ITEM.getId(stack.item))
                         }
                     }
                 }
@@ -91,7 +90,7 @@ class ReviveItem(val max: Boolean): CobblemonItem(Settings()) {
                         if (!player.isCreative) {
                             stack.decrement(1)
                         }
-                        CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(pk.species.resourceIdentifier, Registries.ITEM.getId(stack.item)))
+                        CobblemonCriteria.POKEMON_INTERACT.trigger(player, pk.species.resourceIdentifier, Registries.ITEM.getId(stack.item))
                     }
                 }
             }

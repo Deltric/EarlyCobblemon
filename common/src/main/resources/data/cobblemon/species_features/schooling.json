@@ -1,6 +1,6 @@
 {
   "keys": ["schooling"],
-  "type": "flag",
+  "type": "battle_flag",
   "isAspect": true,
   "default": false
 }

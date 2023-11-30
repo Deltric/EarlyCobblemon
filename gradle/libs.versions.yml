@@ -7,18 +7,15 @@ versions:
   serialization: 1.5.0
 
   # other
-  licenser: 0.6.1
   shadow: 7.1.2
 
   # fabric/remap
   loom: 1.1-SNAPSHOT
-  fabric-loader: 0.14.21
-  fabric-api: 0.89.0+1.20.1
+  fabric-loader: 0.14.25
+  fabric-api: 0.91.1+1.20.3
   fabric-kotlin: 1.9.3+kotlin.1.8.20
   architectury-plugin: 3.4-SNAPSHOT
-  flywheelFabric: 0.6.9-1
   fabric-permissions-api: 0.2-SNAPSHOT
-  adorn-fabric: 5.0.0-fabric
 
   # common
   graal: 22.3.0
@@ -29,8 +26,6 @@ versions:
   mockito: 5.2.0
   mockk: 1.12.1
   classgraph: 4.8.153
-  jei-api: 15.2.0.25
-
 
 dependencies:
 
@@ -39,10 +34,6 @@ dependencies:
     group: org.jetbrains.kotlin
     name: kotlin-gradle-plugin
     version: { ref: kotlin }
-  licenser:
-    group: gradle.plugin.org.cadixdev.gradle
-    name: licenser
-    version: { ref: licenser }
   shadow:
     group: gradle.plugin.com.github.johnrengelman
     name: shadow
@@ -89,10 +80,6 @@ dependencies:
     group: net.fabricmc
     name: fabric-loader
     version: { ref: fabric-loader }
-  jeiApi:
-    group: local.mezz.jei
-    name: common-api
-    version: { ref: jei-api }
 
 
   # fabric
@@ -108,18 +95,6 @@ dependencies:
     group: me.lucko
     name: fabric-permissions-api
     version: { ref: fabric-permissions-api }
-  jeiFabric:
-    group: mezz.jei
-    name: jei-1.20.1-fabric
-    version: { ref: jei-api }
-  flywheelFabric:
-    group: com.jozufozu.flywheel
-    name: flywheel-fabric-1.20.1
-    version: { ref: flywheelFabric }
-  adornFabric:
-    group: maven.modrinth
-    name: adorn
-    version: { ref: adorn-fabric }
 
   # datastore
   mongoDriverCore:

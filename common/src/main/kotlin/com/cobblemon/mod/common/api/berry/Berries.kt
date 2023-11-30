@@ -48,7 +48,7 @@ object Berries : JsonDataRegistry<Berry> {
         .disableHtmlEscaping()
         .setPrettyPrinting()
         .registerTypeAdapter(MulchVariant::class.java, MulchVariantAdapter)
-        .registerTypeAdapter(NumberRange.FloatRange::class.java, FloatNumberRangeAdapter)
+        .registerTypeAdapter(NumberRange.DoubleRange::class.java, FloatNumberRangeAdapter)
         .registerTypeAdapter(Status::class.java, StatusAdapter)
         .registerTypeAdapter(TypeToken.getParameterized(Collection::class.java, Box::class.java).type, BoxCollectionAdapter)
         .registerTypeAdapter(Box::class.java, BoxAdapter)

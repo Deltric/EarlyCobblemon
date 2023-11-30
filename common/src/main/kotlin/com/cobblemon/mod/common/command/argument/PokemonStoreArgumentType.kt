@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.party
 import com.cobblemon.mod.common.util.pc
 import com.mojang.brigadier.context.CommandContext
+import com.mojang.serialization.Codec
 import net.minecraft.command.argument.EnumArgumentType
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.network.ServerPlayerEntity
@@ -33,7 +34,7 @@ enum class StoreType(val storeFetcher: (ServerPlayerEntity) -> Collection<Pokemo
     override fun asString(): String = this.name.lowercase()
 
     companion object {
-        val CODEC: StringIdentifiable.Codec<StoreType> = StringIdentifiable.createCodec(::values)
+        val CODEC: Codec<StoreType> = StringIdentifiable.createBasicCodec(::values)
     }
 
 }

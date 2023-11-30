@@ -168,8 +168,8 @@ interface BattleStartError {
     fun getMessageFor(entity: Entity): MutableText
 
     companion object {
-        fun alreadyInBattle(player: ServerPlayerEntity) = AlreadyInBattleError(player.uuid, player.displayName)
-        fun alreadyInBattle(pokemonEntity: PokemonEntity) = AlreadyInBattleError(pokemonEntity.uuid, pokemonEntity.displayName)
+        fun alreadyInBattle(player: ServerPlayerEntity) = AlreadyInBattleError(player.uuid, player.displayName ?: player.name)
+        fun alreadyInBattle(pokemonEntity: PokemonEntity) = AlreadyInBattleError(pokemonEntity.uuid, pokemonEntity.displayName ?: pokemonEntity.name)
         fun alreadyInBattle(actor: BattleActor) = AlreadyInBattleError(actor.uuid, actor.getName())
 
         fun targetIsBusy(targetName: MutableText) = BusyError(targetName)
@@ -200,7 +200,7 @@ class InsufficientPokemonError(
         } else {
             battleLang(
                 "error.insufficient_pokemon",
-                player.displayName,
+                player.displayName ?: player.name,
                 requiredCount,
                 hadCount
             )

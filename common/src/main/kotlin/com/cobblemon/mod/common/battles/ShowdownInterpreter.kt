@@ -119,6 +119,7 @@ object ShowdownInterpreter {
         updateInstructions["|-zbroken|"] = this::handleZBrokenInstructions
         updateInstructions["|-terastallize|"] = this::handleTerastallizeInstructions
         updateInstructions["|detailschange|"] = this::handleDetailsChangeInstructions
+        updateInstructions["|-formechange|"] = this::handleFormeChangeInstructions
         updateInstructions["|-mega|"] = this::handleMegaInstructions
 
         sideUpdateInstructions["|request|"] = this::handleRequestInstruction
@@ -539,6 +540,8 @@ object ShowdownInterpreter {
             battle.broadcastChatMessage(battleLang("fainted", pokemon.getName()).red())
             val context = getContextFromFaint(pokemon, battle)
             CobblemonEvents.BATTLE_FAINTED.post(BattleFaintedEvent(battle, pokemon, context))
+
+            pokemon.clearBattleFeatures()
 
             battle.getActorAndActiveSlotFromPNX(pnx).second.battlePokemon = null
             pokemon.contextManager.add(context)
@@ -1793,8 +1796,42 @@ object ShowdownInterpreter {
         val battlePokemon = message.getBattlePokemon(0, battle) ?: return
         val pokemonName = battlePokemon.getName()
         val formName = message.argumentAt(1)?.split(',')?.get(0)?.substringAfter('-')?.lowercase() ?: return
+
         battle.dispatchWaiting {
+            battlePokemon.setBattleFeature(formName, true)
+            battlePokemon.sendUpdate()
+
             battle.broadcastChatMessage(battleLang("detailschange.$formName", pokemonName))
+            battle.majorBattleActions[battlePokemon.uuid] = message
+        }
+    }
+
+    /**
+     * Format:
+     * |-formechange|POKEMON|DETAILS|HP STATUS
+     *
+     * The specified Pokémon has changed formes (via Mega Evolution, ability, etc.). If the forme change is permanent,
+     * then detailschange will appear; otherwise, the client will send -formechange.
+     */
+    private fun handleFormeChangeInstructions(battle: PokemonBattle, message: BattleMessage, remainingLines: MutableList<String>) {
+        val battlePokemon = message.getBattlePokemon(0, battle) ?: return
+        val pokemonName = battlePokemon.getName()
+        val formName = message.argumentAt(1)?.split(',')?.get(0)?.substringAfter('-')?.lowercase() ?: return
+
+        battle.dispatchWaiting {
+            if (formName.equals(battlePokemon.effectedPokemon.species.name, true)) {
+                battlePokemon.sendUpdate()
+                battlePokemon.clearBattleFeatures()
+                battle.broadcastChatMessage(battleLang("formechangeend.$formName", pokemonName))
+            } else {
+                val form = battlePokemon.effectedPokemon.species.forms.find { it.name.equals(formName, true) }
+                if (form != null) {
+                    battlePokemon.setBattleFeature(form.aspects[0], true)
+                }
+                battle.broadcastChatMessage(battleLang("formechange.$formName", pokemonName))
+            }
+
+            battlePokemon.sendUpdate()
             battle.majorBattleActions[battlePokemon.uuid] = message
         }
     }
@@ -1808,6 +1845,7 @@ object ShowdownInterpreter {
     private fun handleMegaInstructions(battle: PokemonBattle, message: BattleMessage, remainingLines: MutableList<String>) {
         val battlePokemon = message.getBattlePokemon(0, battle) ?: return
         val pokemonName = battlePokemon.getName()
+
         battle.dispatchWaiting {
             battle.broadcastChatMessage(battleLang("mega", pokemonName).yellow())
             battle.minorBattleActions[battlePokemon.uuid] = message

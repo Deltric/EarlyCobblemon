@@ -10,32 +10,55 @@ package com.cobblemon.mod.common.advancement.criterion
 
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.google.gson.JsonObject
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.advancement.criterion.AbstractCriterion
+import net.minecraft.predicate.entity.EntityPredicate
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
+import net.minecraft.util.dynamic.Codecs
+import java.util.Optional
 
-class LevelUpCriterionCondition(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<LevelUpContext>(id, entity) {
-    var level = 0
-    var evolved = true
-    override fun toJson(json: JsonObject) {
-        json.addProperty("level", level)
-        json.addProperty("has_evolved", evolved)
-    }
+class LevelUpCriterion : AbstractCriterion<LevelUpCondition>() {
 
-    override fun fromJson(json: JsonObject) {
-        level = json.get("level")?.asInt ?: 0
-        evolved = json.get("has_evolved")?.asBoolean ?: true
-    }
+    override fun getConditionsCodec(): Codec<LevelUpCondition> = LevelUpCondition.CODEC
 
-    override fun matches(player: ServerPlayerEntity, context: LevelUpContext): Boolean {
-        val preEvo = context.pokemon.preEvolution == null
-        val hasEvolution = !context.pokemon.evolutions.none()
-        var evolutionCheck = true
-        if (preEvo || hasEvolution) {
-            evolutionCheck = !(preEvo == hasEvolution)
+    fun trigger(player: ServerPlayerEntity, level: Int, pokemon: Pokemon) {
+        return this.trigger(player) {
+            it.matches(player, level, pokemon)
         }
-        return level == context.level && evolutionCheck == evolved
     }
+
 }
 
-open class LevelUpContext(var level : Int, var pokemon : Pokemon)
+data class LevelUpCondition(
+    val playerCtx: Optional<LootContextPredicate>,
+    var level: Optional<Int>,
+    var evolved: Optional<Boolean>
+): AbstractCriterion.Conditions {
+
+    companion object {
+        val CODEC: Codec<LevelUpCondition> = RecordCodecBuilder.create { it.group(
+            Codecs.createStrictOptionalFieldCodec(EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC, "player").forGetter(LevelUpCondition::playerCtx),
+            Codecs.createStrictOptionalFieldCodec(Codec.INT, "level").forGetter(LevelUpCondition::level),
+            Codecs.createStrictOptionalFieldCodec(Codec.BOOL, "evolved").forGetter(LevelUpCondition::evolved)
+        ).apply(it, ::LevelUpCondition) }
+    }
+
+    override fun player() = this.playerCtx
+
+    fun matches(player: ServerPlayerEntity, level : Int, pokemon : Pokemon): Boolean {
+        val otherLevel = this.level.orElse(0)
+        val otherEvolved = this.evolved.orElse(true)
+
+        val preEvo = pokemon.preEvolution == null
+        val hasEvolution = !pokemon.evolutions.none()
+        var evolutionCheck = true
+
+        if (preEvo || hasEvolution) {
+            evolutionCheck = preEvo != hasEvolution
+        }
+        return otherLevel == level && evolutionCheck == otherEvolved
+    }
+}

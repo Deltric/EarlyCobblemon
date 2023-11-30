@@ -32,6 +32,7 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.hud.InGameHud
 import net.minecraft.client.gui.screen.ChatScreen
 import net.minecraft.client.gui.screen.Screen
+import net.minecraft.client.toast.AdvancementToast
 import net.minecraft.client.toast.Toast
 import net.minecraft.util.math.MathHelper
 
@@ -64,7 +65,7 @@ class PartyOverlay : InGameHud(MinecraftClient.getInstance(), MinecraftClient.ge
         CobblemonItems.POKE_BALL.defaultStack,
         lang("ui.starter.choose_starter_title", SummaryBinding.boundKey().localizedText).red(),
         lang("ui.starter.choose_starter_description", SummaryBinding.boundKey().localizedText).darkGray(),
-        Toast.TEXTURE,
+        AdvancementToast.TEXTURE,
         -1F,
         0
     )
@@ -86,7 +87,7 @@ class PartyOverlay : InGameHud(MinecraftClient.getInstance(), MinecraftClient.ge
             if (!screenExemptions.contains(minecraft.currentScreen?.javaClass as Class<out Screen>))
                 return
         }
-        if (minecraft.options.debugEnabled) {
+        if (minecraft.debugHud.shouldShowDebugHud()) {
             return
         }
         // Hiding if toggled via Keybind

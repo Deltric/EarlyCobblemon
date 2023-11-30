@@ -8,48 +8,44 @@
 
 package com.cobblemon.mod.common.advancement.criterion
 
-import com.google.gson.JsonObject
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.advancement.criterion.AbstractCriterion
+import net.minecraft.predicate.entity.EntityPredicate
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.util.Identifier
+import net.minecraft.util.dynamic.Codecs
+import java.util.Optional
 
-/**
- * A type of advancement criterion condition that requires some number of completions. This can be extended to add
- * more conditions than just the count.
- *
- * @author Hiroku
- * @since November 4th, 2022
- */
-abstract class CountableCriterionCondition<T : CountableContext>(id: Identifier, predicate: LootContextPredicate) : SimpleCriterionCondition<T>(id, predicate) {
-    var count = 0
-    override fun fromJson(json: JsonObject) {
-        count = json.get("count")?.asInt ?: 0
+class CountableCriterion : AbstractCriterion<CountableCriterionCondition>() {
+
+    override fun getConditionsCodec(): Codec<CountableCriterionCondition> = CountableCriterionCondition.CODEC
+
+    fun trigger(player: ServerPlayerEntity, times: Int) {
+        return this.trigger(player) {
+            it.matches(times)
+        }
     }
 
-    override fun toJson(json: JsonObject) {
-        json.addProperty("count", count)
-    }
-
-    override fun matches(player: ServerPlayerEntity, context: T) = context.times >= count
 }
 
-/**
- * A concrete subclass of [CountableCriterionCondition] so that you can have advancements that really just need the
- * count and nothing else.
- *
- * This is just a quirk of using generics like this, don't worry about it. The criterion conditions that get used must
- * not be generic typed.
- *
- * @author Hiroku
- * @since November 4th, 2022
- */
-class SimpleCountableCriterionCondition(id: Identifier, predicate: LootContextPredicate) : CountableCriterionCondition<CountableContext>(id, predicate)
-fun SimpleCriterionTrigger<CountableContext, SimpleCountableCriterionCondition>.trigger(player: ServerPlayerEntity, times: Int) = trigger(player, CountableContext(times))
+data class CountableCriterionCondition(
+    val playerCtx: Optional<LootContextPredicate>,
+    val times: Optional<Int>
+): AbstractCriterion.Conditions {
 
-/**
- * Some type of context that has a count associated with it, representing how many times the trigger has occurred.
- *
- * @author Hiroku
- * @since November 4th, 2022
- */
-open class CountableContext(var times: Int)
+    companion object {
+        val CODEC: Codec<CountableCriterionCondition> = RecordCodecBuilder.create { it.group(
+            Codecs.createStrictOptionalFieldCodec(EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC, "player").forGetter(CountableCriterionCondition::playerCtx),
+            Codecs.createStrictOptionalFieldCodec(Codec.INT, "times").forGetter(CountableCriterionCondition::times)
+        ).apply(it, ::CountableCriterionCondition) }
+    }
+
+    override fun player() = this.playerCtx
+
+    fun matches(times: Int): Boolean {
+        val otherTimes = this.times.orElse(0)
+
+        return times >= otherTimes
+    }
+}

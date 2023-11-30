@@ -182,7 +182,7 @@ class BattleMoveSelection(
         }
     }
 
-    override fun renderButton(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         moveTiles.forEach {
             it.render(context, mouseX, mouseY, delta)
         }

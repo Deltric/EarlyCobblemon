@@ -39,7 +39,7 @@ data class PlayerData(
             starterLocked = !Cobblemon.starterConfig.allowStarterOnJoin,
             starterSelected =  false,
             starterUUID =  null,
-            keyItems = mutableSetOf(),
+            keyItems = mutableSetOf(cobblemonResource("key_stone")),
             extraData = mutableMapOf()
         )
     }

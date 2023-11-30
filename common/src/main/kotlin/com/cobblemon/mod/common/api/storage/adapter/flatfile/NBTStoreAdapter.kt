@@ -14,6 +14,7 @@ import java.io.File
 import java.util.UUID
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtIo
+import net.minecraft.nbt.NbtTagSizeTracker
 
 /**
  * A [OneToOneFileStoreAdapter] that can arbitrarily save a single [PokemonStore] into an [NbtCompound] with the
@@ -29,7 +30,7 @@ open class NBTStoreAdapter(
     folderPerClass: Boolean,
 ) : OneToOneFileStoreAdapter<NbtCompound>(rootFolder, useNestedFolders, folderPerClass, "dat") {
     override fun <E : StorePosition, T : PokemonStore<E>> serialize(store: T) = store.saveToNBT(NbtCompound())
-    override fun save(file: File, serialized: NbtCompound) = NbtIo.writeCompressed(serialized, file)
+    override fun save(file: File, serialized: NbtCompound) = NbtIo.writeCompressed(serialized, file.toPath())
     override fun <E, T : PokemonStore<E>> load(file: File, storeClass: Class<out T>, uuid: UUID): T? {
         val store = try {
             storeClass.getConstructor(UUID::class.java, UUID::class.java).newInstance(uuid, uuid)
@@ -38,7 +39,7 @@ open class NBTStoreAdapter(
         }
 
         return try {
-            val nbt = NbtIo.readCompressed(file)
+            val nbt = NbtIo.readCompressed(file.toPath(), NbtTagSizeTracker.ofUnlimitedBytes())
             store.loadFromNBT(nbt)
             store
         } catch (e: Exception) {

@@ -119,7 +119,7 @@ class PokeNav : Screen(Text.translatable("cobblemon.ui.pokenav.title")) {
      * Rendering the background texture
      */
     override fun render(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
-        renderBackground(context)
+        renderBackground(context, pMouseX, pMouseY, pPartialTicks)
 
         // Rendering UI Background
         blitk(

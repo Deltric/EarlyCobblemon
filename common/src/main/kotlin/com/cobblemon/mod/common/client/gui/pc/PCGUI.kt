@@ -112,7 +112,7 @@ class PCGUI(
 
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         val matrices = context.matrices
-        renderBackground(context)
+        renderBackground(context, mouseX, mouseY, delta)
 
         val x = (width - BASE_WIDTH) / 2
         val y = (height - BASE_HEIGHT) / 2
@@ -425,13 +425,14 @@ class PCGUI(
         }
     }
 
-    override fun mouseScrolled(mouseX: Double, mouseY: Double, amount: Double): Boolean {
+    override fun mouseScrolled(mouseX: Double, mouseY: Double, amount: Double, verticalAmount: Double): Boolean {
         if (storageWidget.pastureWidget != null) storageWidget.pastureWidget!!.pastureScrollList.mouseScrolled(
             mouseX,
             mouseY,
-            amount
+            amount,
+            verticalAmount
         )
-        return children().any { it.mouseScrolled(mouseX, mouseY, amount) }
+        return children().any { it.mouseScrolled(mouseX, mouseY, amount, verticalAmount) }
     }
 
     override fun mouseDragged(mouseX: Double, mouseY: Double, button: Int, deltaX: Double, deltaY: Double): Boolean {

@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.api.storage.player
 
-import com.cobblemon.mod.common.advancement.criterion.AspectCriterionCondition
+//import com.cobblemon.mod.common.advancement.criterion.AspectCriterionCondition
 import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.pokemon.Pokemon
 import net.minecraft.server.network.ServerPlayerEntity
@@ -102,7 +102,8 @@ class PlayerAdvancementData {
     }
 
     fun updateAspectsCollected(player: ServerPlayerEntity, pokemon: Pokemon) {
-        val aspectConditions = player.advancementTracker.progress.keys
+        // TODO:(Deltric) Reimplement this
+        /*val aspectConditions = player.advancementTracker.progress.keys
             .flatMap { it.criteria.values }
             .mapNotNull { it.conditions }
             .filterIsInstance<AspectCriterionCondition>()
@@ -114,6 +115,6 @@ class PlayerAdvancementData {
         if (trackedAspects.isNotEmpty()) {
             val collectedAspects = aspectsCollected.getOrPut(pokemon.species.resourceIdentifier) { mutableSetOf() }
             pokemon.aspects.filter(trackedAspects::contains).forEach(collectedAspects::add)
-        }
+        }*/
     }
 }

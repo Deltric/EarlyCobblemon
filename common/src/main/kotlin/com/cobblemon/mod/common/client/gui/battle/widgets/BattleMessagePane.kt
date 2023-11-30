@@ -32,7 +32,6 @@ class BattleMessagePane(
     TEXT_BOX_WIDTH, // width
     TEXT_BOX_HEIGHT, // height
     1, // top
-    1 + TEXT_BOX_HEIGHT, // bottom
     LINE_HEIGHT
 ) {
     var opacity = 1F
@@ -45,9 +44,7 @@ class BattleMessagePane(
 
     init {
         correctSize()
-        setRenderHorizontalShadows(false)
         setRenderBackground(false)
-        setRenderSelection(false)
 
         messageQueue.subscribe {
             val fullyScrolledDown = maxScroll - scrollAmount < 10
@@ -60,8 +57,8 @@ class BattleMessagePane(
 
     private fun correctSize() {
         val textBoxHeight = if (expanded) TEXT_BOX_HEIGHT * 2 else TEXT_BOX_HEIGHT
-        updateSize(TEXT_BOX_WIDTH, textBoxHeight, appropriateY + 6, appropriateY + 6 + textBoxHeight)
-        setLeftPos(appropriateX)
+        setDimensionsAndPosition(TEXT_BOX_WIDTH, textBoxHeight, appropriateY + 6, appropriateY + 6)
+        this.x = appropriateX
     }
 
     companion object {
@@ -88,7 +85,7 @@ class BattleMessagePane(
     }
 
     override fun getScrollbarPositionX(): Int {
-        return left + 154
+        return x + 154
     }
 
     override fun getScrollAmount(): Double {
@@ -104,7 +101,7 @@ class BattleMessagePane(
         blitk(
             matrixStack = context.matrices,
             texture = if (expanded) battleMessagePaneFrameExpandedResource else battleMessagePaneFrameResource,
-            x = left,
+            x = x,
             y = appropriateY,
             height = if (expanded) FRAME_EXPANDED_HEIGHT else FRAME_HEIGHT,
             width = FRAME_WIDTH,
@@ -113,9 +110,9 @@ class BattleMessagePane(
 
         val textBoxHeight = if (expanded) TEXT_BOX_HEIGHT * 2 else TEXT_BOX_HEIGHT
         context.enableScissor(
-            left + 5,
+            x + 5,
             appropriateY + 6,
-            left + 5 + width,
+            x + 5 + width,
             appropriateY + 6 + textBoxHeight
         )
         super.render(context, mouseX, mouseY, partialTicks)
@@ -124,7 +121,7 @@ class BattleMessagePane(
 
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
         val toggleOffsetY = if (expanded) 92 else 46
-        if (mouseX > (left + 160) && mouseX < (left + 160 + EXPAND_TOGGLE_SIZE) && mouseY > (appropriateY + toggleOffsetY) && mouseY < (appropriateY + toggleOffsetY + EXPAND_TOGGLE_SIZE)) {
+        if (mouseX > (x + 160) && mouseX < (x + 160 + EXPAND_TOGGLE_SIZE) && mouseY > (appropriateY + toggleOffsetY) && mouseY < (appropriateY + toggleOffsetY + EXPAND_TOGGLE_SIZE)) {
             expanded = !expanded
         }
 
@@ -139,7 +136,7 @@ class BattleMessagePane(
 
     override fun mouseDragged(mouseX: Double, mouseY: Double, button: Int, deltaX: Double, deltaY: Double): Boolean {
         if (scrolling) {
-            if (mouseY < top) {
+            if (mouseY < y) {
                 scrollAmount = 0.0
             } else if (mouseY > bottom) {
                 scrollAmount = maxScroll.toDouble()
@@ -153,7 +150,7 @@ class BattleMessagePane(
     private fun updateScrollingState(mouseX: Double, mouseY: Double) {
         scrolling = mouseX >= this.scrollbarPositionX.toDouble()
                 && mouseX < (this.scrollbarPositionX + 3).toDouble()
-                && mouseY >= top
+                && mouseY >= y
                 && mouseY < bottom
     }
 

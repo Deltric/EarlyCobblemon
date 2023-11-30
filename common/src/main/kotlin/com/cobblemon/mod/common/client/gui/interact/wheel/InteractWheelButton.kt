@@ -36,7 +36,7 @@ class InteractWheelButton(
         const val ICON_OFFSET = 26.5
     }
 
-    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         val matrices = context.matrices
         blitk(
             matrixStack = matrices,

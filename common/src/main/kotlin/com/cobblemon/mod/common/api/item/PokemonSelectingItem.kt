@@ -9,7 +9,6 @@
 package com.cobblemon.mod.common.api.item
 
 import com.cobblemon.mod.common.advancement.CobblemonCriteria
-import com.cobblemon.mod.common.advancement.criterion.PokemonInteractContext
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.callback.PartySelectCallbacks
 import com.cobblemon.mod.common.api.text.red
@@ -69,7 +68,7 @@ interface PokemonSelectingItem {
                         val typedActionResult = applyToPokemon(player, stack, pokemon)
                         if (typedActionResult != null)
                         {
-                            CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(pokemon.species.resourceIdentifier, Registries.ITEM.getId(stack.item)))
+                            CobblemonCriteria.POKEMON_INTERACT.trigger(player, pokemon.species.resourceIdentifier, Registries.ITEM.getId(stack.item))
                             typedActionResult
                         }
                         else {
@@ -102,7 +101,7 @@ interface PokemonSelectingItem {
             if (!player.isCreative) {
                 stack.decrement(1)
             }
-            CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(battlePokemon.entity!!.pokemon.species.resourceIdentifier, Registries.ITEM.getId(stack.item)))
+            CobblemonCriteria.POKEMON_INTERACT.trigger(player, battlePokemon.entity!!.pokemon.species.resourceIdentifier, Registries.ITEM.getId(stack.item))
         }
     }
 
@@ -132,7 +131,7 @@ interface PokemonSelectingItem {
             handler = { pk ->
                 if (stack.isHeld(player)) {
                     applyToPokemon(player, stack, pk)
-                    CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(pk.species.resourceIdentifier, Registries.ITEM.getId(stack.item)))
+                    CobblemonCriteria.POKEMON_INTERACT.trigger(player, pk.species.resourceIdentifier, Registries.ITEM.getId(stack.item))
                 }
             }
         )

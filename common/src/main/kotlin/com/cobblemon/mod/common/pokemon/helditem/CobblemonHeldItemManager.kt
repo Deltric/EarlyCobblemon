@@ -18,6 +18,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.battleLang
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.text.Text
 import java.util.function.Function
 
@@ -51,6 +52,8 @@ object CobblemonHeldItemManager : BaseCobblemonHeldItemManager() {
     override fun load() {
         super.load()
         Cobblemon.LOGGER.info("Imported {} held item IDs from showdown", this.loadedItemCount())
+
+        this.registerRemap(Items.DIAMOND, "focussash")
     }
 
     override fun showdownId(pokemon: BattlePokemon): String? {

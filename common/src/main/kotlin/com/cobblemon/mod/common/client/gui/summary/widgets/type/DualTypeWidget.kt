@@ -19,7 +19,7 @@ class DualTypeWidget(
     private val mainType: ElementalType, private val secondaryType: ElementalType
 ) : TypeWidget(pX, pY, pWidth, pHeight, pMessage) {
 
-    override fun renderButton(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
+    override fun renderWidget(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
         renderType(mainType, secondaryType, context.matrices)
     }
 }

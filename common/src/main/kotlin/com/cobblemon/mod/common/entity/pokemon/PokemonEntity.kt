@@ -88,8 +88,8 @@ import net.minecraft.server.world.ChunkTicketType
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
+import net.minecraft.text.PlainTextContent
 import net.minecraft.text.Text
-import net.minecraft.text.TextContent
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
@@ -896,7 +896,7 @@ class PokemonEntity(
      */
     override fun getName(): Text {
         if (!nicknameVisible.get()) return defaultName
-        return nickname.get()?.takeIf { it.content != TextContent.EMPTY } ?: pokemon.getDisplayName()
+        return nickname.get()?.takeIf { it.content != PlainTextContent.EMPTY } ?: pokemon.getDisplayName()
     }
 
     /**
@@ -922,7 +922,7 @@ class PokemonEntity(
      *
      * @return If the backing [pokemon] has a non-null [Pokemon.nickname].
      */
-    override fun hasCustomName(): Boolean = pokemon.nickname != null && pokemon.nickname?.content != TextContent.EMPTY
+    override fun hasCustomName(): Boolean = pokemon.nickname != null && pokemon.nickname?.content != PlainTextContent.EMPTY
 
     /**
      * This method toggles the visibility of the entity name,

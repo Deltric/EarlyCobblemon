@@ -130,6 +130,11 @@ class BattleGUI : Screen(battleLang("gui.title")) {
         queuedActions.clear()
     }
 
+    override fun renderBackground(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+
+    }
+
+
     fun deriveRootActionSelection(actor: ClientBattleActor, request: SingleActionRequest): BattleActionSelection {
         return if (request.forceSwitch) {
             BattleSwitchPokemonSelection(this, request)

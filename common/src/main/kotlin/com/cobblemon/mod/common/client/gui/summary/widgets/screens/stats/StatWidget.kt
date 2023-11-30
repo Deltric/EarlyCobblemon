@@ -179,7 +179,7 @@ class StatWidget(
     }
 
 
-    override fun renderButton(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
+    override fun renderWidget(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
         val renderChart = statTabIndex != OTHER
         val matrices = context.matrices
 

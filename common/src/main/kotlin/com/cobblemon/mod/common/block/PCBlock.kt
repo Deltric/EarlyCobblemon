@@ -20,6 +20,7 @@ import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
+import com.mojang.serialization.MapCodec
 import net.minecraft.block.Block
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
@@ -59,6 +60,7 @@ import net.minecraft.world.WorldView
 
 class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable {
     companion object {
+        val CODEC = createCodec(::PCBlock)
         val PART = EnumProperty.of("part", PCPart::class.java)
         val ON = BooleanProperty.of("on")
         val WATERLOGGED = BooleanProperty.of("waterlogged")
@@ -208,7 +210,7 @@ class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable 
         return if (state.get(PART) == PCPart.BOTTOM) blockState.isSideSolidFullSquare(world, blockPos, Direction.UP) else blockState.isOf(this)
     }
 
-    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity?) {
+    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity?): BlockState {
         if (!world.isClient && player?.isCreative == true) {
             var blockPos: BlockPos = BlockPos.ORIGIN
             var blockState: BlockState = state
@@ -219,7 +221,11 @@ class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable 
                 world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, getRawIdFromState(blockState))
             }
         }
-        super.onBreak(world, pos, state, player)
+        return super.onBreak(world, pos, state, player)
+    }
+
+    override fun getCodec(): MapCodec<out BlockWithEntity> {
+        return CODEC
     }
 
     @Deprecated("Deprecated in Java")
@@ -283,7 +289,7 @@ class PCBlock(properties: Settings): BlockWithEntity(properties), Waterloggable 
         return ActionResult.SUCCESS
     }
 
-    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) =  checkType(BlockWithEntityType, CobblemonBlockEntities.PC, PCBlockEntity.TICKER::tick)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, BlockWithEntityType: BlockEntityType<T>) = validateTicker(BlockWithEntityType, CobblemonBlockEntities.PC, PCBlockEntity.TICKER::tick)
 
     @Deprecated("Deprecated in Java")
     override fun getRenderType(blockState: BlockState): BlockRenderType {

@@ -9,7 +9,6 @@
 package com.cobblemon.mod.common.item.battle
 
 import com.cobblemon.mod.common.advancement.CobblemonCriteria
-import com.cobblemon.mod.common.advancement.criterion.PokemonInteractContext
 import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.battles.BagItemActionResponse
 import com.cobblemon.mod.common.battles.BagItems
@@ -53,7 +52,7 @@ interface BagItemConvertible {
 
         battlePokemon.actor.forceChoose(BagItemActionResponse(bagItem, battlePokemon))
         stack.decrement(1)
-        CobblemonCriteria.POKEMON_INTERACT.trigger(player, PokemonInteractContext(battlePokemon.entity!!.pokemon.species.resourceIdentifier, Registries.ITEM.getId(stack.item)))
+        CobblemonCriteria.POKEMON_INTERACT.trigger(player, battlePokemon.entity!!.pokemon.species.resourceIdentifier, Registries.ITEM.getId(stack.item))
         return true
     }
 }

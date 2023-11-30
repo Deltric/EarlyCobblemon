@@ -92,7 +92,7 @@ open class CobblemonBoatEntity(entityType: EntityType<out BoatEntity>, world: Wo
         throw UnsupportedOperationException("The vanilla boat type is not present in the Cobblemon implementation use the type property")
     }
 
-    override fun getMountedHeightOffset(): Double = this.boatType.mountedOffset
+    override fun getPassengerHorizontalOffset(): Float = this.boatType.mountedOffset
 
     override fun fall(heightDifference: Double, onGround: Boolean, state: BlockState, landedPosition: BlockPos) {
         val accessor = this.accessor()

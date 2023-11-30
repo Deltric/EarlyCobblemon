@@ -46,6 +46,7 @@ import net.minecraft.client.render.entity.LivingEntityRenderer
 import net.minecraft.client.render.entity.model.BoatEntityModel
 import net.minecraft.client.render.entity.model.ChestBoatEntityModel
 import net.minecraft.client.render.entity.model.PlayerEntityModel
+import net.minecraft.client.util.SkinTextures
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.resource.ResourceManager
@@ -199,10 +200,10 @@ object CobblemonClient {
     }
 
     @Suppress("UNCHECKED_CAST")
-    fun onAddLayer(skinMap: Map<String, EntityRenderer<out PlayerEntity>>?) {
-        var renderer: LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>? = skinMap?.get("default") as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>
+    fun onAddLayer(skinMap: MutableMap<SkinTextures.Model, EntityRenderer<out PlayerEntity>>?) {
+        var renderer: LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>? = skinMap?.get(SkinTextures.Model.WIDE) as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>
         renderer?.addFeature(PokemonOnShoulderRenderer(renderer))
-        renderer = skinMap["slim"] as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>?
+        renderer = skinMap[SkinTextures.Model.SLIM] as LivingEntityRenderer<PlayerEntity, PlayerEntityModel<PlayerEntity>>?
         renderer?.addFeature(PokemonOnShoulderRenderer(renderer))
     }
 

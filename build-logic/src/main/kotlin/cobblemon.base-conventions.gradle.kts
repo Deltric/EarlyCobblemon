@@ -15,7 +15,6 @@ val accessWidenerFile = "src/main/resources/cobblemon-common.accesswidener"
 plugins {
     java
     `java-library`
-    id("org.cadixdev.licenser")
     id("dev.architectury.loom")
     id("architectury-plugin")
     kotlin("jvm")
@@ -26,10 +25,6 @@ repositories {
     //JEI
     maven("https://maven.blamejared.com/")
     maven("https://maven.tterrag.com/")
-}
-
-license {
-    header(rootProject.file("HEADER"))
 }
 
 java {

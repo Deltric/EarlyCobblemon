@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.events
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.advancement.CobblemonCriteria
-import com.cobblemon.mod.common.advancement.criterion.*
+import com.cobblemon.mod.common.advancement.criterion.EvolvePokemonContext
 import com.cobblemon.mod.common.api.battles.model.actor.ActorType
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
 import com.cobblemon.mod.common.api.events.pokemon.LevelUpEvent
@@ -27,10 +27,10 @@ object AdvancementHandler {
         val advancementData = playerData.advancementData
         advancementData.updateTotalCaptureCount()
         advancementData.updateAspectsCollected(event.player, event.pokemon)
-        CobblemonCriteria.CATCH_POKEMON.trigger(event.player, CountablePokemonTypeContext(advancementData.totalCaptureCount, "any"))
+        CobblemonCriteria.CATCH_POKEMON.trigger(event.player, "any", advancementData.totalCaptureCount)
         event.pokemon.types.forEach {
             advancementData.updateTotalTypeCaptureCount(it)
-            CobblemonCriteria.CATCH_POKEMON.trigger(event.player, CountablePokemonTypeContext(advancementData.getTotalTypeCaptureCount(it), it.name))
+            CobblemonCriteria.CATCH_POKEMON.trigger(event.player, it.name, advancementData.getTotalTypeCaptureCount(it))
         }
         if (event.pokemon.shiny) {
             advancementData.updateTotalShinyCaptureCount()
@@ -107,20 +107,20 @@ object AdvancementHandler {
                 if (event.battle.isPvN)
                     advancementData.updateTotalPvNBattleVictoryCount()
                 Cobblemon.playerData.saveSingle(playerData)
-                CobblemonCriteria.WIN_BATTLE.trigger(player, BattleCountableContext(advancementData.totalBattleVictoryCount, event.battle))
+                CobblemonCriteria.WIN_BATTLE.trigger(player, event.battle, advancementData.totalBattleVictoryCount)
             }
 
     }
 
     fun onLevelUp(event : LevelUpEvent) {
-        event.pokemon.getOwnerPlayer()?.let { CobblemonCriteria.LEVEL_UP.trigger(it, LevelUpContext(event.newLevel, event.pokemon)) }
+        event.pokemon.getOwnerPlayer()?.let { CobblemonCriteria.LEVEL_UP.trigger(it, event.newLevel, event.pokemon) }
     }
 
     fun onTradeCompleted(event : TradeCompletedEvent) {
         val player1 = event.tradeParticipant1Pokemon.getOwnerPlayer()
         val player2 = event.tradeParticipant2Pokemon.getOwnerPlayer()
         if (player1 != null) {
-            CobblemonCriteria.TRADE_POKEMON.trigger(player1, TradePokemonContext(event.tradeParticipant1Pokemon, event.tradeParticipant2Pokemon))
+            CobblemonCriteria.TRADE_POKEMON.trigger(player1, event.tradeParticipant1Pokemon, event.tradeParticipant2Pokemon)
             val playerData = Cobblemon.playerData.get(player1)
             val advancementData = playerData.advancementData
             advancementData.updateTotalTradedCount()
@@ -129,7 +129,7 @@ object AdvancementHandler {
             Cobblemon.playerData.saveSingle(playerData)
         }
         if (player2 != null) {
-            CobblemonCriteria.TRADE_POKEMON.trigger(player2, TradePokemonContext(event.tradeParticipant2Pokemon, event.tradeParticipant1Pokemon))
+            CobblemonCriteria.TRADE_POKEMON.trigger(player2, event.tradeParticipant2Pokemon, event.tradeParticipant1Pokemon)
             val playerData = Cobblemon.playerData.get(player2)
             val advancementData = playerData.advancementData
             advancementData.updateTotalTradedCount()

@@ -34,7 +34,7 @@ class ReleaseConfirmButton(
         private val buttonResource = cobblemonResource("textures/gui/pc/pc_release_button_confirm.png")
     }
 
-    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         if (parent.canDeleteSelected() && parent.displayConfirmRelease) {
             blitk(
                 matrixStack = context.matrices,

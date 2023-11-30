@@ -13,8 +13,13 @@ import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.block.ApricornBlock
 import com.cobblemon.mod.common.block.ApricornSaplingBlock
 import com.cobblemon.mod.common.item.ApricornItem
+import com.cobblemon.mod.common.world.feature.CobblemonConfiguredFeatures
+import com.mojang.serialization.Codec
 import net.minecraft.block.MapColor
 import net.minecraft.item.BlockItem
+import net.minecraft.registry.RegistryKey
+import net.minecraft.util.StringIdentifiable
+import net.minecraft.world.gen.feature.ConfiguredFeature
 
 /**
  * Contains the different Apricorn variants and util methods to get their item, block, seedling and sapling form.
@@ -22,7 +27,7 @@ import net.minecraft.item.BlockItem
  * @author Licious
  * @since October 29th, 2022
  */
-enum class Apricorn {
+enum class Apricorn: StringIdentifiable {
 
     BLACK,
     BLUE,
@@ -31,6 +36,10 @@ enum class Apricorn {
     RED,
     WHITE,
     YELLOW;
+
+    override fun asString(): String {
+        return this.name.lowercase()
+    }
 
     fun item(): ApricornItem = when(this) {
         BLACK -> CobblemonItems.BLACK_APRICORN
@@ -80,6 +89,20 @@ enum class Apricorn {
         RED ->  MapColor.RED
         WHITE ->  MapColor.WHITE
         YELLOW ->  MapColor.YELLOW
+    }
+
+    fun configuredFeature(): RegistryKey<ConfiguredFeature<*, *>> = when(this) {
+        BLACK -> CobblemonConfiguredFeatures.BLACK_APRICORN_TREE_KEY
+        BLUE -> CobblemonConfiguredFeatures.BLUE_APRICORN_TREE_KEY
+        GREEN -> CobblemonConfiguredFeatures.GREEN_APRICORN_TREE_KEY
+        PINK -> CobblemonConfiguredFeatures.PINK_APRICORN_TREE_KEY
+        RED -> CobblemonConfiguredFeatures.RED_APRICORN_TREE_KEY
+        WHITE -> CobblemonConfiguredFeatures.WHITE_APRICORN_TREE_KEY
+        YELLOW -> CobblemonConfiguredFeatures.YELLOW_APRICORN_TREE_KEY
+    }
+
+    companion object {
+        val CODEC: Codec<Apricorn> = StringIdentifiable.createBasicCodec(::values)
     }
 
 }

@@ -45,7 +45,7 @@ class ReforgedConversion(val base: Path) : CobblemonConverter<NbtCompound> {
             return null
         }
 
-        val nbt = NbtIo.read(target.toFile())
+        val nbt = NbtIo.read(target)
         if(nbt != null) {
             return (if (extension == "pk") party(uuid, nbt) else pc(uuid, nbt)) as T
         }

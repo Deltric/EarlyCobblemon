@@ -15,11 +15,7 @@ import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.structure.pool.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.HeightLimitView;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.noise.NoiseConfig;
-import org.apache.commons.lang3.mutable.MutableObject;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -33,9 +29,6 @@ import java.util.*;
 
 @Mixin(StructurePoolBasedGenerator.StructurePoolGenerator.class)
 public abstract class StructurePoolGeneratorMixin {
-    @Final
-    @Mutable
-    @Shadow Deque<StructurePoolBasedGenerator.ShapedPoolStructurePiece> structurePieces;
 
     Map<String, Integer> generatedStructureGroupCounts;
 
@@ -132,44 +125,6 @@ public abstract class StructurePoolGeneratorMixin {
         return poolStructurePiece;
     }
 
-    // This doesn't SEEM necessary? It appears to work without.
-    @Inject(method = "generatePiece", at = @At("HEAD"))
-    private void beforeGeneratePiece(PoolStructurePiece piece, MutableObject<VoxelShape> pieceShape, int minY, boolean modifyBoundingBox, HeightLimitView world, NoiseConfig noiseConfig, CallbackInfo ci) {
-//        Identifier structureLocationKey = getCobblemonOnlyLocation(piece.getPoolElement());
-//
-//        if (structureLocationKey != null) {
-//            Integer currentlyGenerated = generatedStructureCounts.get(structureLocationKey);
-//            if (currentlyGenerated == null) currentlyGenerated = 0;
-//            generatedStructureCounts.put(structureLocationKey, currentlyGenerated + 1);
-//        }
-//
-//        List<StructurePoolBasedGenerator.ShapedPoolStructurePiece> reducedStructurePiecesList = structurePieces.stream().toList();
-//
-//        for (Identifier maxStructureLocationKey : structureMaxes.keySet()) {
-//            Integer maxAllowed = structureMaxes.get(maxStructureLocationKey);
-//
-//            Integer currentlyGenerated = generatedStructureCounts.get(maxStructureLocationKey);
-//            if (currentlyGenerated == null) currentlyGenerated = 0;
-//            if (currentlyGenerated < maxAllowed) {
-//                continue;
-//            }
-//
-//            //Already have max so need to remove
-//            reducedStructurePiecesList = reducedStructurePiecesList.stream()
-//                    .filter(shapedStructurePiece -> {
-//                        Identifier locationKey = getCobblemonOnlyLocation(shapedStructurePiece.piece.getPoolElement());
-//                        if (locationKey == null) {
-//                            return true;
-//                        }
-//
-//                        return !locationKey.equals(maxStructureLocationKey);
-//                    })
-//                    .collect(Collectors.toList());
-//        }
-//
-//        structurePieces = new ArrayDeque<>(reducedStructurePiecesList);
-    }
-
     private static Identifier getCobblemonOnlyLocation(StructurePoolElement structurePoolElement) {
         Identifier location = getLocationIfAvailable(structurePoolElement);
         if (location == null) return null;
@@ -193,25 +148,4 @@ public abstract class StructurePoolGeneratorMixin {
         }
     }
 
-//    private List<StructurePoolElement> removeInstanceOfLocationKeyFrom(List<StructurePoolElement> structureList, Integer allowedNumberOfInstances, Identifier locationKey) {
-//        List<StructurePoolElement> reducedList = new ArrayList<>();
-//        int instancesFound = 0;
-//
-//        for (StructurePoolElement structurePoolElement: structureList) {
-//            Identifier structureKey = getCobblemonOnlyLocation(structurePoolElement);
-//            if (structureKey == null || !structureKey.equals(locationKey)) {
-//                reducedList.add(structurePoolElement);
-//                continue;
-//            }
-//
-//            if (instancesFound >= allowedNumberOfInstances) {
-//                continue;
-//            }
-//
-//            reducedList.add(structurePoolElement);
-//            instancesFound++;
-//        }
-//
-//        return  reducedList;
-//    }
 }

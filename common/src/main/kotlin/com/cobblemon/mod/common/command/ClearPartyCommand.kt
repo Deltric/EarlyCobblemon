@@ -38,7 +38,7 @@ object ClearPartyCommand {
 
         val pokemonList = party.filterNotNull()
         if (pokemonList.isEmpty()) {
-            context.source.sendError(commandLang("$NAME.nonethere", target.displayName))
+            context.source.sendError(commandLang("$NAME.nonethere", target.displayName ?: target.name))
             return 0
         }
 
@@ -46,7 +46,7 @@ object ClearPartyCommand {
             party.remove(pokemon)
         }
 
-        context.source.sendFeedback({ commandLang("$NAME.cleared", target.displayName) }, true)
+        context.source.sendFeedback({ commandLang("$NAME.cleared", target.displayName ?: target.name) }, true)
         return Command.SINGLE_SUCCESS
     }
 }

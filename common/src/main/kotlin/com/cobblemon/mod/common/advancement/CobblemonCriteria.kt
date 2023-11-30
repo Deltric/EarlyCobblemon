@@ -9,7 +9,16 @@
 package com.cobblemon.mod.common.advancement
 
 import com.cobblemon.mod.common.Cobblemon
-import com.cobblemon.mod.common.advancement.criterion.*
+import com.cobblemon.mod.common.advancement.criterion.AspectCriterion
+import com.cobblemon.mod.common.advancement.criterion.BattleCountableCriterion
+import com.cobblemon.mod.common.advancement.criterion.CaughtPokemonCriterion
+import com.cobblemon.mod.common.advancement.criterion.CountableCriterion
+import com.cobblemon.mod.common.advancement.criterion.EvolvePokemonCriterion
+import com.cobblemon.mod.common.advancement.criterion.LevelUpCriterion
+import com.cobblemon.mod.common.advancement.criterion.PartyCheckCriterion
+import com.cobblemon.mod.common.advancement.criterion.PokemonCriterion
+import com.cobblemon.mod.common.advancement.criterion.PokemonInteractCriterion
+import com.cobblemon.mod.common.advancement.criterion.TradePokemonCriterion
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.advancement.criterion.Criterion
 
@@ -20,92 +29,38 @@ import net.minecraft.advancement.criterion.Criterion
  * @since October 26th, 2022
  */
 object CobblemonCriteria {
-    val PICK_STARTER = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("pick_starter"),
-            PickStarterCriterionCondition::class.java
-        )
-    )
-    val CATCH_POKEMON = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("catch_pokemon"),
-            CaughtPokemonCriterionCondition::class.java
-        )
-    )
-    val CATCH_SHINY_POKEMON = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("catch_shiny_pokemon"),
-            SimpleCountableCriterionCondition::class.java
-        )
-    )
-    val EGG_HATCH = this.create(
+    val PICK_STARTER = this.create("pick_starter", PokemonCriterion())
+
+    val CATCH_POKEMON = this.create("catch_pokemon", CaughtPokemonCriterion())
+
+    val CATCH_SHINY_POKEMON = this.create("catch_shiny_pokemon", CountableCriterion())
+
+    /*val EGG_HATCH = this.create(
         SimpleCriterionTrigger(
             cobblemonResource("eggs_hatched"),
             SimpleCountableCriterionCondition::class.java
         )
-    )
-    val EVOLVE_POKEMON = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("pokemon_evolved"),
-            EvolvePokemonCriterionCondition::class.java
-        )
-    )
-    val WIN_BATTLE = this.create(
-        BattleCountableCriterionTrigger(
-            cobblemonResource("battles_won"),
-            BattleCountableCriterionCondition::class.java
-        )
-    )
+    )*/
 
-    val DEFEAT_POKEMON = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("pokemon_defeated"),
-            SimpleCountableCriterionCondition::class.java
-        )
-    )
+    val WIN_BATTLE = this.create("battle_won", BattleCountableCriterion())
 
-    val COLLECT_ASPECT = this.create(
-        AspectCriterionTrigger(
-            cobblemonResource("aspects_collected"),
-            AspectCriterionCondition::class.java
-        )
-    )
+    val DEFEAT_POKEMON = this.create("pokemon_defeated", CountableCriterion())
 
-    val POKEMON_INTERACT = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("pokemon_interact"),
-            PokemonInteractCriterion::class.java
-        )
-    )
+    val EVOLVE_POKEMON = this.create("pokemon_evolved", EvolvePokemonCriterion())
 
-    val PARTY_CHECK = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("party"),
-            PartyCheckCriterion::class.java
-        )
-    )
+    val COLLECT_ASPECT = this.create("aspects_collected", AspectCriterion())
 
-    val LEVEL_UP = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("level_up"),
-            LevelUpCriterionCondition::class.java
-        )
-    )
+    val POKEMON_INTERACT = this.create("pokemon_interact", PokemonInteractCriterion())
 
-    val PASTURE_USE = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("pasture_use"),
-            PickStarterCriterionCondition::class.java
-        )
-    )
+    val PARTY_CHECK = this.create("party", PartyCheckCriterion())
 
-    val TRADE_POKEMON = this.create(
-        SimpleCriterionTrigger(
-            cobblemonResource("trade_pokemon"),
-            TradePokemonCriterionCondition::class.java
-        )
-    )
+    val LEVEL_UP = this.create("level_up", LevelUpCriterion())
 
-    private fun <T : Criterion<*>> create(criteria: T): T = Cobblemon.implementation.registerCriteria(criteria)
+    val PASTURE_USE = this.create("pasture_use", PokemonCriterion())
+
+    val TRADE_POKEMON = this.create("trade_pokemon", TradePokemonCriterion())
+
+    private fun <T : Criterion<*>> create(name: String, criteria: T): T = Cobblemon.implementation.registerCriteria(
+        cobblemonResource(name), criteria)
 
 }

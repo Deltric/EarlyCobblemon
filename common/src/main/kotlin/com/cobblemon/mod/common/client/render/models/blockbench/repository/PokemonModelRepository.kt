@@ -372,6 +372,7 @@ object PokemonModelRepository : VaryingModelRepository<PokemonEntity, PokemonPos
         inbuilt("froakie", ::FroakieModel)
         inbuilt("frogadier", ::FrogadierModel)
         inbuilt("greninja", ::GreninjaModel)
+        inbuilt("greninja_ash", ::GreninjaAshModel)
         inbuilt("tepig", ::TepigModel)
         inbuilt("pignite", ::PigniteModel)
         inbuilt("emboar", ::EmboarModel)
@@ -600,5 +601,3 @@ object PokemonModelRepository : VaryingModelRepository<PokemonEntity, PokemonPos
         }
     }
 }
-
-

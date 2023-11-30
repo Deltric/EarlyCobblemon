@@ -30,15 +30,14 @@ import org.joml.Quaternionf
 import org.joml.Vector3f
 
 class PasturePokemonScrollList(
-    val x: Int,
-    val y: Int,
+    val widgetX: Int,
+    val widgetY: Int,
     val parent: PastureWidget
 ) : AlwaysSelectedEntryListWidget<PasturePokemonScrollList.PastureSlot>(
     MinecraftClient.getInstance(),
     WIDTH, // width
     HEIGHT, // height
     0, // top
-    HEIGHT, // bottom
     SLOT_HEIGHT + SLOT_SPACING
 ) {
     companion object {
@@ -59,9 +58,7 @@ class PasturePokemonScrollList(
 
     init {
         correctSize()
-        setRenderHorizontalShadows(false)
         setRenderBackground(false)
-        setRenderSelection(false)
 
         parent.pasturePCGUIConfiguration.pasturedPokemon.subscribeIncludingCurrent {
             val children = children()
@@ -73,30 +70,29 @@ class PasturePokemonScrollList(
         }
     }
 
-    override fun getScrollbarPositionX() = left + width - 3
+    override fun getScrollbarPositionX() = widgetX + width - 3
 
     public override fun addEntry(entry: PastureSlot) = super.addEntry(entry)
     public override fun removeEntry(entry: PastureSlot) = super.removeEntry(entry)
 
-    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, partialTicks: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, partialTicks: Float) {
         correctSize()
 
         context.enableScissor(
-            left,
-            top + 1,
-            left + width,
-            top + 1 + height
+            widgetX,
+            widgetY + 1,
+            widgetX + width,
+            widgetY + 1 + height
         )
 
-        super.render(context, mouseX, mouseY, partialTicks)
         context.disableScissor()
 
         // Scroll Overlay
         blitk(
             matrixStack = context.matrices,
             texture = scrollOverlayResource,
-            x = left,
-            y = top - 12,
+            x = widgetX,
+            y = widgetY - 12,
             height = 131,
             width = WIDTH
         )
@@ -107,8 +103,8 @@ class PasturePokemonScrollList(
             context = context,
             font = CobblemonResources.DEFAULT_LARGE,
             text = "${children().count { it.isOwned() }}/${config.permissions.maxPokemon.takeIf { it >= 0 } ?: config.limit }".text().bold(),
-            x = x + (WIDTH / 2),
-            y = y - 9,
+            x = widgetX + (WIDTH / 2),
+            y = widgetY - 9,
             centered = true
         )
     }
@@ -124,7 +120,7 @@ class PasturePokemonScrollList(
 
     override fun mouseDragged(mouseX: Double, mouseY: Double, button: Int, deltaX: Double, deltaY: Double): Boolean {
         if (scrolling) {
-            if (mouseY < top) {
+            if (mouseY < widgetY) {
                 scrollAmount = 0.0
             } else if (mouseY > bottom) {
                 scrollAmount = maxScroll.toDouble()
@@ -138,16 +134,16 @@ class PasturePokemonScrollList(
     private fun updateScrollingState(mouseX: Double, mouseY: Double) {
         scrolling = mouseX >= this.scrollbarPositionX.toDouble()
                 && mouseX < (this.scrollbarPositionX + 3).toDouble()
-                && mouseY >= top
+                && mouseY >= widgetY
                 && mouseY < bottom
     }
 
     private fun correctSize() {
-        updateSize(WIDTH, HEIGHT, y + 1, (y + 1) + (HEIGHT - 2))
-        setLeftPos(x)
+        setDimensionsAndPosition(WIDTH, HEIGHT, widgetY + 1, (widgetY + 1) + (HEIGHT - 2))
+        setX(widgetX)
     }
 
-    fun isHovered(mouseX: Double, mouseY: Double) = mouseX.toFloat() in (x.toFloat()..(x.toFloat() + WIDTH)) && mouseY.toFloat() in (y.toFloat()..(y.toFloat() + HEIGHT))
+    fun isHovered(mouseX: Double, mouseY: Double) = mouseX.toFloat() in (widgetX.toFloat()..(widgetX.toFloat() + WIDTH)) && mouseY.toFloat() in (widgetY.toFloat()..(widgetY.toFloat() + HEIGHT))
 
     class PastureSlot(val pokemon: OpenPasturePacket.PasturePokemonDataDTO, private val parent: PastureWidget) : Entry<PastureSlot>() {
         val client: MinecraftClient = MinecraftClient.getInstance()

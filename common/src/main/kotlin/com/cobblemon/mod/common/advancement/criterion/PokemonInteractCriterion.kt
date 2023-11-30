@@ -10,25 +10,48 @@ package com.cobblemon.mod.common.advancement.criterion
 
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.google.gson.JsonObject
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
+import net.minecraft.advancement.criterion.AbstractCriterion
+import net.minecraft.predicate.entity.EntityPredicate
 import net.minecraft.predicate.entity.LootContextPredicate
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.Identifier
+import net.minecraft.util.dynamic.Codecs
+import java.util.Optional
 
-open class PokemonInteractContext(var type: Identifier, var item : Identifier)
-class PokemonInteractCriterion(id: Identifier, entity: LootContextPredicate) : SimpleCriterionCondition<PokemonInteractContext>(id, entity) {
-    var type = "any"
-    var item = "any"
-    override fun toJson(json: JsonObject) {
-        json.addProperty("type", type)
-        json.addProperty("item", item)
+class PokemonInteractCriterion : AbstractCriterion<PokemonInteractCondition>() {
+
+    override fun getConditionsCodec(): Codec<PokemonInteractCondition> = PokemonInteractCondition.CODEC
+
+    fun trigger(player: ServerPlayerEntity, type: Identifier, item: Identifier) {
+        return this.trigger(player) {
+            it.matches(player, type, item)
+        }
     }
 
-    override fun fromJson(json: JsonObject) {
-        type = json.get("type")?.asString ?: "any"
-        item = json.get("item")?.asString ?: "any"
+}
+
+data class PokemonInteractCondition(
+    val playerCtx: Optional<LootContextPredicate>,
+    val type: Optional<String>,
+    val item: Optional<String>
+): AbstractCriterion.Conditions {
+
+    companion object {
+        val CODEC: Codec<PokemonInteractCondition> = RecordCodecBuilder.create { it.group(
+            Codecs.createStrictOptionalFieldCodec(EntityPredicate.LOOT_CONTEXT_PREDICATE_CODEC, "player").forGetter(PokemonInteractCondition::playerCtx),
+            Codecs.createStrictOptionalFieldCodec(Codec.STRING, "type").forGetter(PokemonInteractCondition::type),
+            Codecs.createStrictOptionalFieldCodec(Codec.STRING, "item").forGetter(PokemonInteractCondition::item)
+        ).apply(it, ::PokemonInteractCondition) }
     }
 
-    override fun matches(player: ServerPlayerEntity, context: PokemonInteractContext): Boolean {
-        return (context.type == type.asIdentifierDefaultingNamespace() || type == "any") && (context.item == item.asIdentifierDefaultingNamespace() || item == "any")
+    override fun player() = this.playerCtx
+
+    fun matches(player: ServerPlayerEntity, type: Identifier, item : Identifier): Boolean {
+        val otherType = this.type.orElse("any")
+        val otherItem = this.item.orElse("any")
+        return (type == otherType.asIdentifierDefaultingNamespace() || otherType == "any") && (item == otherItem.asIdentifierDefaultingNamespace() || otherItem == "any")
     }
+
 }

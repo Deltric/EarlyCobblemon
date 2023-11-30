@@ -26,7 +26,7 @@ class HeldItemRequirement(val itemCondition: NbtItemPredicate) : EvolutionRequir
 
     constructor() : this(NbtItemPredicate(ItemIdentifierCondition(Identifier("air"))))
 
-    override fun check(pokemon: Pokemon): Boolean = this.itemCondition.item.fits(pokemon.heldItemNoCopy().item, Registries.ITEM) && this.itemCondition.nbt.test(pokemon.heldItemNoCopy())
+    override fun check(pokemon: Pokemon): Boolean = this.itemCondition.item.fits(pokemon.heldItemNoCopy().item, Registries.ITEM) && (this.itemCondition.nbt?.test(pokemon.heldItemNoCopy()) ?: true)
 
     companion object {
         const val ADAPTER_VARIANT = "held_item"

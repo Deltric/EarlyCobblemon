@@ -10,7 +10,6 @@ package com.cobblemon.mod.fabric
 
 import com.cobblemon.mod.common.*
 import com.cobblemon.mod.common.api.data.JsonDataRegistry
-import com.cobblemon.mod.common.integration.adorn.AdornCompatibility
 import com.cobblemon.mod.common.item.group.CobblemonItemGroups
 import com.cobblemon.mod.common.loot.LootInjector
 import com.cobblemon.mod.common.particle.CobblemonParticles
@@ -247,7 +246,7 @@ object CobblemonFabric : CobblemonImplementation {
 
     override fun <T : GameRules.Rule<T>> registerGameRule(name: String, category: GameRules.Category, type: GameRules.Type<T>): GameRules.Key<T> = GameRuleRegistry.register(name, category, type)
 
-    override fun <T : Criterion<*>> registerCriteria(criteria: T): T = Criteria.register(criteria)
+    override fun <T : Criterion<*>> registerCriteria(id: Identifier, criteria: T): T = Criteria.register(id.toString(), criteria)
 
     override fun registerResourceReloader(identifier: Identifier, reloader: ResourceReloader, type: ResourceType, dependencies: Collection<Identifier>) {
         ResourceManagerHelper.get(type).registerReloadListener(CobblemonReloadListener(identifier, reloader, dependencies))
@@ -330,9 +329,7 @@ object CobblemonFabric : CobblemonImplementation {
     }
 
     private fun attemptModCompat() {
-        if (this.isModInstalled("adorn")) {
-            AdornCompatibility.register()
-        }
+
     }
 
     private class CobblemonReloadListener(private val identifier: Identifier, private val reloader: ResourceReloader, private val dependencies: Collection<Identifier>) : IdentifiableResourceReloadListener {

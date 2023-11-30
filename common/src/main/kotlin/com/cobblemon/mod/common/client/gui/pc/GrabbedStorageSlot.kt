@@ -18,7 +18,7 @@ class GrabbedStorageSlot(
     private val pokemon: Pokemon
 ) : StorageSlot(x, y, parent, {}) {
 
-    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         renderSlot(context = context, posX = mouseX - (width / 2), posY = mouseY - (height / 2), partialTicks = delta)
     }
 

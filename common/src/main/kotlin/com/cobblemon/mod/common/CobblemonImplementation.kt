@@ -143,10 +143,11 @@ interface CobblemonImplementation {
      * TODO
      *
      * @param T
+     * @param id
      * @param criteria
      * @return
      */
-    fun <T : Criterion<*>> registerCriteria(criteria: T): T
+    fun <T : Criterion<*>> registerCriteria(id: Identifier, criteria: T): T
 
     /**
      * TODO

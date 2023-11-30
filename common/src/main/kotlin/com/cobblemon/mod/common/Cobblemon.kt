@@ -33,6 +33,7 @@ import com.cobblemon.mod.common.api.pokemon.effect.ShoulderEffectRegistry
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceCalculator
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroups
 import com.cobblemon.mod.common.api.pokemon.experience.StandardExperienceCalculator
+import com.cobblemon.mod.common.api.pokemon.feature.BattleFlagSpeciesFeatureProvider
 import com.cobblemon.mod.common.api.pokemon.feature.ChoiceSpeciesFeatureProvider
 import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatures
@@ -246,6 +247,7 @@ object Cobblemon {
 
         SpeciesFeatures.types["choice"] = ChoiceSpeciesFeatureProvider::class.java
         SpeciesFeatures.types["flag"] = FlagSpeciesFeatureProvider::class.java
+        SpeciesFeatures.types["battle_flag"] = BattleFlagSpeciesFeatureProvider::class.java
 
         SpeciesFeatures.register(
             DataKeys.CAN_BE_MILKED,

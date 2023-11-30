@@ -17,7 +17,6 @@ plugins {
 listOf(
     "common",
     "fabric",
-    "forge"
 ).forEach { setupProject(it, file(it)) }
 
 fun setupProject(name: String, projectDirectory: File) = setupProject(name) {

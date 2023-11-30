@@ -216,7 +216,7 @@ class StorageWidget(
         }
     }
 
-    override fun renderButton(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         val matrices = context.matrices
         // Party  Label
         if (pcGui.configuration.showParty) {
@@ -289,7 +289,7 @@ class StorageWidget(
             }
         }
 
-        pastureWidget?.renderButton(context, mouseX, mouseY, delta)
+        pastureWidget?.renderWidget(context, mouseX, mouseY, delta)
 
         grabbedSlot?.render(context, mouseX, mouseY, delta)
     }

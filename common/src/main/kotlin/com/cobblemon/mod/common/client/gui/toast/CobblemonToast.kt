@@ -39,7 +39,7 @@ class CobblemonToast(
     internal var nextVisibility: Toast.Visibility = Toast.Visibility.SHOW
 
     override fun draw(context: DrawContext, manager: ToastManager, startTime: Long): Toast.Visibility {
-        context.drawTexture(this.frameTexture, 0, 0, 0, 32, this.width, this.height)
+        context.drawGuiTexture(this.frameTexture, 0, 0, this.width, this.height)
         val textRenderer = manager.client.textRenderer
         context.drawText(textRenderer, this.title, 30, 7, this.title.style.color?.rgb ?: -1, false)
         context.drawText(textRenderer, this.description, 30, 18, this.description.style.color?.rgb ?: -1, false)

@@ -43,12 +43,12 @@ class PastureWidget(
     }
 
     val pastureScrollList = PasturePokemonScrollList(
-        x = x + 6,
-        y = y + 31,
+        widgetX = x + 6,
+        widgetY = y + 31,
         parent = this
     )
 
-    public override fun renderButton(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    public override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         blitk(
             matrixStack = context.matrices,
             texture = baseResource,

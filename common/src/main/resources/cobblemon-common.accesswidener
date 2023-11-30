@@ -30,8 +30,9 @@ transitive-accessible field net/minecraft/client/model/ModelCuboidData extraSize
 transitive-accessible field net/minecraft/client/model/Dilation radiusX F
 transitive-accessible field net/minecraft/client/model/Dilation radiusY F
 transitive-accessible field net/minecraft/client/model/Dilation radiusZ F
-
-
+transitive-extendable method net/minecraft/entity/LivingEntity canBreatheInWater ()Z
+transitive-extendable class net/minecraft/block/SaplingGenerator
+transitive-extendable method net/minecraft/client/gui/widget/ClickableWidget render (Lnet/minecraft/client/gui/DrawContext;IIF)V
 
 transitive-accessible    field    net/minecraft/entity/player/PlayerInventory    combinedInventory    Ljava/util/List;
 #transitive-accessible method net/minecraft/world/gen/feature/TreeFeature createStraightBlobTree (Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;IIII)Lnet/minecraft/world/level/levelgen/feature/configurations/TreeConfiguration$TreeConfigurationBuilder;
@@ -62,13 +63,16 @@ transitive-accessible field net/minecraft/client/render/RenderPhase ENABLE_OVERL
 transitive-accessible field net/minecraft/client/render/RenderPhase CUTOUT_PROGRAM Lnet/minecraft/client/render/RenderPhase$ShaderProgram;
 transitive-accessible field net/minecraft/client/render/RenderPhase ENABLE_LIGHTMAP Lnet/minecraft/client/render/RenderPhase$Lightmap;
 transitive-accessible field net/minecraft/client/render/RenderPhase DISABLE_CULLING Lnet/minecraft/client/render/RenderPhase$Cull;
+accessible field net/minecraft/client/toast/AdvancementToast TEXTURE Lnet/minecraft/util/Identifier;
+accessible field net/minecraft/client/gui/widget/ButtonWidget DEFAULT_NARRATION_SUPPLIER Lnet/minecraft/client/gui/widget/ButtonWidget$NarrationSupplier;
 
 transitive-accessible field  net/minecraft/recipe/BrewingRecipeRegistry ITEM_RECIPES Ljava/util/List;
 transitive-accessible field  net/minecraft/recipe/BrewingRecipeRegistry POTION_RECIPES Ljava/util/List;
 transitive-accessible field  net/minecraft/recipe/BrewingRecipeRegistry POTION_TYPES Ljava/util/List;
 transitive-accessible class  net/minecraft/recipe/BrewingRecipeRegistry$Recipe
 
-transitive-accessible field net/minecraft/server/network/ServerPlayNetworkHandler connection Lnet/minecraft/network/ClientConnection;
+#transitive-accessible field net/minecraft/server/network/ServerPlayNetworkHandler connection Lnet/minecraft/network/ClientConnection;
+transitive-accessible field net/minecraft/server/network/ServerCommonNetworkHandler connection Lnet/minecraft/network/ClientConnection;
 transitive-accessible method net/minecraft/block/WoodType register (Lnet/minecraft/block/WoodType;)Lnet/minecraft/block/WoodType;
 transitive-accessible field com/mojang/blaze3d/systems/RenderSystem shaderLightDirections [Lorg/joml/Vector3f;
 transitive-accessible class net/minecraft/screen/BrewingStandScreenHandler$PotionSlot

@@ -37,7 +37,6 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.Screen
 import net.minecraft.client.sound.PositionedSoundInstance
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.text.Text
 
 /**
@@ -97,7 +96,7 @@ class StarterSelectionScreen private constructor(): Screen("cobblemon.ui.starter
                 topOffset = 6, bottomOffset = 5,
                 entryHeight = 20, entryWidth = 57,
                 categories = categories,
-                x = x - 2, y = y + 8,
+                widgetX = x - 2, widgetY = y + 8,
                 starterSelectionScreen = this
             )
         )
@@ -195,6 +194,9 @@ class StarterSelectionScreen private constructor(): Screen("cobblemon.ui.starter
         val matrices = context.matrices
         val x = (width - BASE_WIDTH) / 2
         val y = (height - BASE_HEIGHT) / 2
+
+        this.renderInGameBackground(context)
+
         // Render Underlay
         blitk(
             matrixStack = matrices,
@@ -275,6 +277,10 @@ class StarterSelectionScreen private constructor(): Screen("cobblemon.ui.starter
         typeWidget.render(context, mouseX, mouseY, delta)
         // Render the rest
         super.render(context, mouseX, mouseY, delta)
+    }
+
+    override fun renderBackground(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+
     }
 
     fun changeCategory(category: RenderableStarterCategory) {

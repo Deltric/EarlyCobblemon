@@ -85,7 +85,7 @@ class BattleGeneralActionSelection(
         )
     }
 
-    override fun renderButton(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         for (tile in tiles) {
             tile.render(context, mouseX, mouseY, delta)
         }

@@ -30,7 +30,7 @@ class ModelWidget(
     var state = PokemonFloatingState()
     private var rotVec = Vector3f(13F, rotationY, 0F)
 
-    override fun renderButton(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         val matrices = context.matrices
         matrices.push()
         matrices.translate(x + width * 0.5, y.toDouble() + offsetY, 0.0)

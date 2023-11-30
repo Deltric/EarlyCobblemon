@@ -12,9 +12,11 @@ import com.cobblemon.mod.common.api.conditional.RegistryLikeCondition
 import com.cobblemon.mod.common.pokemon.evolution.predicate.NbtItemPredicate
 import com.google.gson.*
 import com.google.gson.reflect.TypeToken
+import com.mojang.serialization.JsonOps
 import net.minecraft.item.Item
 import net.minecraft.predicate.NbtPredicate
 import java.lang.reflect.Type
+import java.util.Optional
 
 object NbtItemPredicateAdapter : JsonDeserializer<NbtItemPredicate>, JsonSerializer<NbtItemPredicate> {
 
@@ -24,22 +26,22 @@ object NbtItemPredicateAdapter : JsonDeserializer<NbtItemPredicate>, JsonSeriali
 
     override fun deserialize(jElement: JsonElement, type: Type, context: JsonDeserializationContext): NbtItemPredicate {
         if (jElement.isJsonPrimitive) {
-            return NbtItemPredicate(context.deserialize(jElement, CONDITION_TYPE), NbtPredicate.ANY)
+            return NbtItemPredicate(context.deserialize(jElement, CONDITION_TYPE))
         }
         val jObject = jElement.asJsonObject
         val itemCondition = context.deserialize<RegistryLikeCondition<Item>>(jObject.get(ITEM), CONDITION_TYPE)
-        val nbtPredicate = NbtPredicate.fromJson(jObject.get(NBT))
+        val nbtPredicate = NbtPredicate.CODEC.decode(JsonOps.INSTANCE, jObject.get(NBT)).result().get().first
         return NbtItemPredicate(itemCondition, nbtPredicate)
     }
 
     override fun serialize(predicate: NbtItemPredicate, type: Type, context: JsonSerializationContext): JsonElement {
         val serializedItemCondition = context.serialize(predicate.item, CONDITION_TYPE)
-        if (predicate.nbt == NbtPredicate.ANY) {
+        if (predicate.nbt == null) {
             return serializedItemCondition
         }
         return JsonObject().apply {
             add(ITEM, serializedItemCondition)
-            add(NBT, predicate.nbt.toJson())
+            add(NBT, NbtPredicate.CODEC.encode(predicate.nbt, JsonOps.INSTANCE, JsonOps.INSTANCE.empty()).result().get())
         }
     }
 

@@ -29,6 +29,8 @@ import com.cobblemon.mod.common.util.isInt
 import com.cobblemon.mod.common.util.splitMap
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.mojang.serialization.Codec
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import kotlin.random.Random
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
@@ -54,7 +56,13 @@ import net.minecraft.world.World
  * @since November 23rd, 2021
  */
 open class PokemonProperties {
+
     companion object {
+        val CODEC = Codec.STRING.xmap(
+            { parse(it) },
+            { it.originalString }
+        )
+
         fun parse(string: String, delimiter: String = " ", assigner: String = "="): PokemonProperties {
             val props = PokemonProperties()
             props.originalString = string
@@ -505,7 +513,7 @@ open class PokemonProperties {
         shiny?.let { nbt.putBoolean(DataKeys.POKEMON_SHINY, it) }
         gender?.let { nbt.putString(DataKeys.POKEMON_GENDER, it.name) }
         species?.let { nbt.putString(DataKeys.POKEMON_SPECIES_TEXT, it) }
-        nickname?.let { nbt.putString(DataKeys.POKEMON_NICKNAME, Text.Serializer.toJson(it)) }
+        nickname?.let { nbt.putString(DataKeys.POKEMON_NICKNAME, Text.Serialization.toJsonString(it)) }
         form?.let { nbt.putString(DataKeys.POKEMON_FORM_ID, it) }
         friendship?.let { nbt.putInt(DataKeys.POKEMON_FRIENDSHIP, it) }
         pokeball?.let { nbt.putString(DataKeys.POKEMON_CAUGHT_BALL, it) }
@@ -530,7 +538,7 @@ open class PokemonProperties {
         shiny = if (tag.contains(DataKeys.POKEMON_SHINY)) tag.getBoolean(DataKeys.POKEMON_SHINY) else null
         gender = if (tag.contains(DataKeys.POKEMON_GENDER)) Gender.valueOf(tag.getString(DataKeys.POKEMON_GENDER)) else null
         species = if (tag.contains(DataKeys.POKEMON_SPECIES_TEXT)) tag.getString(DataKeys.POKEMON_SPECIES_TEXT) else null
-        nickname = if (tag.contains(DataKeys.POKEMON_NICKNAME)) Text.Serializer.fromJson(tag.getString(DataKeys.POKEMON_NICKNAME)) else null
+        nickname = if (tag.contains(DataKeys.POKEMON_NICKNAME)) Text.Serialization.fromJson(tag.getString(DataKeys.POKEMON_NICKNAME)) else null
         form = if (tag.contains(DataKeys.POKEMON_FORM_ID)) tag.getString(DataKeys.POKEMON_FORM_ID) else null
         friendship = if (tag.contains(DataKeys.POKEMON_FRIENDSHIP)) tag.getInt(DataKeys.POKEMON_FRIENDSHIP) else null
         pokeball = if (tag.contains(DataKeys.POKEMON_CAUGHT_BALL)) tag.getString(DataKeys.POKEMON_CAUGHT_BALL) else null
@@ -557,7 +565,7 @@ open class PokemonProperties {
         shiny?.let { json.addProperty(DataKeys.POKEMON_SHINY, it) }
         gender?.let { json.addProperty(DataKeys.POKEMON_GENDER, it.name) }
         species?.let { json.addProperty(DataKeys.POKEMON_SPECIES_TEXT, it) }
-        nickname?.let { json.addProperty(DataKeys.POKEMON_NICKNAME, Text.Serializer.toJson(it)) }
+        nickname?.let { json.addProperty(DataKeys.POKEMON_NICKNAME, Text.Serialization.toJsonString(it)) }
         form?.let { json.addProperty(DataKeys.POKEMON_FORM_ID, it) }
         friendship?.let { json.addProperty(DataKeys.POKEMON_FRIENDSHIP, it) }
         pokeball?.let { json.addProperty(DataKeys.POKEMON_CAUGHT_BALL, it) }
@@ -583,7 +591,7 @@ open class PokemonProperties {
         shiny = json.get(DataKeys.POKEMON_SHINY)?.asBoolean
         gender = json.get(DataKeys.POKEMON_GENDER)?.asString?.let { Gender.valueOf(it) }
         species = json.get(DataKeys.POKEMON_SPECIES_TEXT)?.asString
-        nickname = json.get(DataKeys.POKEMON_NICKNAME)?.asString?.let { Text.Serializer.fromJson(it) }
+        nickname = json.get(DataKeys.POKEMON_NICKNAME)?.asString?.let { Text.Serialization.fromJson(it) }
         form = json.get(DataKeys.POKEMON_FORM_ID)?.asString
         friendship = json.get(DataKeys.POKEMON_FRIENDSHIP)?.asInt
         pokeball = json.get(DataKeys.POKEMON_CAUGHT_BALL)?.asString

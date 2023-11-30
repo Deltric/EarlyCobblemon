@@ -15,6 +15,7 @@ import com.cobblemon.mod.common.api.text.green
 import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.block.entity.HealingMachineBlockEntity
 import com.cobblemon.mod.common.util.*
+import com.mojang.serialization.MapCodec
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
@@ -47,6 +48,8 @@ import net.minecraft.world.World
 @Suppress("DEPRECATED", "OVERRIDE_DEPRECATION")
 class HealingMachineBlock(properties: Settings) : BlockWithEntity(properties) {
     companion object {
+        val CODEC = createCodec(::HealingMachineBlock)
+
         private val NORTH_SOUTH_AABB = VoxelShapes.union(
             VoxelShapes.cuboid(0.0, 0.0, 0.0, 1.0, 0.625, 1.0),
             VoxelShapes.cuboid(0.0625, 0.625, 0.0, 0.9375, 0.875, 0.125),
@@ -91,6 +94,10 @@ class HealingMachineBlock(properties: Settings) : BlockWithEntity(properties) {
 
     override fun getPlacementState(blockPlaceContext: ItemPlacementContext): BlockState {
         return this.defaultState.with(HorizontalFacingBlock.FACING, blockPlaceContext.horizontalPlayerFacing)
+    }
+
+    override fun getCodec(): MapCodec<out BlockWithEntity> {
+        return CODEC
     }
 
     override fun canPathfindThrough(blockState: BlockState, blockGetter: BlockView, blockPos: BlockPos, pathComputationType: NavigationType): Boolean {
@@ -190,7 +197,7 @@ class HealingMachineBlock(properties: Settings) : BlockWithEntity(properties) {
 
     override fun getComparatorOutput(state: BlockState, world: World, pos: BlockPos): Int = (world.getBlockEntity(pos) as? HealingMachineBlockEntity)?.currentSignal ?: 0
 
-    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = checkType(blockWithEntityType, CobblemonBlockEntities.HEALING_MACHINE, HealingMachineBlockEntity.TICKER::tick)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = validateTicker(blockWithEntityType, CobblemonBlockEntities.HEALING_MACHINE, HealingMachineBlockEntity.TICKER::tick)
 
     override fun getRenderType(blockState: BlockState): BlockRenderType {
         return BlockRenderType.MODEL

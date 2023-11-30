@@ -9,16 +9,21 @@
 package com.cobblemon.mod.common.util.adapters
 
 import com.google.gson.*
+import com.mojang.serialization.JsonOps
 import net.minecraft.predicate.NumberRange
 import java.lang.reflect.Type
 
 /**
- * A type adapter for [NumberRange.FloatRange].
+ * A type adapter for [NumberRange.DoubleRange].
  *
  * @author Licious
  * @since November 28th, 2022
  */
-object FloatNumberRangeAdapter : JsonDeserializer<NumberRange.FloatRange>, JsonSerializer<NumberRange.FloatRange> {
-    override fun deserialize(element: JsonElement, type: Type, context: JsonDeserializationContext): NumberRange.FloatRange = NumberRange.FloatRange.fromJson(element)
-    override fun serialize(range: NumberRange.FloatRange, type: Type, context: JsonSerializationContext): JsonElement = range.toJson()
+object FloatNumberRangeAdapter : JsonDeserializer<NumberRange.DoubleRange>, JsonSerializer<NumberRange.DoubleRange> {
+    override fun deserialize(element: JsonElement, type: Type, context: JsonDeserializationContext): NumberRange.DoubleRange {
+        return NumberRange.DoubleRange.CODEC.decode(JsonOps.INSTANCE, element).result().get().first
+    }
+    override fun serialize(range: NumberRange.DoubleRange, type: Type, context: JsonSerializationContext): JsonElement {
+        return NumberRange.DoubleRange.CODEC.encode(range, JsonOps.INSTANCE, JsonOps.INSTANCE.empty()).result().get()
+    }
 }

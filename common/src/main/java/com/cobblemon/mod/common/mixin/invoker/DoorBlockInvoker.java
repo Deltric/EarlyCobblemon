@@ -11,14 +11,13 @@ package com.cobblemon.mod.common.mixin.invoker;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.DoorBlock;
-import net.minecraft.sound.SoundEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(DoorBlock.class)
 public interface DoorBlockInvoker {
     @Invoker("<init>")
-    static DoorBlock cobblemon$create(AbstractBlock.Settings settings, BlockSetType blockSetType) {
+    static DoorBlock cobblemon$create(BlockSetType blockSetType, AbstractBlock.Settings settings) {
         throw new UnsupportedOperationException();
     }
 }

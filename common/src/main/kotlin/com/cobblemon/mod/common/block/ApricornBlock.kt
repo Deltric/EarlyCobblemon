@@ -15,6 +15,8 @@ import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
 import com.cobblemon.mod.common.api.tags.CobblemonItemTags
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
+import com.mojang.serialization.MapCodec
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.block.*
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.ai.pathing.NavigationType
@@ -111,7 +113,7 @@ class ApricornBlock(settings: Settings, val apricorn: Apricorn) : HorizontalFaci
             else super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
     }
 
-    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState, isClient: Boolean) = state.get(AGE) < MAX_AGE
+    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState) = state.get(AGE) < MAX_AGE
 
     override fun canGrow(world: World, random: Random, pos: BlockPos, state: BlockState) = true
 
@@ -121,6 +123,10 @@ class ApricornBlock(settings: Settings, val apricorn: Apricorn) : HorizontalFaci
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
         builder.add(FACING, AGE)
+    }
+
+    override fun getCodec(): MapCodec<out HorizontalFacingBlock> {
+        return CODEC
     }
 
     override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType) = false
@@ -144,7 +150,7 @@ class ApricornBlock(settings: Settings, val apricorn: Apricorn) : HorizontalFaci
     }
 
     // We need to point back to the actual apricorn item, see SweetBerryBushBlock for example
-    override fun getPickStack(world: BlockView, pos: BlockPos, state: BlockState) = ItemStack(this.apricorn.item())
+    override fun getPickStack(world: WorldView, pos: BlockPos, state: BlockState) = ItemStack(this.apricorn.item())
 
     /**
      * Harvests the apricorn at the given params.
@@ -177,6 +183,10 @@ class ApricornBlock(settings: Settings, val apricorn: Apricorn) : HorizontalFaci
     }
 
     companion object {
+        val CODEC: MapCodec<ApricornBlock> = RecordCodecBuilder.mapCodec { it.group(
+            createSettingsCodec(),
+            Apricorn.CODEC.fieldOf("apricorn").forGetter(ApricornBlock::apricorn)
+        ).apply(it, ::ApricornBlock) }
 
         val AGE: IntProperty = Properties.AGE_3
         const val MAX_AGE = Properties.AGE_3_MAX

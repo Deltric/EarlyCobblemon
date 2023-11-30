@@ -39,7 +39,7 @@ class InfoWidget(
         private const val ROW_HEIGHT = 15
     }
 
-    override fun renderButton(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
+    override fun renderWidget(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
         val matrices = context.matrices
         // Base texture
         blitk(
@@ -91,9 +91,9 @@ class InfoWidget(
         typeWidget.render(context, pMouseX, pMouseY, pPartialTicks)
 
         // OT
-        var displayName: MutableText = MutableText.of(TextContent.EMPTY)
+        var displayName: MutableText = Text.empty()
         if (pokemon.isPlayerOwned() && pokemon.getOwnerPlayer() != null) {
-            displayName = pokemon.getOwnerPlayer()!!.displayName.copy()
+            displayName = (pokemon.getOwnerPlayer()!!.displayName ?: pokemon.getOwnerPlayer()!!.name).copy()
         }
         val otWidget = InfoOneLineWidget(
             pX = x,

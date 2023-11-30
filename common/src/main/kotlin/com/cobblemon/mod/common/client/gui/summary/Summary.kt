@@ -406,7 +406,7 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
     }
 
     override fun render(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
-        renderBackground(context)
+        renderInGameBackground(context)
 
         val x = (width - BASE_WIDTH) / 2
         val y = (height - BASE_HEIGHT) / 2
@@ -580,6 +580,10 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
         }
     }
 
+    override fun renderBackground(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+
+    }
+
     /**
      * Whether this Screen should pause the Game in SinglePlayer
      */
@@ -587,8 +591,8 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
         return false
     }
 
-    override fun mouseScrolled(mouseX: Double, mouseY: Double, amount: Double): Boolean {
-        return children().any { it.mouseScrolled(mouseX, mouseY, amount) }
+    override fun mouseScrolled(mouseX: Double, mouseY: Double, amount: Double, verticalAmount: Double): Boolean {
+        return children().any { it.mouseScrolled(mouseX, mouseY, amount, verticalAmount) }
     }
 
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {

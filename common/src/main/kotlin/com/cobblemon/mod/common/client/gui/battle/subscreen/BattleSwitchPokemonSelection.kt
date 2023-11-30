@@ -118,7 +118,7 @@ class BattleSwitchPokemonSelection(
         }
     }
 
-    override fun renderButton(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         if (opacity <= 0.05F) {
             return
         }

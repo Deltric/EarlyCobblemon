@@ -56,8 +56,8 @@ dependencies {
     modApi(libs.fabricApi)
     modApi(libs.fabricKotlin)
     modApi(libs.fabricPermissionsApi)
-    modRuntimeOnly(libs.jeiFabric)
-    modCompileOnly(libs.adornFabric)
+    //modRuntimeOnly(libs.jeiFabric)
+    //modCompileOnly(libs.adornFabric)
 //    modImplementation(libs.flywheelFabric)
 //    include(libs.flywheelFabric)
 
@@ -81,7 +81,6 @@ tasks {
     val copyAccessWidener by registering(Copy::class) {
         from(loom.accessWidenerPath)
         into(generatedResources)
-        dependsOn(checkLicenseMain)
     }
 
     processResources {

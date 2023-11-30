@@ -16,7 +16,6 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.evolution.predicate.NbtItemPredicate
 import com.cobblemon.mod.common.registry.ItemIdentifierCondition
 import net.minecraft.item.ItemStack
-import net.minecraft.predicate.NbtPredicate
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
@@ -41,7 +40,7 @@ open class ItemInteractionEvolution(
     constructor(): this(
         id = "id",
         result = PokemonProperties(),
-        requiredContext = NbtItemPredicate(ItemIdentifierCondition(Identifier("minecraft", "fish")), NbtPredicate.ANY),
+        requiredContext = NbtItemPredicate(ItemIdentifierCondition(Identifier("minecraft", "fish")), null),
         optional = true,
         consumeHeldItem = true,
         requirements = mutableSetOf(),
@@ -50,7 +49,7 @@ open class ItemInteractionEvolution(
 
     override fun testContext(pokemon: Pokemon, context: ItemInteractionContext): Boolean =
         this.requiredContext.item.fits(context.stack.item, context.world.registryManager.get(RegistryKeys.ITEM))
-        && this.requiredContext.nbt.test(context.stack)
+        && (this.requiredContext.nbt?.test(context.stack) ?: true)
 
     override fun equals(other: Any?) = other is ItemInteractionEvolution && other.id.equals(this.id, true)
 

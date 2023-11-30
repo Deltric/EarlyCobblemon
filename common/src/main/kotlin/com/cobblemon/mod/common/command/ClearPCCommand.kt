@@ -35,7 +35,7 @@ object ClearPCCommand {
         val target = EntityArgumentType.getPlayer(context, "player")
         val pc = target.pc()
         pc.toList().forEach(pc::remove)
-        context.source.sendFeedback({ commandLang("$NAME.cleared", target.displayName) }, true)
+        context.source.sendFeedback({ commandLang("$NAME.cleared", target.displayName ?: target.name) }, true)
         return Command.SINGLE_SUCCESS
     }
 }

@@ -9,7 +9,6 @@
 package com.cobblemon.mod.common.mixin.invoker;
 
 import net.minecraft.block.*;
-import net.minecraft.resource.featuretoggle.FeatureFlag;
 import net.minecraft.sound.BlockSoundGroup;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -19,22 +18,22 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface BlocksInvoker {
 
     @Invoker("createLogBlock")
-    static PillarBlock createLogBlock(MapColor topMapColor, MapColor sideMapColor) {
+    static Block createLogBlock(MapColor topMapColor, MapColor sideMapColor) {
         throw new UnsupportedOperationException();
     }
 
     @Invoker("createLeavesBlock")
-    static LeavesBlock createLeavesBlock(BlockSoundGroup soundGroup) {
+    static Block createLeavesBlock(BlockSoundGroup soundGroup) {
         throw new UnsupportedOperationException();
     }
 
     @Invoker("createWoodenButtonBlock")
-    static ButtonBlock createWoodenButtonBlock(BlockSetType blockSetType, FeatureFlag... requiredFeatures) {
+    static Block createWoodenButtonBlock(BlockSetType blockSetType) {
         throw new UnsupportedOperationException();
     }
 
     @Invoker("createFlowerPotBlock")
-    static FlowerPotBlock createFlowerPotBlock(Block flower, FeatureFlag... requiredFeatures) {
+    static Block createFlowerPotBlock(Block flower) {
         throw new UnsupportedOperationException();
     }
 

@@ -45,7 +45,7 @@ class MoveSlotButton(
         const val HEIGHT = 22
     }
 
-    override fun render(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
+    override fun renderWidget(context: DrawContext, pMouseX: Int, pMouseY: Int, pPartialTicks: Float) {
         hovered = pMouseX >= x && pMouseY >= y && pMouseX < x + width && pMouseY < y + height && enabled
 
         val moveTemplate = Moves.getByNameOrDummy(move.name)

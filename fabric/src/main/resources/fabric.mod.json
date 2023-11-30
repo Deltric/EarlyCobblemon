@@ -21,9 +21,6 @@
     ],
     "client": [
       "com.cobblemon.mod.fabric.client.CobblemonFabricClient"
-    ],
-    "jei_mod_plugin": [
-      "com.cobblemon.mod.common.integration.jei.CobblemonJeiPlugin"
     ]
   },
   "mixins": [
@@ -34,7 +31,7 @@
   "depends": {
     "fabricloader": ">=${fabric_loader_version}",
     "fabric-api": "*",
-    "minecraft": ">=${minecraft_version}",
+    "minecraft": "*",
     "java": ">=17"
   },
   "custom": {

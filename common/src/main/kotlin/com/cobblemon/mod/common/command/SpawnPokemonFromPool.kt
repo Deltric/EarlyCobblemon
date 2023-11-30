@@ -84,7 +84,7 @@ object SpawnPokemonFromPool {
             val spawnAction = result.second.doSpawn(ctx = result.first)
 
             spawnAction.entity.subscribe {
-                player.sendMessage(commandLang("spawnpokemonfrompool", it.displayName).green())
+                player.sendMessage(commandLang("spawnpokemonfrompool", it.displayName ?: it.name).green())
             }
 
             spawner.performSpawn(spawnAction)

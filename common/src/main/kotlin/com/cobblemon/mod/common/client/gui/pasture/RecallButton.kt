@@ -31,7 +31,7 @@ class RecallButton(
         private val buttonResource = cobblemonResource("textures/gui/pasture/pasture_button.png")
     }
 
-    override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         blitk(
             matrixStack = context.matrices,
             texture = buttonResource,

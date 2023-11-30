@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.cobblemon.mod.common.battles.runner.ShowdownService
 import com.cobblemon.mod.common.net.messages.client.data.AbilityRegistrySyncPacket
 import com.cobblemon.mod.common.pokemon.abilities.HiddenAbilityType
+import com.cobblemon.mod.common.pokemon.abilities.SpecialAbilityType
 import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.resource.ResourceManager
 import net.minecraft.resource.ResourceType
@@ -36,6 +37,8 @@ object Abilities : DataRegistry {
         PotentialAbility.types.clear()
         PotentialAbility.types.add(CommonAbilityType)
         PotentialAbility.types.add(HiddenAbilityType)
+        PotentialAbility.types.add(SpecialAbilityType)
+
         this.abilityMap.clear()
         val abilitiesJson = ShowdownService.service.getAbilityIds()
         for (i in 0 until abilitiesJson.size()) {

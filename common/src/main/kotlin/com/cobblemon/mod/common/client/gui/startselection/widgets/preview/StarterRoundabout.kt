@@ -39,7 +39,7 @@ class StarterRoundabout(
         const val MODEL_HEIGHT = 30
     }
 
-    override fun renderButton(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun renderWidget(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         if (!this.visible) {
             return
         }

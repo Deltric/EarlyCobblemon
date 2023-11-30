@@ -6,7 +6,8 @@
   "secondaryType": "dark",
   "abilities": [
     "torrent",
-    "h:protean"
+    "h:protean",
+    "s:battlebond"
   ],
   "drops": {
     "amount": 4,

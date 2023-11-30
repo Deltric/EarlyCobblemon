@@ -21,6 +21,7 @@ import com.cobblemon.mod.common.util.isInBattle
 import com.cobblemon.mod.common.util.playSoundServer
 import com.cobblemon.mod.common.util.toVec3d
 import com.cobblemon.mod.common.util.voxelShape
+import com.mojang.serialization.MapCodec
 import java.util.UUID
 import net.minecraft.block.Block
 import net.minecraft.block.BlockRenderType
@@ -63,7 +64,9 @@ import net.minecraft.world.WorldView
 
 @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
 class PastureBlock(properties: Settings): BlockWithEntity(properties), Waterloggable, PreEmptsExplosion {
+
     companion object {
+        val CODEC = createCodec(::PastureBlock)
         val PART: EnumProperty<PasturePart> = EnumProperty.of("part", PasturePart::class.java)
         val ON: BooleanProperty = BooleanProperty.of("on")
         val WATERLOGGED: BooleanProperty = BooleanProperty.of("waterlogged")
@@ -174,6 +177,10 @@ class PastureBlock(properties: Settings): BlockWithEntity(properties), Waterlogg
 
     private fun isBase(state: BlockState): Boolean = state.contains(PART) && state.get(PART) == PasturePart.BOTTOM
 
+    override fun getCodec(): MapCodec<out BlockWithEntity> {
+        return CODEC
+    }
+
     override fun canPathfindThrough(blockState: BlockState, blockGetter: BlockView, blockPos: BlockPos, pathComputationType: NavigationType) = false
 
     override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
@@ -193,7 +200,7 @@ class PastureBlock(properties: Settings): BlockWithEntity(properties), Waterlogg
         }
     }
 
-    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity?) {
+    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity?): BlockState {
         checkBreakEntity(world, state, pos)
         if (!world.isClient && player?.isCreative == true) {
             var blockPos: BlockPos = BlockPos.ORIGIN
@@ -206,7 +213,7 @@ class PastureBlock(properties: Settings): BlockWithEntity(properties), Waterlogg
                 world.syncWorldEvent(player, WorldEvents.BLOCK_BROKEN, blockPos, getRawIdFromState(blockState))
             }
         }
-        super.onBreak(world, pos, state, player)
+        return super.onBreak(world, pos, state, player)
     }
 
     override fun whenExploded(world: World, state: BlockState, pos: BlockPos) {
@@ -215,7 +222,7 @@ class PastureBlock(properties: Settings): BlockWithEntity(properties), Waterlogg
     }
 
     override fun <T : BlockEntity?> getTicker(world: World, state: BlockState, type: BlockEntityType<T>): BlockEntityTicker<T>? {
-        return checkType(type, CobblemonBlockEntities.PASTURE, PokemonPastureBlockEntity.TICKER::tick)
+        return validateTicker(type, CobblemonBlockEntities.PASTURE, PokemonPastureBlockEntity.TICKER::tick)
     }
 
     override fun onPlaced(world: World, pos: BlockPos, state: BlockState, placer: LivingEntity?, itemStack: ItemStack?) {

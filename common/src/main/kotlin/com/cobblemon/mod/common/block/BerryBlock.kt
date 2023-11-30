@@ -19,6 +19,8 @@ import com.cobblemon.mod.common.api.mulch.MulchVariant
 import com.cobblemon.mod.common.api.mulch.Mulchable
 import com.cobblemon.mod.common.api.tags.CobblemonBlockTags
 import com.cobblemon.mod.common.block.entity.BerryBlockEntity
+import com.mojang.serialization.MapCodec
+import com.mojang.serialization.codecs.RecordCodecBuilder
 import net.minecraft.block.Block
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
@@ -68,21 +70,21 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Settings) : 
      */
     fun berry(): Berry? = Berries.getByIdentifier(this.berryIdentifier)
 
-    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity) {
+    override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity): BlockState {
         if (!player.isCreative && state.get(AGE) == FRUIT_AGE) {
             val treeEntity = world.getBlockEntity(pos) as BerryBlockEntity
             treeEntity.harvest(world, state, pos, player).forEach { drop -> Block.dropStack(world, pos, drop) }
         }
-        super.onBreak(world, pos, state, player)
+        return super.onBreak(world, pos, state, player)
     }
 
     override fun createBlockEntity(pos: BlockPos, state: BlockState) = BerryBlockEntity(pos, state, berryIdentifier)
 
-    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState, isClient: Boolean) = !this.isMaxAge(state)
+    override fun isFertilizable(world: WorldView, pos: BlockPos, state: BlockState) = !this.isMaxAge(state)
 
     override fun canGrow(world: World, random: Random, pos: BlockPos, state: BlockState) = !this.isMaxAge(state)
 
-    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = checkType(blockWithEntityType, CobblemonBlockEntities.BERRY, BerryBlockEntity.TICKER)
+    override fun <T : BlockEntity> getTicker(world: World, blockState: BlockState, blockWithEntityType: BlockEntityType<T>): BlockEntityTicker<T>? = validateTicker(blockWithEntityType, CobblemonBlockEntities.BERRY, BerryBlockEntity.TICKER)
 
     init {
         defaultState = this.stateManager.defaultState
@@ -192,6 +194,10 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Settings) : 
                 || below.block is FarmlandBlock
     }
 
+    override fun getCodec(): MapCodec<out BlockWithEntity> {
+        return CODEC
+    }
+
     @Deprecated("Deprecated in Java")
     override fun getStateForNeighborUpdate(state: BlockState, direction: Direction, neighborState: BlockState, world: WorldAccess, pos: BlockPos, neighborPos: BlockPos): BlockState {
         return if (state.canPlaceAt(world, pos)) super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos) else Blocks.AIR.defaultState
@@ -210,7 +216,7 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Settings) : 
         builder.add(MULCH)
     }
 
-    override fun getPickStack(world: BlockView?, pos: BlockPos?, state: BlockState?): ItemStack {
+    override fun getPickStack(world: WorldView?, pos: BlockPos?, state: BlockState?): ItemStack {
         val berryItem = this.berry()?.item() ?: return ItemStack.EMPTY
         return ItemStack(berryItem)
     }
@@ -232,6 +238,11 @@ class BerryBlock(private val berryIdentifier: Identifier, settings: Settings) : 
     override fun getRenderType(blockState: BlockState) = BlockRenderType.MODEL
 
     companion object {
+        val CODEC: MapCodec<BerryBlock> = RecordCodecBuilder.mapCodec { it.group(
+            Identifier.CODEC.fieldOf("berry").forGetter(BerryBlock::berryIdentifier),
+            createSettingsCodec()
+        ).apply(it, ::BerryBlock) }
+
         const val MATURE_AGE = 3
         const val FLOWER_AGE = 4
         const val FRUIT_AGE = 5
